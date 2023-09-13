@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mgs" translate="label" sortOrder="68">
+            <label>Mage Solution</label>
+        </tab>
+        <section id="instantsearch" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Instant Search Settings</label>
+            <tab>mgs</tab>
+            <resource>MGS_InstantSearch::instantsearch</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable / Disable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="result" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Search results page</label>
+                    <source_model>MGS\InstantSearch\Model\Config\Source\Result</source_model>
+                </field>
+
+				 <field id="number_results" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of search results dropdown</label>
+                </field>
+                <field id="view_more_label" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>View more label</label>
+                </field>
+            </group>
+            <group id="additional_product" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Additional product search</label>
+                <field id="actived" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable / Disable product search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="per_page" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Products per Page on Grid Default Value</label>
+                </field>
+                <field id="show_short_description" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Short Description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_review" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Review</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort order</label>
+                </field>
+            </group>
+            <group id="additional_category" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Additional category search</label>
+                <field id="actived" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable / Disable category search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="per_page_values" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Categories per Page on Grid Allowed Values</label>
+                    <comment>Comma-separated.</comment>
+                    <validate>validate-per-page-value-list</validate>
+                </field>
+                <field id="per_page" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Categories per Page on Grid Default Value</label>
+                    <comment>Must be in the allowed values list</comment>
+                    <validate>validate-per-page-value</validate>
+                </field>
+                <field id="list_allow_all" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow All Categories per Page</label>
+                    <comment>Whether to show "All" option in the "Show X Per Page" dropdown</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort order</label>
+                    <validate>validate-number</validate>
+                </field>
+            </group>
+            <group id="additional_cms_page" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Additional cms page search</label>
+                <field id="actived" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable / Disable cms page search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="per_page_values" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cms Pages per Page on Grid Allowed Values</label>
+                    <comment>Comma-separated.</comment>
+                    <validate>validate-per-page-value-list</validate>
+                </field>
+                <field id="per_page" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cms Pages per Page on Grid Default Value</label>
+                    <comment>Must be in the allowed values list</comment>
+                    <validate>validate-per-page-value</validate>
+                </field>
+                <field id="list_allow_all" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow All Cms Pages per Page</label>
+                    <comment>Whether to show "All" option in the "Show X Per Page" dropdown</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort order</label>
+                </field>
+            </group>
+            <group id="additional_blog" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Additional blog search</label>
+                <field id="actived" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable / Disable blog search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="per_page_values" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Blogs per Page on Grid Allowed Values</label>
+                    <comment>Comma-separated.</comment>
+                    <validate>validate-per-page-value-list</validate>
+                </field>
+                <field id="per_page" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Blogs per Page on Grid Default Value</label>
+                    <comment>Must be in the allowed values list</comment>
+                    <validate>validate-per-page-value</validate>
+                </field>
+                <field id="list_allow_all" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow All Blog per Page</label>
+                    <comment>Whether to show "All" option in the "Show X Per Page" dropdown</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort order</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

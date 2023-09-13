@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MGS_Portfolio::portfolio" title="Portfolio" module="MGS_Portfolio" sortOrder="50" parent="Magento_Backend::mgs" resource="MGS_Portfolio::portfolio"/>
+		<add id="MGS_Portfolio::category" title="Portfolio Categories" module="MGS_Portfolio" sortOrder="10" parent="MGS_Portfolio::portfolio" action="adminhtml/portfolio/category" resource="MGS_Portfolio::category"/>
+		<add id="MGS_Portfolio::items" title="Portfolio Items" module="MGS_Portfolio" sortOrder="20" parent="MGS_Portfolio::portfolio" action="adminhtml/portfolio" resource="MGS_Portfolio::items"/>
+    </menu>
+</config>

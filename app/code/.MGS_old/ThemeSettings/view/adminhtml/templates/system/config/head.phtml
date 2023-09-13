@@ -1,0 +1,109 @@
+<?php $helper = $this->helper('MGS\ThemeSettings\Helper\Config') ?>
+<?php $fonts = $helper->getFonts(); ?>
+<?php $customFont = $helper->getCustomFonts(); ?>
+<?php //echo '<pre>'; print_r($customFont); die(); ?>
+<?php if(count($fonts)>0): ?>
+	<?php foreach($fonts as $font): ?>
+		<?php if(!isset($customFont[$font['css-name']])): ?>
+			<link href="//fonts.googleapis.com/css?family=<?php echo $font['css-name'] ?>:100,200,300,400,500,600,700,800,900" rel="stylesheet" type="text/css">
+		<?php endif ?>
+	<?php endforeach ?>
+	
+	<?php if(count($customFont)>0): ?>
+		<style type="text/css">
+		<?php foreach($customFont as $fontName=>$files): ?>
+			<?php $embedFontString = '';?>
+			<?php
+				if(isset($files['eot'])){
+					$embedFontString .= 'src: url("'.$files['eot'].'");';
+				}
+				$embedFontString .= 'src:';
+				if(isset($files['eot'])){
+					$embedFontString .= 'url("'.$files['eot'].'?#iefix") format("embedded-opentype"),';
+				}
+				if(isset($files['woff'])){
+					$embedFontString .= 'url("'.$files['woff'].'") format("woff"),';
+				}
+				if(isset($files['woff'])){
+					$embedFontString .= 'url("'.$files['woff'].'") format("woff"),';
+				}
+				if(isset($files['ttf'])){
+					$embedFontString .= 'url("'.$files['ttf'].'")  format("truetype"),';
+				}
+				if(isset($files['woff2'])){
+					$embedFontString .= 'url("'.$files['woff2'].'") format("woff2"),';
+				}
+				if(isset($files['svg'])){
+					$embedFontString .= 'url("'.$files['svg'].'#svgFontName") format("svg")';
+				}
+				if(substr($embedFontString, -1)==','){
+					$embedFontString = substr($embedFontString, 0, -1);
+				}
+			?>
+			@font-face {
+				font-family: '<?php echo $fontName ?>';
+				<?php echo $embedFontString ?>;	 
+				font-weight: normal;
+				font-style: normal;
+			}
+		<?php endforeach ?>
+		</style>
+	<?php endif ?>
+<?php endif ?>
+
+<script type="text/javascript">
+	function setFontFamily(el){
+		require([
+			'jquery'
+		], function(jQuery){
+			(function($) {
+				fontName = $('#'+el).val().replace('+', ' ');
+				if(fontName!=''){
+					$('#'+el+'_heading').css({fontFamily:  '"'+fontName+'"'});
+				}else{
+					$('#'+el+'_heading').css({fontFamily:  'unset'});
+				}
+				setNoteLabel(el);
+			})(jQuery);
+		});
+	}
+	function setFontWeight(el){
+		require([
+			'jquery'
+		], function(jQuery){
+			(function($) {
+				weight = $('#'+el).val();
+				sampleEl = el.replace('weight', 'heading');
+				if(fontName!=''){
+					$('#'+sampleEl).css({fontWeight: weight});
+				}else{
+					$('#'+sampleEl).css({fontWeight:  'unset'});
+				}
+				setNoteLabel(el);
+			})(jQuery);
+		});
+	}
+	
+	function setNoteLabel(el){
+		require([
+			'jquery'
+		], function(jQuery){
+			(function($) {
+				el = el.replace('themestyle_font_','');
+				el = el.replace('_weight','');
+				fontFamily = 'themestyle_font_'+el;
+				fontWeight = fontFamily+'_weight';
+				noteEl = el+'_note';
+				
+				fontFamilyValue = $('#'+fontFamily).val();
+				fontWeightValue = $('#'+fontWeight).val();
+				if(fontFamilyValue!='' && fontWeightValue!=''){
+					$('#'+noteEl).show();
+					$('#'+noteEl+' span').html($('#'+fontFamily).val().replace('+', ' '));
+				}else{
+					$('#'+noteEl).hide();
+				}
+			})(jQuery);
+		});
+	}
+</script>

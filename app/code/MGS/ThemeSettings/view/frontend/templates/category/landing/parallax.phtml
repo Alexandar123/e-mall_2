@@ -1,0 +1,25 @@
+<?php $category = $this->getCurrentCategory() ?>
+<?php $themeSettingConfig = $this->getThemeSettingConfig() ?>
+<?php $_categories = $category->getChildrenCategories(); ?>
+<?php if(count($_categories)>0): ?>
+<div class="landing-parallax">
+	<?php $i =0; foreach ($_categories as $_category): ?>
+		<?php if ($_category->getIsActive()): ?>
+			<?php $i++; ?>
+			<div>
+				<?php echo $_category->getName() ?><br/>
+				<?php echo $_category->getUrl() ?><br/>
+				<?php if($image = $_category->getFbuilderThumbnail()): ?>
+					<img src="<?php echo $this->getBaseUrl().'pub/media/catalog/category/'.$image ?>" alt=""/><br/>
+				<?php endif ?>
+				<?php echo __('%1 Products', $_category->getProductCount());  ?><br/>
+				<?php if(!$category->getHideDescription()): ?>
+					<?php $description = $this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($_category, $_category->getDescription(), 'description') ?>
+					<?php echo $themeSettingConfig->truncateString($description, $category->getTruncateDescription()) ?>
+				<?php endif ?>
+			</div>
+			<br/>
+		<?php endif ?>
+	<?php endforeach ?>
+</div>
+<?php endif ?>

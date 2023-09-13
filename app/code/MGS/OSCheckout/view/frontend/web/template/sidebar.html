@@ -1,0 +1,22 @@
+<div id="mgs-oscheckout-sidebar">
+    <!-- ko foreach: getRegion('summary') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div class="mgs-oscheckout-shipping-information">
+        <!-- ko foreach: getRegion('shipping-information') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </div>
+    <div id="mgs-oscheckout-place-order-area">
+        <div class="onestepcheckout-addition-content-wrapper">
+            <!-- ko foreach: getRegion('place-order-information-left') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="onestepcheckout-place-order-wrapper">
+            <!-- ko foreach: getRegion('place-order-information-right') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+    </div>
+</div>

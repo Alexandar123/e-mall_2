@@ -1,0 +1,15 @@
+<?php
+/* @var $block MGS\AjaxCart\Block\Ui\Product\Image */
+?>
+<?php $product = $block->getProductImage() ?>
+<?php if($product != ""): ?>
+	<?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+	<?php $image = 'category_page_grid'; ?>
+	<?php $themeHelper = $this->helper('MGS\AjaxCart\Helper\Data'); ?>
+	<?php $size = $themeHelper->getImageMinSize(); ?>
+	<div class="popup__image-wrapper">
+		<?php $productImage = $_imagehelper->init($product, $image)->resize($size[0], $size[1])->getUrl(); ?>
+		<img class="img-responsive" alt="" src="<?php echo $productImage; ?>" />
+	</div>
+<?php endif ?>
+

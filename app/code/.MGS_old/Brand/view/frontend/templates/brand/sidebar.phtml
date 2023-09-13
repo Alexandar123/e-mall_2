@@ -1,0 +1,42 @@
+<?php $helper = $this->helper('MGS\Brand\Helper\Data'); ?>
+<?php if ($block->getConfig('general_settings/enabled')): ?>
+    <?php if ($block->getConfig('sidebar_settings/enabled')): ?>
+        <?php $collection = $block->getCollection(); ?>
+        <?php if ($collection->count()): ?>
+            <div class="block block-brand">
+                <div class="block-title">
+                    <strong class="title"><?= __('Brands') ?></strong>
+                </div>
+				<?php $_cUrl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>
+                <div class="block-content">
+                    <ul class="brand-list list-group">
+                        <?php foreach ($collection as $brand): ?>
+							<?php if($_cUrl == $brand->getUrl()): ?>
+								<li class="list-group-item active">
+									<span><?= $brand->getName(); ?></span>
+									<?php if ($this->getConfig('sidebar_settings/show_product_count')): ?>
+										<span class="badge"><?= $block->getProductCount($brand); ?></span>
+									<?php endif; ?>
+								</li>
+							<?php else: ?>
+								<li class="list-group-item">
+									<a title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>">
+										<?= $brand->getName(); ?>
+									</a>
+									<?php if ($this->getConfig('sidebar_settings/show_product_count')): ?>
+										<span class="badge"><?= $block->getProductCount($brand); ?></span>
+									<?php endif; ?>
+								</li>
+							<?php endif ?>
+                        <?php endforeach; ?>
+						<?php if($helper->getBrandUrl() != $_cUrl): ?>
+							<li class="list-group-item last all">
+								<a title="<?= __('View All'); ?>" href="<?= $helper->getBrandUrl(); ?>"><?= __('View All'); ?></a>
+							</li>
+						<?php endif ?>
+                    </ul>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

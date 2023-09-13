@@ -1,0 +1,32 @@
+<div class="product-static-block ">
+    <?php echo $this->getLayout()
+        ->createBlock('Magento\Cms\Block\Block')
+        ->setBlockId('mgs_product_detail_top_block')
+        ->toHtml(); ?>
+</div>
+
+<script>
+    require([
+        "jquery",
+        "Magento_Ui/js/modal/modal"
+    ],function($, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            modalClass: 'modal-static-block',
+            buttons: []
+        };
+        if($('#guilde-content').length){
+            var popup = modal(options, $('#guilde-content'));
+        }
+        if($('#delivery-content').length){
+            var popup2 = modal(options, $('#delivery-content'));
+        }
+        $("#btn-guilde").on('click', function() {
+            $('#guilde-content').modal('openModal');
+        });
+        $("#btn-delivery").on('click', function() {
+            $('#delivery-content').modal('openModal');
+        });
+    });
+</script>

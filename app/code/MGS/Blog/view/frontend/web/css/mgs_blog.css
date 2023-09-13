@@ -1,0 +1,135 @@
+ul , ol {
+	list-style: none;
+	padding: 0;
+}
+
+.blog-list .blog-post,.mgs-blog-lastest-posts  .block-content .default .item {
+	float: left;
+	width: calc(50% - 30px);
+	padding: 0 15px;
+	margin-bottom: 30px;
+}
+.blog-list,.mgs-blog-lastest-posts  .block-content .default {
+	display: table;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.blog-list .blog-post:nth-child(2n + 1),
+.mgs-blog-lastest-posts  .block-content .default .item:nth-child(2n + 1) {
+	clear: left;
+}
+.blog-list .blog-post .post-title {
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+.blog-list .blog-post .post-info, .blog-post-view .post-info {
+	display: table;
+	margin-bottom: 20px;
+	width: 100%;
+}
+.blog-list .blog-post .post-info .published-by,
+.blog-list .blog-post .post-info .posted-in,
+.blog-list .blog-post .post-info .comment-link {
+	display: table-cell;
+	font-size: 12px;
+	color: #c2c2c2;
+}
+.blog-list .blog-post .post-info .published-by {
+	padding-right: 20px;
+}
+.blog-list .blog-post .post-info .comment-link {
+	padding-left: 20px;
+}
+.blog-list .blog-post .post-content,
+.blog-list .blog-post .post-tags,
+.post-sharethis,
+.blog-post-view .blog-post .post-tags {
+	margin-top: 20px;
+}
+.blog-post-view .blog-post .post-tags a,
+.block-blog-tags .small {
+	display: inline-block;
+	padding: 6px 10px;
+	font-size: 13px;
+	margin-bottom: 4px;
+	border: 1px solid #c2c2c2;
+}
+.blog-post-list-toolbar, .blog-post-comment-list-toolbar {
+	border-top: 1px solid #c2c2c2;
+	padding-top: 15px;
+	text-align: right;
+}
+.blog-post-list-toolbar .pages , .blog-post-comment-list-toolbar .pages {
+	text-align: right;
+}
+.blog-post-list-toolbar .pages .page,
+.blog-post-comment-list-toolbar .pages .page {
+	width: 30px;
+	text-align: center;
+	background: #f0f0f0 none repeat scroll 0 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+    box-shadow: 0 1px 0 0 #fff inset, 0 -1px 0 0 rgba(204, 204, 204, 0.3) inset;
+}
+.blog-post-view .post-info  {
+	border-bottom: 1px solid #c2c2c2;
+	padding-bottom: 14px;
+}
+.blog-post-view .post-info  .published-by ,
+.blog-post-view .post-info  .posted-in {
+	display: table-cell;
+}
+.blog-post-view .post-info  .posted-in {
+	text-align: right;
+}
+.post-sharethis .title {
+	color: #222;
+	font-weight: 700;
+}
+.comment-list .comment-list-container .name {
+	margin-top: 0;
+	margin-bottom: 8px;
+}
+.comment-list .comment-list-container .item {
+	margin-bottom: 15px;
+}
+.sidebar .block-title {
+	margin-bottom: 20px;
+}
+.sidebar .block-title strong {
+	font-size: 18px;
+    font-weight: 300;
+}
+.sidebar .block-blog-posts .post-list .item {
+	display: table;
+	width: 100%;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eeeeee;
+}
+.sidebar .block-blog-posts .post-list .item:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
+}
+.sidebar .block-blog-posts .post-list .item  .post-img ,
+.sidebar .block-blog-posts .post-list .item .post-name {
+	display: table-cell;
+	vertical-align: top;
+}
+.sidebar .block-blog-posts .post-list .item .post-name {
+	padding-left: 15px;
+}
+.sidebar .category-list .item {
+	padding: 10px 0;
+	border-bottom: 1px solid #eeeeee;
+	margin: 0;
+}
+.mgs-blog-lastest-posts  .block-content .item {
+	text-align: center;
+	padding: 0 15px;
+}
+.mgs-blog-lastest-posts  .block-content .item  .image {
+	margin-bottom: 15px;
+}
+.mgs-blog-lastest-posts  .block-content .item .title {
+	font-weight: 700;
+}

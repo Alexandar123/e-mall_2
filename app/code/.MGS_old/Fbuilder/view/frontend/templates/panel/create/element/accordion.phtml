@@ -1,0 +1,556 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<?php $settings = null ?>
+<div class="edit-static-form">
+    
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Accordion Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="accordion">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+                $accordion = $settings['accordion'];
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Content Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                <div id="new-accordion-container">
+                    <?php if ($exist && count($accordion)>0): ?>
+                        <?php
+                            usort($accordion, function ($item1, $item2) {
+                                if ($item1['position'] == $item2['position']) { return 0;
+                                }
+                                return $item1['position'] < $item2['position'] ? -1 : 1;
+                            });
+                        ?>
+                        <?php foreach ($accordion as $key => $_accordion): ?>
+                            <div id="form-group-<?php echo $key ?>">
+                                <div class="boxed">
+                                    <div class="form-group line">
+                                        <div class="col-des-8"><input type="text" class="input-text required-entry" name="setting[accordion][<?php echo $key ?>][label]" placeholder="Accordion Title" value="<?php echo $_accordion['label'] ?>"/></div>
+                                        <div class="col-des-3"><input type="text" class="input-text validate-number" name="setting[accordion][<?php echo $key ?>][position]" placeholder="Position" value="<?php echo $_accordion['position'] ?>"/></div>
+                                        <div class="col-des-1"><a href="#" onclick="removeAccordion('#form-group-<?php echo $key ?>'); return false"><span class="fa fa-close"></span></a></div>
+                                    </div>
+                                    <div class="form-group line">
+                                        <div class="col-des-12"><textarea name="setting[accordion][<?php echo $key ?>][content]" class="required-entry"><?php echo $_accordion['content'] ?></textarea></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </div>
+                <div class="line" style="margin-top:15px">
+                    <div class="col-des-12"><button onclick="newAccordion()" type="button" class="action"><em class="fa fa-plus-circle"></em> <?php echo __('Add new item') ?></button></div>
+                </div>
+            </div>
+            
+            
+            <div class="data item title" aria-labeledby="tab-label-view-title" data-role="collapsible" id="tab-label-view">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#view" id="tab-label-view-title">
+                    <?php echo __('View Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="view" data-role="content" style="display:none">
+                <div class="form-group line">
+                    <div class="col-des-5">
+                        <div class="form-group line">
+                            <label class="col-des-5 control-label" for="collapse_all"><?php echo __('Allow collapse all') ?></label>
+                            <div class="col-des-5">
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if ($exist && $settings['collapse_all']): ?> checked="checked"<?php endif ?> value="1" name="setting[collapse_all]" id="collapse_all" class="admin__actions-switch-checkbox">
+                                    <label for="collapse_all" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group line">
+                            <label class="col-des-5 control-label" for="accordion_margin"><?php echo __('Margin bottom') ?></label>
+                            <div class="col-des-6">
+                                <input type="text" id="accordion_margin" class="input-text validate-number" name="setting[accordion_margin]"<?php if ($exist): ?> value="<?php echo $settings['accordion_margin'] ?>"<?php endif ?> onchange="changeAccordionStyle()" placeholder="px"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group line">
+                            <label class="col-des-5 control-label" for="accordion_padding"><?php echo __('Content padding') ?></label>
+                            <div class="col-des-6">
+                                <input type="text" id="accordion_padding" class="input-text" name="setting[accordion_padding]"<?php if ($exist): ?> value="<?php echo $settings['accordion_padding'] ?>"<?php endif ?> onchange="changeAccordionStyle()" placeholder="Eg: 15px 20px 15px 20px"/>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="col-des-7">
+                        <div id="fbuilder-accordion-temp" class="accordion mgs-accordion<?php if ($exist && isset($settings['icon_position'])): ?> accordion-icon-<?php echo $settings['icon_position'] ?><?php endif ?>">
+                            <h4 class="accordion-title ui-accordion-header-active">Title 1</h4>
+                            <div class="accordion-content ui-accordion-content-active">
+                                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam.
+                            </div>
+                            <h4 class="accordion-title">Title 2</h4>
+                        </div>
+                        
+                        <style type="text/css" id="accordion-custom-css"></style>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-group line">
+                    <div class="col-des-2">
+                        <h4 class="no-margin"><?php echo __('Title') ?></h4>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <div class="form-group line">
+                            <label class="col-des-6 control-label" for="title_font_size"><?php echo __('Font size') ?></label>
+                            <div class="col-des-6">
+                                <input type="text" id="title_font_size" class="input-text validate-number" name="setting[title_font_size]"<?php if ($exist): ?> value="<?php echo $settings['title_font_size'] ?>"<?php endif ?> onchange="changeAccordionStyle()" placeholder="px"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <div class="form-group line">
+                            <label class="col-des-6 control-label" for="title_height"><?php echo __('Height') ?></label>
+                            <div class="col-des-6">
+                                <input type="text" id="title_height" class="input-text validate-number" name="setting[title_height]"<?php if ($exist): ?> value="<?php echo $settings['title_height'] ?>"<?php endif ?> onchange="changeAccordionStyle()" placeholder="px"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group line fieldss">
+                    
+                    <div class="col">
+                        <label class="control-label" for="title_font_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" id="title_font_color" class="input-text color-input" name="setting[title_font_color]"<?php if ($exist): ?> value="<?php echo $settings['title_font_color'] ?>"<?php endif ?> onchange="changeAccordionStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="title_background"><?php echo __('Background') ?></label><br/>
+                        <input type="text" id="title_background" class="input-text color-input" name="setting[title_background]"<?php if ($exist): ?> value="<?php echo $settings['title_background'] ?>"<?php endif ?> onchange="changeAccordionStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="title_font_bold" class="control-label"><?php echo __('Font Bold') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['title_font_bold']): ?> checked="checked"<?php endif ?> value="1" name="setting[title_font_bold]" id="title_font_bold" class="admin__actions-switch-checkbox" onclick="changeAccordionStyle()">
+                            <label for="title_font_bold" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="title_font_italic" class="control-label"><?php echo __('Font Italic') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['title_font_italic']): ?> checked="checked"<?php endif ?> value="1" name="setting[title_font_italic]" id="title_font_italic" class="admin__actions-switch-checkbox" onclick="changeAccordionStyle()">
+                            <label for="title_font_italic" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="title_uppercase" class="control-label"><?php echo __('Uppercase') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['title_uppercase']): ?> checked="checked"<?php endif ?> value="1" name="setting[title_uppercase]" id="title_uppercase" class="admin__actions-switch-checkbox" onclick="changeAccordionStyle()">
+                            <label for="title_uppercase" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                <div class="form-group line">
+                    <div class="col-des-12">
+                        <h4 class="no-margin"><?php echo __('Title active') ?></h4>
+                    </div>
+                </div>
+                <div class="form-group line fieldss">
+                    
+                    <div class="col">
+                        <label class="control-label" for="active_font_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" id="active_font_color" class="input-text color-input" name="setting[active_font_color]"<?php if ($exist): ?> value="<?php echo $settings['active_font_color'] ?>"<?php endif ?> onchange="changeAccordionStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="active_background"><?php echo __('Background') ?></label><br/>
+                        <input type="text" id="active_background" class="input-text color-input" name="setting[active_background]"<?php if ($exist): ?> value="<?php echo $settings['active_background'] ?>"<?php endif ?> onchange="changeAccordionStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="active_font_bold" class="control-label"><?php echo __('Font Bold') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['active_font_bold']): ?> checked="checked"<?php endif ?> value="1" name="setting[active_font_bold]" id="active_font_bold" class="admin__actions-switch-checkbox" onclick="changeAccordionStyle()">
+                            <label for="active_font_bold" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="active_font_italic" class="control-label"><?php echo __('Font Italic') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['active_font_italic']): ?> checked="checked"<?php endif ?> value="1" name="setting[active_font_italic]" id="active_font_italic" class="admin__actions-switch-checkbox" onclick="changeAccordionStyle()">
+                            <label for="active_font_italic" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="active_uppercase" class="control-label"><?php echo __('Uppercase') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['active_uppercase']): ?> checked="checked"<?php endif ?> value="1" name="setting[active_uppercase]" id="active_uppercase" class="admin__actions-switch-checkbox" onclick="changeAccordionStyle()">
+                            <label for="active_uppercase" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+
+                <div class="form-group line">
+                    <div class="col-des-3">
+                        <h4 class="no-margin-top" style="margin-bottom:17px"><?php echo __('Icon') ?></h4>
+                        <div id="accordion_icon_list">
+                            <div class="accordion-title-icon">
+                                <span onclick="changeAccordionIcon('icon1')" id="container-icon1" class="icon-container accordion-title-icon1">
+                                    <span class="icon icon-active"></span>
+                                    <span class="icon"></span>
+                                </span>
+                                
+                                <span onclick="changeAccordionIcon('icon2')" id="container-icon2" class="icon-container accordion-title-icon2">
+                                    <span class="icon icon-active"></span>
+                                    <span class="icon"></span>
+                                </span>
+                            </div>
+
+                            <input type="hidden" id="accordion_icon" class="input-text" name="setting[accordion_icon]" />
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-9">
+                        <div class="line fieldss">
+                            <div class="col">
+                                <label class="control-label" for="icon_font_color"><?php echo __('Color') ?></label><br/>
+                                <input type="text" id="icon_font_color" class="input-text color-input" name="setting[icon_font_color]"<?php if ($exist): ?> value="<?php echo $settings['icon_font_color'] ?>"<?php endif ?> onchange="changeAccordionStyle()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label class="control-label" for="icon_background"><?php echo __('Background') ?></label><br/>
+                                <input type="text" id="icon_background" class="input-text color-input" name="setting[icon_background]"<?php if ($exist): ?> value="<?php echo $settings['icon_background'] ?>"<?php endif ?> onchange="changeAccordionStyle()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label class="control-label" for="icon_font_size"><?php echo __('Font size') ?></label><br/>
+                                <input type="text" id="icon_font_size" class="input-text validate-number" name="setting[icon_font_size]"<?php if ($exist): ?> value="<?php echo $settings['icon_font_size'] ?>"<?php endif ?> onchange="changeAccordionStyle()" placeholder="px"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label class="control-label" for="icon_position"><?php echo __('Position') ?></label><br/>
+                                <select id="icon_position" class="input-text" name="setting[icon_position]" onchange="changeIconPosition()">
+                                    <option value="right"<?php if ($exist && ($settings['icon_position']=='right')): ?> selected="selected"<?php endif ?>><?php echo __('Right') ?></option>
+                                    
+                                    <option value="left"<?php if ($exist && ($settings['icon_position']=='left')): ?> selected="selected"<?php endif ?>><?php echo __('Left') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function newAccordion(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                randomNumber = Math.floor((Math.random() * 10000) + 1);
+                html = '<div id="form-group-{{random_number}}"><div class="boxed"><div class="form-group line">';
+
+                                        
+                html += '<div class="col-des-8"><input type="text" class="input-text required-entry" name="setting[accordion][{{random_number}}][label]" placeholder="Accordion Title"/></div><div class="col-des-3"><input type="text" class="input-text validate-number" name="setting[accordion][{{random_number}}][position]" placeholder="Position"/></div><div class="col-des-1"><a href="#" onclick="removeAccordion(\'#form-group-{{random_number}}\'); return false"><span class="fa fa-close"></span></a></div></div>';
+                
+                html += '<div class="form-group line"><div class="col-des-12"><textarea name="setting[accordion][{{random_number}}][content]" class="required-entry"></textarea></div></div>';
+                html += '</div></div>';
+                
+                html = html.replace(/{{random_number}}/g, randomNumber);
+                                    
+                $('#new-accordion-container').append(html);
+            })(jQuery);
+        });
+    }
+    
+    function removeAccordion(number){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $(number).remove();
+            })(jQuery);
+        });
+    }
+    
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                <?php if ($exist): ?>
+                changeAccordionIcon('<?php echo $settings['accordion_icon'] ?>');
+                <?php endif ?>
+                changeIconPosition();
+                changeAccordionStyle();
+            });
+        })(jQuery);
+    });
+    
+    <?php if ($exist && isset($settings['icon_position'])): ?>
+        var oldIconPosition = 'accordion-icon-<?php echo $settings['icon_position'] ?>';
+    <?php else: ?>
+        var oldIconPosition = 'accordion-icon-right';
+    <?php endif ?>
+    
+    function changeIconPosition(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#icon_position').length){
+                    var iconPosition = $('#icon_position').val();
+                    $('#fbuilder-accordion-temp').removeClass(oldIconPosition);
+                    oldIconPosition = 'accordion-icon-'+iconPosition;
+                    $('#fbuilder-accordion-temp').addClass(oldIconPosition);
+                }
+            })(jQuery);
+        });
+        changeAccordionStyle();
+    }
+    
+    function changeAccordionStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                
+                margin = $('#accordion_margin').val();
+                padding = $('#accordion_padding').val();
+                fontSize = $('#title_font_size').val();
+                height = $('#title_height').val();
+                titleColor = $('#title_font_color').val();
+                titleBackground = $('#title_background').val();
+                activeColor = $('#active_font_color').val();
+                activeBackground = $('#active_background').val();
+                iconType = $('#accordion_icon').val();
+                iconColor = $('#icon_font_color').val();
+                iconBackground = $('#icon_background').val();
+                iconFontSize = $('#icon_font_size').val();
+                iconPosition= $('#icon_position').val();
+                
+                if($('#title_font_bold').prop("checked") == true){
+                    titleBold = true;
+                }else{
+                    titleBold = false;
+                }
+                
+                if($('#title_font_italic').prop("checked") == true){
+                    titleItalic = true;
+                }else{
+                    titleItalic = false;
+                }
+                
+                if($('#title_uppercase').prop("checked") == true){
+                    titleUppercase = true;
+                }else{
+                    titleUppercase = false;
+                }
+                
+                if($('#active_font_bold').prop("checked") == true){
+                    activeBold = true;
+                }else{
+                    activeBold = false;
+                }
+                
+                if($('#active_font_italic').prop("checked") == true){
+                    activeItalic = true;
+                }else{
+                    activeItalic = false;
+                }
+                
+                if($('#active_uppercase').prop("checked") == true){
+                    activeUppercase = true;
+                }else{
+                    activeUppercase = false;
+                }
+                
+                customStyle = '*{}';
+                
+                if(margin!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{margin-top:'+margin+'px}';
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title:first-child{margin-top:0}';
+                }
+                if(padding!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-content{padding:'+padding+'}';
+                }
+                if(fontSize!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{font-size:'+fontSize+'px}';
+                }
+                if(height!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title,#fbuilder-accordion-temp.mgs-accordion .accordion-title::before{height:'+height+'px; line-height:'+height+'px}';
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title::before{width:'+height+'px}';
+                }
+                if(titleColor!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{color:'+titleColor+'}';
+                }
+                if(titleBackground!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{background-color:'+titleBackground+'}';
+                }
+                if(titleBold){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{font-weight:bold}';
+                }
+                if(titleItalic){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{font-style:italic}';
+                }
+                if(titleUppercase){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{text-transform:uppercase}';
+                }
+                if(activeBold){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title.ui-accordion-header-active{font-weight:bold}';
+                }
+                if(activeItalic){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title.ui-accordion-header-active{font-style:italic}';
+                }
+                if(activeUppercase){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title.ui-accordion-header-active{text-transform:uppercase}';
+                }
+                if(activeColor!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title.ui-accordion-header-active{color:'+activeColor+'}';
+                }
+                if(activeBackground!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title.ui-accordion-header-active{background-color:'+activeBackground+'}';
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .ui-accordion-content-active{border-color:'+activeBackground+'}';
+                }
+                if(iconColor!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title::before{color:'+iconColor+'}';
+                }
+                
+                if(iconBackground!=''){
+                    customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title::before{background-color:'+iconBackground+'}';
+                    if(iconPosition=='left'){
+                        titlePadding = 50;
+                        if(height!=''){
+                            titlePadding = parseInt(height) + 10;
+                            
+                        }
+                        customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title{padding-left:'+titlePadding+'px}';
+                    }
+                }
+                
+                if(iconFontSize!=''){
+                    
+                    
+                    if(iconType=='icon2'){
+                        iconFontSizeMin = parseInt(iconFontSize) - 4;
+                        customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title::before{font-size:'+iconFontSizeMin+'px}';
+                        
+                        customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title.ui-accordion-header-active::before{font-size:'+iconFontSize+'px}';
+                    }else{
+                        customStyle += '#fbuilder-accordion-temp.mgs-accordion .accordion-title::before{font-size:'+iconFontSize+'px}';
+                    }
+                }
+                
+                $('#accordion-custom-css').html(customStyle);
+            })(jQuery);
+        });
+    }
+    
+    function changeAccordionIcon(type){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $('.icon-container').removeClass('active');
+                $('#fbuilder-accordion-temp').removeClass('accordion-title-icon1');
+                $('#fbuilder-accordion-temp').removeClass('accordion-title-icon2');
+                var oldType = $('#accordion_icon').val();
+                if(oldType != type){
+                    $('#accordion_icon').val(type);
+                    $('#fbuilder-accordion-temp').addClass('accordion-title-'+type);
+                    $('#container-'+type).addClass('active');
+                }else{
+                    $('#accordion_icon').val('');
+                    $('#fbuilder-accordion-temp').removeClass('accordion-title-'+type);
+                    $('#container-'+type).removeClass('active');
+                }
+                
+            })(jQuery);
+        });
+        changeAccordionStyle();
+    }
+</script>

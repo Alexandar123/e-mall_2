@@ -1,0 +1,52 @@
+#ajaxMessage{
+		margin-top:10px;
+		font-size:0.9em;
+		color:red;
+	
+	}
+	#expandCollapse{
+		font-size:0.9em;
+	}
+	
+	#dhtmlgoodies_tree{
+		margin:0px;
+		padding:0px;
+		margin-left:10px;
+	}
+	#dhtmlgoodies_tree ul{	/* Sub menu groups */
+		margin-left:20px;	/* Left spacing */
+		padding-left:0px;
+		display:none;	/* Initially hide sub nodes */
+	}
+	#dhtmlgoodies_tree li{	/* Nodes */
+		list-style-type:none;
+		vertical-align:middle;
+		
+	}
+	#dhtmlgoodies_tree li img{
+		
+	}
+	#dhtmlgoodies_tree li a{	/* Node links */
+		color: black;
+		padding: 1px 3px 1px 2px;
+		text-decoration: none;
+		position:relative; 
+		top:-4px;
+	}
+	#dhtmlgoodies_tree li a label{
+		color:black;
+	}
+	
+	#dhtmlgoodies_tree a input{
+		margin-bottom: 3px;
+		margin-right:2px
+	}
+	#expandCollapse a{font-size:12px; margin-right:5px}
+	.content-header h3{
+		background: url("images/menu.gif") left center no-repeat;
+		padding-left:22px !important;
+	}
+	li.store-switcher-store-view.disabled {
+		color: #adadad;
+		cursor: default;
+	}

@@ -1,0 +1,71 @@
+& when (@media-common = true) {
+    .message.global.cookie.mgs-gdpr-cookie-notice{
+        width: 400px;
+        bottom: 30px;
+        left: 30px;
+        position: fixed;
+        right: auto;
+        z-index: 3;
+        padding: 30px;
+        margin: 0;
+        display: block;
+        z-index:10;
+        padding: 20px;
+        border-radius: 2px;
+        background: rgb(255, 255, 255);
+
+        &.gdpr-box-shadow{
+            -webkit-box-shadow: -1px 1px 8px 0px rgba(0, 0, 0, 0.26);
+            box-shadow: -1px 1px 8px 0px rgba(0, 0, 0, 0.26);
+        }
+
+        h3.notice-cookie-title{
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 10px;
+            color: #222;
+        }
+
+        .notice-cookie-content{
+            font-size: 14px;
+            line-height: 1.7;
+
+            a{
+                text-decoration: underline;
+            }
+        }
+
+        .actions{
+            margin-top: 20px;
+
+            #btn-cookie-allow{
+                border: none;
+                box-shadow: none;
+                padding: 6px 12px;
+                font-size: 14px;
+                font-weight: 500;
+                border-radius: 2px;
+            }
+        }
+    }
+
+}
+
+
+.modal-popup.modal-mgs-gdpr{
+
+    .modal-content {
+        max-width: calc(~'100% - 30px');
+        margin: 0 auto;
+    }
+
+    .mgs-gdpr-popup{
+        padding: 20px;
+
+        .message{
+            position: relative;
+            top: 0;
+            margin-bottom: 20px;
+        }
+    }
+}

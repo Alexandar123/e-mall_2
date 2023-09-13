@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page_layouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/PageLayout/etc/layouts.xsd">
+    <layout id="column-vertical">
+        <label translate="true">Column with vertical bar</label>
+    </layout>
+    <layout id="product-with-sticky-info">
+        <label translate="true">Product with sticky info</label>
+    </layout>
+    <layout id="product-with-sticky-info-2">
+        <label translate="true">Product with sticky info 2</label>
+    </layout>
+</page_layouts>

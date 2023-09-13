@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di
+ *
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Save address when estimate shipping method -->
+    <type name="Magento\Quote\Model\ShippingMethodManagement">
+        <plugin name="saveAddressWhenEstimate" type="MGS\OSCheckout\Plugin\Checkout\ShippingMethodManagement"/>
+    </type>
+    <type name="Magento\Authorization\Model\CompositeUserContext">
+        <plugin name="onestepcheckout_usercontext" type="MGS\OSCheckout\Plugin\Authorization\UserContext"/>
+    </type>
+    <type name="Magento\Paypal\Model\Express">
+        <plugin name="onestepcheckout_PaypalExpress" type="MGS\OSCheckout\Plugin\Paypal\Model\Express"/>
+    </type>
+    <preference for="Magento\Checkout\Api\AgreementsValidatorInterface" type="MGS\OSCheckout\Model\AgreementsValidator"/>
+</config>

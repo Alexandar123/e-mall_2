@@ -1,0 +1,66 @@
+<?php
+$helper = $this->helper('Dynamic\HomeSticky\Helper\Data');
+$placeholderUrl = $helper->getPlaceHolderImage();
+$block= $block->getLayout()->createBlock('Dynamic\OnlineComplaint\Block\RecentlyProduct');
+$collection = $block->getMostViewedProducts();  ?>
+<h3>Drugi na sajtu trenutno pregledaju:</h3><div class ="recently_product slick-recently">
+<?php foreach ($collection as $product) {
+    $productName = $product->getName();
+    $product_id = $product->getId();
+    $price = $product->getFinalPrice();
+    $products = $helper->getProduct($product_id);
+     if(!empty($product->getImage())) {
+        $ImagePath = $helper->getImageUrl() . "catalog/product" . $products->getImage();
+    } else {
+        $ImagePath = $placeholderUrl;
+    }
+    ?>
+     <div class="recently-details">
+
+                <div class="image" id="image">
+                    <div class="product-image"><img src="<?php echo $ImagePath; ?>" alt="<?= $productName ?>" width="225" height="300" /></div>
+                </div>
+                <div class="product-details">
+                    <a href="<?= $product['request_path']; ?>">
+                    <div class="product-name"><?= $productName ?></div></a>
+                    <div class="product-price"><?= $price ?></div>
+                </div>
+            </div>
+
+<?php  } ?>
+</div>
+<script type="text/javascript">
+    require(["jquery","slick"], function($) {
+        $(document).ready(function(){
+            $('.slick-recently').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            dots: false,
+            focusOnSelect: true,
+            responsive: [
+						{
+							breakpoint: 1025,
+							settings: {
+								slidesToShow: 2,
+                                slidesToScroll: 1,
+							}
+						},
+						{
+							breakpoint: 769,
+							settings: {
+								slidesToShow: 2,
+                                slidesToScroll: 1,
+							}
+						},
+						{
+							breakpoint: 575,
+							settings: {
+								slidesToShow: 2,
+							}
+						}
+					]
+            });
+
+        });
+    });
+</script>

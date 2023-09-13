@@ -1,0 +1,64 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+    $types = $block->getTypes();
+    $_helper = $this->helper('MGS\InstantSearch\Helper\Data');
+?>
+<?php if (count($types) && $block->getResultCount()): ?>
+<div class="search results mgs-instant-search">
+    <?php if ($messages = $block->getNoteMessages()):?>
+    <div class="message notice">
+        <div>
+            <?php foreach ($messages as $message):?>
+                <?php /* @escapeNotVerified */ echo $message?><br />
+            <?php endforeach;?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php foreach ($types as $_type) : ?>
+        <?php
+            switch ($_type['type']) {
+                case 'product':
+                    if($_helper->isProductSearch()){
+                        echo $block->getProductListHtml();
+                    }
+                    break;
+                case 'category':
+                    if($_helper->isCategorySearch()){
+                        echo $block->getCategoryListHtml();
+                    }
+                    break;
+                case 'page':
+                    if($_helper->isCmsPageSearch()){
+                        echo $block->getPageListHtml();
+                    }
+                    break;
+                case 'blog':
+                    if($_helper->isModuleEnabled('MGS_Blog') && $_helper->isBlogSearch()){
+                        echo $block->getBlogListHtml();
+                    }
+                    break;
+            }
+        ?>
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+
+<div class="message notice">
+    <div>
+        <?php /* @escapeNotVerified */ echo($block->getNoResultText()) ? $block->getNoResultText() : __('Your search returned no results.') ?>
+        <?php if ($messages = $block->getNoteMessages()):?>
+            <?php foreach ($messages as $message):?>
+                <br /><?php /* @escapeNotVerified */ echo $message?>
+            <?php endforeach;?>
+        <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>

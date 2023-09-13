@@ -1,0 +1,18 @@
+{{template config_path="design/email/header_template"}}
+<table class="message-details">
+    <tr>
+        <td><strong>{{trans "Wellcome To:"}}</strong></td>
+        <td>{{var data.buyer_first_and_last_name}}</td>
+   </tr>
+    <tr>
+        <td><strong>{{trans "Name"}}</strong></td>
+        <td>{{var data.buyer_first_and_last_name}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Email"}}</strong></td>
+        <td>{{var data.email}}</td>
+    </tr>
+</table>
+<p><strong>{{trans "Describe The Problemcomment"}}</strong></p>
+<p>{{var data.Describe_the_problemcomment}}</p>
+{{template config_path="design/email/footer_template"}}

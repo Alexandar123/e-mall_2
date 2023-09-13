@@ -1,0 +1,20 @@
+<?php
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$params = $this->getRequest()->getParams();
+?>
+<div class="characters">
+    <ul class="characters-filter">
+        <?php if (isset($params['keyword']) && $params['keyword'] != ''): ?>
+            <li class="<?php if (isset($params['char']) && $params['char'] == '0-9'): ?>active<?php endif; ?>"><a title="<?= __('0-9'); ?>" href="<?= $helper->getBrandUrl() . '?char=0-9&keyword=' . $params['keyword']; ?>"><?= __('0-9'); ?></a></li>
+            <?php foreach (range('A', 'Z') as $char): ?>
+                <li class="<?php if (isset($params['char']) && $params['char'] == $char): ?>active<?php endif; ?>"><a href="<?= $helper->getBrandUrl() . '?char=' . $char . '&keyword=' . $params['keyword']; ?>"><?= $char; ?></a></li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li class="<?php if (isset($params['char']) && $params['char'] == '0-9'): ?>active<?php endif; ?>"><a title="<?= __('0-9'); ?>" href="<?= $helper->getBrandUrl() . '?char=0-9'; ?>"><?= __('0-9'); ?></a></li>
+            <?php foreach (range('A', 'Z') as $char): ?>
+                <li class="<?php if (isset($params['char']) && $params['char'] == $char): ?>active<?php endif; ?>"><a href="<?= $helper->getBrandUrl() . '?char=' . $char; ?>"><?= $char; ?></a></li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+	<div class="clearfix"></div>
+</div>

@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var $block Magento\Framework\View\Element\AbstractBlock
+ */
+?>
+<?php if ($block->getChildHtml()): ?>
+    <div class="block block-order-additional-view">
+        <div class="block-title">
+            <strong><?php echo __('Additional Information') ?></strong>
+        </div>
+        <div class="block-content">
+            <?php echo $block->getChildHtml() ?>
+        </div>
+    </div>
+<?php endif; ?>

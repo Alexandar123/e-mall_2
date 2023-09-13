@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main.content">
+            <block class="Magento\Catalog\Block\Category\View" name="bottom.description" template="Dynamic_Customization::product/list/bottom_description.phtml" after="-"/>
+        </referenceContainer>
+        <referenceContainer name="columns">
+             <container name="dd-top-offer-container" label="top offer container" htmlTag="div" htmlClass="dd-top-offer-container" before="-">
+                <block class="Dynamic\Customization\Block\Category\TopOfferSlider" name="dd.top.offer.slider" template="Dynamic_Customization::top_offer_slider.phtml" after="category.view">
+                    <arguments>
+                        <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
+

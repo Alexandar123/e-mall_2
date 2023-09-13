@@ -1,0 +1,340 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Progress Bar Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="progress_bar">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Content Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                
+                <div class="line form-group">
+                    <div class="col-des-12"><h4 class="no-margin"><?php echo __('Percent') ?></h4></div>
+                    <div class="col">
+                        <label class="control-label" for="percent"><?php echo __('Percent value') ?></label><br/>
+                        <input type="text" class="input-text validate-number required-entry" id="percent" name="setting[percent]"<?php if ($exist && $settings['percent']): ?> value="<?php echo $settings['percent'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="percent_font_size"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="percent_font_size" name="setting[percent_font_size]"<?php if ($exist && $settings['percent_font_size']): ?> value="<?php echo $settings['percent_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="percent_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="percent_color" name="setting[percent_color]"<?php if ($exist && $settings['percent_color']): ?> value="<?php echo $settings['percent_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="percent_background"><?php echo __('Background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="percent_background" name="setting[percent_background]"<?php if ($exist && $settings['percent_background']): ?> value="<?php echo $settings['percent_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="percent_fontweight" class="control-label"><?php echo __('Font weight') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['percent_fontweight']): ?> checked="checked"<?php endif ?> value="1" name="setting[percent_fontweight]" id="percent_fontweight" class="admin__actions-switch-checkbox" onclick="changeContentStyle()">
+                            <label for="percent_fontweight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col-des-12"><h4 class="no-margin"><?php echo __('Title') ?></h4></div>
+                    <div class="col">
+                        <label class="control-label" for="subtitle">&nbsp;</label><br/>
+                        <input type="text" class="input-text" id="subtitle" name="setting[subtitle]"<?php if ($exist && $settings['subtitle']): ?> value="<?php echo $settings['subtitle'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="title_font_size"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="title_font_size" name="setting[title_font_size]"<?php if ($exist && $settings['title_font_size']): ?> value="<?php echo $settings['title_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="title_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="title_color" name="setting[title_color]"<?php if ($exist && $settings['title_color']): ?> value="<?php echo $settings['title_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="title_fontweight" class="control-label"><?php echo __('Font weight') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['title_fontweight']): ?> checked="checked"<?php endif ?> value="1" name="setting[title_fontweight]" id="title_fontweight" class="admin__actions-switch-checkbox" onclick="changeContentStyle()">
+                            <label for="title_fontweight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col-des-6" style="border-right: 1px solid #ccc;">
+
+                        
+                        <div class="line form-group fields">
+                            <h4 class="no-margin-top col-des-12"><?php echo __('Progress Bar') ?></h4>
+                            <div class="col">
+                                <label for="bar_background" class="control-label"><?php echo __('Default background') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="bar_background" name="setting[bar_background]"<?php if ($exist && $settings['bar_background']): ?> value="<?php echo $settings['bar_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="progress_background" class="control-label"><?php echo __('Progress background') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="progress_background" name="setting[progress_background]"<?php if ($exist && $settings['progress_background']): ?> value="<?php echo $settings['progress_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fields">
+                            <div class="col">
+                                <label for="bar_height" class="control-label"><?php echo __('Height') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="bar_height" name="setting[bar_height]"<?php if ($exist && $settings['bar_height']): ?> value="<?php echo $settings['bar_height'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="border_radius" class="control-label"><?php echo __('Border radius') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="border_radius" name="setting[border_radius]"<?php if ($exist && $settings['border_radius']): ?> value="<?php echo $settings['border_radius'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fields">
+                            <div class="col">
+                                <label for="box_shadow" class="control-label"><?php echo __('Box Shadow') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="box_shadow" name="setting[box_shadow]"<?php if ($exist && $settings['box_shadow']): ?> value="<?php echo $settings['box_shadow'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="box_animation" class="control-label"><?php echo __('Animation') ?></label><br/>
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if ($exist && $settings['box_animation']): ?> checked="checked"<?php endif ?> value="1" name="setting[box_animation]" id="box_animation" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                                    <label for="box_animation" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group fields">
+                            <label for="position" class="col-des-6 control-label"><?php echo __('Title - Percent position') ?></label>
+                            <div class="col-des-6">
+                                <select name="setting[position]" id="position" onchange="setPreview()">
+                                    <option value="inside"<?php if ($exist && ($settings['position']=='inside')): ?> selected="selected"<?php endif ?>><?php echo __('Inside bar'); ?></option>
+                                    <option value="top-left"<?php if ($exist && ($settings['position']=='top-left')): ?> selected="selected"<?php endif ?>><?php echo __('Top left'); ?></option>
+                                    <option value="top-left-right"<?php if ($exist && ($settings['position']=='top-left-right')): ?> selected="selected"<?php endif ?>><?php echo __('Top left - right'); ?></option>
+                                    <option value="top-right"<?php if ($exist && ($settings['position']=='top-right')): ?> selected="selected"<?php endif ?>><?php echo __('Top right'); ?></option>
+                                    
+                                    <option value="bottom-left"<?php if ($exist && ($settings['position']=='bottom-left')): ?> selected="selected"<?php endif ?>><?php echo __('Bottom left'); ?></option>
+                                    <option value="bottom-left-right"<?php if ($exist && ($settings['position']=='bottom-left-right')): ?> selected="selected"<?php endif ?>><?php echo __('Bottom left - right'); ?></option>
+                                    <option value="bottom-right"<?php if ($exist && ($settings['position']=='bottom-right')): ?> selected="selected"<?php endif ?>><?php echo __('Bottom right'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mgs-progressbar" id="progress_sample" style="display:none">
+                            <div class="progress-info" id="progress_info">
+                                <span class="progress-title"></span> 
+                                <span class="progress-value"></span>
+                            </div>        
+                            <div class="progressbar" id="progressbar">
+                                <div class="progress"></div>
+                            </div> 
+                        </div>
+                        
+                        <style type="text/css" id="progress-custom-css"></style>
+                    </div>
+                </div>
+                
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>    
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                setPreview();
+            });
+            
+            $("#subtitle, #percent").keypress(function( event ){
+                setPreview();
+            });
+        })(jQuery);
+    });
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                percent = parseFloat($('#percent').val());
+                subtitle = $('#subtitle').val();
+                position = $('#position').val();
+                
+                $('#progress_sample .progress-title').html(subtitle);
+                
+                if($('#box_animation').prop("checked") == true){
+                    $('#progress_sample .progress').addClass('animation');
+                }else{
+                    $('#progress_sample .progress').removeClass('animation');
+                }
+                
+                if(percent!='' && percent>0){
+                    $('#progress_sample').show();
+                    $('#progress_sample .progress-value').html(percent+'%');
+                    $('#progress_sample .progress').css("width", percent+'%');
+                }
+                if(position=='bottom-left' || position=='bottom-left-right' || position=='bottom-right'){
+                    $('#progress_info').insertAfter('#progressbar');
+                }
+                
+                $('#progress_sample').attr('class','mgs-progressbar progress-'+position);
+                
+            })(jQuery);
+        });
+        
+        changeContentStyle();
+    }
+    
+    function changeContentStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                percent_font_size = $('#percent_font_size').val();
+                percent_color = $('#percent_color').val();
+                percent_background = $('#percent_background').val();
+                title_font_size = $('#title_font_size').val();
+                title_color = $('#title_color').val();
+                bar_background = $('#bar_background').val();
+                progress_background = $('#progress_background').val();
+                bar_height = $('#bar_height').val();
+                border_radius = $('#border_radius').val();
+                box_shadow = $('#box_shadow').val();
+                position = $('#position').val();
+                
+                customStyle = '*{}';
+                
+                if(percent_font_size!='' && !isNaN(percent_font_size)){
+                    customStyle += '#progress_sample.mgs-progressbar .progress-value{font-size:'+percent_font_size+'px}';
+                }
+                
+                if(percent_color!=''){
+                    customStyle += '#progress_sample.mgs-progressbar .progress-value{color:'+percent_color+'}';
+                }
+                
+                if(percent_background!=''){
+                    customStyle += '#progress_sample.mgs-progressbar .progress-value{background-color:'+percent_background+'; padding:2px 5px; border-radius:2px; -webkit-border-radius:2px;}';
+                }
+                
+                if(title_font_size!='' && !isNaN(title_font_size)){
+                    customStyle += '#progress_sample.mgs-progressbar .progress-title{font-size:'+title_font_size+'px}';
+                }
+                
+                if(title_color!=''){
+                    customStyle += '#progress_sample.mgs-progressbar .progress-title{color:'+title_color+'}';
+                }
+                
+                if($('#percent_fontweight').prop("checked") == true){
+                    customStyle += '#progress_sample.mgs-progressbar .progress-value{font-weight:bold}';
+                }
+                
+                if($('#title_fontweight').prop("checked") == true){
+                    customStyle += '#progress_sample.mgs-progressbar .progress-title{font-weight:bold}';
+                }
+                
+                if(bar_background!=''){
+                    customStyle += '#progress_sample.mgs-progressbar .progressbar{background-color:'+bar_background+'}';
+                }
+                
+                if(bar_height!='' && !isNaN(bar_height)){
+                    customStyle += '#progress_sample.mgs-progressbar .progressbar{height:'+bar_height+'px}';
+                    if(position=='inside'){
+                        customStyle += '#progress_sample.mgs-progressbar .progress-info{line-height:'+bar_height+'px}';
+                    }
+                }
+                
+                if(border_radius!='' && !isNaN(border_radius)){
+                    customStyle += '#progress_sample.mgs-progressbar .progressbar{border-radius:'+border_radius+'px}';
+                }
+                
+                if(box_shadow!=''){
+                    customStyle += '#progress_sample.mgs-progressbar .progressbar{box-shadow: inset 0 0 5px 3px '+box_shadow+';-webkit-box-shadow:inset 0 0 5px 3px '+box_shadow+';}';
+                }
+                
+                if(progress_background!=''){
+                    customStyle += '#progress_sample.mgs-progressbar .progressbar .progress{background-color:'+progress_background+'}';
+                }
+                
+                $('#progress-custom-css').html(customStyle);
+            })(jQuery);
+        });
+    }
+</script>

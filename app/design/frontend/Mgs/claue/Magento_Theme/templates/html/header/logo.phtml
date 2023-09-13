@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+?>
+<?php
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$class = "";
+$logoMobile = $themeSettingConfig->getStoreConfig('themesettings/header/mobile_logo');
+if($logoMobile){
+	$class .= " exits-lg-mb";
+}
+$stickyMobile = $themeSettingConfig->getStoreConfig('themesettings/header/sticky_logo');
+if($stickyMobile){
+	$class .= " exits-lg-stk";
+}
+?>
+<?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
+<?php if ($block->isHomePage()):?>
+    <strong class="logo<?= $class ?>">
+<?php else: ?>
+    <a class="logo<?= $class ?>" href="<?= $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
+<?php endif ?>
+        <img class="default-logo" src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>"
+             alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"
+             <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+             <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+        />
+		<?php if($logoMobile): ?>
+			<img class="mobile-logo" src="<?php /* @escapeNotVerified */ echo $themeSettingConfig->getMediaUrl('mgs/setting/' . $logoMobile) ?>"
+             alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"/>
+		<?php endif ?>
+		<?php if($stickyMobile): ?>
+			<img class="sticky-logo" src="<?php /* @escapeNotVerified */ echo $themeSettingConfig->getMediaUrl('mgs/setting/' . $stickyMobile) ?>"
+             alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"/>
+		<?php endif ?>
+<?php if ($block->isHomePage()):?>
+    </strong>
+<?php else:?>
+    </a>
+<?php endif?>

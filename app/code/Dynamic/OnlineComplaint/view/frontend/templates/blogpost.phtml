@@ -1,0 +1,41 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$mediaUrl = $helper->getBaseMediaUrl();
+$blockObj= $block->getLayout()->createBlock('MGS\Blog\Block\Posts');
+$collection = $blockObj->getCollection();
+$showThumbnail = $this->getConfig('general_settings/show_thumbnail');
+?>
+<?php if (!count($collection)): ?>
+    <div class="message empty">
+        <div><?php echo __('Have no posts.') ?></div>
+    </div>
+<?php else: ?>
+    <div class="blog-list">
+    <h3>Zaradi posle prve kupovine</h3>
+        <div class="blog-post-wrapper">
+        
+        <?php foreach ($collection as $post): ?>
+           <?php //echo "<pre>"; print_r($post->getData()); ?>
+           
+            <div class="blog-post post-item-info blog_info">
+                
+                <div class="post-image margin-bottom25 has-image">
+                    <a title="<?php echo $post['title']; ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>">
+                        <img src="<?php echo $mediaUrl; ?>/mgs_blog/<?php echo $post->getThumbnail(); ?>" style="width:40%;">
+                        <div class="blog_title"><?php echo $post['title']; ?></div>
+                    </a>
+                </div>
+                <?php if ($post->getShortContent()): ?>
+                    <div class="post-content">
+                        <div class="post-short-description">
+                            <?php echo $post->getShortContent(); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
+            </div>
+          
+        <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>

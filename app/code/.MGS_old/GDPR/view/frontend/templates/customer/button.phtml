@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \MGS\GDPR\Block\Customer\Button $block */
+?>
+
+<form class="form form-gdpr-manage" action="<?= $block->escapeUrl($block->getAction()) ?>" method="post" id="form-validate" data-mage-init='{"validation":{}}'>
+	<fieldset class="fieldset">
+		<?= $block->getBlockHtml('formkey') ?>
+		<legend class="legend"><span><?php echo __('Data Access') ?></span></legend><br>
+		<div class="field choice">
+			<input name="remove_account" id="remove_account" value="1" title="<?php echo __('Erase Account') ?>" class="radio" type="radio" data-validate="{'validate-one-required-by-name':true}">
+			<label for="remove_account" class="label"><span><?php echo __('Erase Account') ?></span></label>
+		</div>
+	</fieldset>
+	<div class="actions-toolbar">
+		<div class="primary"><button type="submit" title="<?php echo __('Submit') ?>" class="action save primary"><span><?php echo __('Submit') ?></span></button></div>
+	</div>
+</form>

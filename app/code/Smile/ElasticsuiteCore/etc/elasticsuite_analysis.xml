@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Smile_ElasticsuiteCore default analysis configuration.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCore
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<analysis xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:module:Smile_ElasticsuiteCore:etc/elasticsuite_analysis.xsd">
+
+    <char_filters>
+        <char_filter name="html_strip" type="html_strip" language="default"/>
+    </char_filters>
+
+    <filters>
+        <filter name="trim" type="trim" language="default"/>
+        <filter name="truncate_to_max" type="truncate" language="default">
+            <!-- Absolute max supported by Lucene for a token length is 32766 bytes, so using 1/4 of that to accomodate multibyte UTF-8 characters -->
+            <length>8192</length>
+        </filter>
+        <filter name="lowercase" type="lowercase" language="default"/>
+        <filter name="word_delimiter" type="word_delimiter" language="default">
+            <generate_word_parts>true</generate_word_parts>
+            <catenate_words>true</catenate_words>
+            <catenate_numbers>true</catenate_numbers>
+            <catenate_all>true</catenate_all>
+            <split_on_case_change>true</split_on_case_change>
+            <split_on_numerics>true</split_on_numerics>
+            <preserve_original>true</preserve_original>
+        </filter>
+        <filter name="shingle" type="shingle" language="default">
+            <min_shingle_size>2</min_shingle_size>
+            <max_shingle_size>2</max_shingle_size>
+            <output_unigrams>true</output_unigrams>
+        </filter>
+        <filter name="reference_shingle" type="shingle" language="default">
+            <min_shingle_size>2</min_shingle_size>
+            <max_shingle_size>10</max_shingle_size>
+            <output_unigrams>true</output_unigrams>
+            <token_separator></token_separator>
+        </filter>
+        <filter name="reference_word_delimiter" type="word_delimiter" language="default">
+            <generate_word_parts>true</generate_word_parts>
+            <catenate_words>false</catenate_words>
+            <catenate_numbers>false</catenate_numbers>
+            <catenate_all>false</catenate_all>
+            <split_on_case_change>true</split_on_case_change>
+            <split_on_numerics>true</split_on_numerics>
+            <preserve_original>false</preserve_original>
+        </filter>
+        <filter name="ascii_folding" type="asciifolding" language="default">
+            <preserve_original>false</preserve_original>
+        </filter>
+
+        <filter name="stemmer" type="stemmer" language="ar">
+            <language>arabic</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="eu">
+            <language>basque</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="bg">
+            <language>bulgarian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="ca">
+            <language>catalan</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="cs">
+            <language>czech</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="da">
+            <language>danish</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="de">
+            <language>german2</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="en">
+            <language>english</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="es">
+            <language>spanish</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="el">
+            <language>greek</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="fi">
+            <language>finnish</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="fr">
+            <language>french</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="gl">
+            <language>galician</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="hi">
+            <language>hindi</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="hu">
+            <language>hungarian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="id">
+            <language>indonesian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="it">
+            <language>italian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="lv">
+            <language>latvian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="lt">
+            <language>lithuanian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="nb">
+            <language>norwegian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="nn">
+            <language>light_nynorsk</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="nl">
+            <language>dutch</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="pt">
+            <language>portuguese</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="ro">
+            <language>romanian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="ru">
+            <language>russian</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="sv">
+            <language>swedish</language>
+        </filter>
+        <filter name="stemmer" type="stemmer" language="tr">
+            <language>turkish</language>
+        </filter>
+        <filter name="standard_override" type="stemmer_override" language="fr">
+            <!-- No known issues with the "french" or "light_french" stemmers. But this is to show that having an empty list of rules is valid.
+                 This means existing rules can be both re-defined or voided in a custom module. -->
+            <rules>[]</rules>
+        </filter>
+        <filter name="standard_override" type="stemmer_override" language="it">
+            <!--
+                Known issues with the "italian" stemmer. Please note that we do not claim 100% accuracy in the selected stems.
+                For instance, the stem for "trapani" is originally "trapan", the same as the verb "trapanare".
+                So the actual valid rule might be "trapano => trapan" ... -->
+            <rules>["trapani => trap", "zanzariere => zanzarier", "lavatoi => lavatoi", "lamiere => lamier", "plafoniere => plafonier"]</rules>
+        </filter>
+        <filter name="elision" type="elision" language="ca">
+            <articles>["d", "l", "m", "n", "s", "t"]</articles>
+        </filter>
+        <filter name="elision" type="elision" language="fr">
+            <articles>["l", "m", "t", "qu", "n", "s","j", "d", "c"]</articles>
+        </filter>
+        <filter name="elision" type="elision" language="it">
+            <articles>["c", "l", "all", "dall", "dell","nell", "sull", "coll", "pell","gl", "agl", "dagl", "degl", "negl","sugl", "un", "m", "t", "s", "v", "d"]</articles>
+        </filter>
+        <filter name="phonetic" type="phonetic" language="default">
+            <encoder>metaphone</encoder>
+        </filter>
+        <filter name="phonetic" type="phonetic" language="fr">
+            <encoder>beider_morse</encoder>
+            <languageset>french</languageset>
+        </filter>
+    </filters>
+
+    <analyzers>
+        <analyzer name="keyword" tokenizer="keyword" language="default">
+            <filters>
+                <filter ref="truncate_to_max" />
+            </filters>
+        </analyzer>
+        <analyzer name="standard" tokenizer="standard" language="default">
+            <filters>
+                <filter ref="ascii_folding" />
+                <filter ref="trim" />
+                <filter ref="word_delimiter" />
+                <filter ref="lowercase" />
+                <filter ref="elision" />
+                <filter ref="standard_override" />
+                <filter ref="stemmer" />
+            </filters>
+            <char_filters>
+                <char_filter ref="html_strip" />
+            </char_filters>
+        </analyzer>
+        <analyzer name="whitespace" tokenizer="standard" language="default">
+            <filters>
+                <filter ref="ascii_folding" />
+                <filter ref="trim" />
+                <filter ref="word_delimiter" />
+                <filter ref="lowercase" />
+                <filter ref="elision" />
+            </filters>
+            <char_filters>
+                <char_filter ref="html_strip" />
+            </char_filters>
+        </analyzer>
+        <analyzer name="reference" tokenizer="standard" language="default">
+            <filters>
+                <filter ref="ascii_folding" />
+                <filter ref="trim" />
+                <filter ref="reference_word_delimiter" />
+                <filter ref="lowercase" />
+                <filter ref="elision" />
+                <filter ref="reference_shingle" />
+            </filters>
+            <char_filters>
+                <char_filter ref="html_strip" />
+            </char_filters>
+        </analyzer>
+        <analyzer name="shingle" tokenizer="whitespace" language="default">
+            <filters>
+                <filter ref="ascii_folding" />
+                <filter ref="trim" />
+                <filter ref="word_delimiter" />
+                <filter ref="lowercase" />
+                <filter ref="elision" />
+                <filter ref="shingle" />
+            </filters>
+            <char_filters>
+                <char_filter ref="html_strip" />
+            </char_filters>
+        </analyzer>
+        <analyzer name="sortable" tokenizer="keyword" language="default">
+            <filters>
+                <filter ref="ascii_folding" />
+                <filter ref="trim" />
+                <filter ref="lowercase" />
+            </filters>
+            <char_filters>
+                <char_filter ref="html_strip" />
+            </char_filters>
+        </analyzer>
+        <analyzer name="phonetic" tokenizer="standard" language="default">
+            <filters>
+                <filter ref="ascii_folding" />
+                <filter ref="trim" />
+                <filter ref="word_delimiter" />
+                <filter ref="lowercase" />
+                <filter ref="elision" />
+                <filter ref="phonetic" />
+            </filters>
+            <char_filters>
+                <char_filter ref="html_strip" />
+            </char_filters>
+        </analyzer>
+    </analyzers>
+</analysis>

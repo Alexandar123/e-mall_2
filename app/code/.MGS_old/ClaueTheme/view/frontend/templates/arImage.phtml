@@ -1,0 +1,20 @@
+<?php $themeHelper = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php // Image AR ?>
+<?php $arImage = $_product->getData('mgs_arimage') ?>
+<?php $arImages = $themeHelper->getArImages($_product->getId());
+
+?>
+<?php if ($arImage && isset($arImages[0])): ?>
+    <model-viewer src="<?php echo($arImages[0]) ?>" alt="A 3D model of an astronaut" auto-rotate camera-controls data-js-focus-visible style="width:<?php if ($this->getFullWidth()): ?>100%<?php else: ?><?php echo $this->getStoreConfig("themesettings/product_image_dimention/ar_width");?><?php endif ?>">
+    </model-viewer>
+    <script>
+        require([
+            'jquery',
+            'domReady!',
+            'MgsModelViewLegacy',
+            'MgsModelViewMin'], function (jQuery, MgsModelViewLegacy, MgsModelViewMin) {
+
+        });
+    </script>
+<?php endif ?>

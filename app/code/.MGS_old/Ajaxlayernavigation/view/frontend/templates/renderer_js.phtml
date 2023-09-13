@@ -1,0 +1,16 @@
+<?php
+    $configHelper = $this->helper('MGS\Ajaxlayernavigation\Helper\Config'); 
+    $pricePos = $configHelper->getPriceCurrencyPos();
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "MGS_Ajaxlayernavigation/js/ajax-navigation": {
+            "useAjax": "<?php echo (bool)$configHelper->iaAjaxEnable()?>",
+            "use_range_price": "<?php echo (bool)$configHelper->usePriceSlide()?>", 
+            "pricePrefix" : "<?php echo $pricePos['prefix']?>",
+            "pricePostfix" : "<?php echo $pricePos['postfix'] ?>"
+        }
+    }
+}
+</script>

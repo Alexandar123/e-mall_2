@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Account\Dashboard\Address $block */
+?>
+<div class="block block-dashboard-addresses">
+    <div class="block-title-account">
+        <h3><span><?= $block->escapeHtml(__('Address Book')) ?></span></h3>
+    </div>
+    <div class="block-content">
+        <div class="box box-billing-address">
+            <h4 class="box-title-subaccount">
+                <span><?= $block->escapeHtml(__('Default Billing Address')) ?></span>
+            </h4>
+            <div class="box-content">
+                <address>
+                    <?= $block->getPrimaryBillingAddressHtml() ?>
+                </address>
+            </div>
+            <div class="box-actions">
+                <a class="action edit btn btn-sm btn-default" href="<?= $block->escapeUrl($block->getPrimaryBillingAddressEditUrl()) ?>" data-ui-id="default-billing-edit-link"><span><?= $block->escapeHtml(__('Edit Address')) ?></span></a>
+
+            </div>
+        </div>
+        <div class="box box-shipping-address">
+            <h4 class="box-title-subaccount">
+                <span><?= $block->escapeHtml(__('Default Shipping Address')) ?></span>
+            </h4>
+            <div class="box-content">
+                <address>
+                    <?= $block->getPrimaryShippingAddressHtml() ?>
+                </address>
+            </div>
+            <div class="box-actions">
+                <a class="action edit  btn btn-sm btn-default" href="<?= $block->escapeUrl($block->getPrimaryShippingAddressEditUrl()) ?>" data-ui-id="default-shipping-edit-link"><span><?= $block->escapeHtml(__('Edit Address')) ?></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="margin-top20">
+        <a class="action btn btn-secondary edit" href="<?= $block->escapeUrl($block->getAddressBookUrl()) ?>"><span><?= $block->escapeHtml(__('Manage Addresses')) ?></span></a>
+    </div>
+</div>

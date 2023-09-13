@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+		<add id="MGS_Protabs::main" title="Product tabs" module="MGS_Protabs" sortOrder="90" parent="Magento_Backend::mgs" resource="MGS_Protabs::main"/>
+		
+		<add id="MGS_Protabs::manage" title="Tabs Setting" module="MGS_Protabs" sortOrder="10" parent="MGS_Protabs::main" action="adminhtml/system_config/edit/section/protabs" resource="MGS_Protabs::manage"/>
+    </menu>
+</config>

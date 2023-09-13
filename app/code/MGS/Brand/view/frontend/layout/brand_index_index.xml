@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="MGS\Brand\Block\Brands" name="brand_list" template="MGS_Brand::brands.phtml">
+                <block class="MGS\Brand\Block\Search" name="brand_search" template="MGS_Brand::search.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="brand_filter_by_character" template="MGS_Brand::character.phtml"/>
+                <block class="MGS\Brand\Block\Brand\Featured" name="brand_list_featured" template="MGS_Brand::brand/featured.phtml"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="MGS\Brand\Block\Brand\Sidebar" name="brand.sidebar" template="MGS_Brand::brand/sidebar.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>

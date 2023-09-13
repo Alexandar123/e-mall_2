@@ -1,0 +1,167 @@
+<?php $galleryImages = $this->getGalleryImages(); ?>
+<?php $zoom_image = $this->getEnableZoom(); ?>
+<?php $lbox_image = $this->getLbox(); ?>
+<?php $rtl = $this->getRightToLeft(); ?>
+<div class="vertical-gallery<?php if(count($galleryImages) <= 1): ?> no-thumb<?php endif ?>">
+	<?php if(count($galleryImages) > 1): ?>
+    <div id="vertical-thumbnail-wrapper">
+        <div id="vertical-thumbnail" class="vertical-thumbnail">
+            <?php $i = 0; foreach($galleryImages as $image): ?>
+                <?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+                <div class="item-thumb<?php if($i == 0): ?> active<?php endif ?>" data-owl="<?php echo $i ?>">
+                    <img class="img-fluid" src="<?php echo $image->getSmallImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+                    <?php if($image->getMediaType() == 'external-video'): ?>
+                        <div class="popup-video-thumb"><span class="ti-video-camera"></span></div>
+                    <?php endif ?>
+                </div>
+                <?php $i++; ?>
+            <?php endforeach ?>
+        </div>
+    </div>
+	<?php endif ?>
+    <div id="owl-carousel-gallery" class="owl-carousel gallery-vertical">
+        <?php foreach($galleryImages as $image): ?>
+			<?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+			<?php $isVideo = $image->getMediaType() == 'external-video' ? true : false; ?>
+			<?php $href = $isVideo ? $image->getVideoUrl() : $image->getImageZoom(); ?>
+				
+			<div class="product item-image imgzoom<?php if($isVideo): ?> item-image-video<?php endif ?>" data-zoom="<?php echo $image->getImageZoom(); ?>">
+				
+				<?php if($isVideo): ?><div class="label-video"><?php echo __('Video') ?></div><?php endif ?>
+				
+				<?php if($lbox_image): ?>
+					<a class="lb<?php if($isVideo): ?> video-link<?php endif ?>" href="<?php echo $href; ?>">
+						<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+					</a>
+				<?php else: ?>
+					<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+					<?php if($isVideo): ?>
+						<a target="_blank" class="popup-video" href="<?php echo $image->getVideoUrl(); ?>">
+							<span class="ti-video-camera"></span>
+						</a>
+					<?php endif ?>
+				<?php endif ?>
+			</div>
+		<?php endforeach ?>
+    </div>
+</div>
+<script type="text/javascript">
+    require([ 'jquery', 'mgsslick', 'mgsowlcarousel' ], function ($) {
+        
+        $('#owl-carousel-gallery').owlCarousel({
+            items: 1,
+            autoplay: false,
+            lazyLoad: false,
+            nav: true,
+            dots: false,
+            navText: ["<span></span>","<span></span>"],
+            rtl: <?= $rtl ?>
+        });
+        
+        $('#vertical-thumbnail').slick({
+            dots: false,
+            arrows: true,
+            vertical: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            verticalSwiping: true,
+            centerMode: true,
+            prevArrow: '<span class="icon-angle-up"></span>',
+            nextArrow: '<span class="icon-angle-down"></span>',
+            responsive: [
+                {
+                    breakpoint: 1199,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 360,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+        
+        $('#owl-carousel-gallery').on('changed.owl.carousel', function(event) {
+            var index = event.item.index;
+            $('#vertical-thumbnail .item-thumb').removeClass('active');
+            $('#vertical-thumbnail .item-thumb[data-owl='+index+']').addClass('active');
+            var wdw = $(window).width();
+            var ci = <?php echo count($galleryImages); ?>;
+            if(wdw >= 1199 && ci > 3) {
+                $('#vertical-thumbnail').slick('slickGoTo', index);
+            }else if(wdw < 1199 && wdw >= 768 && ci > 2){
+                $('#vertical-thumbnail').slick('slickGoTo', index);
+            }else if(wdw < 768 && wdw >= 600 && ci > 3){
+                $('#vertical-thumbnail').slick('slickGoTo', index);
+            }else if(wdw < 768 && wdw >= 600 && ci > 2){
+                $('#vertical-thumbnail').slick('slickGoTo', index);
+            }else if(wdw < 360){
+                $('#vertical-thumbnail').slick('slickGoTo', index);
+            }
+        });
+        
+        $('#vertical-thumbnail .item-thumb').click(function(){
+            $('#vertical-thumbnail .item-thumb').removeClass('active');
+            var position = $(this).attr('data-owl');
+            $('#owl-carousel-gallery').trigger('to.owl.carousel', position);
+            $(this).addClass('active');
+        });
+    });
+    <?php if($zoom_image): ?>
+        require([ 'jquery', 'zoom-images' ],function($) { 
+            $(".imgzoom").each(function( index ) {
+                zoomElement(this);
+            });
+        });
+    <?php endif ?>
+	<?php if($lbox_image): ?>
+	require([ 'jquery', 'magnificPopup' ], function ($) {
+		$('.product.media').magnificPopup({
+			delegate: '.imgzoom .lb',
+			type: 'image',
+			tLoading: 'Loading image #%curr%...',
+			mainClass: 'mfp-img-gallery',
+			fixedContentPos: true,
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+				preload: [0,1]
+			},
+			iframe: {
+				markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></div>'
+			},
+			image: {
+				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			},
+			callbacks: {
+				elementParse: function(item) {
+					if(item.el.context.className == 'lb video-link') {
+						item.type = 'iframe';
+					} else {
+						item.type = 'image';
+					}
+				}
+			}
+		});
+	});
+	<?php endif ?>
+</script>

@@ -1,0 +1,382 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<?php $settings = null ?>
+<div class="edit-static-form">
+    
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('List Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="list">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+                $accordion = $settings['accordion'];
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Content Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                <div id="new-accordion-container">
+                    <?php if ($exist && count($accordion)>0): ?>
+                        <?php foreach ($accordion as $key => $_accordion): ?>
+                            <div id="form-group-<?php echo $key ?>">
+                                <div class="boxed">
+                                    <div class="form-group line">
+                                        <div class="col-des-11"><textarea name="setting[accordion][<?php echo $key ?>][content]" class="required-entry"><?php echo $_accordion['content'] ?></textarea></div>
+                                        <div class="col-des-1"><a href="#" onclick="removeAccordion('#form-group-<?php echo $key ?>'); return false"><span class="fa fa-close"></span></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </div>
+                <div class="line" style="margin-top:15px">
+                    <div class="col-des-12"><button onclick="newAccordion()" type="button" class="action"><em class="fa fa-plus-circle"></em> <?php echo __('Add new item') ?></button></div>
+                </div>
+            </div>
+            
+            
+            <div class="data item title" aria-labeledby="tab-label-view-title" data-role="collapsible" id="tab-label-view">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#view" id="tab-label-view-title">
+                    <?php echo __('View Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="view" data-role="content" style="display:none">
+                <div class="line form-group">
+                    <div class="col">
+                        <label for="list_type" class="control-label"><?php echo __('List type') ?></label><br/>
+                        <select name="setting[list_type]" id="list_type" onchange="setPreview()">
+                            <option value="ul"<?php if ($exist && ($settings['list_type']=='ul')): ?> selected="selected"<?php endif ?>><?php echo __('ul'); ?></option>
+                            <option value="ol"<?php if ($exist && ($settings['list_type']=='ol')): ?> selected="selected"<?php endif ?>><?php echo __('ol'); ?></option>
+                        </select>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="font_size" name="setting[font_size]"<?php if ($exist && $settings['font_size']): ?> value="<?php echo $settings['font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="color" class="control-label"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="color" name="setting[color]"<?php if ($exist && $settings['color']): ?> value="<?php echo $settings['color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="margin_bottom" class="control-label"><?php echo __('Margin bottom') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="margin_bottom" name="setting[margin_bottom]" onchange="changeContentStyle()" placeholder="px"<?php if ($exist && $settings['margin_bottom']): ?> value="<?php echo $settings['margin_bottom'] ?>"<?php endif ?>/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="fontweight" class="control-label"><?php echo __('Font bold') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['fontweight']): ?> checked="checked"<?php endif ?> value="1" name="setting[fontweight]" id="fontweight" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="fontweight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="fontitalic" class="control-label"><?php echo __('Font italic') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['fontitalic']): ?> checked="checked"<?php endif ?> value="1" name="setting[fontitalic]" id="fontitalic" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="fontitalic" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col">
+                        <label for="list_style_type" class="control-label"><?php echo __('List style type') ?></label><br/>
+                        <select name="setting[list_style_type]" id="list_style_type" onchange="changeListStyle()">
+                            <option value="default"<?php if ($exist && ($settings['list_style_type']=='default')): ?> selected="selected"<?php endif ?>><?php echo __('Default list style'); ?></option>
+                            <option value="icon"<?php if ($exist && ($settings['list_style_type']=='icon')): ?> selected="selected"<?php endif ?>><?php echo __('Font icon'); ?></option>
+                        </select>
+                    </div>
+                    
+                    <div class="col default-fields">
+                        <label for="list_style" class="control-label"><?php echo __('List style') ?></label><br/>
+                        <select name="setting[list_style]" id="list_style" onchange="setPreview()">
+                            <option value="disc"<?php if ($exist && ($settings['list_style']=='disc')): ?> selected="selected"<?php endif ?>><?php echo __('Disc'); ?></option>
+                            <option value="armenian"<?php if ($exist && ($settings['list_style']=='armenian')): ?> selected="selected"<?php endif ?>><?php echo __('Armenian'); ?></option>
+                            <option value="circle"<?php if ($exist && ($settings['list_style']=='circle')): ?> selected="selected"<?php endif ?>><?php echo __('Circle'); ?></option>
+                            <option value="cjk-ideographic"<?php if ($exist && ($settings['list_style']=='cjk-ideographic')): ?> selected="selected"<?php endif ?>><?php echo __('Cjk Ideographic'); ?></option>
+                            <option value="decimal"<?php if ($exist && ($settings['list_style']=='decimal')): ?> selected="selected"<?php endif ?>><?php echo __('Decimal'); ?></option>
+                            <option value="decimal-leading-zero"<?php if ($exist && ($settings['list_style']=='decimal-leading-zero')): ?> selected="selected"<?php endif ?>><?php echo __('Decimal Leading Zero'); ?></option>
+                            <option value="georgian"<?php if ($exist && ($settings['list_style']=='georgian')): ?> selected="selected"<?php endif ?>><?php echo __('Georgian'); ?></option>
+                            <option value="hebrew"<?php if ($exist && ($settings['list_style']=='hebrew')): ?> selected="selected"<?php endif ?>><?php echo __('Hebrew'); ?></option>
+                            <option value="hiragana"<?php if ($exist && ($settings['list_style']=='hiragana')): ?> selected="selected"<?php endif ?>><?php echo __('Hiragana'); ?></option>
+                            <option value="hiragana-iroha"<?php if ($exist && ($settings['list_style']=='hiragana-iroha')): ?> selected="selected"<?php endif ?>><?php echo __('Hiragana Iroha'); ?></option>
+                            <option value="katakana"<?php if ($exist && ($settings['list_style']=='katakana')): ?> selected="selected"<?php endif ?>><?php echo __('Katakana'); ?></option>
+                            <option value="katakana-iroha"<?php if ($exist && ($settings['list_style']=='katakana-iroha')): ?> selected="selected"<?php endif ?>><?php echo __('Katakana Iroha'); ?></option>
+                            <option value="lower-alpha"<?php if ($exist && ($settings['list_style']=='lower-alpha')): ?> selected="selected"<?php endif ?>><?php echo __('Lower Alpha'); ?></option>
+                            <option value="lower-greek"<?php if ($exist && ($settings['list_style']=='lower-greek')): ?> selected="selected"<?php endif ?>><?php echo __('Lower Greek'); ?></option>
+                            <option value="lower-latin"<?php if ($exist && ($settings['list_style']=='lower-latin')): ?> selected="selected"<?php endif ?>><?php echo __('Lower Latin'); ?></option>
+                            <option value="lower-roman"<?php if ($exist && ($settings['list_style']=='lower-roman')): ?> selected="selected"<?php endif ?>><?php echo __('Lower Roman'); ?></option>
+                            <option value="none"<?php if ($exist && ($settings['list_style']=='none')): ?> selected="selected"<?php endif ?>><?php echo __('None'); ?></option>
+                            <option value="square"<?php if ($exist && ($settings['list_style']=='square')): ?> selected="selected"<?php endif ?>><?php echo __('Square'); ?></option>
+                            <option value="upper-alpha"<?php if ($exist && ($settings['list_style']=='upper-alpha')): ?> selected="selected"<?php endif ?>><?php echo __('Upper Alpha'); ?></option>
+                            <option value="upper-greek"<?php if ($exist && ($settings['list_style']=='upper-greek')): ?> selected="selected"<?php endif ?>><?php echo __('Upper Greek'); ?></option>
+                            <option value="upper-latin"<?php if ($exist && ($settings['list_style']=='upper-latin')): ?> selected="selected"<?php endif ?>><?php echo __('Upper Latin'); ?></option>
+                            <option value="upper-roman"<?php if ($exist && ($settings['list_style']=='upper-roman')): ?> selected="selected"<?php endif ?>><?php echo __('Upper Roman'); ?></option>
+                            <option value="initial"<?php if ($exist && ($settings['list_style']=='initial')): ?> selected="selected"<?php endif ?>><?php echo __('Initial'); ?></option>
+                            <option value="inherit"<?php if ($exist && ($settings['list_style']=='inherit')): ?> selected="selected"<?php endif ?>><?php echo __('Inherit'); ?></option>
+                        </select>
+                    </div>
+                    
+                    <div class="col icon-fields">
+                        <label class="control-label"><?php echo __('Icon font class') ?></label><br/>
+                        <input type="text" class="input-text input-icon-choose" id="icon" name="setting[icon]"<?php if ($exist && $settings['icon']): ?> value="<?php echo $settings['icon'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="icon_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="icon_color" name="setting[icon_color]"<?php if ($exist && $settings['icon_color']): ?> value="<?php echo $settings['icon_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col icon-fields">
+                        <label for="icon_font_size" class="control-label"><?php echo __('Icon font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="icon_font_size" name="setting[icon_font_size]"<?php if ($exist && $settings['icon_font_size']): ?> value="<?php echo $settings['icon_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col icon-fields">
+                        <label for="icon_margin" class="control-label"><?php echo __('Margin right') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="icon_margin" name="setting[icon_margin]"<?php if ($exist && $settings['icon_margin']): ?> value="<?php echo $settings['icon_margin'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="content-block list-block">
+                    <div class="mgs-list-block" id="temp-list">
+                        <ul>
+                            <li><span class="list-icon" style="display:none"></span><span class="text">Aliquam tincidunt cons ectetuer mauris eu risus</span></li>
+                            <li><span class="list-icon" style="display:none"></span><span class="text">Aliquam tincidunt cons ectetuer mauris eu risus</span></li>
+                            <li><span class="list-icon" style="display:none"></span><span class="text">Aliquam tincidunt cons ectetuer mauris eu risus</span></li>
+                            <li><span class="list-icon" style="display:none"></span><span class="text">Aliquam tincidunt cons ectetuer mauris eu risus</span></li>
+                            <li><span class="list-icon" style="display:none"></span><span class="text">Aliquam tincidunt cons ectetuer mauris eu risus</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <style type="text/css" id="accordion-custom-css"></style>
+            </div>
+            
+            
+            
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<?php
+    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+        ->setExist($exist)
+        ->setBuilderChild($child)
+        ->setBuilderHelper($helper)
+        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/font_list.phtml')->toHtml() ;
+?>
+<script>
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                changeListStyle();
+            });
+        })(jQuery);
+    });
+    
+    function newAccordion(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                randomNumber = Math.floor((Math.random() * 10000) + 1);
+                html = '<div id="form-group-{{random_number}}"><div class="boxed">';
+                
+                html += '<div class="form-group line"><div class="col-des-11"><textarea name="setting[accordion][{{random_number}}][content]" class="required-entry" placeholder="<?php echo __('List item content') ?>>"></textarea></div><div class="col-des-1"><a href="#" onclick="removeAccordion(\'#form-group-{{random_number}}\'); return false"><span class="fa fa-close"></span></a></div></div>';
+                html += '</div></div>';
+                
+                html = html.replace(/{{random_number}}/g, randomNumber);
+                                    
+                $('#new-accordion-container').append(html);
+            })(jQuery);
+        });
+    }
+    
+    function removeAccordion(number){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $(number).remove();
+            })(jQuery);
+        });
+    }
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                list_style_type = $('#list_style_type').val();
+                list_style = $('#list_style').val();
+                icon = $('#icon').val();
+                textClass = 'text';
+                if($('#fontweight').prop("checked") == true){
+                    textClass += ' font-bold';
+                }
+                if($('#fontitalic').prop("checked") == true){
+                    textClass += ' font-italic';
+                }
+                
+                $('#temp-list .text').attr('class', textClass);
+                
+                $('#temp-list').attr('class', 'mgs-list-block list-style-'+list_style_type);
+                
+                if(list_style_type=='default'){
+                    $('#temp-list .list-icon').hide();
+                    $('#temp-list ul').attr('class', 'list-'+list_style);
+                }else{
+                    $('#temp-list .list-icon').attr('class', 'list-icon '+icon).show();
+                    $('#temp-list ul').attr('class', '');
+                }
+            })(jQuery);
+        });
+        
+        changeContentStyle();
+    }
+    
+    function changeContentStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                
+                font_size = $('#font_size').val();
+                color = $('#color').val();
+                margin_bottom = $('#margin_bottom').val();
+                list_style_type = $('#list_style_type').val();
+                icon_color = $('#icon_color').val();
+                icon_font_size = $('#icon_font_size').val();
+                icon_margin = $('#icon_margin').val();
+                
+                customStyle = '';
+                
+                if(font_size!=''){
+                    customStyle += '#temp-list.mgs-list-block li{font-size:'+font_size+'px}';
+                }
+                if(color!=''){
+                    customStyle += '#temp-list.mgs-list-block li{color:'+color+'}';
+                }
+                if(margin_bottom!=''){
+                    customStyle += '#temp-list.mgs-list-block li{margin-bottom:'+margin_bottom+'px}';
+                }
+                if(list_style_type=='default'){
+                    if(icon_color!=''){
+                        customStyle += '#temp-list.mgs-list-block li{color:'+icon_color+'}';
+                        
+                        if(color!=''){
+                            customStyle += '#temp-list.mgs-list-block li .text{color:'+color+'}';
+                        }else{
+                            customStyle += '#temp-list.mgs-list-block li .text{color:#575757}';
+                        }
+                    }
+                }else{
+                    if(icon_color!=''){
+                        customStyle += '#temp-list.mgs-list-block li .list-icon{color:'+icon_color+'}';
+                    }
+                    
+                    if(icon_font_size!=''){
+                        customStyle += '#temp-list.mgs-list-block li .list-icon{font-size:'+icon_font_size+'px}';
+                    }
+                    
+                    if(icon_margin!=''){
+                        customStyle += '#temp-list.mgs-list-block li .list-icon{margin-right:'+icon_margin+'px}';
+                    }
+                }
+                
+                $('#accordion-custom-css').html(customStyle);
+            })(jQuery);
+        });
+    }
+    
+    function changeListStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                listStyleType = $('#list_style_type').val();
+                if(listStyleType=='default'){
+                    $('.icon-fields').hide();
+                    $('.default-fields').show();
+                }else{
+                    $('.icon-fields').show();
+                    $('.default-fields').hide();
+                }
+            })(jQuery);
+        });
+        setPreview();
+    }
+    
+</script>

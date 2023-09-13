@@ -1,0 +1,86 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-modal-popup__width: 800px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .checkout-index-index {
+        .modal-popup {
+            .field-tooltip {
+                .field-tooltip-content {
+                    &:extend(.abs-checkout-tooltip-content-position-top all);
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .checkout-index-index {
+        .modal-popup {
+            .form-shipping-address {
+                .lib-css(max-width, @checkout-shipping-address__max-width);
+            }
+
+            .modal-footer {
+                .action-save-address {
+                    float: right;
+                    margin: 0 0 0 10px;
+                    background-color: #222;
+                    border: 1px solid #222;
+                    color: #fff;
+                    font-size: 14px;
+                    padding: 0 30px;
+                    height: 40px;
+                    font-weight: 600;
+                    &:hover {
+                        border-color: #56cfe1;
+                        background-color: #56cfe1;
+                        color: #fff;
+                    }
+                }
+
+                .action-hide-popup {
+                    color: #222;
+                    background-color: #fff;
+                    border-color: #222;
+                    border-width: 2px;
+                    padding: 0 30px;
+                    height: 40px;
+                    font-weight: 600;
+                    &:hover {
+                        color: #fff;
+                        background-color: #222;
+                        border-color: #222;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .checkout-index-index {
+        .modal-popup {
+            .modal-inner-wrap {
+                .lib-css(margin-left, -(@checkout-modal-popup__width/2));
+                .lib-css(width, @checkout-modal-popup__width);
+                left: 50%;
+            }
+        }
+    }
+}

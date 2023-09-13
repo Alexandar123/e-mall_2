@@ -1,0 +1,43 @@
+<?php
+/**
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+
+/**
+ * @var $block \MGS\OSCheckout\Block\LayoutOnestepCheckout\Container
+ */
+
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$layoutType = $themeSettingConfig->getStoreConfig('themesettings/page_title/design') ? $themeSettingConfig->getStoreConfig('themesettings/page_title/design') : 1;
+
+$customClass = $customStyle = "";
+if($themeSettingConfig->getStoreConfig('themesettings/page_title/background') == 2){
+	/* Image */
+	if($image = $themeSettingConfig->getStoreConfig('themesettings/page_title/background_image')){
+		$customClass = "ttbg-image";
+		if($themeSettingConfig->getStoreConfig('themesettings/page_title/bg_repeat')){
+			$customClass .= " ttbg-image-repeat";
+		}
+		$imageBg = $themeSettingConfig->getPageTitleBackground();
+		$customStyle = "background-image: url(".$imageBg.");";
+	}
+}elseif($themeSettingConfig->getStoreConfig('themesettings/page_title/background') == 3) {
+	/* Color */
+	if($color = $themeSettingConfig->getStoreConfig('themesettings/page_title/background_color')){
+		$customClass = "ttbg-color";
+		$customStyle = "background-color: ".$color.";";
+	}
+}
+?>
+
+<div class="page-title-wrapper" <?php if($layoutType == 1): ?> style="<?= $customStyle ?>"<?php endif ?>>
+    <h1 class="checkout-title"><?php echo $block->getCheckoutTitle(); ?></h1>
+    <p class="checkout-description">
+        <?php echo $block->getCheckoutDescription(); ?>
+    </p>
+</div>
+

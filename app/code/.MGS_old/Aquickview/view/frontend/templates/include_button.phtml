@@ -1,0 +1,71 @@
+<div id="loading_overlay" class="quickview-loading-overlay"></div>
+
+<script>
+	function includeQuickviewAction($){
+		var	$_quickviewBaseUrl = 'aquickview/index/index';
+		var	$_baseUrl = '<?php echo str_replace("index.php/","",$this->getUrl()) ?>';
+		var $_quickviewUrl = $_baseUrl + $_quickviewBaseUrl;
+		
+		var	$_prdItem = $('.products.list.items.product-items .product-item');
+		var	$_prdItemAction = $('.products.list.items.product-items .product-item .actions-secondary');
+		var $_listItem = [];
+		if($_prdItem.length > 0 && $_prdItemAction.length > 0){
+			$_prdItem.each(function() {
+				var $el = $(this);
+				var	$_prdItemId = $el.find('input[name="product"]').val();
+				if(typeof $_prdItemId === "undefined"){
+					$_prdItemId = $el.find('[data-role="priceBox"]').attr('data-product-id');
+				}
+				if($el.find("a.action.quickview").length <= 0) {
+					if($el.find('a.product-item-photo').length > 0 ){
+						var $_prdLink = $el.find('a.product-item-photo');
+						if(typeof $_prdLink.attr('href') !== 'undefined' && $_prdLink.attr('href').replace($_baseUrl,"") != '#'){
+							var	$_prdPathLink = $_prdLink.attr('href').replace($_baseUrl,"");
+							$_prdPathLink = ($_prdPathLink.indexOf('index.php') >= 0 ) ? $_prdPathLink.replace('index.php/','') : $_prdPathLink;
+							
+							var	$quickviewAction = $_quickviewUrl + ("/catalog/product/id/") + $_prdItemId;
+							var	$_buttonHtml = '<a data-productid="'+$_prdItemId+'" class="action quickview" aria-label="<?= __('Quickview') ?>" title="<?= __('Quickview') ?>" href="'+$quickviewAction+'"><span><?= __('Quickview') ?></span></a>';
+							$_listItem.push($_buttonHtml);
+						}
+					}
+				}
+			});
+			var count = 0 ;
+			$_prdItemAction.each(function () {
+				if(typeof $_listItem[count] != 'undefined' && $(this).find("a.action.quickview").length <= 0) {
+					$(this).append($_listItem[count]);
+					count ++;
+				}
+			});
+		}
+	}
+</script>
+
+<script type="text/javascript">
+	requirejs([
+		'jquery',
+		'domReady!',
+		'aQuickView'
+	], function($){
+		$('#loading_overlay').removeClass('loading');
+		
+		$(document).ready(function(){
+			includeQuickviewAction($);
+		});
+		
+		 $(document).on('click','.action.quickview',function(e){
+			 e.preventDefault();
+			 if($('body.catalog-product-view').size() > 0){
+				 $('body').addClass('origin-catalog-product-view');
+			 }else {
+				 $('body').addClass('catalog-product-view');
+			 }
+			 $('#loading_overlay').addClass('loading');
+			 var widgetQv = $(this).aQuickView();
+			 var url = $(this).attr('href');
+			 var id = $(this).attr('data-productid');
+			 widgetQv.aQuickView('productQuickView',url, id);
+		 });
+	});
+
+</script>

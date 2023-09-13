@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order" resource="sales" engine="innodb" comment="Sales Order">
+        <column xsi:type="varchar" name="erp_reference_number" nullable="true" length="255" comment="Custom Order Attribute"/>
+        <column xsi:type="varchar" name="erp_tracking_link" nullable="true" length="255" comment="Custom Order Attribute"/>
+        <column xsi:type="varchar" name="erp_order_status" nullable="true" length="255" comment="Custom Order Attribute"/>
+    </table>
+    <table name="sales_order_grid" resource="sales" engine="innodb" comment="Sales Order">
+        <column xsi:type="varchar" name="erp_reference_number" nullable="true" length="255" comment="Custom Order Attribute"/>
+        <column xsi:type="varchar" name="erp_tracking_link" nullable="true" length="255" comment="Custom Order Attribute"/>
+         <column xsi:type="varchar" name="erp_order_status" nullable="true" length="255" comment="Custom Order Attribute"/>
+    </table>
+</schema>

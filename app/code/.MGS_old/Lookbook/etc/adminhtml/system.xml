@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="mgs" translate="label" sortOrder="68">
+            <label>Mage Solution</label>
+        </tab>
+		<section id="lookbook" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Lookbook</label>
+			<tab>mgs</tab>
+			<resource>MGS_Lookbook::config_lookbook</resource>
+			<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Setting</label>
+				<field id="min_image_width" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Minimal Image Width</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+				
+				<field id="min_image_height" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Minimal Image Height</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+				
+				<field id="max_image_width" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Maximal Image Width</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+				
+				<field id="max_image_height" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Maximal Image Height</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+				
+				<field id="max_upload_filesize" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Max file size upload</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[bytes]]></label></comment>
+				</field>
+				
+				<field id="allowed_extensions" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Allowed extensions</label>
+				</field>
+				
+				<field id="pin_width" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Width of Pin</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+				
+				<field id="pin_height" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Height of Pin</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+				
+				<field id="pin_default" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Default text for Pin</label>
+					<validate>required-entry</validate>
+				</field>
+				
+				<field id="pin_price" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Product Price for Pin text</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				
+				<field id="pin_background" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color for Pin</label>
+				</field>
+				
+				<field id="pin_text" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color for Pin</label>
+				</field>
+				
+				<field id="popup_image_width" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Width of Product Image on Popup</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+				
+				<field id="popup_image_height" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Height of Product Image on Popup</label>
+					<validate>required-entry validate-number</validate>
+					<comment><label><![CDATA[px]]></label></comment>
+				</field>
+			</group>
+			
+			<group id="slider" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Slider Setting</label>
+				<field id="navigation" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show navigation</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				
+				<field id="pagination" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show pagination</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				
+				<field id="auto_play" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Autoplay</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				
+				<field id="auto_play_timeout" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Autoplay interval timeout</label>
+				</field>
+				
+				<field id="stop_auto" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Pause on mouse hover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				
+				<field id="loop" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Infinity loop</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				
+				<field id="next_image" translate="label comment" type="image" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Next icon</label>
+                    <backend_model>MGS\Lookbook\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">lookbook</base_url>
+				</field>
+				
+				<field id="prev_image" translate="label comment" type="image" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Previous icon</label>
+                    <backend_model>MGS\Lookbook\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">lookbook</base_url>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

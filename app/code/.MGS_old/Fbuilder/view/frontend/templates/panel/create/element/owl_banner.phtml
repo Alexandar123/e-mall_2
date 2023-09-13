@@ -1,0 +1,982 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $top = -55 ?>
+<div class="edit-static-form">
+    
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('OWL Carousel Slider') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="owl_banner">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+                $top = $settings['nav_top'];
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <input id="block_html" type="hidden" name="setting[block_link]" value="<?php if ($exist && isset($settings['block_html']) && $settings['block_html']): ?><?php echo $settings['block_html'] ?><?php endif ?>">
+        
+        <div class="mgs-tab product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <div class="data item title" aria-labeledby="tab-label-general-title" data-role="collapsible" id="tab-label-general">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#general" id="tab-label-general-title">
+                    <?php echo __('General') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="general" data-role="content">
+                <div class="form-group line">
+                    <label for="col" class="col-des-3 control-label" style="margin-top:25px"><?php echo __('Block col (12 to full)') ?></label>
+                    <div class="col-des-3">
+                        <label for="col" class="control-label"><?php echo __('Desktop') ?></label>
+                        <select id="col" class="required-entry input-text" name="col">
+                            <?php for ($i=12; $i>=1; $i--): ?>
+                                <option value="<?php echo $i ?>"<?php if ($exist && ($child->getCol()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+                            <?php endfor ?>
+                        </select>
+                    </div>
+                    <div class="col-des-3">
+                        <label for="col_tablet" class="control-label"><?php echo __('Tablet') ?></label>
+                        <select id="col_tablet" class="required-entry input-text" name="col_tablet">
+                            <?php for ($i=12; $i>=1; $i--): ?>
+                                <option value="<?php echo $i ?>"<?php if ($exist && ($child->getColTablet()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+                            <?php endfor ?>
+                        </select>
+                    </div>
+                    <div class="col-des-3">
+                        <label for="col_mobile" class="control-label"><?php echo __('Mobile') ?></label>
+                        <select id="col_mobile" class="required-entry input-text" name="col_mobile">
+                            <?php for ($i=12; $i>=1; $i--): ?>
+                                <option value="<?php echo $i ?>"<?php if ($exist && ($child->getColMobile()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+                            <?php endfor ?>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hidden" class="col-des-3 control-label" style="margin-top:25px"><?php echo __('Hidden') ?></label>
+                    <div class="col-des-3">
+                        <label for="hide_desktop" class="control-label"><?php echo __('On Desktop') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $child->getHideDesktop()): ?> checked="checked"<?php endif ?> value="1" name="hide_desktop" id="hide_desktop" class="admin__actions-switch-checkbox">
+                            <label for="hide_desktop" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-des-3">
+                        <label for="hide_tablet" class="control-label"><?php echo __('On Tablet') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $child->getHideTablet()): ?> checked="checked"<?php endif ?> value="1" name="hide_tablet" id="hide_tablet" class="admin__actions-switch-checkbox">
+                            <label for="hide_tablet" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-des-3">
+                        <label for="hide_mobile" class="control-label"><?php echo __('On Mobile') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $child->getHideMobile()): ?> checked="checked"<?php endif ?> value="1" name="hide_mobile" id="hide_mobile" class="admin__actions-switch-checkbox">
+                            <label for="hide_mobile" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group line">
+                    <label for="class" class="col-des-3 control-label"><?php echo __('Custom Class') ?></label>
+                    <div class="col-des-9">
+                        <input type="text" id="class" class="input-text" name="class"<?php if ($exist): ?> value="<?php echo $child->getClass() ?>"<?php endif ?> />
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="animation" class="col-des-3 control-label"><?php echo __('Block Animation') ?></label>
+                    <div class="col-des-5">
+                        <select onchange="changeAnimationClass(this.value)" id="animation" class="input-text" name="setting[animation]">
+                            <option value=""><?php echo __('Choose Animation Effect') ?></option>
+                            <?php foreach ($helper->getAnimationEffect() as $animation => $label): ?>
+                                <option value="<?php echo $animation ?>"<?php if ($exist && ($settings['animation']==$animation)): ?> selected="selected"<?php endif ?>><?php echo $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    
+                    <div class="col-des-3 text-center animated<?php if ($exist && ($settings['animation']!='')): ?> <?php echo $settings['animation'] ?><?php endif ?>" id="animation-test">Animation Preview</div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="animation_delay" class="col-des-3 control-label"><?php echo __('Animation Delay') ?></label>
+                    <div class="col-des-9">
+                        <input type="text" placeholder="ms" id="animation_delay" class="input-text validate-number" name="setting[animation_delay]" <?php if ($exist && isset($settings['animation_delay'])): ?> value="<?php echo $settings['animation_delay'] ?>"<?php endif ?>>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <div class="col-des-12">
+                        <div class="style-inline-container">
+                            <div class="border-container">
+                                <span class="inline-note margin-note">Margin</span>
+                                
+                                <input type="text" placeholder="px" id="margin-top" class="input-text validate-number" name="setting[margin_top]" <?php if ($exist && isset($settings['margin_top'])): ?> value="<?php echo $settings['margin_top'] ?>"<?php endif ?>>
+                                
+                                <div class="middle-content-input">
+                                    
+                                    <div class="left-margin"><input type="text" placeholder="px" id="margin-left" class="input-text validate-number" name="setting[margin_left]" <?php if ($exist && isset($settings['margin_left'])): ?> value="<?php echo $settings['margin_left'] ?>"<?php endif ?>></div>
+                                    <div class="middle-content">
+                                        <span class="inline-note padding-note">Padding</span>
+                                        <input type="text" placeholder="px" id="padding-top" class="input-text validate-number" name="setting[padding_top]" <?php if ($exist && isset($settings['padding_top'])): ?> value="<?php echo $settings['padding_top'] ?>"<?php endif ?>>
+                                        
+                                        <div class="padding-middle">
+                                            <input type="text" placeholder="px" id="padding-left" class="input-text validate-number" name="setting[padding_left]" <?php if ($exist && isset($settings['padding_left'])): ?> value="<?php echo $settings['padding_left'] ?>"<?php endif ?>>
+                                            
+                                            <input type="text" placeholder="px" id="padding-right" class="input-text validate-number" name="setting[padding_right]" <?php if ($exist && isset($settings['padding_right'])): ?> value="<?php echo $settings['padding_right'] ?>"<?php endif ?>>
+                                        </div>
+                                        
+                                        <input type="text" placeholder="px" id="padding-bottom" class="input-text validate-number" name="setting[padding_bottom]" <?php if ($exist && isset($settings['padding_bottom'])): ?> value="<?php echo $settings['padding_bottom'] ?>"<?php endif ?>>
+                                    </div>
+                                    <div class="right-margin"><input type="text" placeholder="px" id="margin-right" class="input-text validate-number" name="setting[margin_right]" <?php if ($exist && isset($settings['margin_right'])): ?> value="<?php echo $settings['margin_right'] ?>"<?php endif ?>></div>
+                                </div>
+                                
+                                <input type="text" placeholder="px" id="margin-bottom" class="input-text validate-number" name="setting[margin_bottom]" <?php if ($exist && isset($settings['margin_bottom'])): ?> value="<?php echo $settings['margin_bottom'] ?>"<?php endif ?>>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="data item title" aria-labeledby="tab-label-images-title" data-role="collapsible" id="tab-label-images">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#images" id="tab-label-images-title">
+                    <?php echo __('Manage Images') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="images" data-role="content" style="display:none">
+                <?php $images = $helper->getPanelUploadImages('slider') ?>
+                <div id="list-images">
+                    <?php if (count($images)>0): ?>
+                        <?php $i = 0; ?>
+                        <?php foreach ($images as $_image): $i++ ?>
+                            <div class="image-item">
+                                <img class="img-responsive" src="<?php echo $this->getPanelUploadSrc('slider', $_image) ?>" alt=""/>
+                                <div class="remove-action">
+                                    <label for="check-remove-<?php echo $i ?>"></label>
+                                    <input class="check_remove" id="check-remove-<?php echo $i ?>" type="checkbox" name="remove[]" value="<?php echo $_image ?>"/>
+                                    <input class="remove_img" type="hidden" name="setting[removeimg][]" value="">
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </div>
+                
+                <div id="upload-container">
+                    <div id="list-upload"></div>
+                    <button class="btn btn-default" onclick="newImageUpload()" type="button"><span class="fa fa-plus"></span> <?php echo __('Upload new Image') ?></button>
+                </div>
+            </div>
+            
+            <div class="data item title" aria-labeledby="tab-label-slide-title" data-role="collapsible" id="tab-label-slide">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#slide" id="tab-label-slide-title">
+                    <?php echo __('Manage Slide') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="slide" data-role="content" style="display:none">
+                <div id="slide_actions">
+                    <button class="btn btn-info" type="button" title="<?php echo __('Move Down'); ?>"><span class="fa fa-arrow-down"></span></button>
+                    <button class="btn btn-primary" type="button" title="<?php echo __('Edit'); ?>"><span class="fa fa-pencil"></span></button>
+                    <button class="btn btn-danger" type="button" title="<?php echo __('Remove'); ?>"><span class="fa fa-trash"></span></button>
+                </div>
+                <div class="new-slide-popup" id="new_slide_popup">
+                    <input type="hidden" class="form-control" id="slide_status" value="1" />
+                    <div>
+                        <div class="form-group line">
+                            <div class="col-des-12">
+                                <?php $images = $helper->getPanelUploadImages('slider') ?>
+
+                                <label><?php echo __('Image'); ?>:</label>
+                                <?php if (count($images)>0): ?>
+                                    <div class="slide_images_wrapper">
+                                        <ul id="slide_images" class="slide-images">
+                                            <?php $i = 0; foreach ($images as $_image): $i++ ?>
+                                                <li><img src="<?php echo $this->getPanelUploadSrc('slider', $_image) ?>" alt=""/></li>
+                                            <?php endforeach ?>
+                                        </ul>
+                                    </div>
+                                <?php endif ?>
+                                <input type="hidden" class="form-control" id="slide_img_url" value="" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group line">
+                            <label for="slide_link" class="col-des-1 control-label text-align-left"><?php echo __('Link'); ?>:</label>
+                            <div class="col-des-11"><input type="text" class="form-control" id="slide_link" value="" /></div>
+                        </div>
+
+                        <div class="form-group line">
+                            <div class="col-des-10">
+                            
+                                <label for="slide_link"><?php echo __('Text (Html)'); ?>:</label>
+                                <textarea class="form-control" id="slide_html" rows="4" cols="50"></textarea>
+                            </div>
+
+                            <div class="col-des-2">
+
+                                <label for="slide_link"><?php echo __('Text Position'); ?>:</label>
+                                <ul id="slide_html_position" class="slide-html-position">
+                                    <li data-position="top_left"></li>
+                                    <li data-position="top_center"></li>
+                                    <li data-position="top_right"></li>
+                                    <li data-position="middle_left"></li>
+                                    <li class="active" data-position="middle"></li>
+                                    <li data-position="middle_right"></li>
+                                    <li data-position="bottom_left"></li>
+                                    <li data-position="bottom_center"></li>
+                                    <li data-position="bottom_right"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group line">
+                            <label for="text_align" class="col-des-2 control-label text-align-left"><?php echo __('Text Align'); ?>:</label>
+                            <div class="col-des-10">
+                                <select id="text_align">
+                                    <option value="text-align-left"><?php echo __('Left'); ?></option>
+                                    <option value="text-align-center"><?php echo __('Center'); ?></option>
+                                    <option value="text-align-right"><?php echo __('Right'); ?></option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group line">
+                            <label for="slide_html_animation" class="control-label col-des-3 text-align-left"><?php echo __('Text Animation'); ?>:</label>
+                            <div class="col-des-9">
+                                <select id="slide_html_animation">
+                                    <option value=""><?php echo __('No Effect'); ?></option>
+                                    <option value="slideInDown"><?php echo __('Slide In Down'); ?></option>
+                                    <option value="slideInUp"><?php echo __('Slide In Up'); ?></option>
+                                    <option value="slideInRight"><?php echo __('Slide In Right'); ?></option>
+                                    <option value="slideInLeft"><?php echo __('Slide In Left'); ?></option>
+                                    <option value="zoomIn"><?php echo __('Zoom In'); ?></option>
+                                    <option value="zoomOut"><?php echo __('Zoom Out'); ?></option>
+
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group line actions">
+                            <div class="col-des-6">
+                                <button class="action" style="width: 100%;" type="button" id="sliderOk" ><span><?php echo __('Submit'); ?></span></button>
+                            </div>
+                            <div class="col-des-6">
+                                <button class="action" style="width: 100%;" type="button" id="slideCancer" ><span><?php echo __('Cancel'); ?></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-wrapper">
+                    <div id="carousel_slider_wrapper" class="carousel_slider_wrapper"><?php if ($exist && isset($settings['html_slider'])): ?><?php echo html_entity_decode($settings['html_slider']) ?><?php endif ?></div>
+                    <textarea style="display: none;" name="setting[html_slider]" id="htmlSlider" maxlength="999999999999"><?php if ($exist && isset($settings['html_slider'])): ?><?php echo html_entity_decode($settings['html_slider']) ?><?php endif ?></textarea>
+                </div>
+                <div class="slide-actions">
+                    <button type="button" class="btn btn-primary add-new-item"><?php echo __('Add New Slide') ?></button>
+                </div>
+            </div>
+        
+            <div class="data item title" aria-labeledby="tab-label-slider-title" data-role="collapsible" id="tab-label-slider">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#slider" id="tab-label-slider-title">
+                    <?php echo __('Slider Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="slider" data-role="content" style="display:none">
+                <div class="form-group line">
+                    <label for="items" class="col-des-4 control-label"><?php echo __('Number of items on slide (default)') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="items" class="input-text required-entry validate-number" name="setting[items]"<?php if ($exist && $settings['items']): ?> value="<?php echo $settings['items'] ?>"<?php else: ?> value="1"<?php endif ?> onchange="displayNav()"/>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="items_tablet" class="col-des-4 control-label"><?php echo __('Number of items on slide (tablet)') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="items_tablet" class="input-text required-entry validate-number" name="setting[items_tablet]"<?php if ($exist && $settings['items_tablet']): ?> value="<?php echo $settings['items_tablet'] ?>"<?php else: ?> value="1"<?php endif ?>/>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="items_mobile" class="col-des-4 control-label"><?php echo __('Number of items on slide (mobile)') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="items_mobile" class="input-text required-entry validate-number" name="setting[items_mobile]"<?php if ($exist && $settings['items_mobile']): ?> value="<?php echo $settings['items_mobile'] ?>"<?php else: ?> value="1"<?php endif ?>/>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="slide_margin" class="col-des-4 control-label"><?php echo __('Margin right (on item)') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="slide_margin" class="input-text validate-number" name="setting[slide_margin]"<?php if ($exist && $settings['slide_margin']): ?> value="<?php echo $settings['slide_margin'] ?>"<?php endif ?> />
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="rtl" class="col-des-4 control-label"><?php echo __('RTL') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['rtl']): ?> checked="checked"<?php endif ?> value="1" name="setting[rtl]" id="rtl" class="admin__actions-switch-checkbox">
+                            <label for="rtl" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="fullheight" class="col-des-4 control-label"><?php echo __('Full Height') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && isset($settings['fullheight']) && $settings['fullheight']): ?> checked="checked"<?php endif ?> value="1" name="setting[fullheight]" id="fullheight" class="admin__actions-switch-checkbox">
+                            <label for="fullheight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="autoplay" class="col-des-4 control-label"><?php echo __('Auto play') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['autoplay']): ?> checked="checked"<?php endif ?> value="1" name="setting[autoplay]" id="autoplay" class="admin__actions-switch-checkbox" onclick="setAutoplay()">
+                            <label for="autoplay" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line" id="speed-input">
+                    <label for="speed" class="col-des-4 control-label"><?php echo __('Auto play speed') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" placeholder="ms" id="speed" class="input-text validate-number" name="setting[speed]" <?php if ($exist && isset($settings['speed'])): ?> value="<?php echo $settings['speed'] ?>"<?php endif ?>>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="stop_auto" class="col-des-4 control-label"><?php echo __('Stop autoplay on mouse hover') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['stop_auto']): ?> checked="checked"<?php endif ?> value="1" name="setting[stop_auto]" id="stop_auto" class="admin__actions-switch-checkbox">
+                            <label for="stop_auto" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="navigation" class="col-des-4 control-label"><?php echo __('Display navigation') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['navigation']): ?> checked="checked"<?php endif ?> value="1" name="setting[navigation]" id="navigation" class="admin__actions-switch-checkbox" onclick="displayNav()">
+                            <label for="navigation" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line nav-fields">
+                    <label for="navigation_position" class="col-des-4 control-label"><?php echo __('Navigation position') ?></label>
+                    <div class="col-des-8">
+                        <select name="setting[navigation_position]" id="navigation_position" onchange="displayNav()">
+                            <option value="middle-inside"<?php if ($exist && ($settings['navigation_position']=='middle-inside')): ?> selected="selected"<?php endif ?>><?php echo __('Middle Inside'); ?></option>
+                            <option value="top-left"<?php if ($exist && ($settings['navigation_position']=='top-left')): ?> selected="selected"<?php endif ?>><?php echo __('Top Left'); ?></option>
+                            <option value="top-right"<?php if ($exist && ($settings['navigation_position']=='top-right')): ?> selected="selected"<?php endif ?>><?php echo __('Top Right'); ?></option>
+                            
+                            <option value="middle-outside"<?php if ($exist && ($settings['navigation_position']=='middle-outside')): ?> selected="selected"<?php endif ?>><?php echo __('Middle Outside'); ?></option>
+                            <option value="bottom-left"<?php if ($exist && ($settings['navigation_position']=='bottom-left')): ?> selected="selected"<?php endif ?>><?php echo __('Bottom Left'); ?></option>
+                            <option value="bottom-right"<?php if ($exist && ($settings['navigation_position']=='bottom-right')): ?> selected="selected"<?php endif ?>><?php echo __('Bottom Right'); ?></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line nav-top-position">
+                    <label for="nav_top" class="col-des-4 control-label"><?php echo __('Navigation top position') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="nav_top" class="input-text validate-number" name="setting[nav_top]" value="<?php echo $top ?>" placeholder="px"/>
+                    </div>
+                </div>
+                
+                <div class="form-group line auto-hide-nav">
+                    <label for="hide_nav" class="col-des-4 control-label"><?php echo __('Auto hide navigation') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_nav']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_nav]" id="hide_nav" class="admin__actions-switch-checkbox">
+                            <label for="hide_nav" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="pagination" class="col-des-4 control-label"><?php echo __('Display pagination') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['pagination']): ?> checked="checked"<?php endif ?> value="1" name="setting[pagination]" id="pagination" class="admin__actions-switch-checkbox" onclick="displayDot()">
+                            <label for="pagination" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line dot-fields">
+                    <label for="pagination_position" class="col-des-4 control-label"><?php echo __('Pagination position') ?></label>
+                    <div class="col-des-8">
+                        <select name="setting[pagination_position]" id="pagination_position">
+                            <option value="center"<?php if ($exist && ($settings['pagination_position']=='center')): ?> selected="selected"<?php endif ?>><?php echo __('Center'); ?></option>
+                            <option value="left"<?php if ($exist && ($settings['pagination_position']=='left')): ?> selected="selected"<?php endif ?>><?php echo __('Left'); ?></option>
+                            <option value="right"<?php if ($exist && ($settings['pagination_position']=='right')): ?> selected="selected"<?php endif ?>><?php echo __('Right'); ?></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="loop" class="col-des-4 control-label"><?php echo __('Loop') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['loop']): ?> checked="checked"<?php endif ?> value="1" name="setting[loop]" id="loop" class="admin__actions-switch-checkbox">
+                            <label for="loop" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var idx = <?php echo $i ?>;
+    require([
+        'jquery',
+    ], function($){
+        $(document).ready(function(){
+            setAutoplay();
+        });
+        $(document).on('change', ".setting_img_checkbox", function () {
+            var imgName = $(this).val();
+            if(this.checked) {
+                $(this).parent().find('.setting_imgname').val(imgName);
+            }else {
+                $(this).parent().find('.setting_imgname').val('');
+            }  
+        });
+        $(document).on('change', ".check_remove", function () {
+            var imgName = $(this).val();
+            if(this.checked) {
+                $(this).parent().find('.remove_img').val('remove');
+            }else {
+                $(this).parent().find('.remove_img').val('');
+            }  
+        });
+        
+        $('.slide-actions .add-new-item').click(function(){
+            $('#slide_images li.active').removeClass('active');
+            $('#slide_img_url').val('');
+            $('#slide_link').val('');
+            $('#slide_html').val('');
+            $('#text_align').val('text-align-left');
+            $('#slide_status').val('1');
+            $('#slide_html_animation').val('');
+            $('#slide .new-slide-popup').addClass('active');
+        });
+        
+        $('#slideCancer').click(function(){
+            $('#slide .new-slide-popup').removeClass('active');
+        });
+        
+        $('#slide_html_position li').click(function(){
+            $('#slide_html_position li.active').removeClass('active');
+            $(this).addClass('active');
+        });
+        
+        $(document).on("click","a.item-image",function( event ) {
+            event.preventDefault();
+        });
+        
+        $(document).on("click","#slide_images li",function() {
+            $('#slide_images li.active').removeClass('active');
+            $(this).addClass('active');
+            $('#slide_img_url').val($(this).find('img').attr('src'));
+        });
+        
+        $(document).on("click","#sliderOk",function() {
+            if($('#slide_img_url').val() != ""){
+                var $imgSlide = $('#slide_img_url').val();
+                var $html = $("#slide_html").val();
+                var $link = $("#slide_link").val();
+                var $textAlign = $("#text_align").val();
+                var $textAnimation = $("#slide_html_animation").val();
+                var $position = $("#slide_html_position li.active").attr('data-position');
+                
+                var $newElement = '<div data-text-position="'+$position+'" data-text-animate="'+$textAnimation+'" data-text-align="'+$textAlign+'" class="item '+$textAnimation+ ' '+$textAlign+'">' +
+                    '<a style="background-image:url('+$imgSlide+')" class="item-image" href="'+$link+'">' +
+                        '<img class="img-responsive" src="'+$imgSlide+'" alt="" />' +
+                    '</a>' +
+                    '<div class="slide-text '+$position+'"><div class="inner-text">'+$html+'</div></div>' +
+                '</div>';
+                if($('#slide_status').val() == '1'){
+                    /* Create New Slide */
+                    $('#carousel_slider_wrapper').append($newElement);
+                    
+                    $('#carousel_slider_wrapper').find(".item").unbind('hover');
+                    $('#carousel_slider_wrapper').find(".item").hover(function (e) {
+                         var zoom = localStorage.zoom;
+                        if (zoom == 'normal') zoom = 1;
+                        if (zoom == undefined) zoom = 1;
+
+                        //IE fix
+                        zoom = zoom + ''; //Fix undefined
+                        if (zoom.indexOf('%') != -1) {
+                            zoom = zoom.replace('%', '') / 100;
+                        }
+                        if (zoom == 'NaN') {
+                            zoom = 1;
+                        }
+
+                        zoom = zoom*1;
+
+                        var _top; var _left;
+                        var scrolltop = $(window).scrollTop();
+                        var offsettop = $(this).offset().top;
+                        var offsetleft = $(this).offset().left;
+                        var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+                        var is_ie = detectIE();
+                        var browserok = true;
+                        if (is_firefox||is_ie) browserok = false;
+                        if(browserok){
+                            //Chrome 37, Opera 24
+                            _top = ((offsettop - 20) * zoom) + (scrolltop - scrolltop * zoom);
+                            _left = offsetleft * zoom;
+                        } else {
+                            if(is_ie){
+                                //IE 11 (Adjustment required)
+
+                                //Custom formula for adjustment in IE11
+                                var space = $(this).getPos().top;
+                                var adjy_val = (-space/1.1)*zoom + space/1.1;
+                                var space2 = $(this).getPos().left;
+                                var adjx_val = -space2*zoom + space2; 
+
+                                var p = $(this).getPos();
+                                _top = ((p.top - 20) * zoom) + adjy_val;
+                                _left = (p.left * zoom) + adjx_val;
+                            }  
+                            if(is_firefox) {
+                                //Firefox (No Adjustment required)
+                                _top = offsettop - 20;
+                                _left = offsetleft;
+                            }
+                        }
+                        $("#slide_actions").css("top", _top + "px");
+                        $("#slide_actions").css("left", _left + "px");
+
+
+                        $("#slide_actions").stop(true, true).css({ display: 'none' }).fadeIn(20);
+                        
+                        var $editSlide = $(this);
+                        
+                        $("#slide_actions .btn-danger").unbind('click');
+                        $("#slide_actions .btn-danger").bind('click', function (e) {
+                            if (window.confirm("<?php echo __('Are you sure?'); ?>")) {
+                                $editSlide.remove();
+                                $('#htmlSlider').val($('#carousel_slider_wrapper').html());
+                            }
+                        });
+                        
+                        $("#slide_actions .btn-info").unbind('click');
+                        $("#slide_actions .btn-info").bind('click', function (e) {
+                            var index= $editSlide.index();
+                            $editSlide.insertAfter($editSlide.next());
+                            $('#htmlSlider').val($('#carousel_slider_wrapper').html());
+                        });
+                        
+                        $("#slide_actions .btn-primary").unbind('click');
+                        $("#slide_actions .btn-primary").bind('click', function (e) {
+                            var $imgSl = $editSlide.find('img').attr('src');
+                            var $linkSl = $editSlide.find('.item-image').attr('href');
+                            var $textSl = $editSlide.find('.slide-text').html();
+                            var $positionSl = $editSlide.attr('data-text-position');
+                            var $aniSl = $editSlide.attr('data-text-animate');
+                            var $alignSl = $editSlide.attr('data-text-align');
+                            
+                            $('#slide_images').find('img[src$="'+$imgSl+'"]').parent().addClass('active');
+                            $('#slide_img_url').val($imgSl);
+                            $('#slide_link').val($linkSl);
+                            $('#slide_html').val($textSl);
+                            $('#slide_status').val('2');
+                            $('#slide_html_position li.active').removeClass('active');
+                            $('#slide_html_position').find('li[data-position="'+$positionSl+'"]').addClass('active');
+                            $('#slide_html_animation').val($aniSl);
+                            $('#text_align').val($alignSl);
+                            $('#slide .new-slide-popup').addClass('active');
+                            
+                            $("#sliderOk").unbind('click');
+                            $("#sliderOk").bind('click', function (e) {
+                                var $imgSlide = $('#slide_img_url').val();
+                                var $html = $("#slide_html").val();
+                                var $link = $("#slide_link").val();
+                                var $textAnimation = $("#slide_html_animation").val();
+                                var $textAlign = $("#text_align").val();
+                                var $position = $("#slide_html_position li.active").attr('data-position');
+                                var $oldAnimation = $editSlide.attr('data-text-animate');
+                                var $oldPosition = $editSlide.attr('data-text-position');
+                                var $oldAlign = $editSlide.attr('data-text-align');
+                                
+                                $editSlide.removeClass($oldAnimation);
+                                $editSlide.removeClass($oldAlign);
+                                $editSlide.addClass($textAnimation);
+                                $editSlide.addClass($textAlign);
+                                $editSlide.attr({
+                                    'data-text-position' : $position,
+                                    'data-text-animate' : $textAnimation,
+                                    'data-text-align' : $textAlign
+                                });
+                                $editSlide.find('.item-image').removeAttr('style');
+                                $editSlide.find('.item-image').attr('style', 'background-image:url('+$imgSlide+')');
+                                $editSlide.find('.item-image').attr('href', $link);
+                                $editSlide.find('img').attr('src', $imgSlide);
+                                $editSlide.find('.slide-text').html($html);
+                                $editSlide.find('.slide-text').removeClass($oldPosition);
+                                $editSlide.find('.slide-text').addClass($position);
+                                
+                                $('#htmlSlider').val($('#carousel_slider_wrapper').html());
+                                $('#slide .new-slide-popup').removeClass('active');
+                            });
+                        });
+                        
+                        $("#slide_actions").hover(function (e) {
+                            $(this).stop(true, true).css("display", "block"); // Spy tdk flickr
+                        }, function () {
+                            $(this).stop(true, true).fadeOut(0);
+                        });
+                    }, function (e) {
+                        $("#slide_actions").stop(true, true).fadeOut(0);
+                    });
+                    $('#htmlSlider').val($('#carousel_slider_wrapper').html());
+                }
+                $('#slide .new-slide-popup').removeClass('active');
+            }else {
+                alert('<?php echo __('Please select an image'); ?>');
+            }
+        });
+        
+        $('#carousel_slider_wrapper').find(".item").unbind('hover');
+        $('#carousel_slider_wrapper').find(".item").hover(function (e) {
+             var zoom = localStorage.zoom;
+            if (zoom == 'normal') zoom = 1;
+            if (zoom == undefined) zoom = 1;
+
+            //IE fix
+            zoom = zoom + ''; //Fix undefined
+            if (zoom.indexOf('%') != -1) {
+                zoom = zoom.replace('%', '') / 100;
+            }
+            if (zoom == 'NaN') {
+                zoom = 1;
+            }
+
+            zoom = zoom*1;
+
+            var _top; var _left;
+            var scrolltop = $(window).scrollTop();
+            var offsettop = $(this).offset().top;
+            var offsetleft = $(this).offset().left;
+            var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+            var is_ie = detectIE();
+            var browserok = true;
+            if (is_firefox||is_ie) browserok = false;
+            if(browserok){
+                //Chrome 37, Opera 24
+                _top = ((offsettop - 20) * zoom) + (scrolltop - scrolltop * zoom);
+                _left = offsetleft * zoom;
+            } else {
+                if(is_ie){
+                    //IE 11 (Adjustment required)
+
+                    //Custom formula for adjustment in IE11
+                    var space = $(this).getPos().top;
+                    var adjy_val = (-space/1.1)*zoom + space/1.1;
+                    var space2 = $(this).getPos().left;
+                    var adjx_val = -space2*zoom + space2; 
+
+                    var p = $(this).getPos();
+                    _top = ((p.top - 20) * zoom) + adjy_val;
+                    _left = (p.left * zoom) + adjx_val;
+                }  
+                if(is_firefox) {
+                    //Firefox (No Adjustment required)
+                    _top = offsettop - 20;
+                    _left = offsetleft;
+                }
+            }
+            $("#slide_actions").css("top", _top + "px");
+            $("#slide_actions").css("left", _left + "px");
+
+
+            $("#slide_actions").stop(true, true).css({ display: 'none' }).fadeIn(20);
+            
+            var $editSlide = $(this);
+            
+            $("#slide_actions .btn-danger").unbind('click');
+            $("#slide_actions .btn-danger").bind('click', function (e) {
+                if (window.confirm("<?php echo __('Are you sure?'); ?>")) {
+                    $editSlide.remove();
+                    $('#htmlSlider').val($('#carousel_slider_wrapper').html());
+                }
+            });
+            
+            $("#slide_actions .btn-info").unbind('click');
+            $("#slide_actions .btn-info").bind('click', function (e) {
+                var index= $editSlide.index();
+                $editSlide.insertAfter($editSlide.next());
+                $('#htmlSlider').val($('#carousel_slider_wrapper').html());
+            });
+            
+            $("#slide_actions .btn-primary").unbind('click');
+            $("#slide_actions .btn-primary").bind('click', function (e) {
+                var $imgSl = $editSlide.find('img').attr('src');
+                var $linkSl = $editSlide.find('.item-image').attr('href');
+                var $textSl = $editSlide.find('.slide-text').html();
+                var $positionSl = $editSlide.attr('data-text-position');
+                var $aniSl = $editSlide.attr('data-text-animate');
+                var $alignSl = $editSlide.attr('data-text-align');
+                
+                $('#slide_images').find('img[src$="'+$imgSl+'"]').parent().addClass('active');
+                $('#slide_img_url').val($imgSl);
+                $('#slide_link').val($linkSl);
+                $('#slide_html').val($textSl);
+                $('#slide_status').val('2');
+                $('#slide_html_position li.active').removeClass('active');
+                $('#slide_html_position').find('li[data-position="'+$positionSl+'"]').addClass('active');
+                $('#slide_html_animation').val($aniSl);
+                $('#text_align').val($alignSl);
+                $('#slide .new-slide-popup').addClass('active');
+                
+                $("#sliderOk").unbind('click');
+                $("#sliderOk").bind('click', function (e) {
+                    var $imgSlide = $('#slide_img_url').val();
+                    var $html = $("#slide_html").val();
+                    var $link = $("#slide_link").val();
+                    var $textAnimation = $("#slide_html_animation").val();
+                    var $textAlign = $("#text_align").val();
+                    var $position = $("#slide_html_position li.active").attr('data-position');
+                    var $oldAnimation = $editSlide.attr('data-text-animate');
+                    var $oldAlign = $editSlide.attr('data-text-align');
+                    var $oldPosition = $editSlide.attr('data-text-position');
+                    
+                    $editSlide.removeClass($oldAnimation);
+                    $editSlide.removeClass($oldAlign);
+                    $editSlide.addClass($textAnimation);
+                    $editSlide.addClass($textAlign);
+                    $editSlide.attr({
+                        'data-text-position' : $position,
+                        'data-text-animate' : $textAnimation,
+                        'data-text-align' : $textAlign
+                    });
+                    $editSlide.find('.item-image').removeAttr('style');
+                    $editSlide.find('.item-image').attr('style', 'background-image:url('+$imgSlide+')');
+                    $editSlide.find('.item-image').attr('href', $link);
+                    $editSlide.find('img').attr('src', $imgSlide);
+                    $editSlide.find('.slide-text').html($html);
+                    $editSlide.find('.slide-text').removeClass($oldPosition);
+                    $editSlide.find('.slide-text').addClass($position);
+                    
+                    $('#htmlSlider').val($('#carousel_slider_wrapper').html());
+                    $('#slide .new-slide-popup').removeClass('active');
+                });
+            });
+            
+            $("#slide_actions").hover(function (e) {
+                $(this).stop(true, true).css("display", "block"); // Spy tdk flickr
+            }, function () {
+                $(this).stop(true, true).fadeOut(0);
+            });
+        }, function (e) {
+            $("#slide_actions").stop(true, true).fadeOut(0);
+        });
+        
+    });
+    
+    function detectIE() {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf('MSIE ');
+        var trident = ua.indexOf('Trident/');
+        var edge = ua.indexOf('Edge/');
+
+        if (msie > 0) {
+            // IE 10 or older => return version number
+            return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+        }
+
+        if (edge > 0) {
+            // IE 10 or older => return version number
+            return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+        }
+
+        if (trident > 0) {
+            // IE 11 (or newer) => return version number
+            var rv = ua.indexOf('rv:');
+            return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+        }
+
+        // other browser
+        return false;
+    }
+    
+    function setAutoplay(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#autoplay').prop("checked") == true){
+                    $('#speed-input').show();
+                }else{
+                    $('#speed-input').hide();
+                }
+            })(jQuery);
+        });
+    }
+
+    var currentAnimate = '';
+    <?php if ($exist): ?>
+        currentAnimate = '<?php echo $settings['animation'] ?>';
+    <?php endif ?>
+    
+    function changeAnimationClass(animate){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if(currentAnimate!=''){
+                    $('#animation-test').removeClass(currentAnimate);
+                }
+                $('#animation-test').addClass(animate);
+                currentAnimate = animate;
+            })(jQuery);
+        });
+    }
+    
+    function newImageUpload(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#file_upload').length){
+                    if($('#upload_button').length){
+                        alert('<?php echo __('Please upload selected image first.') ?>');
+                    }else{
+                        alert('<?php echo __('Please choose file to upload.') ?>');
+                    }
+                }else{
+                    html = '<div class="form-group line"><div class="col-des-3 choose-file-upload"><input id="file_upload" name="file_upload" type="file" onchange="chooseFileAction(this.id)"><span class="choose-label"><span class="fa fa-folder-o"> </span> &nbsp;<?php echo __('Choose File to Upload') ?></span></div><div class="col-des-9" id="upload_action"></div></div>';
+                    $('#list-upload').html(html);
+                }
+                
+            })(jQuery);
+        });
+    }
+    
+    function chooseFileAction(elId){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                fileName = $('#'+elId).val();
+                arrName = fileName.split(".");
+                extensionName = arrName[arrName.length - 1];
+                extensionName = extensionName.toLowerCase();
+                if((extensionName=='jpg') || (extensionName=='jpeg') || (extensionName=='png') || (extensionName=='gif')){
+                    html = fileName + ' <button type="button" class="btn btn-default" id="upload_button" onclick="uploadImage()"><img src="<?php echo $this->getViewFileUrl('MGS_Fbuilder::images/small-ajax-loader.gif') ?>" id="upload-loading" style="display:none"/> <span class="fa fa-upload" id="upload-icon"></span> <?php echo __('Upload') ?></button>';
+                    $('#upload_action').html(html);
+                }
+            })(jQuery);
+        });
+    }
+    
+    function uploadImage(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                idx++;
+                if($('.alert-image-success').length){
+                    $('.alert-image-success').remove();
+                }
+                $('#upload-loading').show();
+                $('#upload-icon').hide();
+                var formData = new FormData();
+                formData.append('file', $('#file_upload')[0].files[0]);
+                $.ajax({
+                    url: "<?php echo $this->getUrl('fbuilder/post/upload', ['type'=>'slider']) ?>",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(data){
+                        var result = jQuery.parseJSON(data);
+                        if(result.result=='success'){
+                            tbhtml = '<li><img src="<?php echo $this->getPanelUploadFolder('slider') ?>'+result.data+'" alt=""></li>';
+                            html =  '<div class="image-item">' +
+                                        '<img class="img-responsive" src="<?php echo $this->getPanelUploadFolder('slider') ?>'+result.data+'" alt=""/>' +
+                                        '<div class="remove-action">' +
+                                            '<label for="check-remove-'+idx+'"></label>' +
+                                            '<input class="check_remove" id="check-remove-'+idx+'" type="checkbox" name="remove[]" value="'+result.data+'"/>' +
+                                            '<input class="remove_img" type="hidden" name="setting[removeimg][]" value="">' +
+                                        '</div>' +
+                                    '</div>';
+                            $('#list-images').append(html);
+                            $('#slide_images').append(tbhtml);
+                            $(".panel-image-list").animate({ scrollTop: $('#list-images').height()}, 300);
+                        }else{
+                            alert(result.data);
+                        }
+                        
+                        $('#list-upload').html('');
+                    }
+                });
+            })(jQuery);
+        });
+    }
+</script>

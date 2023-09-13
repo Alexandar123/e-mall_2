@@ -1,0 +1,19 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div id="mgs-instant-autocomplete-wrapper" class="mgs-instant-autocomplete-wrapper" data-bind="visible: showPopup()">
+
+    <div data-bind="visible: anyResultCount()">
+    	<!-- ko if: anyResultCount() -->
+        <!-- ko foreach: getRegion('steps') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!--/ko-->
+    </div>
+
+    <div class="no-result" data-bind="text: textNoResult, visible: !anyResultCount()"></div>
+</div>

@@ -1,0 +1,131 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Smtp
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Mageplaza\Smtp\Block\Adminhtml\System\Config\Sync;
+use Mageplaza\Smtp\Helper\Data;
+
+/** @var Sync $block */
+?>
+<div class="actions actions-test-email" id="<?= /* @noEscape */ $block->getElementId() ?>">
+    <div id="mp-sync">
+        <div id="progress-content" class="progress-content" style="display: none">
+            <p class="text-right">
+                <span id="syncing" class="syncing"><?= $block->escapeHtml(__('Syncing...')) ?></span>
+                <span id="sync-percent">0%</span>
+            </p>
+            <div class="progress">
+                <div class="progress-bar">
+                </div>
+            </div>
+        </div>
+        <div id="progress-content-1" class="progress-content" style="display: none">
+            <p class="text-right">
+                <span id="syncing-1" class="syncing"><?= $block->escapeHtml(__('Syncing Customers...')) ?></span>
+                <span id="sync-percent-1">0%</span>
+            </p>
+            <div class="progress">
+                <div class="progress-bar-1 progress-bar-sync">
+                </div>
+            </div>
+        </div>
+
+        <div id="progress-content-2" class="progress-content" style="display: none">
+            <p class="text-right">
+                <span id="syncing-2" class="syncing"><?= $block->escapeHtml(__('Syncing Orders...')) ?></span>
+                <span id="sync-percent-2">0%</span>
+            </p>
+            <div class="progress">
+                <div class="progress-bar-2 progress-bar-sync">
+                </div>
+            </div>
+        </div>
+
+        <div id="progress-content-3" class="progress-content" style="display: none">
+            <p class="text-right">
+                <span id="syncing-3" class="syncing"><?= $block->escapeHtml(__('Syncing Subscribers...')) ?></span>
+                <span id="sync-percent-3">0%</span>
+            </p>
+            <div class="progress">
+                <div class="progress-bar-3 progress-bar-sync">
+                </div>
+            </div>
+        </div>
+        <div id="console-log" style="display: none">
+            <textarea name="console-log" id="mp-console-log" cols="30" rows="10" disabled></textarea>
+            <input type="hidden" value="" id="mp-log-data"
+                   class="<?= /* @noEscape */ $block->getHtmlId() . '_console' ?>">
+            <button class="actions-log primary" type="button" id="<?= /* @noEscape */ $block->getHtmlId() . '_log' ?>">
+                <span><?= $block->escapeHtml(__('Download log')) ?></span>
+            </button>
+        </div>
+        <div class="message" style="display: none;padding: 10px 10px 10px 48px;margin-bottom: 5px">
+            <span class="message-text">
+                <strong></strong>
+            </span>
+            <br>
+        </div>
+        <div class="multi-messages" style="display: none;padding: 10px 10px 10px 0;margin-bottom: 5px"></div>
+    </div>
+    <button class="actions-sync-order" type="button" id="<?= $block->getHtmlId() ?>">
+        <span><?= $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#<?= /* @noEscape */ $block->getElementId() ?>": {
+            "<?= /* @noEscape */ $block->getComponent() ?>": {
+                "ajaxUrl": "<?= $block->escapeHtml($block->getButtonUrl())?>",
+                "estimateUrl": "<?= $block->escapeHtml($block->getEstimateUrl())?>",
+                "websiteId": "<?= $block->escapeHtml($block->getWebsiteId())?>",
+                "storeId": "<?= $block->escapeHtml($block->getStoreId())?>",
+                "successMessage": <?= /* @noEscape */ Data::jsonEncode($block->getSyncSuccessMessage())?>
+            }
+        }
+    }
+</script>
+<style>
+    .actions-log {
+        margin-bottom: 25px;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .progress {
+        background-color: #fafafa;
+        border: 1px solid #ccc;
+        clear: left;
+        height: 30px;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+
+    .progress-bar, .progress-bar-sync {
+        background-color: #79a22e;
+        color: #fff;
+        float: left;
+        height: 100%;
+        text-align: center;
+        width: 0;
+        transition: width .6s ease;
+    }
+</style>

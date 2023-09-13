@@ -1,0 +1,135 @@
+<?php $portfolios = $this->getPortfolios() ?>
+<?php $helper = $this->helper('MGS\Portfolio\Helper\Data'); ?>
+<?php $themeHelper = $this->helper('MGS\Portfolio\Helper\Data'); ?>
+<?php $lazyLoad = $themeHelper->getStoreConfig('mgstheme/general/lazy_load'); ?>
+<?php $baseImage = $this->getViewFileUrl('MGS_Mpanel::images/blank.png'); ?>
+<div class="content-block portfolio-block portfolio-list-block">
+    <?php if($this->getData('mgs_panel_title') != "" || $this->getData('mgs_panel_note') != ""): ?>
+        <div class="content-heading">
+            <?php if($this->getData('mgs_panel_title')): ?>
+                <h3 class="title"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></h3>
+            <?php endif ?>
+            <?php if($this->getData('mgs_panel_note')): ?>
+                <div class="block-note"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_note')) ?></div>
+            <?php endif ?>
+        </div>
+    <?php endif ?>
+
+    <?php if(count($portfolios)>0): ?>
+        <?php
+        $blockId = rand() . time();
+        $useSlider = $this->getUseSlider();
+        $showThumbnail = $this->getShowThumbnail();
+        $showCategories = $this->getShowCategories();
+        $showShowContent = $this->getShowContent();
+        $perRow = $this->getPerrow();
+        $col = $themeHelper->convertPerRowtoCol($perRow);
+        ?>
+        <?php $bootstrapItem = true; ?>
+        <?php if($useSlider): ?>
+            <?php
+            if($this->hasData('number_row') && $this->getNumberRow()>1){
+                $columnCount = $perRow * $this->getNumberRow();
+            }else {
+                $bootstrapItem = false;
+            }
+            ?>
+        <?php endif ?>
+
+        <div class="block widget <?php if($useSlider): ?> row<?php endif ?>">
+            <div class="mgs-portfolio-carousel-<?php echo $blockId; ?> portfolio-grid <?php if($useSlider): ?>owl-carousel portfolio-carousel<?php else: ?>row<?php endif ?>">
+                <?php $i=0; $j=0; foreach ($portfolios as $portfolio): $i++; ?>
+
+                    <?php
+
+                    $idPortfolio = $portfolio->getId();
+
+                    if(isset($idPortfolio) && $idPortfolio != '') {
+                        $isShow = $block->isActive($idPortfolio);
+                    }
+
+                    ?>
+                    <?php if($isShow): ?>
+
+                        <?php if($this->hasData('number_row') && $this->getNumberRow()>1): ?>
+                            <?php if ($j++ % $columnCount == 0): ?>
+                                <div class="items row">
+                            <?php endif ?>
+                        <?php endif ?>
+                        <div class="item <?php if($bootstrapItem): ?> <?php echo $col ?> <?php if($i % $perRow == 1): ?>first-row-item<?php endif ?> <?php if($i % 2 == 1): ?>first-sm-item<?php endif ?><?php endif ?>">
+                            <div class="item_inner">
+                                <div class="portfolio-top-content">
+                                    <div class="image">
+                                        <?php $thumbnailUrl = $this->getThumbnailSrc($portfolio) ?>
+                                        <?php $portfolioUrl = $portfolio->getAddress() ?>
+                                        <?php if($thumbnailUrl): ?>
+                                            <?php if(!$lazyLoad): ?>
+                                                <?php $baseImage = $thumbnailUrl; ?>
+                                            <?php endif ?>
+                                            <div class="image-item"><img src="<?php echo $thumbnailUrl ?>" alt="<?php echo $portfolio->getName() ?>" class="img-responsive <?php if($lazyLoad): ?> <?php if($useSlider): ?>owl-<?php endif ?>lazy<?php endif ?>" data-src="<?php echo $thumbnailUrl ?>"/></div>
+                                        <?php endif ?>
+                                    </div>
+                                    <div class="portfolio-bottom-content">
+                                        <a class="title" href="<?php echo $portfolioUrl; ?>"><?php echo $portfolio->getName() ?></a>
+                                        <div class="category-link"><?php echo $this->getCategoriesLink($portfolio) ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php if($this->hasData('number_row') && $this->getNumberRow()>1): ?>
+                            <?php if ($j % $columnCount == 0 || $j == count($portfolios)): ?>
+                                </div>
+                            <?php endif ?>
+                        <?php endif ?>
+
+                    <?php endif; ?>
+
+                <?php endforeach ?>
+            </div>
+        </div>
+    <?php if($useSlider): ?>
+        <script type="text/javascript">
+            require([
+                'jquery',
+                'mgsowlcarousel'
+            ], function ($) {
+                var owl<?php echo $blockId ?> = $('.mgs-portfolio-carousel-<?php echo $blockId ?>').owlCarousel({
+                    <?php if(!$this->hasData('number_row') || $this->getNumberRow()==1):?>
+                    items: <?php echo $perRow; ?>,
+                    <?php else: ?>
+                    items: 1,
+                    <?php endif ?>
+                    lazyLoad: true,
+                    autoplay: <?php echo $this->getAutoplay() ? 'true' : 'false' ?>,
+                    autoplayHoverPause: <?php echo $this->getStopAuto() ? 'true' : 'false' ?>,
+                    nav: <?php echo $this->getNavigation() ? 'true' : 'false' ?>,
+                    dots: <?php echo $this->getPagination() ? 'true' : 'false' ?>,
+                    navText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+                    <?php if(!$this->hasData('number_row') || $this->getNumberRow()==1):?>
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        480:{
+                            items:2
+                        },
+                        768:{
+                            items:<?php echo $perRow; ?>
+                        }
+                    }
+                    <?php endif ?>
+                });
+                <?php if($this->getPagination()): ?>
+                owl<?php echo $blockId ?>.on('changed.owl.carousel', function (event) {
+                    if (event.item.count - event.page.size == event.item.index)
+                        $(event.target).find('.owl-dots div:last')
+                            .addClass('active').siblings().removeClass('active');
+                });
+                <?php endif ?>
+            });
+        </script>
+    <?php endif ?>
+    <?php else: ?>
+        <p class="note-msg"><?php echo $this->__('There are no portfolios matching the selection.') ?></p>
+    <?php endif ?>
+</div>

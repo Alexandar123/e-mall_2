@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var $block \Magento\Backend\Block\Dashboard\Grids\Interceptor
+ */
+
+/** @var Magento\Backend\Block\Template $block */
+?>
+<?php if ($html = $block->getChildHtml()): ?>
+    <section class="admin__page-section order-onestepcheckout-additional">
+        <div class="admin__page-section-title">
+            <strong class="title"><?php echo __('Additional Content') ?></strong>
+        </div>
+        <div class="admin__page-section-content">
+            <?php echo $html ?>
+        </div>
+    </section>
+<?php endif ?>

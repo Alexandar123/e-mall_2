@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+		<referenceContainer name="product.info.main">
+			<block class="MGS\Brand\Block\Product\Brand" name="product.brand.name" template="MGS_Brand::brand/product/product_brand_name.phtml" after="-" ifconfig="brand/product_page_settings/show_brand"/>
+		</referenceContainer>
+
+        <referenceContainer name="sidebar.main">
+			<block class="MGS\Brand\Block\Product\Brand" name="product.brand.img.sidebar" before="-" template="MGS_Brand::brand/product/product_brand_img_sidebar.phtml" ifconfig="brand/product_page_settings/show_brand_img"/>
+        </referenceContainer>
+
+        <referenceContainer name="content.aside">
+            <block class="MGS\Brand\Block\Product\ProductList\Related" name="brand.product.related" after="-" template="MGS_Brand::brand/product/related-products.phtml"/>
+        </referenceContainer>
+
+    </body>
+</page>

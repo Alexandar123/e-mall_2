@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © 2016 Magento. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+	<body>
+		<move element="product.info.review" destination="product.quickview.info.main" after="product.quickview.info.name"/>
+		<move element="product.info.type" destination="product.quickview.info.main" after="product.info"/>
+		<move element="product.info.sku" destination="product.quickview.info.main" after="product.info.type"/>
+	</body>
+</layout>

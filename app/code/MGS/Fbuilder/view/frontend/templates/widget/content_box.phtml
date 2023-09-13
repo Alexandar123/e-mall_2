@@ -1,0 +1,25 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<?php $iconClass = $this->getFbuilderIcon(); ?>
+<?php $title = $this->getFbuilderSubtitle(); ?>
+<?php $description = $this->getFbuilderTextContent(); ?>
+<?php $link = $this->getLink(); ?>
+
+<div class="content-block content-box-block">
+    <div class="mgs-content-box box-<?php echo $this->getStyle() ?><?php if ($link!=''): ?> cursor<?php endif ?>"<?php if ($link!=''): ?> onclick="location.href='<?php echo $builderHelper->getDirectUrl($link) ?>'"<?php endif ?>>
+        <?php if ($iconClass!=''): ?>
+            <div class="icon-wrapper">
+                <span class="<?php echo $builderHelper->decodeHtmlTag($iconClass) ?>"></span>
+            </div>
+        <?php endif ?>
+        <?php if ($title!='' || $description!=''): ?>
+            <div class="content-wrapper">
+                <?php if ($title!=''): ?>
+                    <h4><?php echo $builderHelper->decodeHtmlTag($title) ?></h4>
+                <?php endif ?>
+                <?php if ($description!=''): ?>
+                    <div class="content"><?php echo $builderHelper->decodeHtmlTag($description) ?></div>
+                <?php endif ?>
+            </div>
+        <?php endif ?>
+    </div>
+</div>

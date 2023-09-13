@@ -1,0 +1,44 @@
+<?php 
+/* 	
+* 	Block Guide
+*	Report Bug: $block->getChildHtml('report.bugs');
+*	Store Swicher: $block->getChildHtml('store_switcher');
+*	Footer Links: $block->getChildHtml('footer_links');
+*	Copyright: $block->getChildHtml('copyright');
+*	Form Subcribe: $block->getChildHtml('form.subscribe');
+*	Static block: $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('your_block_identifier')->toHtml();
+*/
+?>
+
+<?php
+	$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+	$footerVer = $themeSettingConfig->getStoreConfig('themesettings/footer/footer_version');
+	$footerParallax = $themeSettingConfig->getStoreConfig('themesettings/footer/parallax');
+	if($footerVer == ''){ $footerVer = 'footer1'; }
+?>
+<div class="<?php echo $footerVer ?><?php if($footerParallax): ?> footer footer-parallax<?php endif ?>">
+	<?php if($footerVer == 'footer1'): ?>
+		<div class="middle-footer">
+			<div class="frame">
+				<div class="line">
+					<div class="col-des-4">
+						<?php echo $block->getChildHtml('footer_links') ?>
+					</div>
+					<div class="col-des-4">
+						<?php echo $block->getChildHtml('report.bugs') ?>
+					</div>
+					<div class="col-des-4">
+						<?php echo $block->getChildHtml('subscribe') ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-footer">
+			<div class="frame"><div class="text-center"><?php echo $block->getChildHtml('copyright'); ?></div></div>
+		</div>
+	<?php elseif($footerVer == 'footer2'): ?>
+		Footer 2
+	<?php else: ?>
+		Footer 3
+	<?php endif ?>
+</div>

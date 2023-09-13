@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+    <widget id="mgs_widget_brand" class="MGS\Brand\Block\Widget\Brand">
+        <label translate="true">MGS Brand List</label>
+        <description translate="true"></description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="brand_ids" xsi:type="multiselect" required="true" visible="true" sort_order="20" source_model="MGS\Brand\Model\Source\Brands">
+                <label translate="true">Select Brands</label>
+            </parameter>
+            <parameter name="show_brand_name" xsi:type="select" visible="true" sort_order="30" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Brand Name</label>
+            </parameter>
+            <parameter name="view_as" xsi:type="select" visible="true" sort_order="40" source_model="MGS\Brand\Model\Source\Layout">
+                <label translate="true">View As</label>
+            </parameter>
+            <parameter name="custom_class" xsi:type="text" visible="true" sort_order="50">
+                <label translate="true">Custom Class</label>
+            </parameter>
+            <parameter name="items" xsi:type="text" visible="true" sort_order="60">
+                <label translate="true">Items</label>
+                <description translate="true">This variable allows you to set the maximum amount of items displayed at a time with the widest browser width.</description>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+                <value>5</value>
+            </parameter>
+            <parameter name="image_width" xsi:type="text" visible="true" sort_order="70">
+                <label translate="true">Image Width</label>
+                <value>240</value>
+            </parameter>
+            <parameter name="image_height" xsi:type="text" visible="true" sort_order="80">
+                <label translate="true">Image Height</label>
+                <value>180</value>
+            </parameter>
+            <parameter name="autoplay" xsi:type="select" visible="true" sort_order="90" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Autoplay</label>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+            </parameter>
+            <parameter name="stop_on_hover" xsi:type="select" visible="true" sort_order="100" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Stop On Hover</label>
+                <description>Stop autoplay on mouse hover.</description>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+            </parameter>
+            <parameter name="navigation" xsi:type="select" visible="true" sort_order="110" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Navigation</label>
+                <description>Display "next" and "prev" buttons.</description>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" sort_order="120" source_model="MGS\Brand\Model\Source\Template">
+                <label translate="true">Template</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

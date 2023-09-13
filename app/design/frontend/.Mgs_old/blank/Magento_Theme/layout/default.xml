@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<!-- Header -->
+        <referenceContainer name="header.container">
+			<block class="Magento\Framework\View\Element\Template" name="theme.headers" template="Magento_Theme::html/theme_headers.phtml">
+				<block class="MGS\ThemeSettings\Block\Form\Login" name="login.form.header" template="MGS_ThemeSettings::form/login.phtml">
+					<container name="form.additional.info.header">
+						<block class="Magento\Framework\View\Element\Template" name="mgs_gdpr_login_header" template="MGS_GDPR::customer/form/login_header.phtml" ifconfig="gdpr/general/active"/>
+					</container>
+					<container name="top.link.header"/>
+				</block>
+				<block class="Magento\Cookie\Block\RequireCookie" name="require-cookie-header" template="Magento_Cookie::require_cookie.phtml">
+					<arguments>
+						<argument name="triggers" xsi:type="array">
+							<item name="loginButton" xsi:type="string">.action.login</item>
+						</argument>
+					</arguments>
+				</block>
+                <block class="Magento\Store\Block\Switcher" name="store_language_top" as="store_language_top" template="Magento_Store::switch/languages_top.phtml">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+                    </arguments>
+                </block>
+
+				<block class="MGS\ThemeSettings\Block\Wishlist\Link" name="wishlist-link-header">
+					<block class="Magento\Wishlist\Block\Customer\Sidebar" name="wishlist_header" template="MGS_ThemeSettings::wishlist/list.phtml" />
+				</block>
+			</block>
+        </referenceContainer>
+
+        <referenceBlock name="logo" >
+            <arguments>
+                <argument name="logo_width" xsi:type="number">0</argument>
+            </arguments>
+        </referenceBlock>
+        <move element="store.menu" destination="theme.headers"/>
+		<move element="store_language" destination="theme.headers"/>
+		<move element="megamenu" destination="theme.headers"/>
+		<move element="top.links" destination="top.link.header"/>
+		<move element="skip_to_content" destination="theme.headers"/>
+		<move element="logo" destination="theme.headers"/>
+		<referenceBlock name="navigation.sections" remove="true"/>
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="header" remove="true"/>
+        <!-- End Header -->
+
+		<!-- Footer -->
+		<referenceContainer name="footer">
+            <block class="Magento\Framework\View\Element\Template" name="theme.footers" as="theme.footers" template="Magento_Theme::html/theme_footers.phtml"/>
+        </referenceContainer>
+		<move element="store_switcher" destination="theme.footers"/>
+		<move element="footer_links" destination="theme.footers"/>
+		<move element="copyright" destination="theme.footers"/>
+		<move element="report.bugs" destination="theme.footers"/>
+		<move element="form.subscribe" destination="theme.footers"/>
+		<!-- End Footer -->
+    </body>
+</page>

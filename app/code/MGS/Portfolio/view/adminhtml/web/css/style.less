@@ -1,0 +1,23 @@
+#portfolio-gallery .content {
+	min-height: 100px;
+	border: 1px solid #c2c2c2;
+	position: relative;
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	.loading-gallery {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 99;
+		display: none;
+		background-color: rgba(255,255,255,0.7);
+	}
+}
+.image.image-placeholder input[type='file'] {
+    border: 5px solid transparent;
+}

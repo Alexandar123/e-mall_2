@@ -1,0 +1,95 @@
+// /**
+//  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+& when (@media-common = true) {
+	* {
+		box-sizing: border-box;
+	}
+	
+	html {
+		font-weight: normal;
+	}
+	
+    body {
+        margin: 0;
+        padding: 0;
+		font-size: 1rem;
+		font-weight: inherit;
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    main,
+    footer,
+    header,
+    nav,
+    section,
+    summary {
+        display: block;
+    }
+
+    audio,
+    canvas,
+    video {
+        display: inline-block;
+    }
+
+    audio:not([controls]) {
+        display: none;
+        height: 0;
+    }
+
+    nav ul,
+    nav ol {
+        list-style: none none;
+    }
+
+    img {
+        border: 0;
+    }
+
+    img,
+    object,
+    video,
+    embed {
+        height: auto;
+        max-width: 100%;
+    }
+
+    svg:not(:root) {
+        overflow: hidden;
+    }
+
+    figure {
+        margin: 0;
+    }
+
+    table {
+        .lib-table();
+    }
+
+    button::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+    }
+
+    form {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+
+    address {
+        font-style: normal;
+    }
+
+    * {
+        &:focus {
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+}

@@ -1,0 +1,8 @@
+<?php $helper = $this->helper('MGS\Blog\Helper\Data'); ?>
+<?php if ($helper->getConfig('general_settings/enabled')): ?>
+    <?php if ($helper->getConfig('general_settings/use_sharethis')): ?>
+        <script type="text/javascript">var switchTo5x = true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">stLight.options({publisher: "<?php echo $helper->getConfig('general_settings/sharethis_pub_key'); ?>", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+    <?php endif; ?>
+<?php endif; ?>

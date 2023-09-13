@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="dynamic_ftpimportexport" frontName="dynamic_ftpimportexport">
+            <module name="Dynamic_FTPImportExport"/>
+        </route>
+        <route id="dynamic_import_image" frontName="dynamic_import_image">
+            <module name="Dynamic_FTPImportExport"/>
+        </route>
+    </router>
+</config>

@@ -1,0 +1,81 @@
+<?php
+$helper = $this->helper('Dynamic\HomeSticky\Helper\Data');
+$placeholderUrl = $helper->getPlaceHolderImage();
+$orderDatamodel = $helper->getOrderCollection()->setOrder('entity_id','DESC');
+$orderDatamodel->getSelect()->limit(10);
+?><h3>Poslednje poručeno na našem sajtu: </h3><div class ="sticky slider-nav"> <?php
+    foreach ($orderDatamodel as $key => $value) {
+        $order =  $helper->getLoadId($value->getId());
+        $orders = $helper->getOrderDetails($value->getId());
+        $custFirsrName = $orders->getCustomerFirstname();
+        $billingaddress = $orders->getBillingAddress();
+        $country = $billingaddress->getCountryId();
+        $custLastName = $order->getCustomerLastname();
+        $orderItems = $order->getAllItems();
+        foreach ($orderItems as $item) {
+            $productName = $item->getName();
+            $product_id = $item->getProductId();
+            $price = $item->getPrice();
+            $product = $helper->getProduct($product_id);
+            $url = $product->getProductUrl();
+            if(!empty($product->getImage())) {
+                $ImagePath = $helper->getImageUrl() . "catalog/product" . $product->getImage();
+            } else {
+                $ImagePath = $placeholderUrl;
+            }
+            
+            ?>
+            <div class="order-details">
+            
+                <div class="image" id="image">
+                    <a href="<?= $url; ?>">
+                        <div class="product-image">
+                            <img src="<?php echo $ImagePath; ?>" alt="<?= $productName ?>" />
+                        </div>
+                    </a>
+                </div>
+                <div class="product-details">
+                    <div class="product-name"><a href="<?= $url; ?>"><?= $productName ?></a></div>
+                    <div class="product-price"><?= $price ?></div>
+                </div>
+            </div>
+       <?php
+        }
+    }
+?>
+</div>
+
+<script type="text/javascript">
+    require(["jquery","slick"], function($) {
+        $(document).ready(function(){
+            $('.draggable').removeAttr('style');
+            $('.slider-nav').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            dots: false,
+            responsive: [
+						{
+							breakpoint: 1025,
+							settings: {
+								slidesToShow: 2,
+							}
+						},
+						{
+							breakpoint: 769,
+							settings: {
+								slidesToShow: 2
+							}
+						},
+						{
+							breakpoint: 575,
+							settings: {
+								slidesToShow: 2,
+							}
+						}
+					]
+            });
+
+        });
+    });
+</script>
+

@@ -1,0 +1,474 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+
+<div class="edit-static-form">
+    
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Masonry Gallery Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="masonry">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <input id="block_html" type="hidden" name="setting[block_link]" value="<?php if ($exist && isset($settings['block_html']) && $settings['block_html']): ?><?php echo $settings['block_html'] ?><?php endif ?>">
+        
+        <div class="mgs-tab product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <div class="data item title" aria-labeledby="tab-label-general-title" data-role="collapsible" id="tab-label-general">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#general" id="tab-label-general-title">
+                    <?php echo __('General') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="general" data-role="content">
+                <div class="form-group line">
+                    <label for="col" class="col-des-3 control-label"><?php echo __('Block col (12 to full)') ?></label>
+                    <div class="col-des-9">
+                        <select id="col" class="required-entry input-text" name="col">
+                            <?php for ($i=12; $i>=1; $i--): ?>
+                                <option value="<?php echo $i ?>"<?php if ($exist && ($child->getCol()==$i)): ?> selected="selected"<?php endif ?>><?php echo $i ?></option>
+                            <?php endfor ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group line">
+                    <label for="class" class="col-des-3 control-label"><?php echo __('Custom Class') ?></label>
+                    <div class="col-des-9">
+                        <input type="text" id="class" class="input-text" name="class"<?php if ($exist): ?> value="<?php echo $child->getClass() ?>"<?php endif ?> />
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="animation" class="col-des-3 control-label"><?php echo __('Block Animation') ?></label>
+                    <div class="col-des-5">
+                        <select onchange="changeAnimationClass(this.value)" id="animation" class="input-text" name="setting[animation]">
+                            <option value=""><?php echo __('Choose Animation Effect') ?></option>
+                            <?php foreach ($helper->getAnimationEffect() as $animation => $label): ?>
+                                <option value="<?php echo $animation ?>"<?php if ($exist && ($settings['animation']==$animation)): ?> selected="selected"<?php endif ?>><?php echo $label ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    
+                    <div class="col-des-3 text-center animated<?php if ($exist && ($settings['animation']!='')): ?> <?php echo $settings['animation'] ?><?php endif ?>" id="animation-test">Animation Preview</div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="animation_delay" class="col-des-3 control-label"><?php echo __('Animation Delay') ?></label>
+                    <div class="col-des-9">
+                        <input type="text" placeholder="ms" id="animation_delay" class="input-text validate-number" name="setting[animation_delay]" <?php if ($exist && isset($settings['animation_delay'])): ?> value="<?php echo $settings['animation_delay'] ?>"<?php endif ?>>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <div class="col-des-12">
+                        <div class="style-inline-container">
+                            <div class="border-container">
+                                <span class="inline-note margin-note">Margin</span>
+                                
+                                <input type="text" placeholder="px" id="margin-top" class="input-text validate-number" name="setting[margin_top]" <?php if ($exist && isset($settings['margin_top'])): ?> value="<?php echo $settings['margin_top'] ?>"<?php endif ?>>
+                                
+                                <div class="middle-content-input">
+                                    
+                                    <div class="left-margin"><input type="text" placeholder="px" id="margin-left" class="input-text validate-number" name="setting[margin_left]" <?php if ($exist && isset($settings['margin_left'])): ?> value="<?php echo $settings['margin_left'] ?>"<?php endif ?>></div>
+                                    <div class="middle-content">
+                                        <span class="inline-note padding-note">Padding</span>
+                                        <input type="text" placeholder="px" id="padding-top" class="input-text validate-number" name="setting[padding_top]" <?php if ($exist && isset($settings['padding_top'])): ?> value="<?php echo $settings['padding_top'] ?>"<?php endif ?>>
+                                        
+                                        <div class="padding-middle">
+                                            <input type="text" placeholder="px" id="padding-left" class="input-text validate-number" name="setting[padding_left]" <?php if ($exist && isset($settings['padding_left'])): ?> value="<?php echo $settings['padding_left'] ?>"<?php endif ?>>
+                                            
+                                            <input type="text" placeholder="px" id="padding-right" class="input-text validate-number" name="setting[padding_right]" <?php if ($exist && isset($settings['padding_right'])): ?> value="<?php echo $settings['padding_right'] ?>"<?php endif ?>>
+                                        </div>
+                                        
+                                        <input type="text" placeholder="px" id="padding-bottom" class="input-text validate-number" name="setting[padding_bottom]" <?php if ($exist && isset($settings['padding_bottom'])): ?> value="<?php echo $settings['padding_bottom'] ?>"<?php endif ?>>
+                                    </div>
+                                    <div class="right-margin"><input type="text" placeholder="px" id="margin-right" class="input-text validate-number" name="setting[margin_right]" <?php if ($exist && isset($settings['margin_right'])): ?> value="<?php echo $settings['margin_right'] ?>"<?php endif ?>></div>
+                                </div>
+                                
+                                <input type="text" placeholder="px" id="margin-bottom" class="input-text validate-number" name="setting[margin_bottom]" <?php if ($exist && isset($settings['margin_bottom'])): ?> value="<?php echo $settings['margin_bottom'] ?>"<?php endif ?>>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="data item title" aria-labeledby="tab-label-images-title" data-role="collapsible" id="tab-label-images">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#images" id="tab-label-images-title">
+                    <?php echo __('Manage Images') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="images" data-role="content" style="display:none">
+                <?php $images = $helper->getPanelUploadImages('masonry') ?>
+                <?php if ($exist): ?>
+                    <?php $imageSetting = array_combine(range(1, count($settings['addimg'])), array_values($settings['addimg'])); ?>
+                    <?php $urls = array_combine(range(1, count($settings['url'])), array_values($settings['url'])); ?>
+                <?php endif ?>
+
+                <div id="list-images" class="masonry-list">
+                    <?php if (count($images)>0): ?>
+                        <?php $i = 0; ?>
+                        <?php foreach ($images as $key => $_image): $i++ ?>
+                            <?php
+                                $checked = false;
+                                $url = '';
+                            if ($exist && isset($settings['addimg']) && in_array($_image, $settings['addimg'])) {
+                                $checked = true;
+                                $keySetting = array_search($_image, $imageSetting);
+
+                                if ($keySetting) {
+                                    $url = $urls[$keySetting];
+                                }
+                            }
+                            ?>
+                            <div class="image-item">
+                                <div class="img-div">
+                                    <img class="img-responsive" src="<?php echo $this->getPanelUploadSrc('masonry', $_image) ?>" alt=""/>
+                                </div>
+                                
+                                <div class="image-action">
+                                    <span><?php echo __('Add to Gallery&nbsp;&nbsp;&nbsp;') ?></span>
+                                    <div class="admin__actions-switch" data-role="switcher">
+                                        <input type="checkbox" name="setting[addimg][]" id="addimg<?php echo $i ?>" class="admin__actions-switch-checkbox imagetoadd" value="<?php echo $_image ?>"<?php if ($checked): ?> checked="checked"<?php endif ?> onclick="addToGallery(<?php echo $i ?>)" />
+                                        <label for="addimg<?php echo $i ?>" class="admin__actions-switch-label">
+                                            <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="image-action">
+                                    <span><?php echo __('Remove Image&nbsp;&nbsp;') ?></span>
+                                    <div class="admin__actions-switch" data-role="switcher">
+                                        <input type="checkbox" name="setting[removeimg][]" id="removeimg<?php echo $i ?>" class="admin__actions-switch-checkbox" value="<?php echo $_image ?>">
+                                        <label for="removeimg<?php echo $i ?>" class="admin__actions-switch-label">
+                                            <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="image-action">
+                                    <input type="text" class="input-text" name="setting[url][]" id="url<?php echo $i ?>" placeholder="<?php echo __('Link') ?>" disabled="disabled" value="<?php echo $url ?>"/>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </div>
+                
+                <div id="upload-container">
+                    <div id="list-upload"></div>
+                    <button class="btn btn-default" onclick="newImageUpload()" type="button"><span class="fa fa-plus"></span> <?php echo __('Upload new Image') ?></button>
+                </div>
+            </div>
+        
+            <div class="data item title" aria-labeledby="tab-label-slider-title" data-role="collapsible" id="tab-label-slider">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#slider" id="tab-label-slider-title" onclick="setPreview()">
+                    <?php echo __('Masonry Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="slider" data-role="content" style="display:none">
+                <div class="form-group line">
+                    <div class="col-des-3">
+                        <label for="column" class="control-label"><?php echo __('Number of columns') ?></label><br/>
+                        <select id="column" class="input-text" name="setting[column]" onchange="setPreview()">
+                            <option value="2"<?php if ($exist && ($settings['column']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['column']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['column']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                            <option value="5"<?php if ($exist && ($settings['column']==5)): ?> selected="selected"<?php endif ?>>5</option>
+                            <option value="6"<?php if ($exist && ($settings['column']==6)): ?> selected="selected"<?php endif ?>>6</option>
+                            <option value="7"<?php if ($exist && ($settings['column']==7)): ?> selected="selected"<?php endif ?>>7</option>
+                            <option value="8"<?php if ($exist && ($settings['column']==8)): ?> selected="selected"<?php endif ?>>8</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="item_margin" class="control-label"><?php echo __('Item margin') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="item_margin" name="setting[item_margin]"<?php if ($exist && $settings['item_margin']!=''): ?> value="<?php echo $settings['item_margin'] ?>"<?php endif ?> placeholder="px" onchange="setPreview()"/>
+                    </div>
+                    
+                    
+                    
+                    <div class="col-des-3">
+                        <label for="effect" class="control-label"><?php echo __('Hover effect') ?></label><br/>
+                        <select id="effect" class="input-text" name="setting[effect]" onchange="setPreview()">
+                            <option value=""><?php echo __('No Effect') ?></option>
+                            <option value="zoom-in"<?php if ($exist && ($settings['effect']=='zoom-in')): ?> selected="selected"<?php endif ?>><?php echo __('Zoom In') ?></option>
+                            <option value="zoom-out"<?php if ($exist && ($settings['effect']=='zoom-out')): ?> selected="selected"<?php endif ?>><?php echo __('Zoom Out') ?></option>
+                            <option value="rotate"<?php if ($exist && ($settings['effect']=='rotate')): ?> selected="selected"<?php endif ?>><?php echo __('Rotate & Zoom Out') ?></option>
+                            <option value="blur"<?php if ($exist && ($settings['effect']=='blur')): ?> selected="selected"<?php endif ?>><?php echo __('Blur') ?></option>
+                            <option value="grayscale"<?php if ($exist && ($settings['effect']=='grayscale')): ?> selected="selected"<?php endif ?>><?php echo __('Gray Scale') ?></option>
+                            <option value="sepia"<?php if ($exist && ($settings['effect']=='sepia')): ?> selected="selected"<?php endif ?>><?php echo __('Sepia') ?></option>
+                            <option value="opacity"<?php if ($exist && ($settings['effect']=='opacity')): ?> selected="selected"<?php endif ?>><?php echo __('Opacity') ?></option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="lightbox" class="control-label"><?php echo __('Use lightbox') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['lightbox']): ?> checked="checked"<?php endif ?> value="1" name="setting[lightbox]" id="lightbox" class="admin__actions-switch-checkbox">
+                            <label for="lightbox" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <div class="col-des-3">
+                        <label for="border_color" class="control-label"><?php echo __('Border color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="border_color" name="setting[border_color]"<?php if ($exist && $settings['border_color']): ?> value="<?php echo $settings['border_color'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="border_width" class="control-label"><?php echo __('Border width') ?></label>
+                        <input type="text" class="input-text validate-number" id="border_width" name="setting[border_width]"<?php if ($exist && $settings['border_width']!=''): ?> value="<?php echo $settings['border_width'] ?>"<?php endif ?> placeholder="px" onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="border_radius" class="control-label"><?php echo __('Border radius') ?></label>
+                        <input type="text" class="input-text validate-number" id="border_radius" name="setting[border_radius]"<?php if ($exist && $settings['border_radius']!=''): ?> value="<?php echo $settings['border_radius'] ?>"<?php endif ?> placeholder="px" onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="box_shadow" class="control-label"><?php echo __('Box shadow') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['box_shadow']): ?> checked="checked"<?php endif ?> value="1" name="setting[box_shadow]" id="box_shadow" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="box_shadow" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="content-block mgs-masonry-block" id="masonry-temp">
+                </div>
+                
+                <style type="text/css" id="masonry-custom-css"></style>
+            </div>
+            
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var idx = <?php echo $i ?>;
+    require([
+        'jquery',
+    ], function($){
+        $(document).ready(function(){
+            setPreview();
+            $('.imagetoadd').each(function(){
+                if($(this).prop("checked") == true){
+                    id = $(this).attr('id');
+                    arrId = id.split('addimg');
+                    numberId = arrId[1];
+                    $('#url'+numberId).removeAttr('disabled');
+                }
+            });
+        });
+    });
+    
+    function addToGallery(numberId){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#addimg'+numberId).prop("checked") == true){
+                    $('#url'+numberId).removeAttr('disabled');
+                }else{
+                    $('#url'+numberId).attr('disabled','disabled');
+                }
+            })(jQuery);
+        });
+    }
+    
+    function setPreview(){
+        require([
+            'jquery',
+            'bridget',
+            'mgsmasonry'
+        ], function(jQuery){
+            (function($) {
+                column = $('#column').val();
+                item_margin = parseFloat($('#item_margin').val());
+                effect = $('#effect').val();
+                border_color = $('#border_color').val();
+                border_width = parseFloat($('#border_width').val());
+                border_radius = parseFloat($('#border_radius').val());
+                
+                $itemMargin = 30;
+                if(item_margin!='' && item_margin>0){
+                    $itemMargin = item_margin;
+                }
+                if($itemMargin!=0){
+                    $colMargin = parseFloat($itemMargin/2);
+                }else{
+                    $colMargin = 0;
+                }
+
+                html = '<div class="line row-'+column+'" id="masonry" style="margin-left:-'+$colMargin+'px; margin-right:-'+$colMargin+'px">';
+                
+                for(var i=1; i<=10; i++){
+                    html += '<div class="grid-item col mgs-effect-'+effect+'" style="margin-bottom:'+$itemMargin+'px; padding-left:'+$colMargin+'px; padding-right:'+$colMargin+'px">';
+                    
+                    html += '<span';
+                    
+                    if($('#box_shadow').prop("checked") == true){
+                        html += ' class="mgs-box-shadow"';
+                    }
+                    html += '><a>';
+                    
+                    html += '<img src="<?php echo $this->getViewFileUrl('MGS_Fbuilder::images/panel/masonry') ?>/'+i+'.jpg" alt="" />';
+                    
+                    html += '</a></span>';
+                    
+                    html += '</div>';
+                }
+                
+                html += '</div>';
+                
+                $('#masonry-temp').html(html);
+                
+                $('#masonry').masonry({
+                  itemSelector: '.grid-item',
+                  percentPosition: true,
+                });
+                
+                $customStyle = '';
+                
+                if(border_color!='' && border_width!='' && !isNaN(border_width) && border_width>0){
+                    $customStyle += '#masonry-temp.mgs-masonry-block .grid-item span{border:'+border_width+'px solid '+border_color+'}';
+                }
+                if(border_radius!='' && !isNaN(border_radius) && border_radius>0){
+                    $customStyle += '#masonry-temp.mgs-masonry-block .grid-item span{border-radius:'+border_radius+'px}';
+                }
+                
+                $('#masonry-custom-css').html($customStyle);
+            })(jQuery);
+        });
+    }
+    
+    function newImageUpload(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#file_upload').length){
+                    if($('#upload_button').length){
+                        alert('<?php echo __('Please upload selected image first.') ?>');
+                    }else{
+                        alert('<?php echo __('Please choose file to upload.') ?>');
+                    }
+                }else{
+                    html = '<div class="form-group line"><div class="col-des-3 choose-file-upload"><input id="file_upload" name="file_upload" type="file" onchange="chooseFileAction(this.id)"><span class="choose-label"><span class="fa fa-folder-o"> </span> &nbsp;<?php echo __('Choose File to Upload') ?></span></div><div class="col-des-9" id="upload_action"></div></div>';
+                    $('#list-upload').html(html);
+                }
+                
+            })(jQuery);
+        });
+    }
+    
+    function chooseFileAction(elId){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                fileName = $('#'+elId).val();
+                arrName = fileName.split(".");
+                extensionName = arrName[arrName.length - 1];
+                extensionName = extensionName.toLowerCase();
+                if((extensionName=='jpg') || (extensionName=='jpeg') || (extensionName=='png') || (extensionName=='gif')){
+                    html = fileName + ' <button type="button" class="btn btn-default" id="upload_button" onclick="uploadImage()"><img src="<?php echo $this->getViewFileUrl('MGS_Fbuilder::images/small-ajax-loader.gif') ?>" id="upload-loading" style="display:none"/> <span class="fa fa-upload" id="upload-icon"></span> <?php echo __('Upload') ?></button>';
+                    $('#upload_action').html(html);
+                }
+            })(jQuery);
+        });
+    }
+    
+    function uploadImage(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                idx++;
+                if($('.alert-image-success').length){
+                    $('.alert-image-success').remove();
+                }
+                $('#upload-loading').show();
+                $('#upload-icon').hide();
+                var formData = new FormData();
+                formData.append('file', $('#file_upload')[0].files[0]);
+                $.ajax({
+                    url: "<?php echo $this->getUrl('fbuilder/post/upload', ['type'=>'masonry']) ?>",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(data){
+                        var result = jQuery.parseJSON(data);
+                        if(result.result=='success'){
+                            tbhtml = '<li><img src="<?php echo $this->getPanelUploadFolder('masonry') ?>'+result.data+'" alt=""></li>';
+                            html =  '<div class="image-item">' +
+                                        '<div class="img-div"><img class="img-responsive" src="<?php echo $this->getPanelUploadFolder('masonry') ?>'+result.data+'" alt=""/></div>' +
+                                        
+                                        '<div class="image-action"><span><?php echo __('Add to Gallery&nbsp;&nbsp;&nbsp;') ?></span><div class="admin__actions-switch" data-role="switcher"><input type="checkbox" name="setting[addimg][]" id="addimg'+idx+'" class="admin__actions-switch-checkbox" value="'+result.data+'" onclick="addToGallery('+idx+')"><label for="addimg'+idx+'" class="admin__actions-switch-label"><span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span></label></div></div>' +
+                                        
+                                        '<div class="image-action"><span><?php echo __('Remove Image&nbsp;&nbsp;') ?></span><div class="admin__actions-switch" data-role="switcher"><input type="checkbox" name="setting[removeimg][]" id="removeimg'+idx+'" class="admin__actions-switch-checkbox" value="'+result.data+'"><label for="removeimg'+idx+'" class="admin__actions-switch-label"><span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span></label></div></div><div class="image-action"><input type="text" class="input-text" name="setting[url][]" id="url'+idx+'" placeholder="<?php echo __('Link') ?>" disabled="disabled"/></div>' +
+                                        
+                                    '</div>';
+                            $('#list-images').append(html);
+                            $(".panel-image-list").animate({ scrollTop: $('#list-images').height()}, 300);
+                        }else{
+                            alert(result.data);
+                        }
+                        
+                        $('#list-upload').html('');
+                    }
+                });
+            })(jQuery);
+        });
+    }
+</script>

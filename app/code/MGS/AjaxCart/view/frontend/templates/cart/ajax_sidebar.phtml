@@ -1,0 +1,64 @@
+<?php $helper = $this->helper('\Magento\Checkout\Helper\Cart'); ?>
+
+<?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php $cartAnimation = $themeSettingConfig->getStoreConfig('ajaxcart/additional/animation_type'); ?>
+
+<?php if ($cartAnimation == 'flycart'): ?>
+<div class="cart-footer-actions" data-bind="scope: 'ajaxcart_content'" data-block="footer_minicart">
+    <div class="cart-qty" id="footer-cart-trigger" data-bind="click: toggleFooterSidebar.bind(this)">
+        <span class="icon-cart-footer"></span>
+        <!-- ko if: cartSidebar().summary_count -->
+            <span class="number"><!-- ko text: cartSidebar().summary_count --><!-- /ko --></span>
+        <!-- /ko -->
+        <!-- ko ifnot: cartSidebar().summary_count -->
+            <span class="number">0</span>
+        <!-- /ko -->
+    </div>
+</div>
+<div class="footer_minicart_container" data-bind="scope: 'ajaxcart_content'" data-block="footer_minicart">
+    <div class="cart-footer" id="fixed-cart-footer" data-bind="css: { empty: !!cartSidebar().summary_count == false }" style="display:none;">
+        <div id="footer-mini-cart" class="fixed-mini-cart" style="display:none;">
+            <div class="close-footer-cart" data-bind="click: toggleFooterSidebar.bind(this)"></div>
+            <!-- ko ifnot: cartSidebar().summary_count -->
+                <strong class="subtitle empty">
+                    <!-- ko i18n: 'You have no items in your shopping cart.' --><!-- /ko -->
+                </strong>
+            <!-- /ko -->
+            <div class="fixed-cart-col cart-items" id="footer-cart-list" data-bind="css: { empty: !!cartSidebar().summary_count == false }">
+                <div class="cart-items-inner">
+                <!-- ko foreach: { data: cartSidebar().items, as: 'item' } -->
+                    <!-- ko template: 'MGS_AjaxCart/ajaxcart/cart_items' --><!-- /ko -->
+                <!-- /ko -->
+                </div>
+            </div>
+            <div class="fixed-cart-col fixed-cart-actions" data-bind="css: { empty: !!cartSidebar().summary_count == false }">
+                <!-- ko template: 'MGS_AjaxCart/ajaxcart/summary' --><!-- /ko -->
+                <!-- ko if: cartSidebar().possible_onepage_checkout -->
+                <div class="primary">
+                    <button
+                            id="footer-cart-btn-checkout"
+                            type="button"
+                            class="action primary checkout"
+                            data-bind="attr: {title: $t('Proceed to Checkout')}">
+                        <!-- ko i18n: 'Proceed to Checkout' --><!-- /ko -->
+                    </button>
+                    <div data-bind="html: cartSidebar().extra_actions"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        if ( window.innerWidth < 768 ) {
+            document.addEventListener("click", function(e) {
+                if (e.target.closest("#footer-cart-trigger") ) {
+                    e.preventDefault();
+                    const cartTrigger = document.querySelector('.minicart-wrapper .action.showcart');
+                    cartTrigger && cartTrigger.click();
+                }
+            });
+        }
+    </script>
+</div>
+<?php endif; ?>

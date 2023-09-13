@@ -1,0 +1,435 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<?php $oldEffect = '' ?>
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Image Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="image">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+                $oldEffect = $settings['effect'];
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-banner-title" data-role="collapsible" id="tab-label-banner">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#banner" id="tab-label-banner-title" onclick="setPreview()">
+                    <?php echo __('View Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="banner" data-role="content" style="display:none">
+                <div class="line form-group">
+                    <div class="col-des-7">
+                        <div class="line form-group">
+                            <label for="image" class="col-des-3 control-label"><?php echo __('Block Type') ?></label>
+                            <div class="col-des-9">
+                                <select id="image_block_type" class="input-text" name="setting[image_block_type]" onchange="changeType()">
+                                    <option value="single"<?php if ($exist && ($settings['image_block_type']=='single')): ?> selected="selected"<?php endif ?>><?php echo __('Single Image') ?></option>
+                                    <option value="multiple"<?php if ($exist && ($settings['image_block_type']=='multiple')): ?> selected="selected"<?php endif ?>><?php echo __('Before & After') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="line form-group">
+                            <label for="image" class="col-des-3 control-label"><?php echo __('Image') ?></label>
+                            <div class="col-des-9">
+                                <input type="file" id="image" name="image" onchange="setPreview()">
+                                <input type="hidden" name="setting[image]" <?php if ($exist && isset($settings['image'])): ?> value="<?php echo $settings['image'] ?>"<?php endif ?>>
+                            </div>
+                        </div>
+                        <div class="line form-group no-lightbox">
+                            <label for="alt" class="col-des-3 control-label"><?php echo __('ALT') ?></label>
+                            <div class="col-des-9">
+                                <input type="text" class="input-text" id="alt" name="setting[alt]"<?php if ($exist && ($settings['alt'])): ?> value="<?php echo $settings['alt'] ?>"<?php endif ?>/>
+                            </div>
+                        </div>
+
+                        <div class="line form-group multiple-type">
+                            <label for="image_after" class="col-des-3 control-label"><?php echo __('Image After') ?></label>
+                            <div class="col-des-9">
+                                <input type="file" id="image_after" name="image_after" onchange="setPreview()">
+                                <input type="hidden" name="setting[after_image]" <?php if ($exist && ($settings['after_image'])): ?> value="<?php echo $settings['after_image'] ?>"<?php endif ?>>
+                            </div>
+                        </div>
+
+                        <div class="line form-group multiple-type">
+                            <label for="alt_after" class="col-des-3 control-label"><?php echo __('ALT') ?></label>
+                            <div class="col-des-9">
+                                <input type="text" class="input-text" id="alt" name="setting[alt_after]"<?php if ($exist && ($settings['alt_after'])): ?> value="<?php echo $settings['alt_after'] ?>"<?php endif ?>/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group single-type">
+                            <label for="effect" class="col-des-3 control-label"><?php echo __('Effect') ?></label>
+                            <div class="col-des-9">
+                                <select id="effect" class="input-text" name="setting[effect]" onchange="setPreview()">
+                                    <option value=""><?php echo __('No Effect') ?></option>
+                                    <option value="zoom-in"<?php if ($exist && ($settings['effect']=='zoom-in')): ?> selected="selected"<?php endif ?>><?php echo __('Zoom In') ?></option>
+                                    <option value="zoom-out"<?php if ($exist && ($settings['effect']=='zoom-out')): ?> selected="selected"<?php endif ?>><?php echo __('Zoom Out') ?></option>
+                                    <option value="rotate"<?php if ($exist && ($settings['effect']=='rotate')): ?> selected="selected"<?php endif ?>><?php echo __('Rotate & Zoom Out') ?></option>
+                                    <option value="blur"<?php if ($exist && ($settings['effect']=='blur')): ?> selected="selected"<?php endif ?>><?php echo __('Blur') ?></option>
+                                    <option value="grayscale"<?php if ($exist && ($settings['effect']=='grayscale')): ?> selected="selected"<?php endif ?>><?php echo __('Gray Scale') ?></option>
+                                    <option value="sepia"<?php if ($exist && ($settings['effect']=='sepia')): ?> selected="selected"<?php endif ?>><?php echo __('Sepia') ?></option>
+                                    <option value="opacity"<?php if ($exist && ($settings['effect']=='opacity')): ?> selected="selected"<?php endif ?>><?php echo __('Opacity') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group multiple-type">
+                            <label for="multiple_effect" class="col-des-3 control-label"><?php echo __('Effect') ?></label>
+                            <div class="col-des-9">
+                                <select id="multiple_effect" class="input-text" name="setting[multiple_effect]" onchange="changeMultipleEffect()">
+                                    <option value="fade"<?php if ($exist && ($settings['multiple_effect']=='fade')): ?> selected="selected"<?php endif ?>><?php echo __('Fade') ?></option>
+                                    <option value="slide"<?php if ($exist && ($settings['multiple_effect']=='slide')): ?> selected="selected"<?php endif ?>><?php echo __('Slide') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group multiple-type slide-type">
+                            <label for="slide_type" class="col-des-3 control-label"><?php echo __('Slide Type') ?></label>
+                            <div class="col-des-9">
+                                <select id="slide_type" class="input-text" name="setting[slide_type]" onchange="setPreview()">
+                                    <option value="horizontal"<?php if ($exist && ($settings['slide_type']=='horizontal')): ?> selected="selected"<?php endif ?>><?php echo __('Horizontal') ?></option>
+                                    <option value="vertical"<?php if ($exist && ($settings['slide_type']=='vertical')): ?> selected="selected"<?php endif ?>><?php echo __('Vertical') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group single-type">
+                            <label for="lightbox" class="col-des-3 control-label"><?php echo __('Use Lightbox') ?></label>
+                            <div class="col-des-9">
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if ($exist && $settings['lightbox']): ?> checked="checked"<?php endif ?> value="1" name="setting[lightbox]" id="lightbox" class="admin__actions-switch-checkbox" onclick="useLightBox()">
+                                    <label for="lightbox" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group single-type use-lightbox">
+                            <label for="lightbox_group" class="col-des-3 control-label"><?php echo __('Lightbox Group') ?></label>
+                            <div class="col-des-9">
+                                <input type="text" class="input-text validata-number" id="lightbox_group" name="setting[lightbox_group]"<?php if ($exist && $settings['lightbox_group']): ?> value="<?php echo $settings['lightbox_group'] ?>"<?php endif ?> placeholder="<?php echo __('For next and previous on lightbox') ?>"/>
+                            </div>
+                        </div>
+
+                        
+                        <div class="line form-group no-lightbox">
+                            <label for="url" class="col-des-3 control-label"><?php echo __('Url') ?></label>
+                            <div class="col-des-9">
+                                <input type="text" class="input-text" id="url" name="setting[url]"<?php if ($exist && $settings['url']): ?> value="<?php echo $settings['url'] ?>"<?php endif ?>/>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="col-des-5">
+                        <div class="content-block mgs-image-block" id="temp-image">
+                            
+                        </div>
+                        
+                        <style type="text/css" id="banner-custom-css"></style>
+                    </div>
+                </div>
+
+                <div class="line form-group">
+                    <div class="col-des-3">
+                        <label for="border_width" class="control-label"><?php echo __('Border Width') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="border_width" name="setting[border_width]"<?php if ($exist && $settings['border_width']): ?> value="<?php echo $settings['border_width'] ?>"<?php endif ?> onchange="changeBannerStyle(); setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="border_color" class="control-label"><?php echo __('Border Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="border_color" name="setting[border_color]"<?php if ($exist && $settings['border_color']): ?> value="<?php echo $settings['border_color'] ?>"<?php endif ?> onchange="changeBannerStyle()"/>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="border_radius" class="control-label"><?php echo __('Border Radius') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="border_radius" name="setting[border_radius]"<?php if ($exist && $settings['border_radius']): ?> value="<?php echo $settings['border_radius'] ?>"<?php endif ?> onchange="changeBannerStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <label for="box_shadown" class="control-label"><?php echo __('Box Shadow') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['box_shadown']): ?> checked="checked"<?php endif ?> value="1" name="setting[box_shadown]" id="box_shadown" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="box_shadown" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+            
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var oldEffect = '<?php echo $oldEffect ?>';
+    var twentytwenty;
+    var urlImage1 = '';
+    var urlImage2 = '';
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                $('#image').change( function(event) {    
+                    var tmppath = URL.createObjectURL(event.target.files[0]);
+                    urlImage1 = URL.createObjectURL(event.target.files[0]);
+                    setPreview();
+                });
+                
+                $('#image_after').change( function(event) {    
+                    var tmppath = URL.createObjectURL(event.target.files[0]);
+                    urlImage2 = URL.createObjectURL(event.target.files[0]);
+                    setPreview();
+                });
+                
+                setPreview();
+                changeType();
+            });
+            
+        })(jQuery);
+    });
+    
+    function setPreview(){
+        require([
+            'jquery',
+            'beforeafter'
+        ], function(jQuery){
+            (function($) {
+
+                image_block_type = $('#image_block_type').val();
+                
+                contentClass = 'image-content';
+                styleImage = '';
+                if(image_block_type=='single'){
+                    singleEffect = $('#effect').val();
+                    if(singleEffect!=''){
+                        contentClass += ' mgs-effect-'+singleEffect;
+                    }
+
+                    styleImage = ' style="display:none"';
+                }else{
+                    multipleEffect = $('#multiple_effect').val();
+                    contentClass += ' '+multipleEffect;
+                    styleImage = ' style=""';
+                }
+                
+                spanClass = 'span-container';
+                if($('#box_shadown').prop("checked") == true){
+                    spanClass += ' mgs-box-shadow';
+                }
+                
+                
+                html = '<div class="'+contentClass+'"><span class="'+spanClass+'" id="before-after-container">';
+
+                html += '<a>';
+            
+
+                if(urlImage1!=''){
+                    html += '<img src="'+urlImage1+'" alt="" id="first-image" class="before-image"/>';
+                }else{
+                    <?php if ($exist && $settings['image']!=''): ?>
+                        html += '<img src="<?php echo $helper->getImageUrl('images', $settings['image']) ?>" alt="" id="first-image" class="before-image"/>';
+                    <?php else: ?>
+                        html += '<img src="" alt="" id="first-image" class="before-image"/>';
+                    <?php endif ?>
+                }
+                
+                if(urlImage2!=''){
+                    html += '<img src="'+urlImage2+'" alt="" id="second-image" class="after-image"'+styleImage+'/>';
+                }else{
+                    <?php if ($exist && $settings['after_image']!=''): ?>
+                        html += '<img src="<?php echo $helper->getImageUrl('images', $settings['after_image']) ?>" alt="" id="second-image" class="after-image"'+styleImage+'/>';
+                    <?php else: ?>
+                        html += '<img src="" alt="" id="second-image" class="after-image"'+styleImage+'/>';
+                    <?php endif ?>
+                }
+                
+                html += '</a>';
+
+                html += '</span></div>';
+                        
+
+                $('#temp-image').html(html);
+                
+                if(image_block_type=='multiple'){
+                    if(multipleEffect=='slide'){
+                        slide_type = $('#slide_type').val();
+                        setTimeout(function(){
+                            var twentytwenty = $("#before-after-container").twentytwenty({
+                                orientation: slide_type,
+                                no_overlay: true,
+                                move_slider_on_hover: false,
+                                move_with_handle_only: true,
+                                click_to_move: true
+                            });
+                        }, 50);
+                        
+                    }
+                }
+            })(jQuery);
+        });
+    }
+    
+    function changeType(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                type = $('#image_block_type').val();
+                if(type=='single'){
+                    $('.single-type').show();
+                    $('.multiple-type').hide();
+                    $('#temp-image').removeClass('multiple-image');
+                    useLightBox();
+                }else{
+                    $('.single-type').hide();
+                    $('.multiple-type').show();
+                    $('#temp-image').addClass('multiple-image');
+                    changeMultipleEffect();
+                }
+            })(jQuery);
+        });
+        
+        setPreview();
+    }
+    
+    function useLightBox(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#lightbox').prop("checked") == true){
+                    type = $('#image_block_type').val();
+                    if(type=='single'){
+                        $('.use-lightbox').show();
+                    }else{
+                        $('.use-lightbox').hide();
+                    }
+                    $('.no-lightbox').hide();
+                }else{
+                    $('.use-lightbox').hide();
+                    $('.no-lightbox').show();
+                }
+            })(jQuery);
+        });
+        
+        setPreview();
+    }
+    
+    function changeMultipleEffect(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                effect = $('#multiple_effect').val();
+                if(effect=='slide'){
+                    type = $('#image_block_type').val();
+                    if(type=='multiple'){
+                        $('.slide-type').show();
+                    }else{
+                        $('.slide-type').hide();
+                    }
+                    $('.no-lightbox').hide();
+                }else{
+                    $('.slide-type').hide();
+                    $('.no-lightbox').show();
+                }
+            })(jQuery);
+        });
+
+        setPreview();
+
+        
+    }
+    
+    function changeBannerStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                
+                border_width = $('#border_width').val();
+                border_color = $('#border_color').val();
+                border_radius = $('#border_radius').val();
+                
+                $customStyle = '';
+                
+                if(border_width!='' && !isNaN(border_width) && border_width>0){
+                    $customStyle += '#temp-image.mgs-image-block .image-content span.span-container{border:'+border_width+'px solid #f8f8f8}';
+                    //setPreview();
+                    if(border_color!=''){
+                        $customStyle += '#temp-image.mgs-image-block .image-content span.span-container{border-color:'+border_color+'; background:'+border_color+'}';
+                    }
+                }
+                
+                if(border_radius!='' && !isNaN(border_radius) && border_radius>0){
+                    $customStyle += '#temp-image.mgs-image-block .image-content span.span-container, #temp-image.mgs-image-block .image-content span.span-container img{border-radius:'+border_radius+'px}';
+                }
+                
+                $('#banner-custom-css').html($customStyle);
+                
+                
+            })(jQuery);
+        });
+        
+        
+    }
+</script>

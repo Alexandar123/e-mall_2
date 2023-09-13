@@ -1,0 +1,392 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Chart Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="chart">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Content Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                
+                <div class="line form-group">
+                    <div class="col">
+                        <label for="chart_type" class="control-label"><?php echo __('Type') ?></label><br/>
+                        <select name="setting[chart_type]" id="chart_type" onchange="chooseType()">
+                            <option value="line"<?php if ($exist && ($settings['chart_type']=='line')): ?> selected="selected"<?php endif ?>><?php echo __('Line'); ?></option>
+                            <option value="bar"<?php if ($exist && ($settings['chart_type']=='bar')): ?> selected="selected"<?php endif ?>><?php echo __('Bar'); ?></option>
+                            <option value="radar"<?php if ($exist && ($settings['chart_type']=='radar')): ?> selected="selected"<?php endif ?>><?php echo __('Radar'); ?></option>
+                            <option value="pie"<?php if ($exist && ($settings['chart_type']=='pie')): ?> selected="selected"<?php endif ?>><?php echo __('Pie'); ?></option>
+                            <option value="doughnut"<?php if ($exist && ($settings['chart_type']=='doughnut')): ?> selected="selected"<?php endif ?>><?php echo __('Doughnut'); ?></option>
+                        </select>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="chart_width" class="control-label"><?php echo __('Width') ?></label><br/>
+                        <input type="text" id="chart_width" class="input-text validate-number" name="setting[chart_width]"<?php if ($exist): ?> value="<?php echo $settings['chart_width'] ?>"<?php endif ?> placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="chart_height" class="control-label"><?php echo __('Height') ?></label><br/>
+                        <input type="text" id="chart_height" class="input-text validate-number" name="setting[chart_height]"<?php if ($exist): ?> value="<?php echo $settings['chart_height'] ?>"<?php endif ?> placeholder="px"/>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                
+                <div id="timeline-container" style="display:none">
+                
+                    <h4><?php echo __('Timeline') ?></h4>
+                    <div class="line form-group" id="timeline-fields">
+                        <?php if ($exist && isset($settings['timeline']) && (count($settings['timeline'])>0)): ?>
+                            <?php foreach ($settings['timeline'] as $key => $timeline): ?>
+                                <div id="form-group-<?php echo $key ?>" class="col-des-3">
+                                    <input class="timeline-input input-text required-entry" name="setting[timeline][<?php echo $key ?>][label]" id="timeline_<?php echo $key ?>" data-number="<?php echo $key ?>" placeholder="<?php echo __('Label') ?>" onchange="setPlaceholder('timeline_<?php echo $key ?>')" type="text" value="<?php echo $timeline['label'] ?>">
+                                    <span class="iconPicker" onclick="removeTimeline(<?php echo $key ?>)"><span class="fa fa-close"></span></span>
+                                </div>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    </div>
+                    
+                    <div class="line form-group">
+                        <div class="col"><button type="button" onclick="addTimeline()"><span><?php echo __('Add timeline point') ?></span></button></div>
+                    </div>
+                </div>
+                
+                <div id="piece-container" style="display:none">
+                    <h4><?php echo __('Segments') ?></h4>
+                    <div id="piece-fields">
+                        <?php if ($exist && isset($settings['segment']) && (count($settings['segment'])>0)): ?>
+                            <?php foreach ($settings['segment'] as $key => $segment): ?>
+                                <div id="segment-form-group-<?php echo $key ?>">
+                                    <div class="boxed">
+                                        <div class="form-group line">
+                                            <div class="col-des-4">
+                                                <input class="input-text required-entry" name="setting[segment][<?php echo $key ?>][label]" placeholder="<?php echo __('Label') ?>" type="text" value="<?php echo $segment['label'] ?>">
+                                            </div>
+                                            <div class="col-des-4">
+                                                <input class="color-input input-text required-entry" name="setting[segment][<?php echo $key ?>][background]" placeholder="<?php echo __('Color') ?>" type="text" value="<?php echo $segment['background'] ?>">
+                                            </div>
+                                            <div class="col-des-3">
+                                                <input class="input-text required-entry" name="setting[segment][<?php echo $key ?>][value]" placeholder="<?php echo __('Value') ?>" type="text" value="<?php echo $segment['value'] ?>">
+                                            </div>
+                                            <div class="col-des-1">
+                                                <a href="#" onclick="removeSegment('#segment-form-group-<?php echo $key ?>'); return false"><span class="fa fa-close"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    </div>
+                    
+                    <div class="line form-group">
+                        <div class="col"><button type="button" onclick="addSegment()"><span><?php echo __('Add segment') ?></span></button></div>
+                    </div>
+                </div>
+                
+                
+                
+                <div id="item-container" style="display:none">
+                    <hr/>
+                    
+                    <h4><?php echo __('Items') ?></h4>
+                    
+                    <div id="item-fields">
+                        <?php if ($exist && isset($settings['item']) && (count($settings['item'])>0)): ?>
+                            <?php foreach ($settings['item'] as $key => $item): ?>
+                                <div id="form-group-<?php echo $key ?>">
+                                    <div class="boxed">
+                                        <div class="form-group line">
+                                            <div class="col-des-6">
+                                                <input class="input-text required-entry" name="setting[item][<?php echo $key ?>][label]" placeholder="<?php echo __('Label') ?>" type="text" value="<?php echo $item['label']?>">
+                                            </div>
+                                            <div class="col-des-5">
+                                                <input class="color-input input-text required-entry" name="setting[item][<?php echo $key ?>][background]" placeholder="<?php echo __('Color') ?>" type="text" value="<?php echo $item['background']?>">
+                                            </div>
+                                            <div class="col-des-1"><a href="#" onclick="removeChartItem('#form-group-<?php echo $key ?>'); return false"><span class="fa fa-close"></span></a></div>
+                                        </div>
+                                        <h4><?php echo __('Values') ?></h4>
+                                        <div class="form-group line chart-point" data-container-number="<?php echo $key ?>">
+                                        <?php if (isset($item['point']) && (count($item['point'])>0)): ?>
+                                            <?php foreach ($item['point'] as $pointkey => $point): ?>
+                                                <div class="col-des-2 point_timeline_<?php echo $pointkey ?>">
+                                                    <input class="input-text required-entry validate-number timeline_<?php echo $pointkey ?>" name="setting[item][<?php echo $key ?>][point][<?php echo $pointkey ?>]" placeholder="Monday" type="text" value="<?php echo $point ?>">
+                                                </div>
+                                            <?php endforeach ?>
+                                        <?php endif ?>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    </div>
+                    
+                    <div class="line form-group">
+                        <div class="col"><button type="button" onclick="addChartItem()"><span><?php echo __('Add Item') ?></span></button></div>
+                    </div>
+                </div>
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    
+    
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                setPreview();
+                chooseType();
+            });
+            
+            /* $("#text_content, #subtitle, #link").keypress(function( event ){
+                setPreview();
+            }); */
+        })(jQuery);
+    });
+    
+    function chooseType(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                type = $('#chart_type').val();
+                if(type == 'line' || type == 'bar' || type == 'radar'){
+                    $('#timeline-container').show();
+                    $('#item-container').show();
+                    $('#piece-container').hide();
+                }else{
+                    $('#item-container').hide();
+                    $('#timeline-container').hide();
+                    $('#piece-container').show();
+                }
+            })(jQuery);
+        });
+    }
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                
+            })(jQuery);
+        });
+        
+        //changeContentStyle();
+    }
+    
+    var timelineRandomNumber;
+    var itemRandomNumber;
+    
+    function addChartItem(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                var timelineInput = $('.timeline-input').length;
+                if(timelineInput>0){
+                    randomNumber = Math.floor((Math.random() * 100000) + 1);
+                    itemRandomNumber = randomNumber;
+                    html = '<div id="form-group-{{random_number}}"><div class="boxed"><div class="form-group line">';
+                    
+                    html += '<div class="col-des-6"><input type="text" class="input-text required-entry" name="setting[item][{{random_number}}][label]" placeholder="<?php echo __('Label') ?>"/></div><div class="col-des-5"><input type="text" class="color-input input-text required-entry" name="setting[item][{{random_number}}][background]" placeholder="<?php echo __('Color') ?>"/></div><div class="col-des-1"><a href="#" onclick="removeChartItem(\'#form-group-{{random_number}}\'); return false"><span class="fa fa-close"></span></a></div>';
+                    html += '</div>';
+                    html += '<h4><?php echo __('Values') ?></h4>';
+                    html += '<div class="form-group line chart-point" data-container-number="{{random_number}}">';
+                    
+                    $('.timeline-input').each(function(){
+                        
+                        html += '<div class="col-des-2 point_'+ $(this).attr('id') +'">';
+                        html += '<input type="text" class="input-text required-entry validate-number '+$(this).attr('id')+'" name="setting[item][{{random_number}}][point][' + $(this).attr('data-number') + ']" placeholder="'+ $(this).val() +':"/>';
+                        html += '</div>';
+                        $('#'+$(this).attr('id')).keypress(function( event ){
+                            setPlaceholder($(this).attr('id'));
+                        });
+                    });
+                    html += '</div>';
+                    
+                    html += '</div></div>';
+                    
+                    html = html.replace(/{{random_number}}/g, randomNumber);
+                                        
+                    $('#item-fields').append(html);
+                    $('.color-input').attr('data-hex', true).mColorPicker();
+                }else{
+                    alert('<?php echo __('You need to add timeline first.') ?>');
+                }
+            })(jQuery);
+        });
+    }
+
+    
+    function setPlaceholder(el){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                placeholder = $('#'+el).val();
+                if(placeholder!=''){
+                    $('.'+el).attr('placeholder', placeholder+':');
+                }else{
+                    $('.'+el).attr('placeholder', '');
+                }
+            })(jQuery);
+        });
+    }
+    
+    function removeChartItem(number){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $(number).remove();
+            })(jQuery);
+        });
+    }
+    
+    function addTimeline(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                randomNumber = Math.floor((Math.random() * 100000) + 1);
+                timelineRandomNumber = randomNumber;
+                html = '<div id="form-group-{{random_number}}" class="col-des-3">';
+                                        
+                html += '<input type="text" class="timeline-input input-text required-entry" name="setting[timeline][{{random_number}}][label]" id="timeline_{{random_number}}" data-number="{{random_number}}" placeholder="<?php echo __('Label') ?>" onchange="setPlaceholder(\'timeline_{{random_number}}\')"/><span class="iconPicker" onclick="removeTimeline({{random_number}})"><span class="fa fa-close"></span></span></div>';
+                
+                html = html.replace(/{{random_number}}/g, randomNumber);
+                                    
+                $('#timeline-fields').append(html);
+                
+                if($('.chart-point').length){
+                    var points = [];
+                    $('.chart-point').each(function(index){
+                        containerNumber = $(this).attr('data-container-number');
+                        itemHtml = '<div class="col-des-2 point_timeline_{{random_number}}">';
+                        itemHtml += '<input type="text" class="input-text required-entry validate-number timeline_{{random_number}}" name="setting[item]['+containerNumber+'][point][{{random_number}}]" />';
+                        itemHtml += '</div>';
+                        
+                        itemHtml = itemHtml.replace(/{{random_number}}/g, randomNumber);
+                        $(this).append(itemHtml);
+                        
+                        $('#timeline_'+randomNumber).keypress(function( event ){
+                            setPlaceholder('timeline_'+randomNumber);
+                        });
+                    });
+                }
+                
+                
+            })(jQuery);
+        });
+    }
+    
+    function removeTimeline(number){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $('#form-group-'+number).remove();
+                $('.point_timeline_'+number).remove();
+            })(jQuery);
+        });
+    }
+    
+    function addSegment(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                randomNumber = Math.floor((Math.random() * 100000) + 1);
+                html = '<div id="segment-form-group-{{random_number}}"><div class="boxed"><div class="form-group line">';
+                
+                html += '<div class="col-des-4"><input type="text" class="input-text required-entry" name="setting[segment][{{random_number}}][label]" placeholder="<?php echo __('Label') ?>"/></div><div class="col-des-4"><input type="text" class="color-input input-text required-entry" name="setting[segment][{{random_number}}][background]" placeholder="<?php echo __('Color') ?>"/></div><div class="col-des-3"><input type="text" class="input-text required-entry validate-number" name="setting[segment][{{random_number}}][value]" placeholder="<?php echo __('Value') ?>"/></div><div class="col-des-1"><a href="#" onclick="removeSegment(\'#segment-form-group-{{random_number}}\'); return false"><span class="fa fa-close"></span></a></div>';
+                html += '</div>';
+                html += '</div></div>';
+                
+                html = html.replace(/{{random_number}}/g, randomNumber);
+                                    
+                $('#piece-fields').append(html);
+                $('.color-input').attr('data-hex', true).mColorPicker();
+            })(jQuery);
+        });
+    }
+    
+    function removeSegment(segment){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $(segment).remove();
+            })(jQuery);
+        });
+    }
+</script>

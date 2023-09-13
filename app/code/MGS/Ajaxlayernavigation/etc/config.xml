@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mgs_ajaxnavigation>
+            <general>
+                <enable>1</enable>
+                <range_price>1</range_price>
+                <shopping_by>1</shopping_by>
+                <filter_by>Filter by %1</filter_by>
+                <shopping_by>0</shopping_by>
+                <expanded_filter>1</expanded_filter>
+                <button_text>Go</button_text>
+            </general>
+        </mgs_ajaxnavigation>
+    </default>
+</config>

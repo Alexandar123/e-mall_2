@@ -1,0 +1,143 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+?>
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) : ?>
+    <?php
+    $type = 'widget-product-carousel';
+
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $themeHelper = $this->helper('MGS\ThemeSettings\Helper\Config');
+    $_imageHelper = $this->helper('Magento\Catalog\Helper\Image');
+    $size = $themeHelper->getImageSize();
+    $padding = $themeHelper->getImagePadding();
+
+    /* Theme config */
+    $_hideReview = $themeHelper->getStoreConfig('themesettings/catalog/review');
+    $_hideAddCart = $themeHelper->getStoreConfig('themesettings/catalog/add_to_cart');
+    $_hideWishlist = $themeHelper->getStoreConfig('themesettings/catalog/wishlist_button');
+    $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_button');
+    $lazyLoad = $themeHelper->getStoreConfig('themesettings/general/lazy_load');
+
+    $imageDisplayArea = 'category_page_grid';
+    $image_hover = 'product_thumbnail_image';
+    $baseImage = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
+    $baseImageHover = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
+    ?>
+    <ol class="products list items product-items products wrapper mgs-products products-grid <?= /* @noEscape */ $type ?>">
+        <?php $iterator = 1; ?>
+        <?php foreach ($items as $_item) : ?>
+            <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+            <div class="product-item-info">
+                <?php $productThumbnail = $_item->getData('thumbnail'); ?>
+                <?php $_productNameStripped = $block->stripTags($_item->getName(), null, true); ?>
+                <?php $productImage = $_imageHelper->init($_item, $imageDisplayArea)->resize($size['width'], $size['height'])->getUrl(); ?>
+                <?php $productImageHover = $_imageHelper->init($_item, $image_hover)->resize($size['width'], $size['height'])->getUrl(); ?>
+                <?php if (!$lazyLoad): ?>
+                    <?php $baseImage = $productImage ?>
+                    <?php $baseImageHover = $productImageHover ?>
+                <?php endif ?>
+                <div class="product-top">
+                    <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo"
+                    style="padding-bottom: <?php echo $padding; ?>;">
+                        <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>"
+                             class="img-responsive product-image-photo img-thumbnail<?php if ($lazyLoad): ?> lazy<?php endif ?>"
+                             data-src="<?php echo $productImage ?>"/>
+
+                        <?php if ($productThumbnail && basename($productThumbnail) != 'no_selection'): ?>
+                            <?php if (basename($productThumbnail) != basename($_item->getData('small_image'))): ?>
+                                <img src="<?php echo $baseImageHover ?>" alt="<?php echo $_productNameStripped ?>"
+                                     class="img-responsive img-hover-show<?php if ($lazyLoad): ?> lazy<?php endif ?>"
+                                     data-src="<?php echo $productImageHover ?>"/>
+                            <?php endif ?>
+                        <?php endif ?>
+
+                        <div class="product-image-photo"></div>
+                    </a>
+                    
+                    <ul data-role="add-to-links" class="actions-link actions-secondary">
+                        <?php if(!$_hideWishlist || !$_hideCompare): ?>
+                            <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist) : ?>
+                                <li>
+                                    <button href="#"
+                                       data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                        <i class="pe-7s-like"></i>
+                                    </button>
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($block->getAddToCompareUrl() && $showCompare) : ?>
+                                    <?php $compareHelper = $this->helper(\Magento\Catalog\Helper\Product\Compare::class);?>
+                                <li>
+                                    <button href="#" class="action tocompare" data-post='<?= /* @noEscape */ $compareHelper->getPostDataParams($_item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Compare')) ?>">
+                                        <i class="pe-7s-graph3"></i>
+                                    </button>
+                                </li>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                            <?= $addToBlock->setProduct($_item)->getChildHtml() ?>
+                        <?php endif; ?>
+                    </ul>
+                    <?php if ($showCart) : ?>
+                        <div class="actions-mobile">
+                            <?php if ($_item->isSaleable()) : ?>
+                                <?php $postParams = $block->getAddToCartPostParams($_item); ?>
+                                <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_item->getSku()) ?>" action="<?= $block->escapeUrl($postParams['action']) ?>" method="post">
+                                    <input type="hidden" name="product" value="<?= $block->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                    <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <button type="submit"
+                                            title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                                            class="action tocart primary btn-cart">
+                                            <span class="icon pe-7s-shopbag"></span>
+                                        <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                    </button>
+                                </form>
+                            <?php else : ?>
+                                <?php if ($_item->getIsSalable()) : ?>
+                                    <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+                                <?php else : ?>
+                                    <div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="product-item-details">
+                    <strong class="product-item-name">
+                        <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                           href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                           class="product-item-link">
+                            <?= $block->escapeHtml($_item->getName()) ?>
+                        </a>
+                    </strong>
+                    <?php if ($templateType && !$_hideReview) : ?>
+                        <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                    <?php endif; ?>
+
+                    <?= $block->getProductPriceHtml($_item, $type) ?>
+
+                    <?php if ($_item->isAvailable()): ?>
+                        <?= $block->getProductDetailsHtml($_item) ?>
+                    <?php endif; ?>
+
+
+                </div>
+            </div>
+            <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+        <?php endforeach ?>
+    </ol>
+<?php endif;?>

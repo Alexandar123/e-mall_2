@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Smile_ElasticsuiteCore indices configuration validation.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCore
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="requests">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded" minOccurs="1">
+                <xs:element name="request" type="request"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="request">
+        <xs:all>
+            <xs:element name="filters" type="filtersDefinition" minOccurs="0"/>
+            <xs:element name="aggregations" type="aggregationsDefinition" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute type="xs:string" name="name" use="required" />
+        <xs:attribute type="xs:string" name="label" use="required" />
+        <xs:attribute type="xs:string" name="index" use="required" />
+        <xs:attribute type="xs:string" name="type" use="optional" />
+        <xs:attribute type="xs:string" name="track_total_hits" use="optional" />
+        <xs:attribute type="xs:boolean" name="fulltext" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="filtersDefinition">
+        <xs:sequence maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="filter" type="filterDefinition" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="aggregationsDefinition" mixed="true">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="aggregation" type="aggregationDefinition" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="provider" type="aggregationProviderDefinition" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="filterDefinition">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="name" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="aggregationDefinition" abstract="true">
+        <xs:all>
+            <xs:element name="aggregations" type="aggregationsDefinition" minOccurs="0" />
+            <xs:element name="filters" type="filtersDefinition" minOccurs="0" />
+            <xs:element name="metrics" type="metricsDefinition" minOccurs="0"/>
+            <xs:element name="pipelines" type="pipelinesDefinition" minOccurs="0" />
+        </xs:all>
+        <xs:attribute type="xs:string" name="name" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="aggregationProviderDefinition">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="name" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="termBucket">
+        <xs:complexContent>
+            <xs:extension base="aggregationDefinition">
+                <xs:attribute type="xs:string" name="field" use="optional" />
+                <xs:attribute type="xs:integer" name="size" use="optional" />
+                <xs:attribute type="xs:integer" name="sortOrder" use="optional" />
+                <xs:attribute type="xs:boolean" name="unsetNestedPath" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="significantTermBucket">
+        <xs:complexContent>
+            <xs:extension base="aggregationDefinition">
+                <xs:attribute type="xs:string" name="field" use="optional" />
+                <xs:attribute type="xs:integer" name="size" use="optional" />
+                <xs:attribute type="xs:integer" name="minDocCount" use="optional" />
+                <xs:attribute type="xs:string" name="algorithm" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="histogramBucket">
+        <xs:complexContent>
+            <xs:extension base="aggregationDefinition">
+                <xs:attribute type="xs:string" name="field" use="optional" />
+                <xs:attribute type="xs:string" name="interval" use="optional" />
+                <xs:attribute type="xs:integer" name="minDocCount" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="dateHistogramBucket">
+        <xs:complexContent>
+            <xs:extension base="histogramBucket" />
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="metricsDefinition">
+        <xs:sequence maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="metric" type="metricDefinition" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="metricDefinition">
+        <xs:attribute type="xs:string" name="name" use="required" />
+        <xs:attribute type="xs:string" name="type" use="required" />
+        <xs:attribute type="xs:string" name="field" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="pipelinesDefinition">
+        <xs:sequence maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="pipeline" type="pipelineDefinition" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="pipelineDefinition">
+        <xs:all>
+            <!-- bucket sort pipeline does not require buckets_path. -->
+            <xs:element name="bucketsPath" type="bucketsPathDefinition" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+        <xs:attribute type="xs:string" name="name" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="bucketsPathDefinition">
+        <xs:choice>
+            <xs:element name="path" type="xs:string" />
+            <xs:element name="mapping" type="bucketsPathMappingDefinition" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="bucketsPathMappingDefinition">
+        <!-- mapping text value is the path, paramName holds the variable which it is mapped to. -->
+        <xs:simpleContent>
+            <xsd:extension base="xs:string">
+                <xs:attribute name="paramName" type="xs:string" use="required" />
+            </xsd:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="bucketSelectorPipeline">
+        <xs:complexContent>
+            <xs:extension base="pipelineDefinition">
+                <xs:attribute type="xs:string" name="script" use="required" />
+                <xs:attribute type="xs:string" name="gapPolicy" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="maxBucketPipeline">
+        <xs:complexContent>
+            <xs:extension base="pipelineDefinition">
+                <xs:attribute type="xs:string" name="gapPolicy" use="optional" />
+                <xs:attribute type="xs:string" name="format" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MGS_StoreLocator::css/mgs_storelocator.css" media="all" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="MGS\StoreLocator\Block\Stores" name="store.list" template="MGS_StoreLocator::stores.phtml">
+                <block class="Magento\Theme\Block\Html\Pager" name="store.list.pager"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

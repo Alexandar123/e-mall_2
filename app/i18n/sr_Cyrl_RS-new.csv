@@ -1,0 +1,2670 @@
+Popup,Popup,module,MGS_AjaxCart
+Flycart,Flycart,module,MGS_AjaxCart
+Slide from right after adding to cart,Slide from right after adding to cart,module,MGS_AjaxCart
+Add to Cart,Add to Cart,module,MGS_AjaxCart
+Qty,Qty,module,MGS_AjaxCart
+item,item,module,MGS_AjaxCart
+items,items,module,MGS_AjaxCart
+Cart Subtotal,Cart Subtotal,module,MGS_AjaxCart
+View Cart,View Cart,module,MGS_AjaxCart
+Proceed to Checkout,Proceed to Checkout,module,MGS_AjaxCart
+Products you might like!,Products you might like!,module,MGS_AjaxCart
+Category,Category,module,MGS_Ajaxlayernavigation
+The attribute model is not defined.,The attribute model is not defined.,module,MGS_Ajaxlayernavigation
+%1 - %2,%1 - %2,module,MGS_Ajaxlayernavigation
+%1 and above,%1 and above,module,MGS_Ajaxlayernavigation
+Now Shopping by,Now Shopping by,module,MGS_Ajaxlayernavigation
+Clear All,Clear All,module,MGS_Ajaxlayernavigation
+Shop By,Shop By,module,MGS_Ajaxlayernavigation
+Shopping Options,Shopping Options,module,MGS_Ajaxlayernavigation
+Quickview,Quickview,module,MGS_Aquickview
+Crosssell Products,Crosssell Products,module,MGS_Aquickview
+Related Products,Related Products,module,MGS_Aquickview
+Upsell Products,Upsell Products,module,MGS_Aquickview
+Check items to add to the cart or,Check items to add to the cart or,module,MGS_Aquickview
+select all,select all,module,MGS_Aquickview
+Add to Cart,Add to Cart,module,MGS_Aquickview
+In stock,In stock,module,MGS_Aquickview
+Out of stock,Out of stock,module,MGS_Aquickview
+Add to Wish List,Add to Wish List,module,MGS_Aquickview
+Add to Compare,Add to Compare,module,MGS_Aquickview
+Hurry! Only %1 left in stock,Hurry! Only %1 left in stock,module,MGS_Aquickview
+Days,Days,module,MGS_Aquickview
+Hours,Hours,module,MGS_Aquickview
+Mins,Mins,module,MGS_Aquickview
+Secs,Secs,module,MGS_Aquickview
+Manage Categories,Manage Categories,module,MGS_Blog
+Add New Category,Add New Category,module,MGS_Blog
+Back,Back,module,MGS_Blog
+Save and Continue Edit,Save and Continue Edit,module,MGS_Blog
+Edit Category '%1',Edit Category '%1',module,MGS_Blog
+New New Category,New New Category,module,MGS_Blog
+ID,ID,module,MGS_Blog
+Title,Title,module,MGS_Blog
+URL Key,URL Key,module,MGS_Blog
+Store View,Store View,module,MGS_Blog
+Status,Status,module,MGS_Blog
+Enabled,Enabled,module,MGS_Blog
+Disabled,Disabled,module,MGS_Blog
+Action,Action,module,MGS_Blog
+Edit,Edit,module,MGS_Blog
+Delete,Delete,module,MGS_Blog
+Are you sure?,Are you sure?,module,MGS_Blog
+Change Status,Change Status,module,MGS_Blog
+Save,Save,module,MGS_Blog
+Manage Comments,Manage Comments,module,MGS_Blog
+Add New Comment,Add New Comment,module,MGS_Blog
+Name,Name,module,MGS_Blog
+Approved,Approved,module,MGS_Blog
+Unapproved,Unapproved,module,MGS_Blog
+Approve,Approve,module,MGS_Blog
+Manage Posts,Manage Posts,module,MGS_Blog
+Add New Post,Add New Post,module,MGS_Blog
+Edit Post '%1',Edit Post '%1',module,MGS_Blog
+New New Post,New New Post,module,MGS_Blog
+Thumbnail,Thumbnail,module,MGS_Blog
+Home,Home,module,MGS_Blog
+Go to Home Page,Go to Home Page,module,MGS_Blog
+Tag '%1',Tag '%1',module,MGS_Blog
+Blog,Blog,module,MGS_Blog
+The category has been deleted.,The category has been deleted.,module,MGS_Blog
+We can't find a category to delete.,We can't find a category to delete.,module,MGS_Blog
+Edit Item,Edit Item,module,MGS_Blog
+A total of %1 record(s) have been deleted.,A total of %1 record(s) have been deleted.,module,MGS_Blog
+A total of %1 record(s) have been disabled.,A total of %1 record(s) have been disabled.,module,MGS_Blog
+A total of %1 record(s) have been enabled.,A total of %1 record(s) have been enabled.,module,MGS_Blog
+Please select category(s).,Please select category(s).,module,MGS_Blog
+Total of %1 category(s) were changed status.,Total of %1 category(s) were changed status.,module,MGS_Blog
+Manage Category,Manage Category,module,MGS_Blog
+You saved the Category.,You saved the Category.,module,MGS_Blog
+Something went wrong while saving the category data. Please review the error log.,Something went wrong while saving the category data. Please review the error log.,module,MGS_Blog
+The comment has been approved.,The comment has been approved.,module,MGS_Blog
+We can't find a comment to approve.,We can't find a comment to approve.,module,MGS_Blog
+The comment has been deleted.,The comment has been deleted.,module,MGS_Blog
+We can't find a comment to delete.,We can't find a comment to delete.,module,MGS_Blog
+Please select comment(s).,Please select comment(s).,module,MGS_Blog
+Total of %1 comment(s) were changed status.,Total of %1 comment(s) were changed status.,module,MGS_Blog
+The comment has been unapproved.,The comment has been unapproved.,module,MGS_Blog
+We can't find a comment to unapprove.,We can't find a comment to unapprove.,module,MGS_Blog
+The post has been deleted.,The post has been deleted.,module,MGS_Blog
+We can't find a post to delete.,We can't find a post to delete.,module,MGS_Blog
+This post no longer exists.,This post no longer exists.,module,MGS_Blog
+Edit Post,Edit Post,module,MGS_Blog
+Please select post(s).,Please select post(s).,module,MGS_Blog
+Total of %1 post(s) were changed status.,Total of %1 post(s) were changed status.,module,MGS_Blog
+You saved the post.,You saved the post.,module,MGS_Blog
+Something went wrong while saving the post data. Please review the error log.,Something went wrong while saving the post data. Please review the error log.,module,MGS_Blog
+You must be logged in to comment.,You must be logged in to comment.,module,MGS_Blog
+Your comment has been submitted.,Your comment has been submitted.,module,MGS_Blog
+Your comment has been submitted and is awaiting approval.,Your comment has been submitted and is awaiting approval.,module,MGS_Blog
+Something went wrong while saving the file(s).,Something went wrong while saving the file(s).,module,MGS_Blog
+File validation failed.,File validation failed.,module,MGS_Blog
+File can not be saved to the destination folder.,File can not be saved to the destination folder.,module,MGS_Blog
+Video,Video,module,MGS_Blog
+Image,Image,module,MGS_Blog
+URL Key for specified store already exists.,URL Key for specified store already exists.,module,MGS_Blog
+-- Please Select --,-- Please Select --,module,MGS_Blog
+Newest,Newest,module,MGS_Blog
+Older,Older,module,MGS_Blog
+1 column,1 column,module,MGS_Blog
+2 columns left,2 columns left,module,MGS_Blog
+2 columns right,2 columns right,module,MGS_Blog
+3 columns,3 columns,module,MGS_Blog
+Youtube,Youtube,module,MGS_Blog
+Vimeo,Vimeo,module,MGS_Blog
+Default Template,Default Template,module,MGS_Blog
+Default,Default,module,MGS_Blog
+Owl Carousel,Owl Carousel,module,MGS_Blog
+Yes,Yes,module,MGS_Blog
+No,No,module,MGS_Blog
+All Store Views,All Store Views,module,MGS_Blog
+"Delete ""${ $.$data.title }""","Delete ""${ $.$data.title }""",module,MGS_Blog
+"Are you sure you wan't to delete ""${ $.$data.title }"" ?","Are you sure you wan't to delete ""${ $.$data.title }"" ?",module,MGS_Blog
+Unapprove,Unapprove,module,MGS_Blog
+Delete ${ $.$data.title },Delete ${ $.$data.title },module,MGS_Blog
+Are you sure you wan't to delete a ${ $.$data.title } record?,Are you sure you wan't to delete a ${ $.$data.title } record?,module,MGS_Blog
+Have no posts.,Have no posts.,module,MGS_Blog
+Author: ,Author: ,module,MGS_Blog
+%1,%1,module,MGS_Blog
+Tag: ,Tag: ,module,MGS_Blog
+ - , - ,module,MGS_Blog
+%1 comment(s),%1 comment(s),module,MGS_Blog
+Continue Reading,Continue Reading,module,MGS_Blog
+By ,By ,module,MGS_Blog
+Previous,Previous,module,MGS_Blog
+Next,Next,module,MGS_Blog
+Comments,Comments,module,MGS_Blog
+Comment,Comment,module,MGS_Blog
+* Required Fields,* Required Fields,module,MGS_Blog
+Leave A Reply,Leave A Reply,module,MGS_Blog
+Your email address will not be published. Required fields are marked,Your email address will not be published. Required fields are marked,module,MGS_Blog
+Your comment,Your comment,module,MGS_Blog
+Content,Content,module,MGS_Blog
+Your name,Your name,module,MGS_Blog
+Your email,Your email,module,MGS_Blog
+Email,Email,module,MGS_Blog
+Send Messeages,Send Messeages,module,MGS_Blog
+You must be logged in to post a comment.,You must be logged in to post a comment.,module,MGS_Blog
+Click here,Click here,module,MGS_Blog
+to log in,to log in,module,MGS_Blog
+Load More Comment,Load More Comment,module,MGS_Blog
+Categories,Categories,module,MGS_Blog
+Recent Posts,Recent Posts,module,MGS_Blog
+Tags,Tags,module,MGS_Blog
+Read More,Read More,module,MGS_Blog
+There are no posts matching the selection.,There are no posts matching the selection.,module,MGS_Blog
+Manage Brands,Manage Brands,module,MGS_Brand
+Add New Brand,Add New Brand,module,MGS_Brand
+Save and Continue Edit,Save and Continue Edit,module,MGS_Brand
+Edit Brand '%1',Edit Brand '%1',module,MGS_Brand
+New New Brand,New New Brand,module,MGS_Brand
+Brand Information,Brand Information,module,MGS_Brand
+General,General,module,MGS_Brand
+Name,Name,module,MGS_Brand
+URL Key,URL Key,module,MGS_Brand
+Small Image,Small Image,module,MGS_Brand
+Image,Image,module,MGS_Brand
+Description,Description,module,MGS_Brand
+Store View,Store View,module,MGS_Brand
+Status,Status,module,MGS_Brand
+Featured Brand,Featured Brand,module,MGS_Brand
+Sort Order,Sort Order,module,MGS_Brand
+Meta Information,Meta Information,module,MGS_Brand
+Meta Keywords,Meta Keywords,module,MGS_Brand
+Meta Description,Meta Description,module,MGS_Brand
+Product ID,Product ID,module,MGS_Brand
+Type,Type,module,MGS_Brand
+Attribute Set,Attribute Set,module,MGS_Brand
+Visibility,Visibility,module,MGS_Brand
+SKU,SKU,module,MGS_Brand
+Price,Price,module,MGS_Brand
+Position,Position,module,MGS_Brand
+Brand,Brand,module,MGS_Brand
+Products,Products,module,MGS_Brand
+Brand ID,Brand ID,module,MGS_Brand
+Yes,Yes,module,MGS_Brand
+No,No,module,MGS_Brand
+Enabled,Enabled,module,MGS_Brand
+Disabled,Disabled,module,MGS_Brand
+Action,Action,module,MGS_Brand
+Edit,Edit,module,MGS_Brand
+Delete,Delete,module,MGS_Brand
+Are you sure?,Are you sure?,module,MGS_Brand
+Change Status,Change Status,module,MGS_Brand
+Home,Home,module,MGS_Brand
+Go to Home Page,Go to Home Page,module,MGS_Brand
+Shop By Brand,Shop By Brand,module,MGS_Brand
+The brand has been deleted.,The brand has been deleted.,module,MGS_Brand
+We can't find a brand to delete.,We can't find a brand to delete.,module,MGS_Brand
+This brand no longer exists.,This brand no longer exists.,module,MGS_Brand
+Edit Brand,Edit Brand,module,MGS_Brand
+A total of %1 record(s) have been deleted.,A total of %1 record(s) have been deleted.,module,MGS_Brand
+A total of %1 record(s) have been disabled.,A total of %1 record(s) have been disabled.,module,MGS_Brand
+A total of %1 record(s) have been enabled.,A total of %1 record(s) have been enabled.,module,MGS_Brand
+Please select brand(s).,Please select brand(s).,module,MGS_Brand
+Total of %1 brand(s) were changed status.,Total of %1 brand(s) were changed status.,module,MGS_Brand
+The wrong brand is specified.,The wrong brand is specified.,module,MGS_Brand
+Disallowed file type.,Disallowed file type.,module,MGS_Brand
+You saved the brand.,You saved the brand.,module,MGS_Brand
+Something went wrong while saving the brand data. Please review the error log.,Something went wrong while saving the brand data. Please review the error log.,module,MGS_Brand
+2,2,module,MGS_Brand
+3,3,module,MGS_Brand
+4,4,module,MGS_Brand
+5,5,module,MGS_Brand
+6,6,module,MGS_Brand
+7,7,module,MGS_Brand
+8,8,module,MGS_Brand
+Default,Default,module,MGS_Brand
+Owl Carousel,Owl Carousel,module,MGS_Brand
+Default Template,Default Template,module,MGS_Brand
+1,1,module,MGS_Brand
+1 column,1 column,module,MGS_Brand
+2 columns left,2 columns left,module,MGS_Brand
+2 columns right,2 columns right,module,MGS_Brand
+3 columns,3 columns,module,MGS_Brand
+All Store Views,All Store Views,module,MGS_Brand
+Delete ${ $.$data.title },Delete ${ $.$data.title },module,MGS_Brand
+Are you sure you wan't to delete a ${ $.$data.title } record?,Are you sure you wan't to delete a ${ $.$data.title } record?,module,MGS_Brand
+Featured Brands,Featured Brands,module,MGS_Brand
+%1 ,%1 ,module,MGS_Brand
+Product,Product,module,MGS_Brand
+Related Products By Brand,Related Products By Brand,module,MGS_Brand
+Add to Cart,Add to Cart,module,MGS_Brand
+In stock,In stock,module,MGS_Brand
+Out of stock,Out of stock,module,MGS_Brand
+Add to Wish List,Add to Wish List,module,MGS_Brand
+Save,Save,module,MGS_Brand
+Add to Compare,Add to Compare,module,MGS_Brand
+Compare,Compare,module,MGS_Brand
+Brands,Brands,module,MGS_Brand
+View All,View All,module,MGS_Brand
+Have no brands.,Have no brands.,module,MGS_Brand
+0-9,0-9,module,MGS_Brand
+Search brand here...,Search brand here...,module,MGS_Brand
+Search,Search,module,MGS_Brand
+Reset,Reset,module,MGS_Brand
+There are no brands matching the selection.,There are no brands matching the selection.,module,MGS_Brand
+Choose Page to Import,Choose Page to Import,module,MGS_ClaueTheme
+Please wait...,Please wait...,module,MGS_ClaueTheme
+Import,Import,module,MGS_ClaueTheme
+Import %1's Static Blocks,Import %1's Static Blocks,module,MGS_ClaueTheme
+Have no static block to import,Have no static block to import,module,MGS_ClaueTheme
+We can't upload the file right now.,We can't upload the file right now.,module,MGS_ClaueTheme
+Claue theme has been successfully activated.,Claue theme has been successfully activated.,module,MGS_ClaueTheme
+Claue theme has not been activated,Claue theme has not been activated,module,MGS_ClaueTheme
+Gallery List,Gallery List,module,MGS_ExtraGallery
+Gallery Grid,Gallery Grid,module,MGS_ExtraGallery
+Top Site Slide,Top Site Slide,module,MGS_ExtraGallery
+Vertical Thumbnail,Vertical Thumbnail,module,MGS_ExtraGallery
+Horizontal Thumbnail,Horizontal Thumbnail,module,MGS_ExtraGallery
+No Thumbnail,No Thumbnail,module,MGS_ExtraGallery
+Hover Zoom,Hover Zoom,module,MGS_ExtraGallery
+Light Box,Light Box,module,MGS_ExtraGallery
+Use Default Setting,Use Default Setting,module,MGS_ExtraGallery
+Video,Video,module,MGS_ExtraGallery
+Are you sure you want to use this account to create front-end builder account ?,Are you sure you want to use this account to create front-end builder account ?,module,MGS_Fbuilder
+Front-end Builder Account,Front-end Builder Account,module,MGS_Fbuilder
+Active,Active,module,MGS_Fbuilder
+Refresh Data Images,Refresh Data Images,module,MGS_Fbuilder
+Please wait...,Please wait...,module,MGS_Fbuilder
+Delete,Delete,module,MGS_Fbuilder
+Delete All,Delete All,module,MGS_Fbuilder
+Choose Page to Export,Choose Page to Export,module,MGS_Fbuilder
+Export,Export,module,MGS_Fbuilder
+Choose Page to Import,Choose Page to Import,module,MGS_Fbuilder
+Import,Import,module,MGS_Fbuilder
+Install %1 theme,Install %1 theme,module,MGS_Fbuilder
+Choose Page to Restore,Choose Page to Restore,module,MGS_Fbuilder
+Choose Version to Restore,Choose Version to Restore,module,MGS_Fbuilder
+Restore,Restore,module,MGS_Fbuilder
+Edit,Edit,module,MGS_Fbuilder
+Move Block,Move Block,module,MGS_Fbuilder
+Copy,Copy,module,MGS_Fbuilder
+Change column setting,Change column setting,module,MGS_Fbuilder
+Are you sure you would like to remove this block?,Are you sure you would like to remove this block?,module,MGS_Fbuilder
+Delete Block,Delete Block,module,MGS_Fbuilder
+Move Up,Move Up,module,MGS_Fbuilder
+Move Down,Move Down,module,MGS_Fbuilder
+Edit Section,Edit Section,module,MGS_Fbuilder
+Duplicate Section,Duplicate Section,module,MGS_Fbuilder
+Are you sure you would like to duplicate this section?,Are you sure you would like to duplicate this section?,module,MGS_Fbuilder
+Delete Section,Delete Section,module,MGS_Fbuilder
+Are you sure you would like to remove this section?,Are you sure you would like to remove this section?,module,MGS_Fbuilder
+Front-end Builder,Front-end Builder,module,MGS_Fbuilder
+Successfully updated product description,Successfully updated product description,module,MGS_Fbuilder
+The account with same email already exists on %1,The account with same email already exists on %1,module,MGS_Fbuilder
+Front-end Builder account have been created for website %1.,Front-end Builder account have been created for website %1.,module,MGS_Fbuilder
+Successfully deleted the file.,Successfully deleted the file.,module,MGS_Fbuilder
+Successfully deleted ,Successfully deleted ,module,MGS_Fbuilder
+ files, files,module,MGS_Fbuilder
+Something went wrong while deleting the file.,Something went wrong while deleting the file.,module,MGS_Fbuilder
+Successfully deleted all the files.,Successfully deleted all the files.,module,MGS_Fbuilder
+Something went wrong while deleting the files.,Something went wrong while deleting the files.,module,MGS_Fbuilder
+Have no page to export,Have no page to export,module,MGS_Fbuilder
+Can not upload file.,Can not upload file.,module,MGS_Fbuilder
+Cannot import page,Cannot import page,module,MGS_Fbuilder
+Have no page to import,Have no page to import,module,MGS_Fbuilder
+Successfully updated category description,Successfully updated category description,module,MGS_Fbuilder
+Can not update this block !,Can not update this block !,module,MGS_Fbuilder
+Can not delete this block !,Can not delete this block !,module,MGS_Fbuilder
+You saved the Text content block. Please wait for page reload.,You saved the Text content block. Please wait for page reload.,module,MGS_Fbuilder
+"You saved the ""OWL Carousel Slider"" block. Please wait for page reload.","You saved the ""OWL Carousel Slider"" block. Please wait for page reload.",module,MGS_Fbuilder
+You have not add any images to slider.,You have not add any images to slider.,module,MGS_Fbuilder
+"You saved the ""New Products"" block. Please wait for page reload.","You saved the ""New Products"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Products by Attribute"" block. Please wait for page reload.","You saved the ""Products by Attribute"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Sale Products"" block. Please wait for page reload.","You saved the ""Sale Products"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Top Rate Products"" block. Please wait for page reload.","You saved the ""Top Rate Products"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Category Products"" block. Please wait for page reload.","You saved the ""Category Products"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Deals"" block. Please wait for page reload.","You saved the ""Deals"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Product Tabs"" block. Please wait for page reload.","You saved the ""Product Tabs"" block. Please wait for page reload.",module,MGS_Fbuilder
+You have not add any tabs.,You have not add any tabs.,module,MGS_Fbuilder
+"You saved the ""Single Product"" block. Please wait for page reload.","You saved the ""Single Product"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Facebook Fanbox"" block. Please wait to reload page.","You saved the ""Facebook Fanbox"" block. Please wait to reload page.",module,MGS_Fbuilder
+"You saved the ""Twitter Timeline"" block. Please wait to reload page.","You saved the ""Twitter Timeline"" block. Please wait to reload page.",module,MGS_Fbuilder
+"You saved the ""Instagram"" block. Please wait to reload page.","You saved the ""Instagram"" block. Please wait to reload page.",module,MGS_Fbuilder
+"You saved the ""Instagram Shop"" block. Please wait to reload page.","You saved the ""Instagram Shop"" block. Please wait to reload page.",module,MGS_Fbuilder
+"You saved the ""Category List"" block. Please wait to reload page.","You saved the ""Category List"" block. Please wait to reload page.",module,MGS_Fbuilder
+"You saved the ""Accordion"" block. Please wait for page reload.","You saved the ""Accordion"" block. Please wait for page reload.",module,MGS_Fbuilder
+You have not add any content for Accordion.,You have not add any content for Accordion.,module,MGS_Fbuilder
+"You saved the ""Video"" block. Please wait for page reload.","You saved the ""Video"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Google Map"" block. Please wait for page reload.","You saved the ""Google Map"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Promo Banner"" block. Please wait for page reload.","You saved the ""Promo Banner"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Profile"" block. Please wait for page reload.","You saved the ""Profile"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Content Box"" block. Please wait for page reload.","You saved the ""Content Box"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Counter Box"" block. Please wait for page reload.","You saved the ""Counter Box"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Countdown Box"" block. Please wait for page reload.","You saved the ""Countdown Box"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Progress Bar"" block. Please wait for page reload.","You saved the ""Progress Bar"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Progress Circle"" block. Please wait for page reload.","You saved the ""Progress Circle"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Divider"" block. Please wait for page reload.","You saved the ""Divider"" block. Please wait for page reload.",module,MGS_Fbuilder
+No timeline to create chart.,No timeline to create chart.,module,MGS_Fbuilder
+No segment to create chart.,No segment to create chart.,module,MGS_Fbuilder
+"You saved the ""Chart"" block. Please wait for page reload.","You saved the ""Chart"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Heading"" block. Please wait for page reload.","You saved the ""Heading"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""List"" block. Please wait for page reload.","You saved the ""List"" block. Please wait for page reload.",module,MGS_Fbuilder
+Have no item to save.,Have no item to save.,module,MGS_Fbuilder
+"You saved the ""Lookbook"" block. Please wait for page reload.","You saved the ""Lookbook"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Lookbook Slider"" block. Please wait for page reload.","You saved the ""Lookbook Slider"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Latest Post"" block. Please wait for page reload.","You saved the ""Latest Post"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Portfolio"" block. Please wait for page reload.","You saved the ""Portfolio"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Testimonial"" block. Please wait for page reload.","You saved the ""Testimonial"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Image"" block. Please wait for page reload.","You saved the ""Image"" block. Please wait for page reload.",module,MGS_Fbuilder
+Have no button to save.,Have no button to save.,module,MGS_Fbuilder
+"You saved the ""Button"" block. Please wait for page reload.","You saved the ""Button"" block. Please wait for page reload.",module,MGS_Fbuilder
+Have no content to save.,Have no content to save.,module,MGS_Fbuilder
+"You saved the ""Table"" block. Please wait for page reload.","You saved the ""Table"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Masonry"" block. Please wait for page reload.","You saved the ""Masonry"" block. Please wait for page reload.",module,MGS_Fbuilder
+Have no image to add to gallery.,Have no image to add to gallery.,module,MGS_Fbuilder
+"You saved the ""Tabs"" block. Please wait for page reload.","You saved the ""Tabs"" block. Please wait for page reload.",module,MGS_Fbuilder
+Have no tabs to save.,Have no tabs to save.,module,MGS_Fbuilder
+Have no content for popup.,Have no content for popup.,module,MGS_Fbuilder
+"You saved the ""Modal Popup"" block. Please wait for page reload.","You saved the ""Modal Popup"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Form"" block. Please wait for page reload.","You saved the ""Form"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Lottie Animation"" block. Please wait for page reload.","You saved the ""Lottie Animation"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved the ""Banner Slider"" block. Please wait for page reload.","You saved the ""Banner Slider"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved ""Blog posts"" block. Please wait for page reload.","You saved ""Blog posts"" block. Please wait for page reload.",module,MGS_Fbuilder
+You saved Countdown Timer block. Please wait for page reload.,You saved Countdown Timer block. Please wait for page reload.,module,MGS_Fbuilder
+"You saved ""Countdown Timer"" block. Please wait for page reload.","You saved ""Countdown Timer"" block. Please wait for page reload.",module,MGS_Fbuilder
+Have no brand to display.,Have no brand to display.,module,MGS_Fbuilder
+"You saved ""Brand"" block. Please wait for page reload.","You saved ""Brand"" block. Please wait for page reload.",module,MGS_Fbuilder
+"You saved ""Product Slider"" block. Please wait for page reload.","You saved ""Product Slider"" block. Please wait for page reload.",module,MGS_Fbuilder
+You duplicated the section.,You duplicated the section.,module,MGS_Fbuilder
+Incorrect CAPTCHA.,Incorrect CAPTCHA.,module,MGS_Fbuilder
+Not allow extension .%1 for %2. Allowed extensions: %3,Not allow extension .%1 for %2. Allowed extensions: %3,module,MGS_Fbuilder
+Add New Block,Add New Block,module,MGS_Fbuilder
+Paste Copied Block,Paste Copied Block,module,MGS_Fbuilder
+You duplicated the block.,You duplicated the block.,module,MGS_Fbuilder
+You saved the %1 information.,You saved the %1 information.,module,MGS_Fbuilder
+Something went wrong while saving the %1.,Something went wrong while saving the %1.,module,MGS_Fbuilder
+Can not find section to delete.,Can not find section to delete.,module,MGS_Fbuilder
+This section no longer exists.,This section no longer exists.,module,MGS_Fbuilder
+You saved the section. Please wait to reload page.,You saved the section. Please wait to reload page.,module,MGS_Fbuilder
+You saved the Block. Please wait to reload page.,You saved the Block. Please wait to reload page.,module,MGS_Fbuilder
+Please add content.,Please add content.,module,MGS_Fbuilder
+Can not find block id.,Can not find block id.,module,MGS_Fbuilder
+Validate,Validate,module,MGS_Fbuilder
+Number Only,Number Only,module,MGS_Fbuilder
+Letter Only,Letter Only,module,MGS_Fbuilder
+Number Or Letter,Number Or Letter,module,MGS_Fbuilder
+Email,Email,module,MGS_Fbuilder
+Url,Url,module,MGS_Fbuilder
+Identifier,Identifier,module,MGS_Fbuilder
+0 Or Greater,0 Or Greater,module,MGS_Fbuilder
+Greater Than 0,Greater Than 0,module,MGS_Fbuilder
+Allow Extensions,Allow Extensions,module,MGS_Fbuilder
+Options,Options,module,MGS_Fbuilder
+Comma-separated.,Comma-separated.,module,MGS_Fbuilder
+Something went wrong while getting the image url.,Something went wrong while getting the image url.,module,MGS_Fbuilder
+You saved the page.,You saved the page.,module,MGS_Fbuilder
+Something went wrong while saving the page.,Something went wrong while saving the page.,module,MGS_Fbuilder
+Have no content to import,Have no content to import,module,MGS_Fbuilder
+Low Resolution,Low Resolution,module,MGS_Fbuilder
+Thumbnail,Thumbnail,module,MGS_Fbuilder
+Standard Resolution,Standard Resolution,module,MGS_Fbuilder
+Use Image,Use Image,module,MGS_Fbuilder
+Use Font Icon,Use Font Icon,module,MGS_Fbuilder
+name,name,module,MGS_Fbuilder
+description,description,module,MGS_Fbuilder
+Copy Description Template,Copy Description Template,module,MGS_Fbuilder
+Source:,Source:,module,MGS_Fbuilder
+Check,Check,module,MGS_Fbuilder
+Apply,Apply,module,MGS_Fbuilder
+Use this user information to create Front-end Builder account.,Use this user information to create Front-end Builder account.,module,MGS_Fbuilder
+Copy Desctiption Template,Copy Desctiption Template,module,MGS_Fbuilder
+Add New Section,Add New Section,module,MGS_Fbuilder
+Select Block,Select Block,module,MGS_Fbuilder
+Static Content,Static Content,module,MGS_Fbuilder
+Heading,Heading,module,MGS_Fbuilder
+Text content & Images,Text content & Images,module,MGS_Fbuilder
+Images,Images,module,MGS_Fbuilder
+OWL Carousel Slider,OWL Carousel Slider,module,MGS_Fbuilder
+Masonry Gallery,Masonry Gallery,module,MGS_Fbuilder
+Promo Banner,Promo Banner,module,MGS_Fbuilder
+Profile,Profile,module,MGS_Fbuilder
+Accordion,Accordion,module,MGS_Fbuilder
+Video,Video,module,MGS_Fbuilder
+Google Map,Google Map,module,MGS_Fbuilder
+Content Box,Content Box,module,MGS_Fbuilder
+Counter Box,Counter Box,module,MGS_Fbuilder
+Countdown Box,Countdown Box,module,MGS_Fbuilder
+Chart,Chart,module,MGS_Fbuilder
+Progress Bar,Progress Bar,module,MGS_Fbuilder
+Progress Circle,Progress Circle,module,MGS_Fbuilder
+Divider,Divider,module,MGS_Fbuilder
+List,List,module,MGS_Fbuilder
+Button,Button,module,MGS_Fbuilder
+Table,Table,module,MGS_Fbuilder
+Tabs,Tabs,module,MGS_Fbuilder
+Modal Popup,Modal Popup,module,MGS_Fbuilder
+Form,Form,module,MGS_Fbuilder
+Catalog,Catalog,module,MGS_Fbuilder
+Category List,Category List,module,MGS_Fbuilder
+Category Products,Category Products,module,MGS_Fbuilder
+New Products,New Products,module,MGS_Fbuilder
+Products by Attribute,Products by Attribute,module,MGS_Fbuilder
+Sale Products,Sale Products,module,MGS_Fbuilder
+Top Rate Products,Top Rate Products,module,MGS_Fbuilder
+Deals,Deals,module,MGS_Fbuilder
+Product Tabs,Product Tabs,module,MGS_Fbuilder
+Single Product,Single Product,module,MGS_Fbuilder
+Social,Social,module,MGS_Fbuilder
+Facebook Fanbox,Facebook Fanbox,module,MGS_Fbuilder
+Twitter Timeline,Twitter Timeline,module,MGS_Fbuilder
+Instagram,Instagram,module,MGS_Fbuilder
+Instagram Shop,Instagram Shop,module,MGS_Fbuilder
+Extensions,Extensions,module,MGS_Fbuilder
+Lookbook,Lookbook,module,MGS_Fbuilder
+Lookbook Slider,Lookbook Slider,module,MGS_Fbuilder
+Latest Post,Latest Post,module,MGS_Fbuilder
+Portfolio,Portfolio,module,MGS_Fbuilder
+Testimonial,Testimonial,module,MGS_Fbuilder
+Mageplaza Extensions,Mageplaza Extensions,module,MGS_Fbuilder
+Here are the extensions from Mageplaza that we recommend you use:,Here are the extensions from Mageplaza that we recommend you use:,module,MGS_Fbuilder
+Banner Slider,Banner Slider,module,MGS_Fbuilder
+Blog Post,Blog Post,module,MGS_Fbuilder
+Countdown Timer,Countdown Timer,module,MGS_Fbuilder
+Daily Deal,Daily Deal,module,MGS_Fbuilder
+Brands,Brands,module,MGS_Fbuilder
+Product Slider,Product Slider,module,MGS_Fbuilder
+Accordion Block,Accordion Block,module,MGS_Fbuilder
+* Required Fields,* Required Fields,module,MGS_Fbuilder
+Content Config,Content Config,module,MGS_Fbuilder
+Add new item,Add new item,module,MGS_Fbuilder
+View Config,View Config,module,MGS_Fbuilder
+Allow collapse all,Allow collapse all,module,MGS_Fbuilder
+No,No,module,MGS_Fbuilder
+Yes,Yes,module,MGS_Fbuilder
+Margin bottom,Margin bottom,module,MGS_Fbuilder
+Content padding,Content padding,module,MGS_Fbuilder
+Title,Title,module,MGS_Fbuilder
+Font size,Font size,module,MGS_Fbuilder
+Height,Height,module,MGS_Fbuilder
+Color,Color,module,MGS_Fbuilder
+Background,Background,module,MGS_Fbuilder
+Font Bold,Font Bold,module,MGS_Fbuilder
+Font Italic,Font Italic,module,MGS_Fbuilder
+Uppercase,Uppercase,module,MGS_Fbuilder
+Title active,Title active,module,MGS_Fbuilder
+Icon,Icon,module,MGS_Fbuilder
+Position,Position,module,MGS_Fbuilder
+Right,Right,module,MGS_Fbuilder
+Left,Left,module,MGS_Fbuilder
+Back,Back,module,MGS_Fbuilder
+Submit,Submit,module,MGS_Fbuilder
+Products by Attribute Block,Products by Attribute Block,module,MGS_Fbuilder
+Product Config,Product Config,module,MGS_Fbuilder
+Attribute,Attribute,module,MGS_Fbuilder
+Choose an attribute,Choose an attribute,module,MGS_Fbuilder
+Number of product to display,Number of product to display,module,MGS_Fbuilder
+Items per row (default),Items per row (default),module,MGS_Fbuilder
+Items per row (tablet),Items per row (tablet),module,MGS_Fbuilder
+Items per row (mobile),Items per row (mobile),module,MGS_Fbuilder
+Number col,Number col,module,MGS_Fbuilder
+Item per col,Item per col,module,MGS_Fbuilder
+View mode,View mode,module,MGS_Fbuilder
+Grid,Grid,module,MGS_Fbuilder
+Hide Product Name,Hide Product Name,module,MGS_Fbuilder
+Hide Review,Hide Review,module,MGS_Fbuilder
+Hide Price,Hide Price,module,MGS_Fbuilder
+Hide Add to Cart,Hide Add to Cart,module,MGS_Fbuilder
+Hide Add to Wishlist,Hide Add to Wishlist,module,MGS_Fbuilder
+Hide Add to Compare,Hide Add to Compare,module,MGS_Fbuilder
+Use slider,Use slider,module,MGS_Fbuilder
+Button Block,Button Block,module,MGS_Fbuilder
+Button Config,Button Config,module,MGS_Fbuilder
+Text,Text,module,MGS_Fbuilder
+Hover Color,Hover Color,module,MGS_Fbuilder
+Link,Link,module,MGS_Fbuilder
+Background Gradient,Background Gradient,module,MGS_Fbuilder
+Background Hover,Background Hover,module,MGS_Fbuilder
+From,From,module,MGS_Fbuilder
+To,To,module,MGS_Fbuilder
+Orientation,Orientation,module,MGS_Fbuilder
+Horizontal  →,Horizontal  →,module,MGS_Fbuilder
+Vertical  ↓,Vertical  ↓,module,MGS_Fbuilder
+Diagonal  ↘,Diagonal  ↘,module,MGS_Fbuilder
+Diagonal  ↗,Diagonal  ↗,module,MGS_Fbuilder
+Radial  ○,Radial  ○,module,MGS_Fbuilder
+From (Hover),From (Hover),module,MGS_Fbuilder
+To (Hover),To (Hover),module,MGS_Fbuilder
+Orientation (Hover),Orientation (Hover),module,MGS_Fbuilder
+Border,Border,module,MGS_Fbuilder
+Width,Width,module,MGS_Fbuilder
+Border top,Border top,module,MGS_Fbuilder
+Border right,Border right,module,MGS_Fbuilder
+Border bottom,Border bottom,module,MGS_Fbuilder
+Border left,Border left,module,MGS_Fbuilder
+Font class,Font class,module,MGS_Fbuilder
+Align,Align,module,MGS_Fbuilder
+Box Shadow,Box Shadow,module,MGS_Fbuilder
+Border Radius,Border Radius,module,MGS_Fbuilder
+Center,Center,module,MGS_Fbuilder
+Full width,Full width,module,MGS_Fbuilder
+Category List Block,Category List Block,module,MGS_Fbuilder
+Grid width Category Thumbnail Image,Grid width Category Thumbnail Image,module,MGS_Fbuilder
+Go to admin > edit categories and upload thumbnail image.,Go to admin > edit categories and upload thumbnail image.,module,MGS_Fbuilder
+Top Categories,Top Categories,module,MGS_Fbuilder
+Show Icon,Show Icon,module,MGS_Fbuilder
+You need to go to admin > edit categories and set icon.,You need to go to admin > edit categories and set icon.,module,MGS_Fbuilder
+Show Category Name,Show Category Name,module,MGS_Fbuilder
+Show Product count,Show Product count,module,MGS_Fbuilder
+Category Name,Category Name,module,MGS_Fbuilder
+Other text,Other text,module,MGS_Fbuilder
+Primary Color,Primary Color,module,MGS_Fbuilder
+Secondary Color,Secondary Color,module,MGS_Fbuilder
+Third Color,Third Color,module,MGS_Fbuilder
+Fourth Color,Fourth Color,module,MGS_Fbuilder
+Fifth Color,Fifth Color,module,MGS_Fbuilder
+Category Products Block,Category Products Block,module,MGS_Fbuilder
+Chart Block,Chart Block,module,MGS_Fbuilder
+Type,Type,module,MGS_Fbuilder
+Line,Line,module,MGS_Fbuilder
+Bar,Bar,module,MGS_Fbuilder
+Radar,Radar,module,MGS_Fbuilder
+Pie,Pie,module,MGS_Fbuilder
+Doughnut,Doughnut,module,MGS_Fbuilder
+Timeline,Timeline,module,MGS_Fbuilder
+Label,Label,module,MGS_Fbuilder
+Add timeline point,Add timeline point,module,MGS_Fbuilder
+Segments,Segments,module,MGS_Fbuilder
+Value,Value,module,MGS_Fbuilder
+Add segment,Add segment,module,MGS_Fbuilder
+Items,Items,module,MGS_Fbuilder
+Values,Values,module,MGS_Fbuilder
+Add Item,Add Item,module,MGS_Fbuilder
+You need to add timeline first.,You need to add timeline first.,module,MGS_Fbuilder
+Content Box Block,Content Box Block,module,MGS_Fbuilder
+Icon font class,Icon font class,module,MGS_Fbuilder
+Hover border,Hover border,module,MGS_Fbuilder
+Border width,Border width,module,MGS_Fbuilder
+Hover color,Hover color,module,MGS_Fbuilder
+Hover background,Hover background,module,MGS_Fbuilder
+Description,Description,module,MGS_Fbuilder
+Style,Style,module,MGS_Fbuilder
+Vertical,Vertical,module,MGS_Fbuilder
+Horizontal,Horizontal,module,MGS_Fbuilder
+Countdown Box Block,Countdown Box Block,module,MGS_Fbuilder
+Date,Date,module,MGS_Fbuilder
+Font bold,Font bold,module,MGS_Fbuilder
+Border size,Border size,module,MGS_Fbuilder
+Border radius,Border radius,module,MGS_Fbuilder
+Days,Days,module,MGS_Fbuilder
+Hours,Hours,module,MGS_Fbuilder
+Minutes,Minutes,module,MGS_Fbuilder
+Seconds,Seconds,module,MGS_Fbuilder
+Bottom,Bottom,module,MGS_Fbuilder
+Top,Top,module,MGS_Fbuilder
+Counter Box Block,Counter Box Block,module,MGS_Fbuilder
+Box border,Box border,module,MGS_Fbuilder
+Number color,Number color,module,MGS_Fbuilder
+Number font size,Number font size,module,MGS_Fbuilder
+Number from,Number from,module,MGS_Fbuilder
+Number to,Number to,module,MGS_Fbuilder
+Duration,Duration,module,MGS_Fbuilder
+Separators,Separators,module,MGS_Fbuilder
+Deals Block,Deals Block,module,MGS_Fbuilder
+Deal Config,Deal Config,module,MGS_Fbuilder
+Hide Countdown Time,Hide Countdown Time,module,MGS_Fbuilder
+Time Text,Time Text,module,MGS_Fbuilder
+Background color,Background color,module,MGS_Fbuilder
+Text font size,Text font size,module,MGS_Fbuilder
+Text color,Text color,module,MGS_Fbuilder
+Hide Discount Percent,Hide Discount Percent,module,MGS_Fbuilder
+Hide Saved Price,Hide Saved Price,module,MGS_Fbuilder
+Price font size,Price font size,module,MGS_Fbuilder
+Price color,Price color,module,MGS_Fbuilder
+Divider Block,Divider Block,module,MGS_Fbuilder
+px. Empty for full,px. Empty for full,module,MGS_Fbuilder
+Solid,Solid,module,MGS_Fbuilder
+Double solid,Double solid,module,MGS_Fbuilder
+Dotted,Dotted,module,MGS_Fbuilder
+Double dotted,Double dotted,module,MGS_Fbuilder
+Dashed,Dashed,module,MGS_Fbuilder
+Double dashed,Double dashed,module,MGS_Fbuilder
+Shadown,Shadown,module,MGS_Fbuilder
+Border color,Border color,module,MGS_Fbuilder
+Show text,Show text,module,MGS_Fbuilder
+Padding,Padding,module,MGS_Fbuilder
+Facebook Fanbox Block,Facebook Fanbox Block,module,MGS_Fbuilder
+Facebook Config,Facebook Config,module,MGS_Fbuilder
+Facebook Page URL,Facebook Page URL,module,MGS_Fbuilder
+The pixel width of the plugin. Min. is 180 & Max. is 500.,The pixel width of the plugin. Min. is 180 & Max. is 500.,module,MGS_Fbuilder
+The pixel height of the plugin. Min. is 70.,The pixel height of the plugin. Min. is 70.,module,MGS_Fbuilder
+Events,Events,module,MGS_Fbuilder
+Messages,Messages,module,MGS_Fbuilder
+Hide Cover,Hide Cover,module,MGS_Fbuilder
+Hide cover photo in the header.,Hide cover photo in the header.,module,MGS_Fbuilder
+Show Facepile,Show Facepile,module,MGS_Fbuilder
+Show profile photos when friends like this.,Show profile photos when friends like this.,module,MGS_Fbuilder
+Small Header,Small Header,module,MGS_Fbuilder
+Use the small header instead.,Use the small header instead.,module,MGS_Fbuilder
+Fit Inside,Fit Inside,module,MGS_Fbuilder
+Try to fit inside the container width.,Try to fit inside the container width.,module,MGS_Fbuilder
+Hide call to button,Hide call to button,module,MGS_Fbuilder
+Hide the custom call to action button (if available),Hide the custom call to action button (if available),module,MGS_Fbuilder
+Form Block,Form Block,module,MGS_Fbuilder
+Fields Config,Fields Config,module,MGS_Fbuilder
+Input type,Input type,module,MGS_Fbuilder
+Text Field,Text Field,module,MGS_Fbuilder
+Text Area,Text Area,module,MGS_Fbuilder
+Dropdown,Dropdown,module,MGS_Fbuilder
+Radio,Radio,module,MGS_Fbuilder
+Checkbox,Checkbox,module,MGS_Fbuilder
+Multiselect,Multiselect,module,MGS_Fbuilder
+Is Required,Is Required,module,MGS_Fbuilder
+Add new field,Add new field,module,MGS_Fbuilder
+Form Config,Form Config,module,MGS_Fbuilder
+Sent email to,Sent email to,module,MGS_Fbuilder
+Email subject,Email subject,module,MGS_Fbuilder
+Use Captcha,Use Captcha,module,MGS_Fbuilder
+Email template top content,Email template top content,module,MGS_Fbuilder
+Email template bottom content,Email template bottom content,module,MGS_Fbuilder
+Success message,Success message,module,MGS_Fbuilder
+File,File,module,MGS_Fbuilder
+Heading Block,Heading Block,module,MGS_Fbuilder
+H1,H1,module,MGS_Fbuilder
+H2,H2,module,MGS_Fbuilder
+H3,H3,module,MGS_Fbuilder
+H4,H4,module,MGS_Fbuilder
+H5,H5,module,MGS_Fbuilder
+H6,H6,module,MGS_Fbuilder
+Heading text,Heading text,module,MGS_Fbuilder
+Text align,Text align,module,MGS_Fbuilder
+Show border,Show border,module,MGS_Fbuilder
+Middle,Middle,module,MGS_Fbuilder
+Margin top,Margin top,module,MGS_Fbuilder
+Image Block,Image Block,module,MGS_Fbuilder
+Block Type,Block Type,module,MGS_Fbuilder
+Single Image,Single Image,module,MGS_Fbuilder
+Before & After,Before & After,module,MGS_Fbuilder
+Image,Image,module,MGS_Fbuilder
+ALT,ALT,module,MGS_Fbuilder
+Image After,Image After,module,MGS_Fbuilder
+Effect,Effect,module,MGS_Fbuilder
+No Effect,No Effect,module,MGS_Fbuilder
+Zoom In,Zoom In,module,MGS_Fbuilder
+Zoom Out,Zoom Out,module,MGS_Fbuilder
+Rotate & Zoom Out,Rotate & Zoom Out,module,MGS_Fbuilder
+Blur,Blur,module,MGS_Fbuilder
+Gray Scale,Gray Scale,module,MGS_Fbuilder
+Sepia,Sepia,module,MGS_Fbuilder
+Opacity,Opacity,module,MGS_Fbuilder
+Fade,Fade,module,MGS_Fbuilder
+Slide,Slide,module,MGS_Fbuilder
+Slide Type,Slide Type,module,MGS_Fbuilder
+Use Lightbox,Use Lightbox,module,MGS_Fbuilder
+Lightbox Group,Lightbox Group,module,MGS_Fbuilder
+For next and previous on lightbox,For next and previous on lightbox,module,MGS_Fbuilder
+Border Width,Border Width,module,MGS_Fbuilder
+Border Color,Border Color,module,MGS_Fbuilder
+Instagram Block,Instagram Block,module,MGS_Fbuilder
+Instagram Config,Instagram Config,module,MGS_Fbuilder
+Please go to admin panel > MGS > Social [Configuration] and add setting for <b>Instagram access token</b> first.,Please go to admin panel > MGS > Social [Configuration] and add setting for <b>Instagram access token</b> first.,module,MGS_Fbuilder
+Enable link,Enable link,module,MGS_Fbuilder
+Instagram Shop Block,Instagram Shop Block,module,MGS_Fbuilder
+Please go to admin panel > MGS > Social [Configuration] and add setting for <b>Snapppt Embed Code</b> first.,Please go to admin panel > MGS > Social [Configuration] and add setting for <b>Snapppt Embed Code</b> first.,module,MGS_Fbuilder
+Latest Post Block,Latest Post Block,module,MGS_Fbuilder
+Post Config,Post Config,module,MGS_Fbuilder
+Filter post by category,Filter post by category,module,MGS_Fbuilder
+Number of post to display,Number of post to display,module,MGS_Fbuilder
+Hide Thumbnail,Hide Thumbnail,module,MGS_Fbuilder
+Hide Short Description,Hide Short Description,module,MGS_Fbuilder
+Summary character count,Summary character count,module,MGS_Fbuilder
+Hide Create by and Create at,Hide Create by and Create at,module,MGS_Fbuilder
+List Block,List Block,module,MGS_Fbuilder
+List type,List type,module,MGS_Fbuilder
+ul,ul,module,MGS_Fbuilder
+ol,ol,module,MGS_Fbuilder
+Font italic,Font italic,module,MGS_Fbuilder
+List style type,List style type,module,MGS_Fbuilder
+Default list style,Default list style,module,MGS_Fbuilder
+Font icon,Font icon,module,MGS_Fbuilder
+List style,List style,module,MGS_Fbuilder
+Disc,Disc,module,MGS_Fbuilder
+Armenian,Armenian,module,MGS_Fbuilder
+Circle,Circle,module,MGS_Fbuilder
+Cjk Ideographic,Cjk Ideographic,module,MGS_Fbuilder
+Decimal,Decimal,module,MGS_Fbuilder
+Decimal Leading Zero,Decimal Leading Zero,module,MGS_Fbuilder
+Georgian,Georgian,module,MGS_Fbuilder
+Hebrew,Hebrew,module,MGS_Fbuilder
+Hiragana,Hiragana,module,MGS_Fbuilder
+Hiragana Iroha,Hiragana Iroha,module,MGS_Fbuilder
+Katakana,Katakana,module,MGS_Fbuilder
+Katakana Iroha,Katakana Iroha,module,MGS_Fbuilder
+Lower Alpha,Lower Alpha,module,MGS_Fbuilder
+Lower Greek,Lower Greek,module,MGS_Fbuilder
+Lower Latin,Lower Latin,module,MGS_Fbuilder
+Lower Roman,Lower Roman,module,MGS_Fbuilder
+None,None,module,MGS_Fbuilder
+Square,Square,module,MGS_Fbuilder
+Upper Alpha,Upper Alpha,module,MGS_Fbuilder
+Upper Greek,Upper Greek,module,MGS_Fbuilder
+Upper Latin,Upper Latin,module,MGS_Fbuilder
+Upper Roman,Upper Roman,module,MGS_Fbuilder
+Initial,Initial,module,MGS_Fbuilder
+Inherit,Inherit,module,MGS_Fbuilder
+Icon font size,Icon font size,module,MGS_Fbuilder
+Margin right,Margin right,module,MGS_Fbuilder
+List item content,List item content,module,MGS_Fbuilder
+Lookbook Block,Lookbook Block,module,MGS_Fbuilder
+Lookbook Config,Lookbook Config,module,MGS_Fbuilder
+Please go to admin panel > MGS > Manage Lookbook to add lookbooks first.,Please go to admin panel > MGS > Manage Lookbook to add lookbooks first.,module,MGS_Fbuilder
+Lookbook Slider Block,Lookbook Slider Block,module,MGS_Fbuilder
+Slider Config,Slider Config,module,MGS_Fbuilder
+Please go to admin panel > MGS > Manage Slider [Lookbook] to add sliders first.,Please go to admin panel > MGS > Manage Slider [Lookbook] to add sliders first.,module,MGS_Fbuilder
+Mageplaza - Blog,Mageplaza - Blog,module,MGS_Fbuilder
+Show type,Show type,module,MGS_Fbuilder
+Mageplaza - Shop by Brand,Mageplaza - Shop by Brand,module,MGS_Fbuilder
+Brand Config,Brand Config,module,MGS_Fbuilder
+Display type,Display type,module,MGS_Fbuilder
+Category,Category,module,MGS_Fbuilder
+Please go to admin panel > Catalog > [Shop by Brand] Categories to add category first.,Please go to admin panel > Catalog > [Shop by Brand] Categories to add category first.,module,MGS_Fbuilder
+Brand,Brand,module,MGS_Fbuilder
+Hide,Hide,module,MGS_Fbuilder
+Show,Show,module,MGS_Fbuilder
+Mageplaza - Countdown Timer,Mageplaza - Countdown Timer,module,MGS_Fbuilder
+Countdown Timer Rule,Countdown Timer Rule,module,MGS_Fbuilder
+Rule,Rule,module,MGS_Fbuilder
+Please go to admin panel > Content > Manage Rules to add rule first.,Please go to admin panel > Content > Manage Rules to add rule first.,module,MGS_Fbuilder
+Mageplaza - Daily Deal,Mageplaza - Daily Deal,module,MGS_Fbuilder
+All,All,module,MGS_Fbuilder
+Feature,Feature,module,MGS_Fbuilder
+New,New,module,MGS_Fbuilder
+Upcoming,Upcoming,module,MGS_Fbuilder
+Bestseller,Bestseller,module,MGS_Fbuilder
+Random,Random,module,MGS_Fbuilder
+Mageplaza - Product Slider,Mageplaza - Product Slider,module,MGS_Fbuilder
+Mageplaza - Banner Slider,Mageplaza - Banner Slider,module,MGS_Fbuilder
+General,General,module,MGS_Fbuilder
+Block col (12 to full),Block col (12 to full),module,MGS_Fbuilder
+Custom Class,Custom Class,module,MGS_Fbuilder
+Block Animation,Block Animation,module,MGS_Fbuilder
+Choose Animation Effect,Choose Animation Effect,module,MGS_Fbuilder
+Animation Delay,Animation Delay,module,MGS_Fbuilder
+Slider,Slider,module,MGS_Fbuilder
+Please go to admin panel > Content > Manage Sliders to add slider first.,Please go to admin panel > Content > Manage Sliders to add slider first.,module,MGS_Fbuilder
+Number of items on slide (default),Number of items on slide (default),module,MGS_Fbuilder
+Number of items on slide (tablet),Number of items on slide (tablet),module,MGS_Fbuilder
+Number of items on slide (mobile),Number of items on slide (mobile),module,MGS_Fbuilder
+Margin right (on item),Margin right (on item),module,MGS_Fbuilder
+RTL,RTL,module,MGS_Fbuilder
+Full Height,Full Height,module,MGS_Fbuilder
+Auto play,Auto play,module,MGS_Fbuilder
+Auto play speed,Auto play speed,module,MGS_Fbuilder
+Stop autoplay on mouse hover,Stop autoplay on mouse hover,module,MGS_Fbuilder
+Display navigation,Display navigation,module,MGS_Fbuilder
+Navigation position,Navigation position,module,MGS_Fbuilder
+Middle Inside,Middle Inside,module,MGS_Fbuilder
+Top Left,Top Left,module,MGS_Fbuilder
+Top Right,Top Right,module,MGS_Fbuilder
+Middle Outside,Middle Outside,module,MGS_Fbuilder
+Bottom Left,Bottom Left,module,MGS_Fbuilder
+Bottom Right,Bottom Right,module,MGS_Fbuilder
+Navigation top position,Navigation top position,module,MGS_Fbuilder
+Auto hide navigation,Auto hide navigation,module,MGS_Fbuilder
+Display pagination,Display pagination,module,MGS_Fbuilder
+Pagination position,Pagination position,module,MGS_Fbuilder
+Loop,Loop,module,MGS_Fbuilder
+Google Map Block,Google Map Block,module,MGS_Fbuilder
+Our Office,Our Office,module,MGS_Fbuilder
+Map Config,Map Config,module,MGS_Fbuilder
+Please go to admin panel > MGS > Social [Configuration] and add <b>Google API Key</b> first.,Please go to admin panel > MGS > Social [Configuration] and add <b>Google API Key</b> first.,module,MGS_Fbuilder
+By address,By address,module,MGS_Fbuilder
+By Location (Priority),By Location (Priority),module,MGS_Fbuilder
+Latitude,Latitude,module,MGS_Fbuilder
+Longitude,Longitude,module,MGS_Fbuilder
+Pin image,Pin image,module,MGS_Fbuilder
+Remove,Remove,module,MGS_Fbuilder
+Address Box,Address Box,module,MGS_Fbuilder
+px,px,module,MGS_Fbuilder
+Line 1,Line 1,module,MGS_Fbuilder
+Line 2,Line 2,module,MGS_Fbuilder
+Line 3,Line 3,module,MGS_Fbuilder
+Line 4,Line 4,module,MGS_Fbuilder
+Line 5,Line 5,module,MGS_Fbuilder
+Map Setting,Map Setting,module,MGS_Fbuilder
+Zoom level,Zoom level,module,MGS_Fbuilder
+Scroll wheel,Scroll wheel,module,MGS_Fbuilder
+Navigation,Navigation,module,MGS_Fbuilder
+Type control,Type control,module,MGS_Fbuilder
+Scale control,Scale control,module,MGS_Fbuilder
+Draggable,Draggable,module,MGS_Fbuilder
+Grayscale color,Grayscale color,module,MGS_Fbuilder
+Masonry Gallery Block,Masonry Gallery Block,module,MGS_Fbuilder
+Manage Images,Manage Images,module,MGS_Fbuilder
+Add to Gallery&nbsp;&nbsp;&nbsp;,Add to Gallery&nbsp;&nbsp;&nbsp;,module,MGS_Fbuilder
+Remove Image&nbsp;&nbsp;,Remove Image&nbsp;&nbsp;,module,MGS_Fbuilder
+Upload new Image,Upload new Image,module,MGS_Fbuilder
+Masonry Config,Masonry Config,module,MGS_Fbuilder
+Number of columns,Number of columns,module,MGS_Fbuilder
+Item margin,Item margin,module,MGS_Fbuilder
+Hover effect,Hover effect,module,MGS_Fbuilder
+Use lightbox,Use lightbox,module,MGS_Fbuilder
+Box shadow,Box shadow,module,MGS_Fbuilder
+Please upload selected image first.,Please upload selected image first.,module,MGS_Fbuilder
+Please choose file to upload.,Please choose file to upload.,module,MGS_Fbuilder
+Choose File to Upload,Choose File to Upload,module,MGS_Fbuilder
+Upload,Upload,module,MGS_Fbuilder
+Modal Popup Block,Modal Popup Block,module,MGS_Fbuilder
+Popup content,Popup content,module,MGS_Fbuilder
+Code (click to copy),Code (click to copy),module,MGS_Fbuilder
+"If you want to insert image to content, please copy code and paste to content in HTML mode.","If you want to insert image to content, please copy code and paste to content in HTML mode.",module,MGS_Fbuilder
+Popup Config,Popup Config,module,MGS_Fbuilder
+Popup Title,Popup Title,module,MGS_Fbuilder
+The image was successfully uploaded.,The image was successfully uploaded.,module,MGS_Fbuilder
+New Products Block,New Products Block,module,MGS_Fbuilder
+Desktop,Desktop,module,MGS_Fbuilder
+Tablet,Tablet,module,MGS_Fbuilder
+Mobile,Mobile,module,MGS_Fbuilder
+Hidden,Hidden,module,MGS_Fbuilder
+On Desktop,On Desktop,module,MGS_Fbuilder
+On Tablet,On Tablet,module,MGS_Fbuilder
+On Mobile,On Mobile,module,MGS_Fbuilder
+Manage Slide,Manage Slide,module,MGS_Fbuilder
+Text (Html),Text (Html),module,MGS_Fbuilder
+Text Position,Text Position,module,MGS_Fbuilder
+Text Align,Text Align,module,MGS_Fbuilder
+Text Animation,Text Animation,module,MGS_Fbuilder
+Slide In Down,Slide In Down,module,MGS_Fbuilder
+Slide In Up,Slide In Up,module,MGS_Fbuilder
+Slide In Right,Slide In Right,module,MGS_Fbuilder
+Slide In Left,Slide In Left,module,MGS_Fbuilder
+Cancel,Cancel,module,MGS_Fbuilder
+Add New Slide,Add New Slide,module,MGS_Fbuilder
+Are you sure?,Are you sure?,module,MGS_Fbuilder
+Please select an image,Please select an image,module,MGS_Fbuilder
+Portfolio Block,Portfolio Block,module,MGS_Fbuilder
+Portfolio Config,Portfolio Config,module,MGS_Fbuilder
+Filter by category,Filter by category,module,MGS_Fbuilder
+Number of portfolio to display,Number of portfolio to display,module,MGS_Fbuilder
+Hide Categories,Hide Categories,module,MGS_Fbuilder
+Profile Block,Profile Block,module,MGS_Fbuilder
+Profile Config,Profile Config,module,MGS_Fbuilder
+Photo,Photo,module,MGS_Fbuilder
+Name,Name,module,MGS_Fbuilder
+Subtitle,Subtitle,module,MGS_Fbuilder
+Facebook,Facebook,module,MGS_Fbuilder
+Twitter,Twitter,module,MGS_Fbuilder
+Linkedin,Linkedin,module,MGS_Fbuilder
+Progress Bar Block,Progress Bar Block,module,MGS_Fbuilder
+Percent,Percent,module,MGS_Fbuilder
+Percent value,Percent value,module,MGS_Fbuilder
+Font weight,Font weight,module,MGS_Fbuilder
+Default background,Default background,module,MGS_Fbuilder
+Progress background,Progress background,module,MGS_Fbuilder
+Animation,Animation,module,MGS_Fbuilder
+Title - Percent position,Title - Percent position,module,MGS_Fbuilder
+Inside bar,Inside bar,module,MGS_Fbuilder
+Top left,Top left,module,MGS_Fbuilder
+Top left - right,Top left - right,module,MGS_Fbuilder
+Top right,Top right,module,MGS_Fbuilder
+Bottom left,Bottom left,module,MGS_Fbuilder
+Bottom left - right,Bottom left - right,module,MGS_Fbuilder
+Bottom right,Bottom right,module,MGS_Fbuilder
+Progress Circle Block,Progress Circle Block,module,MGS_Fbuilder
+Progress,Progress,module,MGS_Fbuilder
+Icon Color,Icon Color,module,MGS_Fbuilder
+Progress width,Progress width,module,MGS_Fbuilder
+Middle background,Middle background,module,MGS_Fbuilder
+Promo Banner Block,Promo Banner Block,module,MGS_Fbuilder
+Banner Config,Banner Config,module,MGS_Fbuilder
+Text content,Text content,module,MGS_Fbuilder
+Button text,Button text,module,MGS_Fbuilder
+Top Center,Top Center,module,MGS_Fbuilder
+Middle Left,Middle Left,module,MGS_Fbuilder
+Middle Center,Middle Center,module,MGS_Fbuilder
+Middle Right,Middle Right,module,MGS_Fbuilder
+Bottom Center,Bottom Center,module,MGS_Fbuilder
+Zoom,Zoom,module,MGS_Fbuilder
+Border Zoom,Border Zoom,module,MGS_Fbuilder
+Flashed,Flashed,module,MGS_Fbuilder
+Zoom Flashed,Zoom Flashed,module,MGS_Fbuilder
+Shadow Corner,Shadow Corner,module,MGS_Fbuilder
+Zoom Shadow,Zoom Shadow,module,MGS_Fbuilder
+Cup Border,Cup Border,module,MGS_Fbuilder
+Flashed Zoom,Flashed Zoom,module,MGS_Fbuilder
+Zoom Out Shadow,Zoom Out Shadow,module,MGS_Fbuilder
+Mist,Mist,module,MGS_Fbuilder
+Mist Text,Mist Text,module,MGS_Fbuilder
+Button background,Button background,module,MGS_Fbuilder
+Button border,Button border,module,MGS_Fbuilder
+Button hover background,Button hover background,module,MGS_Fbuilder
+Button hover text,Button hover text,module,MGS_Fbuilder
+Button hover border,Button hover border,module,MGS_Fbuilder
+Top Rate Products Block,Top Rate Products Block,module,MGS_Fbuilder
+Sale Products Block,Sale Products Block,module,MGS_Fbuilder
+Single Product Block,Single Product Block,module,MGS_Fbuilder
+Product,Product,module,MGS_Fbuilder
+Enter product name to search.,Enter product name to search.,module,MGS_Fbuilder
+Hide short description,Hide short description,module,MGS_Fbuilder
+Truncate short description,Truncate short description,module,MGS_Fbuilder
+Text & Image Block,Text & Image Block,module,MGS_Fbuilder
+Content,Content,module,MGS_Fbuilder
+Show / Hide Editor,Show / Hide Editor,module,MGS_Fbuilder
+Tabs Block,Tabs Block,module,MGS_Fbuilder
+Tab Style,Tab Style,module,MGS_Fbuilder
+Style 1,Style 1,module,MGS_Fbuilder
+Style 2,Style 2,module,MGS_Fbuilder
+Style 3,Style 3,module,MGS_Fbuilder
+Style 4,Style 4,module,MGS_Fbuilder
+Style 5,Style 5,module,MGS_Fbuilder
+Style 6,Style 6,module,MGS_Fbuilder
+Style 7,Style 7,module,MGS_Fbuilder
+Font Size,Font Size,module,MGS_Fbuilder
+Table Block,Table Block,module,MGS_Fbuilder
+Table Config,Table Config,module,MGS_Fbuilder
+Row height,Row height,module,MGS_Fbuilder
+Heading (First row),Heading (First row),module,MGS_Fbuilder
+Border vertical,Border vertical,module,MGS_Fbuilder
+Border horizontal,Border horizontal,module,MGS_Fbuilder
+Other rows,Other rows,module,MGS_Fbuilder
+Even background,Even background,module,MGS_Fbuilder
+Odd background,Odd background,module,MGS_Fbuilder
+Tab Config,Tab Config,module,MGS_Fbuilder
+Tab Title,Tab Title,module,MGS_Fbuilder
+Add new tab,Add new tab,module,MGS_Fbuilder
+Testimonial Block,Testimonial Block,module,MGS_Fbuilder
+Testimonial Config,Testimonial Config,module,MGS_Fbuilder
+Number of testimonial to display,Number of testimonial to display,module,MGS_Fbuilder
+Items per row,Items per row,module,MGS_Fbuilder
+Items per row (Tablet),Items per row (Tablet),module,MGS_Fbuilder
+Items per row (Mobile),Items per row (Mobile),module,MGS_Fbuilder
+Template,Template,module,MGS_Fbuilder
+Default Template,Default Template,module,MGS_Fbuilder
+Center Content,Center Content,module,MGS_Fbuilder
+Boxed Content,Boxed Content,module,MGS_Fbuilder
+Info,Info,module,MGS_Fbuilder
+Twitter Timeline Block,Twitter Timeline Block,module,MGS_Fbuilder
+Twitter Config,Twitter Config,module,MGS_Fbuilder
+Timeline URL,Timeline URL,module,MGS_Fbuilder
+Theme,Theme,module,MGS_Fbuilder
+Light,Light,module,MGS_Fbuilder
+Dark,Dark,module,MGS_Fbuilder
+Link color,Link color,module,MGS_Fbuilder
+Language,Language,module,MGS_Fbuilder
+Automatic,Automatic,module,MGS_Fbuilder
+English (default),English (default),module,MGS_Fbuilder
+Arabic,Arabic,module,MGS_Fbuilder
+Bengali,Bengali,module,MGS_Fbuilder
+Czech,Czech,module,MGS_Fbuilder
+Danish,Danish,module,MGS_Fbuilder
+German,German,module,MGS_Fbuilder
+Greek,Greek,module,MGS_Fbuilder
+Spanish,Spanish,module,MGS_Fbuilder
+Persian,Persian,module,MGS_Fbuilder
+Finnish,Finnish,module,MGS_Fbuilder
+Filipino,Filipino,module,MGS_Fbuilder
+French,French,module,MGS_Fbuilder
+Hindi,Hindi,module,MGS_Fbuilder
+Hungarian,Hungarian,module,MGS_Fbuilder
+Indonesian,Indonesian,module,MGS_Fbuilder
+Italian,Italian,module,MGS_Fbuilder
+Japanese,Japanese,module,MGS_Fbuilder
+Korean,Korean,module,MGS_Fbuilder
+Malay,Malay,module,MGS_Fbuilder
+Dutch,Dutch,module,MGS_Fbuilder
+Norwegian,Norwegian,module,MGS_Fbuilder
+Polish,Polish,module,MGS_Fbuilder
+Portuguese,Portuguese,module,MGS_Fbuilder
+Romanian,Romanian,module,MGS_Fbuilder
+Russian,Russian,module,MGS_Fbuilder
+Swedish,Swedish,module,MGS_Fbuilder
+Thai,Thai,module,MGS_Fbuilder
+Turkish,Turkish,module,MGS_Fbuilder
+Ukrainian,Ukrainian,module,MGS_Fbuilder
+Urdu,Urdu,module,MGS_Fbuilder
+Vietnamese,Vietnamese,module,MGS_Fbuilder
+Chinese (Simplified),Chinese (Simplified),module,MGS_Fbuilder
+Chinese (Traditional),Chinese (Traditional),module,MGS_Fbuilder
+Video Block,Video Block,module,MGS_Fbuilder
+Video Config,Video Config,module,MGS_Fbuilder
+Video Url,Video Url,module,MGS_Fbuilder
+Youtube video url or Vimeo video url,Youtube video url or Vimeo video url,module,MGS_Fbuilder
+Full Width,Full Width,module,MGS_Fbuilder
+Width:px,Width:px,module,MGS_Fbuilder
+Height:px,Height:px,module,MGS_Fbuilder
+Autoplay,Autoplay,module,MGS_Fbuilder
+Hide video information,Hide video information,module,MGS_Fbuilder
+Hide video controls,Hide video controls,module,MGS_Fbuilder
+Loop video,Loop video,module,MGS_Fbuilder
+Mute,Mute,module,MGS_Fbuilder
+Category Config,Category Config,module,MGS_Fbuilder
+Choose Categories,Choose Categories,module,MGS_Fbuilder
+Expand all,Expand all,module,MGS_Fbuilder
+Collapse all,Collapse all,module,MGS_Fbuilder
+Use Category Tabs,Use Category Tabs,module,MGS_Fbuilder
+Embed Code,Embed Code,module,MGS_Fbuilder
+For CMS:,For CMS:,module,MGS_Fbuilder
+Main color,Main color,module,MGS_Fbuilder
+Background gradient,Background gradient,module,MGS_Fbuilder
+Background image,Background image,module,MGS_Fbuilder
+Remove background,Remove background,module,MGS_Fbuilder
+Background repeat,Background repeat,module,MGS_Fbuilder
+Background Cover,Background Cover,module,MGS_Fbuilder
+Additional content,Additional content,module,MGS_Fbuilder
+Number of row,Number of row,module,MGS_Fbuilder
+Navigation slide by,Navigation slide by,module,MGS_Fbuilder
+"Edit Static Block ""%1""","Edit Static Block ""%1""",module,MGS_Fbuilder
+Section Settings,Section Settings,module,MGS_Fbuilder
+Class name,Class name,module,MGS_Fbuilder
+Fullwidth,Fullwidth,module,MGS_Fbuilder
+No Padding,No Padding,module,MGS_Fbuilder
+Parallax,Parallax,module,MGS_Fbuilder
+Padding top,Padding top,module,MGS_Fbuilder
+Padding bottom,Padding bottom,module,MGS_Fbuilder
+Column Config,Column Config,module,MGS_Fbuilder
+Set columns (Desktop view),Set columns (Desktop view),module,MGS_Fbuilder
+Or input by yourself:,Or input by yourself:,module,MGS_Fbuilder
+Set columns for Tablet view,Set columns for Tablet view,module,MGS_Fbuilder
+Set columns for Mobile view,Set columns for Mobile view,module,MGS_Fbuilder
+Custom class,Custom class,module,MGS_Fbuilder
+Config for column %1,Config for column %1,module,MGS_Fbuilder
+Config for column,Config for column,module,MGS_Fbuilder
+Config for column ,Config for column ,module,MGS_Fbuilder
+Publish,Publish,module,MGS_Fbuilder
+Active CMS Builder,Active CMS Builder,module,MGS_Fbuilder
+We can't find products matching the selection.,We can't find products matching the selection.,module,MGS_Fbuilder
+There are no categories matching the selection.,There are no categories matching the selection.,module,MGS_Fbuilder
+Add to Cart,Add to Cart,module,MGS_Fbuilder
+In stock,In stock,module,MGS_Fbuilder
+Out of stock,Out of stock,module,MGS_Fbuilder
+Add to Wish List,Add to Wish List,module,MGS_Fbuilder
+Add to Compare,Add to Compare,module,MGS_Fbuilder
+Qty,Qty,module,MGS_Fbuilder
+Learn More,Learn More,module,MGS_Fbuilder
+Have no accodion content to show.,Have no accodion content to show.,module,MGS_Fbuilder
+"By <span class=""color-theme"">%1</span> on %2","By <span class=""color-theme"">%1</span> on %2",module,MGS_Fbuilder
+We can't find post matching the selection.,We can't find post matching the selection.,module,MGS_Fbuilder
+"<span class=""number"">%1</span> Products","<span class=""number"">%1</span> Products",module,MGS_Fbuilder
+"<span class=""number"">%1</span> Product","<span class=""number"">%1</span> Product",module,MGS_Fbuilder
+We can't find categories matching the selection.,We can't find categories matching the selection.,module,MGS_Fbuilder
+Have no field for form.,Have no field for form.,module,MGS_Fbuilder
+File is not exist on server.,File is not exist on server.,module,MGS_Fbuilder
+Have no image to display.,Have no image to display.,module,MGS_Fbuilder
+There are no content matching the selection.,There are no content matching the selection.,module,MGS_Fbuilder
+Read More,Read More,module,MGS_Fbuilder
+Read more,Read more,module,MGS_Fbuilder
+Have no map to show.,Have no map to show.,module,MGS_Fbuilder
+There are no sliders matching the selection.,There are no sliders matching the selection.,module,MGS_Fbuilder
+We can't find portfolio matching the selection.,We can't find portfolio matching the selection.,module,MGS_Fbuilder
+Have no banner to show.,Have no banner to show.,module,MGS_Fbuilder
+Can not get Facebook Fanbox data.,Can not get Facebook Fanbox data.,module,MGS_Fbuilder
+Can not get Instagram data or your instagram account have not any images.,Can not get Instagram data or your instagram account have not any images.,module,MGS_Fbuilder
+Can not get Instagram shop data.,Can not get Instagram shop data.,module,MGS_Fbuilder
+Can not get Twitter Timeline data.,Can not get Twitter Timeline data.,module,MGS_Fbuilder
+We can't find testimonial matching the selection.,We can't find testimonial matching the selection.,module,MGS_Fbuilder
+Have no video to show.,Have no video to show.,module,MGS_Fbuilder
+GDPR,GDPR,module,MGS_GDPR
+Something went wrong while saving your subscription.,Something went wrong while saving your subscription.,module,MGS_GDPR
+We deleted your account.,We deleted your account.,module,MGS_GDPR
+Left,Left,module,MGS_GDPR
+Right,Right,module,MGS_GDPR
+Center,Center,module,MGS_GDPR
+Not Show,Not Show,module,MGS_GDPR
+Show as link,Show as link,module,MGS_GDPR
+Show as popup,Show as popup,module,MGS_GDPR
+Full width,Full width,module,MGS_GDPR
+Custom,Custom,module,MGS_GDPR
+You do not agree with the storage and handling of your data by this website.,You do not agree with the storage and handling of your data by this website.,module,MGS_GDPR
+Data Access,Data Access,module,MGS_GDPR
+Erase Account,Erase Account,module,MGS_GDPR
+Submit,Submit,module,MGS_GDPR
+Home,Home,module,MGS_InstantSearch
+Go to Home Page,Go to Home Page,module,MGS_InstantSearch
+Posts Search results for: '%1',Posts Search results for: '%1',module,MGS_InstantSearch
+Category Search results for: '%1',Category Search results for: '%1',module,MGS_InstantSearch
+Cms Page Search results for: '%1',Cms Page Search results for: '%1',module,MGS_InstantSearch
+Search results for: '%1',Search results for: '%1',module,MGS_InstantSearch
+Minimum Search query length is %1,Minimum Search query length is %1,module,MGS_InstantSearch
+Parameter is incorrect.,Parameter is incorrect.,module,MGS_InstantSearch
+All,All,module,MGS_InstantSearch
+MGS Instant Search Results,MGS Instant Search Results,module,MGS_InstantSearch
+Magento Catalog Search Results,Magento Catalog Search Results,module,MGS_InstantSearch
+We can't find categories matching the selection.,We can't find categories matching the selection.,module,MGS_InstantSearch
+We can't find cms pages matching the selection.,We can't find cms pages matching the selection.,module,MGS_InstantSearch
+We can't find posts matching the selection.,We can't find posts matching the selection.,module,MGS_InstantSearch
+Your search returned no results.,Your search returned no results.,module,MGS_InstantSearch
+Blogs,Blogs,module,MGS_InstantSearch
+Categories,Categories,module,MGS_InstantSearch
+Cms Pages,Cms Pages,module,MGS_InstantSearch
+Items %1-%2 of %3,Items %1-%2 of %3,module,MGS_InstantSearch
+%1 Item,%1 Item,module,MGS_InstantSearch
+%1 Items,%1 Items,module,MGS_InstantSearch
+Show,Show,module,MGS_InstantSearch
+per page,per page,module,MGS_InstantSearch
+Products,Products,module,MGS_InstantSearch
+We can't find products matching the selection.,We can't find products matching the selection.,module,MGS_InstantSearch
+Add to Cart,Add to Cart,module,MGS_InstantSearch
+Buy Now,Buy Now,module,MGS_Lookbook
+Add to cart,Add to cart,module,MGS_Lookbook
+Save and Continue Edit,Save and Continue Edit,module,MGS_Lookbook
+Delete,Delete,module,MGS_Lookbook
+Edit %1,Edit %1,module,MGS_Lookbook
+New Lookbook,New Lookbook,module,MGS_Lookbook
+Save,Save,module,MGS_Lookbook
+Cancel,Cancel,module,MGS_Lookbook
+Add Pin,Add Pin,module,MGS_Lookbook
+Lookbook Information,Lookbook Information,module,MGS_Lookbook
+Lookbook Name,Lookbook Name,module,MGS_Lookbook
+Status,Status,module,MGS_Lookbook
+Enabled,Enabled,module,MGS_Lookbook
+Disabled,Disabled,module,MGS_Lookbook
+Image,Image,module,MGS_Lookbook
+General Information,General Information,module,MGS_Lookbook
+New Slider,New Slider,module,MGS_Lookbook
+Slider Information,Slider Information,module,MGS_Lookbook
+Lookbook ID,Lookbook ID,module,MGS_Lookbook
+Name,Name,module,MGS_Lookbook
+Position,Position,module,MGS_Lookbook
+Slide Name,Slide Name,module,MGS_Lookbook
+Custom class,Custom class,module,MGS_Lookbook
+Show navigation,Show navigation,module,MGS_Lookbook
+Use general config,Use general config,module,MGS_Lookbook
+Yes,Yes,module,MGS_Lookbook
+No,No,module,MGS_Lookbook
+Show pagination,Show pagination,module,MGS_Lookbook
+Autoplay,Autoplay,module,MGS_Lookbook
+Autoplay timeout,Autoplay timeout,module,MGS_Lookbook
+Blank to use general config.,Blank to use general config.,module,MGS_Lookbook
+Pause on mouse hover,Pause on mouse hover,module,MGS_Lookbook
+Infinity loop,Infinity loop,module,MGS_Lookbook
+Next icon,Next icon,module,MGS_Lookbook
+Blank fo use general config.,Blank fo use general config.,module,MGS_Lookbook
+Previous icon,Previous icon,module,MGS_Lookbook
+Slides,Slides,module,MGS_Lookbook
+Lookbook,Lookbook,module,MGS_Lookbook
+Add Lookbook,Add Lookbook,module,MGS_Lookbook
+Lookbook Slider,Lookbook Slider,module,MGS_Lookbook
+Add Slider,Add Slider,module,MGS_Lookbook
+ID,ID,module,MGS_Lookbook
+Slider Name,Slider Name,module,MGS_Lookbook
+"You deleted the lookbook ""%1"".","You deleted the lookbook ""%1"".",module,MGS_Lookbook
+This item no longer exists.,This item no longer exists.,module,MGS_Lookbook
+Please select item(s).,Please select item(s).,module,MGS_Lookbook
+Total of %1 lookbook(s) were successfully deleted.,Total of %1 lookbook(s) were successfully deleted.,module,MGS_Lookbook
+Total of %1 lookbook(s) were successfully updated.,Total of %1 lookbook(s) were successfully updated.,module,MGS_Lookbook
+You saved the lookbook.,You saved the lookbook.,module,MGS_Lookbook
+"You deleted the slider ""%1"".","You deleted the slider ""%1"".",module,MGS_Lookbook
+New Lookbook Slider,New Lookbook Slider,module,MGS_Lookbook
+Total of %1 slider(s) were successfully deleted.,Total of %1 slider(s) were successfully deleted.,module,MGS_Lookbook
+Total of %1 slider(s) were successfully updated.,Total of %1 slider(s) were successfully updated.,module,MGS_Lookbook
+Disallowed file type.,Disallowed file type.,module,MGS_Lookbook
+You saved the slider.,You saved the slider.,module,MGS_Lookbook
+ , ,module,MGS_Lookbook
+Category,Category,module,MGS_Lookbook
+Expand all,Expand all,module,MGS_Lookbook
+Collapse all,Collapse all,module,MGS_Lookbook
+Uncheck all,Uncheck all,module,MGS_Lookbook
+Back,Back,module,MGS_Mmegamenu
+Delete,Delete,module,MGS_Mmegamenu
+Are you sure you want to delete?,Are you sure you want to delete?,module,MGS_Mmegamenu
+Reset,Reset,module,MGS_Mmegamenu
+Save,Save,module,MGS_Mmegamenu
+Save and Continue Edit,Save and Continue Edit,module,MGS_Mmegamenu
+Edit %1,Edit %1,module,MGS_Mmegamenu
+New Item,New Item,module,MGS_Mmegamenu
+Mmegamenu Information,Mmegamenu Information,module,MGS_Mmegamenu
+Menu Information,Menu Information,module,MGS_Mmegamenu
+Title,Title,module,MGS_Mmegamenu
+Menu Type,Menu Type,module,MGS_Mmegamenu
+Horizontal,Horizontal,module,MGS_Mmegamenu
+Vertical,Vertical,module,MGS_Mmegamenu
+Custom Class,Custom Class,module,MGS_Mmegamenu
+Status,Status,module,MGS_Mmegamenu
+Enabled,Enabled,module,MGS_Mmegamenu
+Disabled,Disabled,module,MGS_Mmegamenu
+Megamenu Information,Megamenu Information,module,MGS_Mmegamenu
+General Information,General Information,module,MGS_Mmegamenu
+Category,Category,module,MGS_Mmegamenu
+Static Contents,Static Contents,module,MGS_Mmegamenu
+Static Content,Static Content,module,MGS_Mmegamenu
+New Menu,New Menu,module,MGS_Mmegamenu
+Edit,Edit,module,MGS_Mmegamenu
+Megamenu,Megamenu,module,MGS_Mmegamenu
+Add Item,Add Item,module,MGS_Mmegamenu
+Mmegamenu,Mmegamenu,module,MGS_Mmegamenu
+Add Menu,Add Menu,module,MGS_Mmegamenu
+All Store Views,All Store Views,module,MGS_Mmegamenu
+What is this?,What is this?,module,MGS_Mmegamenu
+"You deleted the item ""%1"".","You deleted the item ""%1"".",module,MGS_Mmegamenu
+"You have deleted the menu ""%1"".","You have deleted the menu ""%1"".",module,MGS_Mmegamenu
+This post no longer exists.,This post no longer exists.,module,MGS_Mmegamenu
+Edit Megamenu,Edit Megamenu,module,MGS_Mmegamenu
+Edit Post,Edit Post,module,MGS_Mmegamenu
+Edit Item,Edit Item,module,MGS_Mmegamenu
+This Menu no longer exists.,This Menu no longer exists.,module,MGS_Mmegamenu
+The Mega Menu Cache has been flushed.,The Mega Menu Cache has been flushed.,module,MGS_Mmegamenu
+Something went wrong in progressing.,Something went wrong in progressing.,module,MGS_Mmegamenu
+Please select item(s).,Please select item(s).,module,MGS_Mmegamenu
+Total of %1 record(s) were successfully deleted.,Total of %1 record(s) were successfully deleted.,module,MGS_Mmegamenu
+Total of %1 menu(s) were successfully deleted.,Total of %1 menu(s) were successfully deleted.,module,MGS_Mmegamenu
+Total of %1 record(s) were successfully updated.,Total of %1 record(s) were successfully updated.,module,MGS_Mmegamenu
+Total of %1 menu(s) were successfully updated.,Total of %1 menu(s) were successfully updated.,module,MGS_Mmegamenu
+Something went wrong while saving the post data. Please review the error log.,Something went wrong while saving the post data. Please review the error log.,module,MGS_Mmegamenu
+This menu no longer exists.,This menu no longer exists.,module,MGS_Mmegamenu
+You saved the menu.,You saved the menu.,module,MGS_Mmegamenu
+Expand all,Expand all,module,MGS_Mmegamenu
+Collapse all,Collapse all,module,MGS_Mmegamenu
+Uncheck all,Uncheck all,module,MGS_Mmegamenu
+Scope:,Scope:,module,MGS_Mmegamenu
+Stores Configuration,Stores Configuration,module,MGS_Mmegamenu
+Please confirm scope switching. All data that hasn't been saved will be lost.,Please confirm scope switching. All data that hasn't been saved will be lost.,module,MGS_Mmegamenu
+There are no menus matching the selection.,There are no menus matching the selection.,module,MGS_Mmegamenu
+Home,Home,module,MGS_OSCheckout
+Go to Home Page,Go to Home Page,module,MGS_OSCheckout
+Checkout,Checkout,module,MGS_OSCheckout
+Checkout Page,Checkout Page,module,MGS_OSCheckout
+label,label,module,MGS_OSCheckout
+For delivery questions.,For delivery questions.,module,MGS_OSCheckout
+Gift Wrap,Gift Wrap,module,MGS_OSCheckout
+One-page checkout is turned off.,One-page checkout is turned off.,module,MGS_OSCheckout
+Guest checkout is disabled.,Guest checkout is disabled.,module,MGS_OSCheckout
+One step checkout is turned off.,One step checkout is turned off.,module,MGS_OSCheckout
+Cart %1 doesn't contain item  %2,Cart %1 doesn't contain item  %2,module,MGS_OSCheckout
+Could not update item from quote,Could not update item from quote,module,MGS_OSCheckout
+Could not remove item from quote,Could not remove item from quote,module,MGS_OSCheckout
+Could not add gift wrap for this quote,Could not add gift wrap for this quote,module,MGS_OSCheckout
+Unable to save order information. Please check input data.,Unable to save order information. Please check input data.,module,MGS_OSCheckout
+Whole Order,Whole Order,module,MGS_OSCheckout
+Gift Message for %1 (optional),Gift Message for %1 (optional),module,MGS_OSCheckout
+No,No,module,MGS_OSCheckout
+Google,Google,module,MGS_OSCheckout
+In Payment Area,In Payment Area,module,MGS_OSCheckout
+In Review Area,In Review Area,module,MGS_OSCheckout
+Day/Month/Year,Day/Month/Year,module,MGS_OSCheckout
+Month/Day/Year,Month/Day/Year,module,MGS_OSCheckout
+Year/Month/Day,Year/Month/Day,module,MGS_OSCheckout
+Default,Default,module,MGS_OSCheckout
+Flat,Flat,module,MGS_OSCheckout
+Material,Material,module,MGS_OSCheckout
+-- Please select --,-- Please select --,module,MGS_OSCheckout
+With Gap,With Gap,module,MGS_OSCheckout
+"You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.",module,MGS_OSCheckout
+There is an error while subscribing for newsletter.,There is an error while subscribing for newsletter.,module,MGS_OSCheckout
+Additional Content,Additional Content,module,MGS_OSCheckout
+Delivery Date,Delivery Date,module,MGS_OSCheckout
+Delivery Comment,Delivery Comment,module,MGS_OSCheckout
+"Copyright © 1999 - 2022, 13 Moons LLC","Copyright © 1999 - 2022, 13 Moons LLC",module,MGS_OSCheckout
+Additional Information,Additional Information,module,MGS_OSCheckout
+Back,Back,module,MGS_Portfolio
+Delete,Delete,module,MGS_Portfolio
+Are you sure you want to delete?,Are you sure you want to delete?,module,MGS_Portfolio
+Reset,Reset,module,MGS_Portfolio
+Save and Continue Edit,Save and Continue Edit,module,MGS_Portfolio
+Save,Save,module,MGS_Portfolio
+Portfolio Categories,Portfolio Categories,module,MGS_Portfolio
+Add Category,Add Category,module,MGS_Portfolio
+Edit %1,Edit %1,module,MGS_Portfolio
+New Item,New Item,module,MGS_Portfolio
+Portfolio Information,Portfolio Information,module,MGS_Portfolio
+Portfolio Category,Portfolio Category,module,MGS_Portfolio
+Category Name,Category Name,module,MGS_Portfolio
+Identifier,Identifier,module,MGS_Portfolio
+Portfolio Item,Portfolio Item,module,MGS_Portfolio
+Name,Name,module,MGS_Portfolio
+Category,Category,module,MGS_Portfolio
+Thumbnail Image,Thumbnail Image,module,MGS_Portfolio
+Bases Image,Bases Image,module,MGS_Portfolio
+Client,Client,module,MGS_Portfolio
+Project,Project,module,MGS_Portfolio
+Project Url,Project Url,module,MGS_Portfolio
+Date,Date,module,MGS_Portfolio
+Skills,Skills,module,MGS_Portfolio
+Status,Status,module,MGS_Portfolio
+Enabled,Enabled,module,MGS_Portfolio
+Disabled,Disabled,module,MGS_Portfolio
+Content,Content,module,MGS_Portfolio
+Store View,Store View,module,MGS_Portfolio
+New Category,New Category,module,MGS_Portfolio
+Portfolio,Portfolio,module,MGS_Portfolio
+Add Item,Add Item,module,MGS_Portfolio
+Portfolio List,Portfolio List,module,MGS_Portfolio
+Home,Home,module,MGS_Portfolio
+Go to Home Page,Go to Home Page,module,MGS_Portfolio
+"You deleted the item ""%1"".","You deleted the item ""%1"".",module,MGS_Portfolio
+"You deleted the category ""%1"".","You deleted the category ""%1"".",module,MGS_Portfolio
+Can not delete file.,Can not delete file.,module,MGS_Portfolio
+This post no longer exists.,This post no longer exists.,module,MGS_Portfolio
+Edit Portfolio,Edit Portfolio,module,MGS_Portfolio
+Edit Item,Edit Item,module,MGS_Portfolio
+This item no longer exists.,This item no longer exists.,module,MGS_Portfolio
+You saved the portfolio.,You saved the portfolio.,module,MGS_Portfolio
+Save portfolio successfully!,Save portfolio successfully!,module,MGS_Portfolio
+Something went wrong while saving the portfolio data. Please review the error log.,Something went wrong while saving the portfolio data. Please review the error log.,module,MGS_Portfolio
+This category no longer exists.,This category no longer exists.,module,MGS_Portfolio
+"Identifier name ""%1"" already exists.","Identifier name ""%1"" already exists.",module,MGS_Portfolio
+You saved the category.,You saved the category.,module,MGS_Portfolio
+Please select item(s).,Please select item(s).,module,MGS_Portfolio
+Total of %1 record(s) were successfully deleted.,Total of %1 record(s) were successfully deleted.,module,MGS_Portfolio
+Please select categories.,Please select categories.,module,MGS_Portfolio
+Total of %1 categories were successfully deleted.,Total of %1 categories were successfully deleted.,module,MGS_Portfolio
+Total of %1 record(s) were successfully updated.,Total of %1 record(s) were successfully updated.,module,MGS_Portfolio
+All Store Views,All Store Views,module,MGS_Portfolio
+Something went wrong while saving the file(s).,Something went wrong while saving the file(s).,module,MGS_Portfolio
+File validation failed.,File validation failed.,module,MGS_Portfolio
+File can not be saved to the destination folder.,File can not be saved to the destination folder.,module,MGS_Portfolio
+Scope:,Scope:,module,MGS_Portfolio
+Stores Configuration,Stores Configuration,module,MGS_Portfolio
+Please confirm scope switching. All data that hasn't been saved will be lost.,Please confirm scope switching. All data that hasn't been saved will be lost.,module,MGS_Portfolio
+There are no portfolios matching the selection.,There are no portfolios matching the selection.,module,MGS_Portfolio
+Date:,Date:,module,MGS_Portfolio
+Project:,Project:,module,MGS_Portfolio
+Client:,Client:,module,MGS_Portfolio
+Skills:,Skills:,module,MGS_Portfolio
+Categories:,Categories:,module,MGS_Portfolio
+Related Projects,Related Projects,module,MGS_Portfolio
+Add Tab Item,Add Tab Item,module,MGS_Protabs
+Use Default,Use Default,module,MGS_Protabs
+Use Website,Use Website,module,MGS_Protabs
+[STORE VIEW],[STORE VIEW],module,MGS_Protabs
+Label,Label,module,MGS_Protabs
+Position,Position,module,MGS_Protabs
+Type,Type,module,MGS_Protabs
+Attribute,Attribute,module,MGS_Protabs
+Static Block,Static Block,module,MGS_Protabs
+Additional Information,Additional Information,module,MGS_Protabs
+Reviews,Reviews,module,MGS_Protabs
+Value,Value,module,MGS_Protabs
+Remove this item,Remove this item,module,MGS_Protabs
+Protabs,Protabs,module,MGS_Protabs
+"You deleted the item ""%1"".","You deleted the item ""%1"".",module,MGS_Protabs
+This item no longer exists.,This item no longer exists.,module,MGS_Protabs
+Edit %1,Edit %1,module,MGS_Protabs
+New Item,New Item,module,MGS_Protabs
+You saved the item.,You saved the item.,module,MGS_Protabs
+Please select item(s).,Please select item(s).,module,MGS_Protabs
+Total of %1 record(s) were successfully deleted.,Total of %1 record(s) were successfully deleted.,module,MGS_Protabs
+Total of %1 record(s) were successfully updated.,Total of %1 record(s) were successfully updated.,module,MGS_Protabs
+"Attribute with attribute_code is ""%1"" does not exist.","Attribute with attribute_code is ""%1"" does not exist.",module,MGS_Protabs
+Back,Back,module,MGS_Testimonial
+Delete,Delete,module,MGS_Testimonial
+Are you sure you want to delete?,Are you sure you want to delete?,module,MGS_Testimonial
+Reset,Reset,module,MGS_Testimonial
+Save,Save,module,MGS_Testimonial
+Testimonial,Testimonial,module,MGS_Testimonial
+Add Item,Add Item,module,MGS_Testimonial
+"You deleted the item ""%1"".","You deleted the item ""%1"".",module,MGS_Testimonial
+Edit Item,Edit Item,module,MGS_Testimonial
+New Item,New Item,module,MGS_Testimonial
+This item no longer exists.,This item no longer exists.,module,MGS_Testimonial
+You saved the item.,You saved the item.,module,MGS_Testimonial
+Please select item(s).,Please select item(s).,module,MGS_Testimonial
+Total of %1 record(s) were successfully deleted.,Total of %1 record(s) were successfully deleted.,module,MGS_Testimonial
+Total of %1 record(s) were successfully updated.,Total of %1 record(s) were successfully updated.,module,MGS_Testimonial
+Something went wrong while saving the file(s).,Something went wrong while saving the file(s).,module,MGS_Testimonial
+File validation failed.,File validation failed.,module,MGS_Testimonial
+File can not be saved to the destination folder.,File can not be saved to the destination folder.,module,MGS_Testimonial
+All Store Views,All Store Views,module,MGS_Testimonial
+Name for specified store already exists.,Name for specified store already exists.,module,MGS_Testimonial
+There are no testimonials matching the selection.,There are no testimonials matching the selection.,module,MGS_Testimonial
+from,from,module,MGS_Testimonial
+Choose Page to Export,Choose Page to Export,module,MGS_ThemeSettings
+Export,Export,module,MGS_ThemeSettings
+Choose Page to Import,Choose Page to Import,module,MGS_ThemeSettings
+Please wait...,Please wait...,module,MGS_ThemeSettings
+Import,Import,module,MGS_ThemeSettings
+Import %1's Static Blocks,Import %1's Static Blocks,module,MGS_ThemeSettings
+Have no static block to import,Have no static block to import,module,MGS_ThemeSettings
+Home,Home,module,MGS_ThemeSettings
+Go to Home Page,Go to Home Page,module,MGS_ThemeSettings
+Something went wrong while getting the image url.,Something went wrong while getting the image url.,module,MGS_ThemeSettings
+My Wish List,My Wish List,module,MGS_ThemeSettings
+Please activate the theme first.,Please activate the theme first.,module,MGS_ThemeSettings
+The theme has not been activated or your purchase code has been used for another domain.,The theme has not been activated or your purchase code has been used for another domain.,module,MGS_ThemeSettings
+Static blocks was successfully imported.,Static blocks was successfully imported.,module,MGS_ThemeSettings
+The file is corrupted!,The file is corrupted!,module,MGS_ThemeSettings
+The file to import no longer exists.,The file to import no longer exists.,module,MGS_ThemeSettings
+1 item,1 item,module,MGS_ThemeSettings
+%1 items,%1 items,module,MGS_ThemeSettings
+Out of Stock,Out of Stock,module,MGS_ThemeSettings
+Lato,Lato,module,MGS_ThemeSettings
+Open Sans,Open Sans,module,MGS_ThemeSettings
+Open Sans Condensed,Open Sans Condensed,module,MGS_ThemeSettings
+Roboto,Roboto,module,MGS_ThemeSettings
+Roboto Mono,Roboto Mono,module,MGS_ThemeSettings
+Roboto Slab,Roboto Slab,module,MGS_ThemeSettings
+Roboto Condensed,Roboto Condensed,module,MGS_ThemeSettings
+Oswald,Oswald,module,MGS_ThemeSettings
+Source Sans Pro,Source Sans Pro,module,MGS_ThemeSettings
+Source Serif Pro,Source Serif Pro,module,MGS_ThemeSettings
+PT Sans,PT Sans,module,MGS_ThemeSettings
+PT Serif,PT Serif,module,MGS_ThemeSettings
+PT Sans Narrow,PT Sans Narrow,module,MGS_ThemeSettings
+PT Sans Caption,PT Sans Caption,module,MGS_ThemeSettings
+Droid Serif,Droid Serif,module,MGS_ThemeSettings
+Josefin Slab,Josefin Slab,module,MGS_ThemeSettings
+Josefin+Sans,Josefin+Sans,module,MGS_ThemeSettings
+Montserrat,Montserrat,module,MGS_ThemeSettings
+Muli,Muli,module,MGS_ThemeSettings
+Inconsolata,Inconsolata,module,MGS_ThemeSettings
+Rubik,Rubik,module,MGS_ThemeSettings
+Archivo Narrow,Archivo Narrow,module,MGS_ThemeSettings
+Mukta,Mukta,module,MGS_ThemeSettings
+Raleway,Raleway,module,MGS_ThemeSettings
+Merriweather,Merriweather,module,MGS_ThemeSettings
+Merriweather Sans,Merriweather Sans,module,MGS_ThemeSettings
+Ubuntu,Ubuntu,module,MGS_ThemeSettings
+Ubuntu Condensed,Ubuntu Condensed,module,MGS_ThemeSettings
+Text Me One,Text Me One,module,MGS_ThemeSettings
+Titillium Web,Titillium Web,module,MGS_ThemeSettings
+Noto Sans,Noto Sans,module,MGS_ThemeSettings
+Noto Sans TC,Noto Sans TC,module,MGS_ThemeSettings
+Noto Sans SC,Noto Sans SC,module,MGS_ThemeSettings
+Noto Serif,Noto Serif,module,MGS_ThemeSettings
+Noto Sans KR,Noto Sans KR,module,MGS_ThemeSettings
+Noto Sans JP,Noto Sans JP,module,MGS_ThemeSettings
+Nunito,Nunito,module,MGS_ThemeSettings
+Nunito Sans,Nunito Sans,module,MGS_ThemeSettings
+Varela Round,Varela Round,module,MGS_ThemeSettings
+Bai Jamjuree,Bai Jamjuree,module,MGS_ThemeSettings
+Lora,Lora,module,MGS_ThemeSettings
+Playfair Display,Playfair Display,module,MGS_ThemeSettings
+Yanone Kaffeesatz,Yanone Kaffeesatz,module,MGS_ThemeSettings
+Fira Sans,Fira Sans,module,MGS_ThemeSettings
+Fira Sans Condensed,Fira Sans Condensed,module,MGS_ThemeSettings
+Bree Serif,Bree Serif,module,MGS_ThemeSettings
+Sedgwick Ave,Sedgwick Ave,module,MGS_ThemeSettings
+Vollkorn,Vollkorn,module,MGS_ThemeSettings
+Arimo,Arimo,module,MGS_ThemeSettings
+Asap,Asap,module,MGS_ThemeSettings
+Alegreya,Alegreya,module,MGS_ThemeSettings
+Abel,Abel,module,MGS_ThemeSettings
+Exo,Exo,module,MGS_ThemeSettings
+Exo 2,Exo 2,module,MGS_ThemeSettings
+Black Han Sans,Black Han Sans,module,MGS_ThemeSettings
+Libre Baskerville,Libre Baskerville,module,MGS_ThemeSettings
+Libre Franklin,Libre Franklin,module,MGS_ThemeSettings
+Karla,Karla,module,MGS_ThemeSettings
+Poppins,Poppins,module,MGS_ThemeSettings
+IBM Plex Mono,IBM Plex Mono,module,MGS_ThemeSettings
+Catamaran,Catamaran,module,MGS_ThemeSettings
+Cairo,Cairo,module,MGS_ThemeSettings
+Signika,Signika,module,MGS_ThemeSettings
+Heebo,Heebo,module,MGS_ThemeSettings
+Cuprum,Cuprum,module,MGS_ThemeSettings
+Aref Ruqaa,Aref Ruqaa,module,MGS_ThemeSettings
+Dosis,Dosis,module,MGS_ThemeSettings
+Encode Sans Condensed,Encode Sans Condensed,module,MGS_ThemeSettings
+Crimson Text,Crimson Text,module,MGS_ThemeSettings
+Quicksand,Quicksand,module,MGS_ThemeSettings
+Hind,Hind,module,MGS_ThemeSettings
+Cabin,Cabin,module,MGS_ThemeSettings
+Nanum+Gothic,Nanum+Gothic,module,MGS_ThemeSettings
+Bitter,Bitter,module,MGS_ThemeSettings
+Oxygen,Oxygen,module,MGS_ThemeSettings
+Anton,Anton,module,MGS_ThemeSettings
+Arvo,Arvo,module,MGS_ThemeSettings
+Acme,Acme,module,MGS_ThemeSettings
+Fjalla One,Fjalla One,module,MGS_ThemeSettings
+Work Sans,Work Sans,module,MGS_ThemeSettings
+Use Config Setting,Use Config Setting,module,MGS_ThemeSettings
+Grid,Grid,module,MGS_ThemeSettings
+Masonry,Masonry,module,MGS_ThemeSettings
+Parallax,Parallax,module,MGS_ThemeSettings
+Breadcrumbs display inside the page title,Breadcrumbs display inside the page title,module,MGS_ThemeSettings
+Breadcrumbs display outside the page title,Breadcrumbs display outside the page title,module,MGS_ThemeSettings
+Color,Color,module,MGS_ThemeSettings
+Image,Image,module,MGS_ThemeSettings
+Store view switcher,Store view switcher,module,MGS_ThemeSettings
+Curency switcher,Curency switcher,module,MGS_ThemeSettings
+Account links,Account links,module,MGS_ThemeSettings
+Wishlist,Wishlist,module,MGS_ThemeSettings
+Mini Cart,Mini Cart,module,MGS_ThemeSettings
+Search,Search,module,MGS_ThemeSettings
+Choose font weight,Choose font weight,module,MGS_ThemeSettings
+Thin 100,Thin 100,module,MGS_ThemeSettings
+Extra Light 200,Extra Light 200,module,MGS_ThemeSettings
+Light 300,Light 300,module,MGS_ThemeSettings
+Regular 400,Regular 400,module,MGS_ThemeSettings
+Medium 500,Medium 500,module,MGS_ThemeSettings
+Semi Bold 600,Semi Bold 600,module,MGS_ThemeSettings
+Bold 700,Bold 700,module,MGS_ThemeSettings
+Extra Bold 800,Extra Bold 800,module,MGS_ThemeSettings
+Black 900,Black 900,module,MGS_ThemeSettings
+Thin 100 Italic,Thin 100 Italic,module,MGS_ThemeSettings
+Extra Light 200 Italic,Extra Light 200 Italic,module,MGS_ThemeSettings
+Light 300 Italic,Light 300 Italic,module,MGS_ThemeSettings
+Regular 400 Italic,Regular 400 Italic,module,MGS_ThemeSettings
+Medium 500 Italic,Medium 500 Italic,module,MGS_ThemeSettings
+Semi Bold 600 Italic,Semi Bold 600 Italic,module,MGS_ThemeSettings
+Bold 700 Italic,Bold 700 Italic,module,MGS_ThemeSettings
+Extra Bold 800 Italic,Extra Bold 800 Italic,module,MGS_ThemeSettings
+Black 900 Italic,Black 900 Italic,module,MGS_ThemeSettings
+Choose font family,Choose font family,module,MGS_ThemeSettings
+Footer 1,Footer 1,module,MGS_ThemeSettings
+Footer 2,Footer 2,module,MGS_ThemeSettings
+Footer 3,Footer 3,module,MGS_ThemeSettings
+Footer 4,Footer 4,module,MGS_ThemeSettings
+Footer 5,Footer 5,module,MGS_ThemeSettings
+Footer 6,Footer 6,module,MGS_ThemeSettings
+Header 1,Header 1,module,MGS_ThemeSettings
+Header 2,Header 2,module,MGS_ThemeSettings
+Header 3,Header 3,module,MGS_ThemeSettings
+Header 4,Header 4,module,MGS_ThemeSettings
+Header 5 ( Left Sidebar ),Header 5 ( Left Sidebar ),module,MGS_ThemeSettings
+Header 6,Header 6,module,MGS_ThemeSettings
+Header 7,Header 7,module,MGS_ThemeSettings
+Wide,Wide,module,MGS_ThemeSettings
+Boxed,Boxed,module,MGS_ThemeSettings
+Wide with border,Wide with border,module,MGS_ThemeSettings
+Embed Code,Embed Code,module,MGS_ThemeSettings
+Google API,Google API,module,MGS_ThemeSettings
+Dropdown,Dropdown,module,MGS_ThemeSettings
+Slide,Slide,module,MGS_ThemeSettings
+No Layout Update,No Layout Update,module,MGS_ThemeSettings
+1 column,1 column,module,MGS_ThemeSettings
+2 columns with left bar,2 columns with left bar,module,MGS_ThemeSettings
+2 columns with right bar,2 columns with right bar,module,MGS_ThemeSettings
+3 columns,3 columns,module,MGS_ThemeSettings
+1,1,module,MGS_ThemeSettings
+2,2,module,MGS_ThemeSettings
+3,3,module,MGS_ThemeSettings
+4,4,module,MGS_ThemeSettings
+5,5,module,MGS_ThemeSettings
+6,6,module,MGS_ThemeSettings
+7,7,module,MGS_ThemeSettings
+8,8,module,MGS_ThemeSettings
+Above Main Content,Above Main Content,module,MGS_ThemeSettings
+Above Product List,Above Product List,module,MGS_ThemeSettings
+Below Product List,Below Product List,module,MGS_ThemeSettings
+Below Main Content,Below Main Content,module,MGS_ThemeSettings
+Left,Left,module,MGS_ThemeSettings
+Right,Right,module,MGS_ThemeSettings
+Center,Center,module,MGS_ThemeSettings
+Top,Top,module,MGS_ThemeSettings
+Bottom,Bottom,module,MGS_ThemeSettings
+Middle,Middle,module,MGS_ThemeSettings
+Main Content,Main Content,module,MGS_ThemeSettings
+Sidebar,Sidebar,module,MGS_ThemeSettings
+No Repeat,No Repeat,module,MGS_ThemeSettings
+Repeat,Repeat,module,MGS_ThemeSettings
+Repeat X,Repeat X,module,MGS_ThemeSettings
+Repeat Y,Repeat Y,module,MGS_ThemeSettings
+Always show search box,Always show search box,module,MGS_ThemeSettings
+Hide search box and show on popup when icon is clicked,Hide search box and show on popup when icon is clicked,module,MGS_ThemeSettings
+Default,Default,module,MGS_ThemeSettings
+File,File,module,MGS_ThemeSettings
+Session,Session,module,MGS_ThemeSettings
+1024px,1024px,module,MGS_ThemeSettings
+1200px,1200px,module,MGS_ThemeSettings
+1366px,1366px,module,MGS_ThemeSettings
+Full width,Full width,module,MGS_ThemeSettings
+Custom,Custom,module,MGS_ThemeSettings
+%1 Products,%1 Products,module,MGS_ThemeSettings
+Login Your Account,Login Your Account,module,MGS_ThemeSettings
+* Required Fields,* Required Fields,module,MGS_ThemeSettings
+Email,Email,module,MGS_ThemeSettings
+Password,Password,module,MGS_ThemeSettings
+Forgot?,Forgot?,module,MGS_ThemeSettings
+Sign In,Sign In,module,MGS_ThemeSettings
+Create an account,Create an account,module,MGS_ThemeSettings
+Missing address configuration. Please check in admin > MGS > Theme Setting > Contact Us Page,Missing address configuration. Please check in admin > MGS > Theme Setting > Contact Us Page,module,MGS_ThemeSettings
+Missing Google API. Please check in admin > MGS > Page Builder Setting > Social > Google API Key,Missing Google API. Please check in admin > MGS > Page Builder Setting > Social > Google API Key,module,MGS_ThemeSettings
+Close,Close,module,MGS_ThemeSettings
+Sign up Newsletter,Sign up Newsletter,module,MGS_ThemeSettings
+Enter your email address,Enter your email address,module,MGS_ThemeSettings
+Subscribe,Subscribe,module,MGS_ThemeSettings
+Don't show this popup again,Don't show this popup again,module,MGS_ThemeSettings
+Publish,Publish,module,MGS_ThemeSettings
+Yes,Yes,module,MGS_ThemeSettings
+No,No,module,MGS_ThemeSettings
+Active CMS Builder,Active CMS Builder,module,MGS_ThemeSettings
+Related Products,Related Products,module,MGS_ThemeSettings
+We found other products you might like!,We found other products you might like!,module,MGS_ThemeSettings
+Upsell Products!,Upsell Products!,module,MGS_ThemeSettings
+More Choices:,More Choices:,module,MGS_ThemeSettings
+New Products,New Products,module,MGS_ThemeSettings
+Check items to add to the cart or,Check items to add to the cart or,module,MGS_ThemeSettings
+select all,select all,module,MGS_ThemeSettings
+Add to Cart,Add to Cart,module,MGS_ThemeSettings
+Your search returned no results.,Your search returned no results.,module,MGS_ThemeSettings
+Remove This Item,Remove This Item,module,MGS_ThemeSettings
+View All Wish List,View All Wish List,module,MGS_ThemeSettings
+You have no items in your wish list.,You have no items in your wish list.,module,MGS_ThemeSettings
+We can't find products matching the selection.,We can't find products matching the selection.,theme,frontend/Mgs/blank
+Add to Cart,Add to Cart,theme,frontend/Mgs/blank
+In stock,In stock,theme,frontend/Mgs/blank
+Out of stock,Out of stock,theme,frontend/Mgs/blank
+Learn More,Learn More,theme,frontend/Mgs/blank
+Related Products,Related Products,theme,frontend/Mgs/blank
+We found other products you might like!,We found other products you might like!,theme,frontend/Mgs/blank
+More Choices:,More Choices:,theme,frontend/Mgs/blank
+New Products,New Products,theme,frontend/Mgs/blank
+Check items to add to the cart or,Check items to add to the cart or,theme,frontend/Mgs/blank
+select all,select all,theme,frontend/Mgs/blank
+Quickview,Quickview,theme,frontend/Mgs/claue
+Featured Brands,Featured Brands,theme,frontend/Mgs/claue
+%1 ,%1 ,theme,frontend/Mgs/claue
+Products,Products,theme,frontend/Mgs/claue
+Product,Product,theme,frontend/Mgs/claue
+Related Products By Brand,Related Products By Brand,theme,frontend/Mgs/claue
+Add to Compare,Add to Compare,theme,frontend/Mgs/claue
+Add to Wish List,Add to Wish List,theme,frontend/Mgs/claue
+Add to Cart,Add to Cart,theme,frontend/Mgs/claue
+Have no brands.,Have no brands.,theme,frontend/Mgs/claue
+Search brand here...,Search brand here...,theme,frontend/Mgs/claue
+Search,Search,theme,frontend/Mgs/claue
+Reset,Reset,theme,frontend/Mgs/claue
+Reset Filter,Reset Filter,theme,frontend/Mgs/claue
+Video,Video,theme,frontend/Mgs/claue
+Deals Block,Deals Block,theme,frontend/Mgs/claue
+* Required Fields,* Required Fields,theme,frontend/Mgs/claue
+Product Config,Product Config,theme,frontend/Mgs/claue
+Number of product to display,Number of product to display,theme,frontend/Mgs/claue
+Items per row (default),Items per row (default),theme,frontend/Mgs/claue
+Items per row (tablet),Items per row (tablet),theme,frontend/Mgs/claue
+Items per row (mobile),Items per row (mobile),theme,frontend/Mgs/claue
+Number col,Number col,theme,frontend/Mgs/claue
+Item per col,Item per col,theme,frontend/Mgs/claue
+View mode,View mode,theme,frontend/Mgs/claue
+Grid,Grid,theme,frontend/Mgs/claue
+List,List,theme,frontend/Mgs/claue
+Hide Product Name,Hide Product Name,theme,frontend/Mgs/claue
+No,No,theme,frontend/Mgs/claue
+Yes,Yes,theme,frontend/Mgs/claue
+Hide Review,Hide Review,theme,frontend/Mgs/claue
+Hide Add to Cart,Hide Add to Cart,theme,frontend/Mgs/claue
+Hide Add to Wishlist,Hide Add to Wishlist,theme,frontend/Mgs/claue
+Hide Add to Compare,Hide Add to Compare,theme,frontend/Mgs/claue
+Use slider,Use slider,theme,frontend/Mgs/claue
+Deal Config,Deal Config,theme,frontend/Mgs/claue
+Hide Countdown Time,Hide Countdown Time,theme,frontend/Mgs/claue
+Time Text,Time Text,theme,frontend/Mgs/claue
+Width,Width,theme,frontend/Mgs/claue
+Background color,Background color,theme,frontend/Mgs/claue
+Number font size,Number font size,theme,frontend/Mgs/claue
+Text font size,Text font size,theme,frontend/Mgs/claue
+Number color,Number color,theme,frontend/Mgs/claue
+Text color,Text color,theme,frontend/Mgs/claue
+Hide Discount Percent,Hide Discount Percent,theme,frontend/Mgs/claue
+Font size,Font size,theme,frontend/Mgs/claue
+Hide Saved Price,Hide Saved Price,theme,frontend/Mgs/claue
+Text,Text,theme,frontend/Mgs/claue
+Price font size,Price font size,theme,frontend/Mgs/claue
+Price color,Price color,theme,frontend/Mgs/claue
+Back,Back,theme,frontend/Mgs/claue
+Submit,Submit,theme,frontend/Mgs/claue
+Single Product Block,Single Product Block,theme,frontend/Mgs/claue
+Enter product name to search.,Enter product name to search.,theme,frontend/Mgs/claue
+Hide Price,Hide Price,theme,frontend/Mgs/claue
+Hide short description,Hide short description,theme,frontend/Mgs/claue
+Truncate short description,Truncate short description,theme,frontend/Mgs/claue
+We can't find products matching the selection.,We can't find products matching the selection.,theme,frontend/Mgs/claue
+There are no categories matching the selection.,There are no categories matching the selection.,theme,frontend/Mgs/claue
+In stock,In stock,theme,frontend/Mgs/claue
+Out of stock,Out of stock,theme,frontend/Mgs/claue
+Qty,Qty,theme,frontend/Mgs/claue
+Learn More,Learn More,theme,frontend/Mgs/claue
+"By <span class=""color-theme"">%1</span> on %2","By <span class=""color-theme"">%1</span> on %2",theme,frontend/Mgs/claue
+We can't find post matching the selection.,We can't find post matching the selection.,theme,frontend/Mgs/claue
+Have no field for form.,Have no field for form.,theme,frontend/Mgs/claue
+There are no sliders matching the selection.,There are no sliders matching the selection.,theme,frontend/Mgs/claue
+Have no banner to show.,Have no banner to show.,theme,frontend/Mgs/claue
+Can not get Instagram data or your instagram account have not any images.,Can not get Instagram data or your instagram account have not any images.,theme,frontend/Mgs/claue
+We can't find testimonial matching the selection.,We can't find testimonial matching the selection.,theme,frontend/Mgs/claue
+Data Access,Data Access,theme,frontend/Mgs/claue
+Erase Account,Erase Account,theme,frontend/Mgs/claue
+SHOP THE LOOK,SHOP THE LOOK,theme,frontend/Mgs/claue
+There are no menus matching the selection.,There are no menus matching the selection.,theme,frontend/Mgs/claue
+All Works,All Works,theme,frontend/Mgs/claue
+There are no portfolios matching the selection.,There are no portfolios matching the selection.,theme,frontend/Mgs/claue
+Date:,Date:,theme,frontend/Mgs/claue
+Categories:,Categories:,theme,frontend/Mgs/claue
+Client:,Client:,theme,frontend/Mgs/claue
+Project:,Project:,theme,frontend/Mgs/claue
+Skills:,Skills:,theme,frontend/Mgs/claue
+Related Works,Related Works,theme,frontend/Mgs/claue
+%1 product(s),%1 product(s),theme,frontend/Mgs/claue
+Shop Now,Shop Now,theme,frontend/Mgs/claue
+%1 product (s),%1 product (s),theme,frontend/Mgs/claue
+Related Products,Related Products,theme,frontend/Mgs/claue
+We found other products you might like!,We found other products you might like!,theme,frontend/Mgs/claue
+More Choices:,More Choices:,theme,frontend/Mgs/claue
+New Products,New Products,theme,frontend/Mgs/claue
+Wishlist,Wishlist,theme,frontend/Mgs/claue
+Remove This Item,Remove This Item,theme,frontend/Mgs/claue
+View All Wish List,View All Wish List,theme,frontend/Mgs/claue
+You have no items in your wish list.,You have no items in your wish list.,theme,frontend/Mgs/claue
+Your Customization,Your Customization,theme,frontend/Mgs/claue
+%1 x %2,%1 x %2,theme,frontend/Mgs/claue
+Availability:,Availability:,theme,frontend/Mgs/claue
+Availability: ,Availability: ,theme,frontend/Mgs/claue
+Print This Page,Print This Page,theme,frontend/Mgs/claue
+Compare Products,Compare Products,theme,frontend/Mgs/claue
+Remove Product,Remove Product,theme,frontend/Mgs/claue
+You have no items to compare.,You have no items to compare.,theme,frontend/Mgs/claue
+Compare,Compare,theme,frontend/Mgs/claue
+Clear All,Clear All,theme,frontend/Mgs/claue
+Show,Show,theme,frontend/Mgs/claue
+per page,per page,theme,frontend/Mgs/claue
+Sort by,Sort by,theme,frontend/Mgs/claue
+Set Ascending Direction,Set Ascending Direction,theme,frontend/Mgs/claue
+Set Descending Direction,Set Descending Direction,theme,frontend/Mgs/claue
+Availability,Availability,theme,frontend/Mgs/claue
+Apply Discount Code,Apply Discount Code,theme,frontend/Mgs/claue
+Enter discount code,Enter discount code,theme,frontend/Mgs/claue
+Apply Discount,Apply Discount,theme,frontend/Mgs/claue
+Cancel Coupon,Cancel Coupon,theme,frontend/Mgs/claue
+Shopping Cart Items,Shopping Cart Items,theme,frontend/Mgs/claue
+Price,Price,theme,frontend/Mgs/claue
+Quantity,Quantity,theme,frontend/Mgs/claue
+Subtotal,Subtotal,theme,frontend/Mgs/claue
+Continue Shopping,Continue Shopping,theme,frontend/Mgs/claue
+Clear Shopping Cart,Clear Shopping Cart,theme,frontend/Mgs/claue
+Update Shopping Cart,Update Shopping Cart,theme,frontend/Mgs/claue
+Update Cart,Update Cart,theme,frontend/Mgs/claue
+Item,Item,theme,frontend/Mgs/claue
+See price before order confirmation.,See price before order confirmation.,theme,frontend/Mgs/claue
+What's this?,What's this?,theme,frontend/Mgs/claue
+Edit item parameters,Edit item parameters,theme,frontend/Mgs/claue
+Remove item,Remove item,theme,frontend/Mgs/claue
+My Cart,My Cart,theme,frontend/Mgs/claue
+Mini Cart,Mini Cart,theme,frontend/Mgs/claue
+Estimate Tax,Estimate Tax,theme,frontend/Mgs/claue
+Estimate Shipping and Tax,Estimate Shipping and Tax,theme,frontend/Mgs/claue
+Send us a message,Send us a message,theme,frontend/Mgs/claue
+Name,Name,theme,frontend/Mgs/claue
+Email,Email,theme,frontend/Mgs/claue
+Phone,Phone,theme,frontend/Mgs/claue
+Phone Number,Phone Number,theme,frontend/Mgs/claue
+Content,Content,theme,frontend/Mgs/claue
+Send Messages,Send Messages,theme,frontend/Mgs/claue
+Address Book,Address Book,theme,frontend/Mgs/claue
+Default Billing Address,Default Billing Address,theme,frontend/Mgs/claue
+Edit Address,Edit Address,theme,frontend/Mgs/claue
+Default Shipping Address,Default Shipping Address,theme,frontend/Mgs/claue
+Manage Addresses,Manage Addresses,theme,frontend/Mgs/claue
+Contact Information,Contact Information,theme,frontend/Mgs/claue
+Change Password,Change Password,theme,frontend/Mgs/claue
+Edit,Edit,theme,frontend/Mgs/claue
+Newsletters,Newsletters,theme,frontend/Mgs/claue
+"You are subscribed to ""General Subscription"".","You are subscribed to ""General Subscription"".",theme,frontend/Mgs/claue
+You aren't subscribed to our newsletter.,You aren't subscribed to our newsletter.,theme,frontend/Mgs/claue
+You have no default billing address in your address book.,You have no default billing address in your address book.,theme,frontend/Mgs/claue
+You have no default shipping address in your address book.,You have no default shipping address in your address book.,theme,frontend/Mgs/claue
+Additional Address Entries,Additional Address Entries,theme,frontend/Mgs/claue
+Delete,Delete,theme,frontend/Mgs/claue
+You have no other address entries in your address book.,You have no other address entries in your address book.,theme,frontend/Mgs/claue
+Address,Address,theme,frontend/Mgs/claue
+Street Address: Line %1,Street Address: Line %1,theme,frontend/Mgs/claue
+Street Address %1,Street Address %1,theme,frontend/Mgs/claue
+City,City,theme,frontend/Mgs/claue
+It's a default billing address.,It's a default billing address.,theme,frontend/Mgs/claue
+Use as my default billing address,Use as my default billing address,theme,frontend/Mgs/claue
+It's a default shipping address.,It's a default shipping address.,theme,frontend/Mgs/claue
+Use as my default shipping address,Use as my default shipping address,theme,frontend/Mgs/claue
+Save Address,Save Address,theme,frontend/Mgs/claue
+Go back,Go back,theme,frontend/Mgs/claue
+Additional addresses,Additional addresses,theme,frontend/Mgs/claue
+First Name,First Name,theme,frontend/Mgs/claue
+Last Name,Last Name,theme,frontend/Mgs/claue
+Street Address,Street Address,theme,frontend/Mgs/claue
+Country,Country,theme,frontend/Mgs/claue
+State,State,theme,frontend/Mgs/claue
+Zip/Postal Code,Zip/Postal Code,theme,frontend/Mgs/claue
+Actions,Actions,theme,frontend/Mgs/claue
+Add New Address,Add New Address,theme,frontend/Mgs/claue
+Account Information,Account Information,theme,frontend/Mgs/claue
+Change Email,Change Email,theme,frontend/Mgs/claue
+Change Email and Password,Change Email and Password,theme,frontend/Mgs/claue
+Current Password,Current Password,theme,frontend/Mgs/claue
+New Password,New Password,theme,frontend/Mgs/claue
+Password Strength,Password Strength,theme,frontend/Mgs/claue
+No Password,No Password,theme,frontend/Mgs/claue
+Confirm New Password,Confirm New Password,theme,frontend/Mgs/claue
+Save,Save,theme,frontend/Mgs/claue
+Please enter your email address below to receive a password reset link.,Please enter your email address below to receive a password reset link.,theme,frontend/Mgs/claue
+Enter your email...,Enter your email...,theme,frontend/Mgs/claue
+Reset My Password,Reset My Password,theme,frontend/Mgs/claue
+Registered Customers,Registered Customers,theme,frontend/Mgs/claue
+"If you have an account, sign in with your email address.","If you have an account, sign in with your email address.",theme,frontend/Mgs/claue
+Email Address,Email Address,theme,frontend/Mgs/claue
+Password,Password,theme,frontend/Mgs/claue
+Sign In,Sign In,theme,frontend/Mgs/claue
+Forgot Your Password?,Forgot Your Password?,theme,frontend/Mgs/claue
+Subscription option,Subscription option,theme,frontend/Mgs/claue
+General Subscription,General Subscription,theme,frontend/Mgs/claue
+Personal Information,Personal Information,theme,frontend/Mgs/claue
+Sign Up for Newsletter,Sign Up for Newsletter,theme,frontend/Mgs/claue
+Address Information,Address Information,theme,frontend/Mgs/claue
+"Please select a region, state or province.","Please select a region, state or province.",theme,frontend/Mgs/claue
+Sign-in Information,Sign-in Information,theme,frontend/Mgs/claue
+Confirm Password,Confirm Password,theme,frontend/Mgs/claue
+Create an Account,Create an Account,theme,frontend/Mgs/claue
+New Customers,New Customers,theme,frontend/Mgs/claue
+"By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.","By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.",theme,frontend/Mgs/claue
+Downloadable Products,Downloadable Products,theme,frontend/Mgs/claue
+Order #,Order #,theme,frontend/Mgs/claue
+Date,Date,theme,frontend/Mgs/claue
+Title,Title,theme,frontend/Mgs/claue
+Status,Status,theme,frontend/Mgs/claue
+Remaining Downloads,Remaining Downloads,theme,frontend/Mgs/claue
+View Order,View Order,theme,frontend/Mgs/claue
+Start Download,Start Download,theme,frontend/Mgs/claue
+You have not purchased any downloadable products yet.,You have not purchased any downloadable products yet.,theme,frontend/Mgs/claue
+Now Shopping by,Now Shopping by,theme,frontend/Mgs/claue
+Previous,Previous,theme,frontend/Mgs/claue
+Remove,Remove,theme,frontend/Mgs/claue
+Filter,Filter,theme,frontend/Mgs/claue
+Default Billing,Default Billing,theme,frontend/Mgs/claue
+Default Shipping,Default Shipping,theme,frontend/Mgs/claue
+Select Address,Select Address,theme,frontend/Mgs/claue
+Back to Billing Information,Back to Billing Information,theme,frontend/Mgs/claue
+Please select a shipping address for applicable items.,Please select a shipping address for applicable items.,theme,frontend/Mgs/claue
+Send To,Send To,theme,frontend/Mgs/claue
+A shipping selection is not applicable.,A shipping selection is not applicable.,theme,frontend/Mgs/claue
+Remove Item,Remove Item,theme,frontend/Mgs/claue
+Update Qty &amp; Addresses,Update Qty &amp; Addresses,theme,frontend/Mgs/claue
+Enter a New Address,Enter a New Address,theme,frontend/Mgs/claue
+Go to Shipping Information,Go to Shipping Information,theme,frontend/Mgs/claue
+Loading...,Loading...,theme,frontend/Mgs/claue
+Billing Address,Billing Address,theme,frontend/Mgs/claue
+Change,Change,theme,frontend/Mgs/claue
+Payment Method,Payment Method,theme,frontend/Mgs/claue
+Back to Shipping Information,Back to Shipping Information,theme,frontend/Mgs/claue
+Go to Review Your Order,Go to Review Your Order,theme,frontend/Mgs/claue
+Please see,Please see,theme,frontend/Mgs/claue
+details below,details below,theme,frontend/Mgs/claue
+Billing Information,Billing Information,theme,frontend/Mgs/claue
+Shipping Information,Shipping Information,theme,frontend/Mgs/claue
+of,of,theme,frontend/Mgs/claue
+Shipping To,Shipping To,theme,frontend/Mgs/claue
+Shipping Method,Shipping Method,theme,frontend/Mgs/claue
+Incl. Tax,Incl. Tax,theme,frontend/Mgs/claue
+Excl. Tax,Excl. Tax,theme,frontend/Mgs/claue
+Order Review,Order Review,theme,frontend/Mgs/claue
+Other items in your order,Other items in your order,theme,frontend/Mgs/claue
+Items,Items,theme,frontend/Mgs/claue
+Product Name,Product Name,theme,frontend/Mgs/claue
+Grand Total:,Grand Total:,theme,frontend/Mgs/claue
+Place Order,Place Order,theme,frontend/Mgs/claue
+Submitting order information...,Submitting order information...,theme,frontend/Mgs/claue
+Address %1 <span>of %2</span>,Address %1 <span>of %2</span>,theme,frontend/Mgs/claue
+Change Address,Change Address,theme,frontend/Mgs/claue
+"Sorry, no quotes are available for this order right now.","Sorry, no quotes are available for this order right now.",theme,frontend/Mgs/claue
+Edit Items,Edit Items,theme,frontend/Mgs/claue
+Back to Select Addresses,Back to Select Addresses,theme,frontend/Mgs/claue
+Continue to Billing Information,Continue to Billing Information,theme,frontend/Mgs/claue
+"For successfully order items, you'll receive a confirmation email including order numbers, tracking information and more details.","For successfully order items, you'll receive a confirmation email including order numbers, tracking information and more details.",theme,frontend/Mgs/claue
+Successfully ordered,Successfully ordered,theme,frontend/Mgs/claue
+Ship to:,Ship to:,theme,frontend/Mgs/claue
+No shipping required.,No shipping required.,theme,frontend/Mgs/claue
+Your email address,Your email address,theme,frontend/Mgs/claue
+Subscribe,Subscribe,theme,frontend/Mgs/claue
+Product Reviews,Product Reviews,theme,frontend/Mgs/claue
+Created,Created,theme,frontend/Mgs/claue
+Rating,Rating,theme,frontend/Mgs/claue
+Review,Review,theme,frontend/Mgs/claue
+See Details,See Details,theme,frontend/Mgs/claue
+You have submitted no reviews.,You have submitted no reviews.,theme,frontend/Mgs/claue
+Average Customer Rating:,Average Customer Rating:,theme,frontend/Mgs/claue
+Your Review,Your Review,theme,frontend/Mgs/claue
+Submitted on %1,Submitted on %1,theme,frontend/Mgs/claue
+Back to My Reviews,Back to My Reviews,theme,frontend/Mgs/claue
+Write Your Own Review,Write Your Own Review,theme,frontend/Mgs/claue
+You're reviewing:,You're reviewing:,theme,frontend/Mgs/claue
+Your Rating,Your Rating,theme,frontend/Mgs/claue
+%1 %2,%1 %2,theme,frontend/Mgs/claue
+Nickname,Nickname,theme,frontend/Mgs/claue
+Summary,Summary,theme,frontend/Mgs/claue
+Submit Review,Submit Review,theme,frontend/Mgs/claue
+"Only registered users can write reviews. Please <a href=""%1"">Sign in</a> or <a href=""%2"">create an account</a>","Only registered users can write reviews. Please <a href=""%1"">Sign in</a> or <a href=""%2"">create an account</a>",theme,frontend/Mgs/claue
+Reviews,Reviews,theme,frontend/Mgs/claue
+Add Your Review,Add Your Review,theme,frontend/Mgs/claue
+Be the first to review this product,Be the first to review this product,theme,frontend/Mgs/claue
+Orders,Orders,theme,frontend/Mgs/claue
+Order Total,Order Total,theme,frontend/Mgs/claue
+Reorder,Reorder,theme,frontend/Mgs/claue
+Order Information,Order Information,theme,frontend/Mgs/claue
+Shipping Address,Shipping Address,theme,frontend/Mgs/claue
+No shipping information available,No shipping information available,theme,frontend/Mgs/claue
+Recent Orders,Recent Orders,theme,frontend/Mgs/claue
+Ship To,Ship To,theme,frontend/Mgs/claue
+Action,Action,theme,frontend/Mgs/claue
+View All,View All,theme,frontend/Mgs/claue
+You have placed no orders.,You have placed no orders.,theme,frontend/Mgs/claue
+Items Ordered,Items Ordered,theme,frontend/Mgs/claue
+Gift Message for This Order,Gift Message for This Order,theme,frontend/Mgs/claue
+From,From,theme,frontend/Mgs/claue
+To,To,theme,frontend/Mgs/claue
+Recently Ordered,Recently Ordered,theme,frontend/Mgs/claue
+Last Ordered Items,Last Ordered Items,theme,frontend/Mgs/claue
+Product is not salable.,Product is not salable.,theme,frontend/Mgs/claue
+Search for...,Search for...,theme,frontend/Mgs/claue
+Language,Language,theme,frontend/Mgs/claue
+Account Navigation,Account Navigation,theme,frontend/Mgs/claue
+Items %1 to %2 of %3 total,Items %1 to %2 of %3 total,theme,frontend/Mgs/claue
+%1 Item,%1 Item,theme,frontend/Mgs/claue
+%1 Item(s),%1 Item(s),theme,frontend/Mgs/claue
+Prev,Prev,theme,frontend/Mgs/claue
+Next,Next,theme,frontend/Mgs/claue
+Toggle Menu,Toggle Menu,theme,frontend/Mgs/claue
+Menu,Menu,theme,frontend/Mgs/claue
+Account,Account,theme,frontend/Mgs/claue
+Setting,Setting,theme,frontend/Mgs/claue
+Share Wish List,Share Wish List,theme,frontend/Mgs/claue
+Add All to Cart,Add All to Cart,theme,frontend/Mgs/claue
+Update Wish List,Update Wish List,theme,frontend/Mgs/claue
+This Wish List has no Items,This Wish List has no Items,theme,frontend/Mgs/claue
+Sharing Information,Sharing Information,theme,frontend/Mgs/claue
+"Email addresses, separated by commas","Email addresses, separated by commas",theme,frontend/Mgs/claue
+Message,Message,theme,frontend/Mgs/claue
+Check here to link an RSS feed to your Wish List.,Check here to link an RSS feed to your Wish List.,theme,frontend/Mgs/claue
+Last Added Items,Last Added Items,theme,frontend/Mgs/claue
+Go to Wish List,Go to Wish List,theme,frontend/Mgs/claue
+Search entire store here...,Search entire store here...,theme,frontend/Mgs/claue
+Add To Cart,Add To Cart,module,MGS_AjaxCart
+"Sorry, something went wrong. Please try again later.","Sorry, something went wrong. Please try again later.",module,MGS_ExtraGallery
+Provided Zip/Postal Code seems to be invalid.,Provided Zip/Postal Code seems to be invalid.,module,MGS_OSCheckout
+ Example: , Example: ,module,MGS_OSCheckout
+If you believe it is the right one you can ignore this notice.,If you believe it is the right one you can ignore this notice.,module,MGS_OSCheckout
+Please specify a payment method.,Please specify a payment method.,module,MGS_OSCheckout
+Please specify a shipping method.,Please specify a shipping method.,module,MGS_OSCheckout
+Gift message item,Gift message item,module,MGS_OSCheckout
+Gift Message Item &#40,Gift Message Item &#40,module,MGS_OSCheckout
+"Sorry, something went wrong. Please try again later.","Sorry, something went wrong. Please try again later.",theme,frontend/Mgs/claue
+Ajax Cart,Ajax Cart,module,MGS_AjaxCart
+Additional Settings,Additional Settings,module,MGS_AjaxCart
+Animation Type,Animation Type,module,MGS_AjaxCart
+Message,Message,module,MGS_AjaxCart
+Show upsell products,Show upsell products,module,MGS_AjaxCart
+"Show ""Checkout"" button","Show ""Checkout"" button",module,MGS_AjaxCart
+"Show ""View Shopping Cart"" button","Show ""View Shopping Cart"" button",module,MGS_AjaxCart
+Ajax Layared Navigation,Ajax Layared Navigation,module,MGS_Ajaxlayernavigation
+General,General,module,MGS_Ajaxlayernavigation
+Use Ajax,Use Ajax,module,MGS_Ajaxlayernavigation
+Default Expanded Filter,Default Expanded Filter,module,MGS_Ajaxlayernavigation
+Remove Shopping by,Remove Shopping by,module,MGS_Ajaxlayernavigation
+Filter by text,Filter by text,module,MGS_Ajaxlayernavigation
+Filter Price button text,Filter Price button text,module,MGS_Ajaxlayernavigation
+none,none,module,MGS_Aquickview
+Overview,Overview,module,MGS_Aquickview
+General Settings,General Settings,module,MGS_Blog
+Route,Route,module,MGS_Blog
+"For example: <code style=""color: #eb5202;"">blog</code>, <code style=""color: #eb5202;"">our-blog</code> makes the blog accessible at domain.com/<code style=""color: #eb5202;"">blog</code>.","For example: <code style=""color: #eb5202;"">blog</code>, <code style=""color: #eb5202;"">our-blog</code> makes the blog accessible at domain.com/<code style=""color: #eb5202;"">blog</code>.",module,MGS_Blog
+Template,Template,module,MGS_Blog
+Posts Per Page,Posts Per Page,module,MGS_Blog
+Show Thumbnail On Blog Post List Page,Show Thumbnail On Blog Post List Page,module,MGS_Blog
+Show Image On Blog Post View Page,Show Image On Blog Post View Page,module,MGS_Blog
+Show Next Post and Prev Post on Post View Page,Show Next Post and Prev Post on Post View Page,module,MGS_Blog
+Meta Keywords,Meta Keywords,module,MGS_Blog
+Meta Description,Meta Description,module,MGS_Blog
+Default Sort For Posts,Default Sort For Posts,module,MGS_Blog
+Use ShareThis,Use ShareThis,module,MGS_Blog
+"Go to <a href=""http://www.sharethis.com/get-sharing-tools"" target=""_blank"">http://www.sharethis.com/get-sharing-tools/</a> get pub key.","Go to <a href=""http://www.sharethis.com/get-sharing-tools"" target=""_blank"">http://www.sharethis.com/get-sharing-tools/</a> get pub key.",module,MGS_Blog
+ShareThis Pub Key,ShareThis Pub Key,module,MGS_Blog
+Sidebar Settings,Sidebar Settings,module,MGS_Blog
+Show Categories,Show Categories,module,MGS_Blog
+Show Recent Posts,Show Recent Posts,module,MGS_Blog
+Number Of Recent Posts To Display,Number Of Recent Posts To Display,module,MGS_Blog
+Show Tags,Show Tags,module,MGS_Blog
+Number Of Tags To Display,Number Of Tags To Display,module,MGS_Blog
+Comment Settings,Comment Settings,module,MGS_Blog
+Login Required To Comment,Login Required To Comment,module,MGS_Blog
+Auto Approve Comment,Auto Approve Comment,module,MGS_Blog
+Send Emails To,Send Emails To,module,MGS_Blog
+Email Sender,Email Sender,module,MGS_Blog
+Email Template,Email Template,module,MGS_Blog
+"Email template chosen based on theme fallback when ""Default"" option is selected.","Email template chosen based on theme fallback when ""Default"" option is selected.",module,MGS_Blog
+Comments Per Page To Display On Post View Page,Comments Per Page To Display On Post View Page,module,MGS_Blog
+Blog Lastest Posts,Blog Lastest Posts,module,MGS_Blog
+Number Of Posts To Display,Number Of Posts To Display,module,MGS_Blog
+Show Thumbnail,Show Thumbnail,module,MGS_Blog
+Thumbnail Width,Thumbnail Width,module,MGS_Blog
+Thumbnail Height,Thumbnail Height,module,MGS_Blog
+Show Short Content,Show Short Content,module,MGS_Blog
+Limit Characters Of Short Content To Display,Limit Characters Of Short Content To Display,module,MGS_Blog
+View As,View As,module,MGS_Blog
+Custom Class,Custom Class,module,MGS_Blog
+Items,Items,module,MGS_Blog
+This variable allows you to set the maximum amount of items displayed at a time with the widest browser width.,This variable allows you to set the maximum amount of items displayed at a time with the widest browser width.,module,MGS_Blog
+Autoplay,Autoplay,module,MGS_Blog
+Stop On Hover,Stop On Hover,module,MGS_Blog
+Navigation,Navigation,module,MGS_Blog
+CATEGORY,CATEGORY,module,MGS_Blog
+General,General,module,MGS_Blog
+URL,URL,module,MGS_Blog
+Sort Order,Sort Order,module,MGS_Blog
+Meta Information,Meta Information,module,MGS_Blog
+General Information,General Information,module,MGS_Blog
+Publish Date,Publish Date,module,MGS_Blog
+Category,Category,module,MGS_Blog
+Thumbnail Type,Thumbnail Type,module,MGS_Blog
+"Show on Widget, Sidebar, List Post","Show on Widget, Sidebar, List Post",module,MGS_Blog
+Video Thumbnail Type,Video Thumbnail Type,module,MGS_Blog
+"
+                         For Examples:<br> 1. Youtube 
+                         <br> Link: https://www.youtube.com/watch?v=BBvsB5PcitQ
+                         <br>VideoID:<b>BBvsB5PcitQ</b>
+                         <br>2. Vimeo
+                         <br>Link: https://vimeo.com/145947876
+                         <br>VideoID:<b>145947876</b>
+                         
+                        ","
+                         For Examples:<br> 1. Youtube 
+                         <br> Link: https://www.youtube.com/watch?v=BBvsB5PcitQ
+                         <br>VideoID:<b>BBvsB5PcitQ</b>
+                         <br>2. Vimeo
+                         <br>Link: https://vimeo.com/145947876
+                         <br>VideoID:<b>145947876</b>
+                         
+                        ",module,MGS_Blog
+Video Thumbnail Id,Video Thumbnail Id,module,MGS_Blog
+Image Type,Image Type,module,MGS_Blog
+Show on Post Detail,Show on Post Detail,module,MGS_Blog
+Video Big Type,Video Big Type,module,MGS_Blog
+"
+                        For Examples:<br> 1. Youtube 
+                        <br> Link: https://www.youtube.com/watch?v=BBvsB5PcitQ
+                        <br>VideoID:<b>BBvsB5PcitQ</b>
+                        <br>2. Vimeo
+                        <br>Link: https://vimeo.com/145947876
+                        <br>VideoID:<b>145947876</b>
+                        
+                        ","
+                        For Examples:<br> 1. Youtube 
+                        <br> Link: https://www.youtube.com/watch?v=BBvsB5PcitQ
+                        <br>VideoID:<b>BBvsB5PcitQ</b>
+                        <br>2. Vimeo
+                        <br>Link: https://vimeo.com/145947876
+                        <br>VideoID:<b>145947876</b>
+                        
+                        ",module,MGS_Blog
+Video Big Id,Video Big Id,module,MGS_Blog
+Author Name,Author Name,module,MGS_Blog
+Delete items,Delete items,module,MGS_Blog
+Are you sure you wan't to delete selected items?,Are you sure you wan't to delete selected items?,module,MGS_Blog
+Disable,Disable,module,MGS_Blog
+Enable,Enable,module,MGS_Blog
+Created At,Created At,module,MGS_Blog
+Updated At,Updated At,module,MGS_Blog
+Short Content,Short Content,module,MGS_Blog
+published_at,published_at,module,MGS_Blog
+User,User,module,MGS_Blog
+Updated By User,Updated By User,module,MGS_Blog
+created_at,created_at,module,MGS_Blog
+updated_at,updated_at,module,MGS_Blog
+General Settings,General Settings,module,MGS_Brand
+Route,Route,module,MGS_Brand
+List Page Settings,List Page Settings,module,MGS_Brand
+Page Title,Page Title,module,MGS_Brand
+Page Template,Page Template,module,MGS_Brand
+Number Of Product Per Row,Number Of Product Per Row,module,MGS_Brand
+Show Brand Name,Show Brand Name,module,MGS_Brand
+Show Product Count,Show Product Count,module,MGS_Brand
+Show Featured Brands,Show Featured Brands,module,MGS_Brand
+View Page Settings,View Page Settings,module,MGS_Brand
+Product Page Settings,Product Page Settings,module,MGS_Brand
+Show Brand,Show Brand,module,MGS_Brand
+Show Brand Images on Sidebar,Show Brand Images on Sidebar,module,MGS_Brand
+Show Related Products By Brand,Show Related Products By Brand,module,MGS_Brand
+Title For Related Products By Brand,Title For Related Products By Brand,module,MGS_Brand
+Product By Brand Position,Product By Brand Position,module,MGS_Brand
+Number Of Related Products By Brand Will Display,Number Of Related Products By Brand Will Display,module,MGS_Brand
+Number Product Per Row,Number Product Per Row,module,MGS_Brand
+Number of Products per row (Tablet),Number of Products per row (Tablet),module,MGS_Brand
+Number of Products per row (Mobile),Number of Products per row (Mobile),module,MGS_Brand
+"<hr style=""border:1px solid #ddd; border-bottom:none; width:50%; margin:auto""/>","<hr style=""border:1px solid #ddd; border-bottom:none; width:50%; margin:auto""/>",module,MGS_Brand
+Use Slider,Use Slider,module,MGS_Brand
+Auto play,Auto play,module,MGS_Brand
+Stop autoplay on mouse hover,Stop autoplay on mouse hover,module,MGS_Brand
+Loop,Loop,module,MGS_Brand
+Display navigation,Display navigation,module,MGS_Brand
+Display pagination,Display pagination,module,MGS_Brand
+Navigation slide by,Navigation slide by,module,MGS_Brand
+Sidebar Settings,Sidebar Settings,module,MGS_Brand
+Default Number Of Brands Will Display,Default Number Of Brands Will Display,module,MGS_Brand
+MGS Brand List,MGS Brand List,module,MGS_Brand
+Title,Title,module,MGS_Brand
+Select Brands,Select Brands,module,MGS_Brand
+View As,View As,module,MGS_Brand
+Custom Class,Custom Class,module,MGS_Brand
+Items,Items,module,MGS_Brand
+This variable allows you to set the maximum amount of items displayed at a time with the widest browser width.,This variable allows you to set the maximum amount of items displayed at a time with the widest browser width.,module,MGS_Brand
+Image Width,Image Width,module,MGS_Brand
+Image Height,Image Height,module,MGS_Brand
+Autoplay,Autoplay,module,MGS_Brand
+Stop On Hover,Stop On Hover,module,MGS_Brand
+Navigation,Navigation,module,MGS_Brand
+Template,Template,module,MGS_Brand
+Delete items,Delete items,module,MGS_Brand
+Are you sure you wan't to delete selected items?,Are you sure you wan't to delete selected items?,module,MGS_Brand
+Disable,Disable,module,MGS_Brand
+Enable,Enable,module,MGS_Brand
+Activate Theme,Activate Theme,module,MGS_ClaueTheme
+Claue Theme,Claue Theme,module,MGS_ClaueTheme
+"Purchase Code. <a href=""https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-"" target=""_blank"">How to get it ?</a>","Purchase Code. <a href=""https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-"" target=""_blank"">How to get it ?</a>",module,MGS_ClaueTheme
+Export,Export,module,MGS_ExportBlock
+Extra Gallery,Extra Gallery,module,MGS_ExtraGallery
+General Settings,General Settings,module,MGS_ExtraGallery
+Product Gallery type,Product Gallery type,module,MGS_ExtraGallery
+Show Gallery In Right,Show Gallery In Right,module,MGS_ExtraGallery
+Gallery Effect,Gallery Effect,module,MGS_ExtraGallery
+Disable Zoom on Mobile,Disable Zoom on Mobile,module,MGS_ExtraGallery
+"<span style=""display:block; text-align:center;border-top: 1px solid #ddd; padding-top: 20px;"">Top Site Slide Gallery Config</span>","<span style=""display:block; text-align:center;border-top: 1px solid #ddd; padding-top: 20px;"">Top Site Slide Gallery Config</span>",module,MGS_ExtraGallery
+Number Images Desktop (screen > 1200px),Number Images Desktop (screen > 1200px),module,MGS_ExtraGallery
+Number Images Small Desktop (992px <= screen < 1200px),Number Images Small Desktop (992px <= screen < 1200px),module,MGS_ExtraGallery
+Number Images Tablet (768px <= screen < 992px),Number Images Tablet (768px <= screen < 992px),module,MGS_ExtraGallery
+Number Images Small Tablet (576px <= screen < 768px),Number Images Small Tablet (576px <= screen < 768px),module,MGS_ExtraGallery
+Number Images Mobile (screen <= 575px),Number Images Mobile (screen <= 575px),module,MGS_ExtraGallery
+Mage Solution,Mage Solution,module,MGS_Fbuilder
+Active Front-end Builder,Active Front-end Builder,module,MGS_Fbuilder
+Disabled Widgets on Homepage & CMS Pages,Disabled Widgets on Homepage & CMS Pages,module,MGS_Fbuilder
+"If you choose ""Yes"": all widgets for homepage and cms pages added from <b>CONTENT > Widgets</b> will not visible.","If you choose ""Yes"": all widgets for homepage and cms pages added from <b>CONTENT > Widgets</b> will not visible.",module,MGS_Fbuilder
+Disabled Widgets on Category Pages,Disabled Widgets on Category Pages,module,MGS_Fbuilder
+"If you choose ""Yes"": all widgets for category pages added from <b>CONTENT > Widgets</b> will not visible.","If you choose ""Yes"": all widgets for category pages added from <b>CONTENT > Widgets</b> will not visible.",module,MGS_Fbuilder
+Width of section container,Width of section container,module,MGS_Fbuilder
+Columns padding,Columns padding,module,MGS_Fbuilder
+Access Token,Access Token,module,MGS_Fbuilder
+Limit Images,Limit Images,module,MGS_Fbuilder
+Image resolution,Image resolution,module,MGS_Fbuilder
+Instagram Data,Instagram Data,module,MGS_Fbuilder
+"<hr style=""border:1px solid #ddd; border-bottom:none""/>","<hr style=""border:1px solid #ddd; border-bottom:none""/>",module,MGS_Fbuilder
+Snapppt,Snapppt,module,MGS_Fbuilder
+"- Go to <a href=""https://snapppt.com/users/sign_in"" target=""_blank"">https://snapppt.com/users/sign_in</a><br/>- Login with your instagram account<br/>- Go to <a href=""https://snapppt.com/embeds"" target=""_blank"">https://snapppt.com/embeds</a> to configuration and get embed code","- Go to <a href=""https://snapppt.com/users/sign_in"" target=""_blank"">https://snapppt.com/users/sign_in</a><br/>- Login with your instagram account<br/>- Go to <a href=""https://snapppt.com/embeds"" target=""_blank"">https://snapppt.com/embeds</a> to configuration and get embed code",module,MGS_Fbuilder
+Google,Google,module,MGS_Fbuilder
+Google API Key,Google API Key,module,MGS_Fbuilder
+OWL Slider (Single Slide),OWL Slider (Single Slide),module,MGS_Fbuilder
+NAVIGATION,NAVIGATION,module,MGS_Fbuilder
+Navigation type,Navigation type,module,MGS_Fbuilder
+Next icon,Next icon,module,MGS_Fbuilder
+Previous icon,Previous icon,module,MGS_Fbuilder
+Next font class,Next font class,module,MGS_Fbuilder
+Previous font class,Previous font class,module,MGS_Fbuilder
+"<span style=""display:block; text-align:center"">DEFAULT</span>","<span style=""display:block; text-align:center"">DEFAULT</span>",module,MGS_Fbuilder
+Background opacity,Background opacity,module,MGS_Fbuilder
+"<span style=""display:block; text-align:center"">HOVER</span>","<span style=""display:block; text-align:center"">HOVER</span>",module,MGS_Fbuilder
+PAGINATION,PAGINATION,module,MGS_Fbuilder
+Active background,Active background,module,MGS_Fbuilder
+OWL Slider (Multiple Slides),OWL Slider (Multiple Slides),module,MGS_Fbuilder
+Font & Style,Font & Style,module,MGS_Fbuilder
+Include font Awesome,Include font Awesome,module,MGS_Fbuilder
+"If you choose <b>Yes</b>: we will insert <a href=""https://fontawesome.com/v4.7.0/"" target=""_blank"">fontawesome 4.7.0</a> style file to the &lt;head> of the document. If fontawesome already exists in your theme, please choose <b>No</b>","If you choose <b>Yes</b>: we will insert <a href=""https://fontawesome.com/v4.7.0/"" target=""_blank"">fontawesome 4.7.0</a> style file to the &lt;head> of the document. If fontawesome already exists in your theme, please choose <b>No</b>",module,MGS_Fbuilder
+Custom style,Custom style,module,MGS_Fbuilder
+Export - Import - Restore,Export - Import - Restore,module,MGS_Fbuilder
+"<hr style=""border:1px solid #ddd; border-bottom:none; width:70%""/>","<hr style=""border:1px solid #ddd; border-bottom:none; width:70%""/>",module,MGS_Fbuilder
+Restore Versions,Restore Versions,module,MGS_Fbuilder
+Delete Versions,Delete Versions,module,MGS_Fbuilder
+Thumbnail Image,Thumbnail Image,module,MGS_Fbuilder
+Icon (Image),Icon (Image),module,MGS_Fbuilder
+Icon (Font class),Icon (Font class),module,MGS_Fbuilder
+Source: ,Source: ,module,MGS_Fbuilder
+copy_template,copy_template,module,MGS_Fbuilder
+Product Id,Product Id,module,MGS_Fbuilder
+General Settings,General Settings,module,MGS_GDPR
+Active,Active,module,MGS_GDPR
+Cookie Restriction Mode,Cookie Restriction Mode,module,MGS_GDPR
+Title,Title,module,MGS_GDPR
+Content,Content,module,MGS_GDPR
+"Privacy Policy link <span style=""color:#666; font-weight:normal"">(CMS Page Identifier)</span>","Privacy Policy link <span style=""color:#666; font-weight:normal"">(CMS Page Identifier)</span>",module,MGS_GDPR
+Button text,Button text,module,MGS_GDPR
+Button class,Button class,module,MGS_GDPR
+More view,More view,module,MGS_GDPR
+More view text,More view text,module,MGS_GDPR
+Width,Width,module,MGS_GDPR
+Custom width,Custom width,module,MGS_GDPR
+Position,Position,module,MGS_GDPR
+Margin left,Margin left,module,MGS_GDPR
+Margin right,Margin right,module,MGS_GDPR
+Margin bottom,Margin bottom,module,MGS_GDPR
+Background color,Background color,module,MGS_GDPR
+Text color,Text color,module,MGS_GDPR
+Font size,Font size,module,MGS_GDPR
+Text align,Text align,module,MGS_GDPR
+Border color,Border color,module,MGS_GDPR
+Box shadow,Box shadow,module,MGS_GDPR
+Login Form,Login Form,module,MGS_GDPR
+Show checkbox,Show checkbox,module,MGS_GDPR
+Checkbox label,Checkbox label,module,MGS_GDPR
+Register Form,Register Form,module,MGS_GDPR
+Disabled GDPR Link,Disabled GDPR Link,module,MGS_GDPR
+Show GDPR Checkbox,Show GDPR Checkbox,module,MGS_GDPR
+GDPR Checkbox label,GDPR Checkbox label,module,MGS_GDPR
+Mage Solution,Mage Solution,module,MGS_InstantSearch
+Instant Search Settings,Instant Search Settings,module,MGS_InstantSearch
+General,General,module,MGS_InstantSearch
+Enable / Disable Module,Enable / Disable Module,module,MGS_InstantSearch
+Search results page,Search results page,module,MGS_InstantSearch
+Number of search results dropdown,Number of search results dropdown,module,MGS_InstantSearch
+View more label,View more label,module,MGS_InstantSearch
+Additional product search,Additional product search,module,MGS_InstantSearch
+Enable / Disable product search,Enable / Disable product search,module,MGS_InstantSearch
+Products per Page on Grid Default Value,Products per Page on Grid Default Value,module,MGS_InstantSearch
+Show Short Description,Show Short Description,module,MGS_InstantSearch
+Show Review,Show Review,module,MGS_InstantSearch
+Sort order,Sort order,module,MGS_InstantSearch
+Additional category search,Additional category search,module,MGS_InstantSearch
+Enable / Disable category search,Enable / Disable category search,module,MGS_InstantSearch
+Categories per Page on Grid Allowed Values,Categories per Page on Grid Allowed Values,module,MGS_InstantSearch
+Comma-separated.,Comma-separated.,module,MGS_InstantSearch
+Categories per Page on Grid Default Value,Categories per Page on Grid Default Value,module,MGS_InstantSearch
+Must be in the allowed values list,Must be in the allowed values list,module,MGS_InstantSearch
+Allow All Categories per Page,Allow All Categories per Page,module,MGS_InstantSearch
+"Whether to show ""All"" option in the ""Show X Per Page"" dropdown","Whether to show ""All"" option in the ""Show X Per Page"" dropdown",module,MGS_InstantSearch
+Additional cms page search,Additional cms page search,module,MGS_InstantSearch
+Enable / Disable cms page search,Enable / Disable cms page search,module,MGS_InstantSearch
+Cms Pages per Page on Grid Allowed Values,Cms Pages per Page on Grid Allowed Values,module,MGS_InstantSearch
+Cms Pages per Page on Grid Default Value,Cms Pages per Page on Grid Default Value,module,MGS_InstantSearch
+Allow All Cms Pages per Page,Allow All Cms Pages per Page,module,MGS_InstantSearch
+Additional blog search,Additional blog search,module,MGS_InstantSearch
+Enable / Disable blog search,Enable / Disable blog search,module,MGS_InstantSearch
+Blogs per Page on Grid Allowed Values,Blogs per Page on Grid Allowed Values,module,MGS_InstantSearch
+Blogs per Page on Grid Default Value,Blogs per Page on Grid Default Value,module,MGS_InstantSearch
+Allow All Blog per Page,Allow All Blog per Page,module,MGS_InstantSearch
+Mage Solution,Mage Solution,module,MGS_Lookbook
+General Setting,General Setting,module,MGS_Lookbook
+Minimal Image Width,Minimal Image Width,module,MGS_Lookbook
+Minimal Image Height,Minimal Image Height,module,MGS_Lookbook
+Maximal Image Width,Maximal Image Width,module,MGS_Lookbook
+Maximal Image Height,Maximal Image Height,module,MGS_Lookbook
+Max file size upload,Max file size upload,module,MGS_Lookbook
+Allowed extensions,Allowed extensions,module,MGS_Lookbook
+Width of Pin,Width of Pin,module,MGS_Lookbook
+Height of Pin,Height of Pin,module,MGS_Lookbook
+Default text for Pin,Default text for Pin,module,MGS_Lookbook
+Use Product Price for Pin text,Use Product Price for Pin text,module,MGS_Lookbook
+Background color for Pin,Background color for Pin,module,MGS_Lookbook
+Text color for Pin,Text color for Pin,module,MGS_Lookbook
+Width of Product Image on Popup,Width of Product Image on Popup,module,MGS_Lookbook
+Height of Product Image on Popup,Height of Product Image on Popup,module,MGS_Lookbook
+Slider Setting,Slider Setting,module,MGS_Lookbook
+Autoplay interval timeout,Autoplay interval timeout,module,MGS_Lookbook
+MGS Lookbook,MGS Lookbook,module,MGS_Lookbook
+Select Lookbook...,Select Lookbook...,module,MGS_Lookbook
+Template,Template,module,MGS_Lookbook
+Default Template,Default Template,module,MGS_Lookbook
+MGS Lookbook Slider,MGS Lookbook Slider,module,MGS_Lookbook
+Slider,Slider,module,MGS_Lookbook
+Select Slider...,Select Slider...,module,MGS_Lookbook
+Are you sure you want to delete?,Are you sure you want to delete?,module,MGS_Lookbook
+Change Status,Change Status,module,MGS_Lookbook
+General Setting,General Setting,module,MGS_Mmegamenu
+Add Homepage Link,Add Homepage Link,module,MGS_Mmegamenu
+Homepage Label,Homepage Label,module,MGS_Mmegamenu
+Use Logo For Home Page Link,Use Logo For Home Page Link,module,MGS_Mmegamenu
+Homepage Link Position,Homepage Link Position,module,MGS_Mmegamenu
+Change Status,Change Status,module,MGS_Mmegamenu
+ID,ID,module,MGS_Mmegamenu
+Menu,Menu,module,MGS_Mmegamenu
+Catalog Category,Catalog Category,module,MGS_Mmegamenu
+Columns,Columns,module,MGS_Mmegamenu
+Action,Action,module,MGS_Mmegamenu
+Code to add to Static blocks,Code to add to Static blocks,module,MGS_Mmegamenu
+MGS Megamenu,MGS Megamenu,module,MGS_Mmegamenu
+Label in Megamenu,Label in Megamenu,module,MGS_Mmegamenu
+Background color of Label,Background color of Label,module,MGS_Mmegamenu
+General,General,module,MGS_Mmegamenu
+Blank to use category link.,Blank to use category link.,module,MGS_Mmegamenu
+Link,Link,module,MGS_Mmegamenu
+Position,Position,module,MGS_Mmegamenu
+Special Html,Special Html,module,MGS_Mmegamenu
+Store View,Store View,module,MGS_Mmegamenu
+Left Columns,Left Columns,module,MGS_Mmegamenu
+Right Columns,Right Columns,module,MGS_Mmegamenu
+One Step Checkout,One Step Checkout,module,MGS_OSCheckout
+General Configuration,General Configuration,module,MGS_OSCheckout
+Enable One Step Checkout,Enable One Step Checkout,module,MGS_OSCheckout
+Select <strong>Yes</strong> to enable the module.,Select <strong>Yes</strong> to enable the module.,module,MGS_OSCheckout
+One Step Checkout Page Title,One Step Checkout Page Title,module,MGS_OSCheckout
+Title of the checkout page.,Title of the checkout page.,module,MGS_OSCheckout
+One Step Checkout Description Page,One Step Checkout Description Page,module,MGS_OSCheckout
+Description for the page.,Description for the page.,module,MGS_OSCheckout
+Default Shipping,Default Shipping,module,MGS_OSCheckout
+Set default shipping method in the checkout page.,Set default shipping method in the checkout page.,module,MGS_OSCheckout
+Default Payment,Default Payment,module,MGS_OSCheckout
+Set default payment method in the checkout page.,Set default payment method in the checkout page.,module,MGS_OSCheckout
+Allow Guest Checkout,Allow Guest Checkout,module,MGS_OSCheckout
+Guests can create an account in the Checkout Page.,Guests can create an account in the Checkout Page.,module,MGS_OSCheckout
+Show Billing Address,Show Billing Address,module,MGS_OSCheckout
+Select Yes to allow the <strong>Billing Address</strong> block to appear in the Checkout Page.,Select Yes to allow the <strong>Billing Address</strong> block to appear in the Checkout Page.,module,MGS_OSCheckout
+Display Configuration,Display Configuration,module,MGS_OSCheckout
+Date Format,Date Format,module,MGS_OSCheckout
+Select the date format used for delivery time.,Select the date format used for delivery time.,module,MGS_OSCheckout
+Delivery Date Day Off,Delivery Date Day Off,module,MGS_OSCheckout
+Show Header,Show Header,module,MGS_OSCheckout
+Select <strong>Yes</strong> to allow show header checkout page.,Select <strong>Yes</strong> to allow show header checkout page.,module,MGS_OSCheckout
+Show Breadcrumbs,Show Breadcrumbs,module,MGS_OSCheckout
+Select <strong>Yes</strong> to allow show breadcrumbs checkout page.,Select <strong>Yes</strong> to allow show breadcrumbs checkout page.,module,MGS_OSCheckout
+Show Delivery Date,Show Delivery Date,module,MGS_OSCheckout
+Select <strong>Yes</strong> to allow customers to date on the delivery.,Select <strong>Yes</strong> to allow customers to date on the delivery.,module,MGS_OSCheckout
+Show Delivery Comment,Show Delivery Comment,module,MGS_OSCheckout
+Select <strong>Yes</strong> to allow customers to comment on the delivery.,Select <strong>Yes</strong> to allow customers to comment on the delivery.,module,MGS_OSCheckout
+Show Order Comment,Show Order Comment,module,MGS_OSCheckout
+Select <strong>Yes</strong> to allow customers to comment on the order.,Select <strong>Yes</strong> to allow customers to comment on the order.,module,MGS_OSCheckout
+Checked Newsletter,Checked Newsletter,module,MGS_OSCheckout
+Select <strong>Yes</strong> to have the Newsletter checkbox ticked by default.,Select <strong>Yes</strong> to have the Newsletter checkbox ticked by default.,module,MGS_OSCheckout
+Show Product List Toggle,Show Product List Toggle,module,MGS_OSCheckout
+Select <strong>Yes</strong> to show product list toggle.,Select <strong>Yes</strong> to show product list toggle.,module,MGS_OSCheckout
+We'll send your order confirmation here.,We'll send your order confirmation here.,module,MGS_OSCheckout
+ID,ID,module,MGS_Portfolio
+Action,Action,module,MGS_Portfolio
+Edit,Edit,module,MGS_Portfolio
+Change Status,Change Status,module,MGS_Portfolio
+Title,Title,module,MGS_Portfolio
+Filename,Filename,module,MGS_Portfolio
+General Information,General Information,module,MGS_Portfolio
+Thumbnail,Thumbnail,module,MGS_Portfolio
+Base Image,Base Image,module,MGS_Portfolio
+Mage Solution,Mage Solution,module,MGS_Protabs
+Product Tabs,Product Tabs,module,MGS_Protabs
+General,General,module,MGS_Protabs
+Is Enabled,Is Enabled,module,MGS_Protabs
+Show as accordion,Show as accordion,module,MGS_Protabs
+Show after product information,Show after product information,module,MGS_Protabs
+Manage Tab Items,Manage Tab Items,module,MGS_Protabs
+Change Status,Change Status,module,MGS_Testimonial
+Status,Status,module,MGS_Testimonial
+Disabled,Disabled,module,MGS_Testimonial
+Enabled,Enabled,module,MGS_Testimonial
+ID,ID,module,MGS_Testimonial
+Name,Name,module,MGS_Testimonial
+Content,Content,module,MGS_Testimonial
+Action,Action,module,MGS_Testimonial
+Edit,Edit,module,MGS_Testimonial
+Title,Title,module,MGS_Testimonial
+Filename,Filename,module,MGS_Testimonial
+General Information,General Information,module,MGS_Testimonial
+Information,Information,module,MGS_Testimonial
+Avatar,Avatar,module,MGS_Testimonial
+Store View,Store View,module,MGS_Testimonial
+Mage Solution,Mage Solution,module,MGS_ThemeSettings
+MGS Theme Settings V2.1.8,MGS Theme Settings V2.1.8,module,MGS_ThemeSettings
+General,General,module,MGS_ThemeSettings
+Width,Width,module,MGS_ThemeSettings
+Custom width,Custom width,module,MGS_ThemeSettings
+Layout,Layout,module,MGS_ThemeSettings
+Display back to top icon,Display back to top icon,module,MGS_ThemeSettings
+Enable Lazy Load,Enable Lazy Load,module,MGS_ThemeSettings
+Lazy Load Image,Lazy Load Image,module,MGS_ThemeSettings
+Header,Header,module,MGS_ThemeSettings
+Header version,Header version,module,MGS_ThemeSettings
+Header absolute,Header absolute,module,MGS_ThemeSettings
+Logo on Mobile,Logo on Mobile,module,MGS_ThemeSettings
+Elements,Elements,module,MGS_ThemeSettings
+Search type,Search type,module,MGS_ThemeSettings
+My Account type,My Account type,module,MGS_ThemeSettings
+Display Login Form,Display Login Form,module,MGS_ThemeSettings
+Sticky menu,Sticky menu,module,MGS_ThemeSettings
+Sticky Logo,Sticky Logo,module,MGS_ThemeSettings
+Sticky menu on mobile,Sticky menu on mobile,module,MGS_ThemeSettings
+Mini cart type,Mini cart type,module,MGS_ThemeSettings
+Footer,Footer,module,MGS_ThemeSettings
+Footer version,Footer version,module,MGS_ThemeSettings
+Use Custom Copyright,Use Custom Copyright,module,MGS_ThemeSettings
+Copyright,Copyright,module,MGS_ThemeSettings
+Catalog (General Setting of Category Page and Catalog Search Page),Catalog (General Setting of Category Page and Catalog Search Page),module,MGS_ThemeSettings
+New label,New label,module,MGS_ThemeSettings
+Sale label,Sale label,module,MGS_ThemeSettings
+"Display ""Sale"" label with Discount percent","Display ""Sale"" label with Discount percent",module,MGS_ThemeSettings
+Hide Review,Hide Review,module,MGS_ThemeSettings
+Hide Add to Cart button,Hide Add to Cart button,module,MGS_ThemeSettings
+Hide Add to Wishlist button,Hide Add to Wishlist button,module,MGS_ThemeSettings
+Hide Add to Compare button,Hide Add to Compare button,module,MGS_ThemeSettings
+Enable Hover Change Image,Enable Hover Change Image,module,MGS_ThemeSettings
+Category Page,Category Page,module,MGS_ThemeSettings
+Default Page Layout,Default Page Layout,module,MGS_ThemeSettings
+Number of Products per row (Desktop),Number of Products per row (Desktop),module,MGS_ThemeSettings
+Number of Products per row (Tablet),Number of Products per row (Tablet),module,MGS_ThemeSettings
+Number of Products per row (Mobile),Number of Products per row (Mobile),module,MGS_ThemeSettings
+Category Image position,Category Image position,module,MGS_ThemeSettings
+Category Description position,Category Description position,module,MGS_ThemeSettings
+CMS Block position,CMS Block position,module,MGS_ThemeSettings
+Enable change product per row,Enable change product per row,module,MGS_ThemeSettings
+Values number product per row to show,Values number product per row to show,module,MGS_ThemeSettings
+Default value number product per row,Default value number product per row,module,MGS_ThemeSettings
+Enable Sub Categories (After megamenu),Enable Sub Categories (After megamenu),module,MGS_ThemeSettings
+Category Landing Page,Category Landing Page,module,MGS_ThemeSettings
+Number of Items per row (Desktop),Number of Items per row (Desktop),module,MGS_ThemeSettings
+Number of Items per row (Tablet),Number of Items per row (Tablet),module,MGS_ThemeSettings
+Number of Items per row (Mobile),Number of Items per row (Mobile),module,MGS_ThemeSettings
+Catalog Search Page,Catalog Search Page,module,MGS_ThemeSettings
+Product Details Page,Product Details Page,module,MGS_ThemeSettings
+PRODUCT INFORMATION,PRODUCT INFORMATION,module,MGS_ThemeSettings
+Show SKU,Show SKU,module,MGS_ThemeSettings
+Show Stock Status,Show Stock Status,module,MGS_ThemeSettings
+Show Reviews Summary,Show Reviews Summary,module,MGS_ThemeSettings
+Show Short Description,Show Short Description,module,MGS_ThemeSettings
+Show Add to Wishlist link,Show Add to Wishlist link,module,MGS_ThemeSettings
+Show Add to Compare link,Show Add to Compare link,module,MGS_ThemeSettings
+Show Email to Friend,Show Email to Friend,module,MGS_ThemeSettings
+"<hr style=""border:1px solid #ddd; border-bottom:none;""/>","<hr style=""border:1px solid #ddd; border-bottom:none;""/>",module,MGS_ThemeSettings
+RELATED PRODUCTS,RELATED PRODUCTS,module,MGS_ThemeSettings
+Show Related Products,Show Related Products,module,MGS_ThemeSettings
+Title,Title,module,MGS_ThemeSettings
+Position,Position,module,MGS_ThemeSettings
+"<hr style=""border:1px solid #ddd; border-bottom:none; width:50%; margin:auto""/>","<hr style=""border:1px solid #ddd; border-bottom:none; width:50%; margin:auto""/>",module,MGS_ThemeSettings
+Use Slider,Use Slider,module,MGS_ThemeSettings
+Auto play,Auto play,module,MGS_ThemeSettings
+Stop autoplay on mouse hover,Stop autoplay on mouse hover,module,MGS_ThemeSettings
+Loop,Loop,module,MGS_ThemeSettings
+Display navigation,Display navigation,module,MGS_ThemeSettings
+Display pagination,Display pagination,module,MGS_ThemeSettings
+Navigation slide by,Navigation slide by,module,MGS_ThemeSettings
+UP-SELL PRODUCTS,UP-SELL PRODUCTS,module,MGS_ThemeSettings
+Show Up-Sell Products,Show Up-Sell Products,module,MGS_ThemeSettings
+Product Image Dimention,Product Image Dimention,module,MGS_ThemeSettings
+Product detail (big images),Product detail (big images),module,MGS_ThemeSettings
+WidthxHeight. Ex: 560x700,WidthxHeight. Ex: 560x700,module,MGS_ThemeSettings
+Product detail (small images),Product detail (small images),module,MGS_ThemeSettings
+WidthxHeight. Ex: 88x110,WidthxHeight. Ex: 88x110,module,MGS_ThemeSettings
+Product tabs,Product tabs,module,MGS_ThemeSettings
+WidthxHeight. Ex: 270x270,WidthxHeight. Ex: 270x270,module,MGS_ThemeSettings
+Grid mode,Grid mode,module,MGS_ThemeSettings
+WidthxHeight. Ex: 240x300,WidthxHeight. Ex: 240x300,module,MGS_ThemeSettings
+Default list mode,Default list mode,module,MGS_ThemeSettings
+Small list mode,Small list mode,module,MGS_ThemeSettings
+WidthxHeight. Ex: 75x75,WidthxHeight. Ex: 75x75,module,MGS_ThemeSettings
+Shopping Cart,Shopping Cart,module,MGS_ThemeSettings
+WidthxHeight. Ex: 165x165,WidthxHeight. Ex: 165x165,module,MGS_ThemeSettings
+Width of 3D View,Width of 3D View,module,MGS_ThemeSettings
+Width. Ex: 450px,Width. Ex: 450px,module,MGS_ThemeSettings
+Shopping Cart Page,Shopping Cart Page,module,MGS_ThemeSettings
+Show Coupon Code form,Show Coupon Code form,module,MGS_ThemeSettings
+CROSS-SELL PRODUCTS,CROSS-SELL PRODUCTS,module,MGS_ThemeSettings
+Show Cross-Sell Products,Show Cross-Sell Products,module,MGS_ThemeSettings
+Number of Productss to show,Number of Productss to show,module,MGS_ThemeSettings
+Customer Navigation Links,Customer Navigation Links,module,MGS_ThemeSettings
+Disabled Account Dashboard Link,Disabled Account Dashboard Link,module,MGS_ThemeSettings
+Disabled My Orders Link,Disabled My Orders Link,module,MGS_ThemeSettings
+Disabled My Downloadable Products Link,Disabled My Downloadable Products Link,module,MGS_ThemeSettings
+Disabled My Wish List Link,Disabled My Wish List Link,module,MGS_ThemeSettings
+Disabled Address Book Link,Disabled Address Book Link,module,MGS_ThemeSettings
+Disabled Account Information Link,Disabled Account Information Link,module,MGS_ThemeSettings
+Disabled Stored Payment Method Link,Disabled Stored Payment Method Link,module,MGS_ThemeSettings
+Disabled Billing Agreements Link,Disabled Billing Agreements Link,module,MGS_ThemeSettings
+Disabled My Product Reviews Link,Disabled My Product Reviews Link,module,MGS_ThemeSettings
+Disabled Newsletter Subscriptions Link,Disabled Newsletter Subscriptions Link,module,MGS_ThemeSettings
+Newsletter Popup,Newsletter Popup,module,MGS_ThemeSettings
+Enable Newsletter Popup,Enable Newsletter Popup,module,MGS_ThemeSettings
+Background,Background,module,MGS_ThemeSettings
+Text,Text,module,MGS_ThemeSettings
+Bottom Text,Bottom Text,module,MGS_ThemeSettings
+Show Subscribe Form,Show Subscribe Form,module,MGS_ThemeSettings
+Default value: 530(px),Default value: 530(px),module,MGS_ThemeSettings
+Delay Time to Show Popup,Delay Time to Show Popup,module,MGS_ThemeSettings
+ms,ms,module,MGS_ThemeSettings
+Display on Mobile,Display on Mobile,module,MGS_ThemeSettings
+Contact Us Page,Contact Us Page,module,MGS_ThemeSettings
+Page Layout,Page Layout,module,MGS_ThemeSettings
+Display Google Map,Display Google Map,module,MGS_ThemeSettings
+Map Type,Map Type,module,MGS_ThemeSettings
+"Go to <a href=""https://www.google.com/maps"" target=""_blank"">https://www.google.com/maps</a> to get embed code","Go to <a href=""https://www.google.com/maps"" target=""_blank"">https://www.google.com/maps</a> to get embed code",module,MGS_ThemeSettings
+Address,Address,module,MGS_ThemeSettings
+Html,Html,module,MGS_ThemeSettings
+Pin image,Pin image,module,MGS_ThemeSettings
+px. Blank for full width,px. Blank for full width,module,MGS_ThemeSettings
+Height,Height,module,MGS_ThemeSettings
+px,px,module,MGS_ThemeSettings
+Zoom Level,Zoom Level,module,MGS_ThemeSettings
+Scroll wheel,Scroll wheel,module,MGS_ThemeSettings
+Navigation,Navigation,module,MGS_ThemeSettings
+Type control,Type control,module,MGS_ThemeSettings
+Scale control,Scale control,module,MGS_ThemeSettings
+Draggable,Draggable,module,MGS_ThemeSettings
+Grayscale color,Grayscale color,module,MGS_ThemeSettings
+Share This,Share This,module,MGS_ThemeSettings
+Is Enabled,Is Enabled,module,MGS_ThemeSettings
+Script,Script,module,MGS_ThemeSettings
+"Get Script: <a href=""http://www.sharethis.com/"" target=""_blank"">http://www.sharethis.com/</a>","Get Script: <a href=""http://www.sharethis.com/"" target=""_blank"">http://www.sharethis.com/</a>",module,MGS_ThemeSettings
+Show on Product Details page,Show on Product Details page,module,MGS_ThemeSettings
+Show on Catagory page,Show on Catagory page,module,MGS_ThemeSettings
+Show on Catalog Search page,Show on Catalog Search page,module,MGS_ThemeSettings
+Page Title and Breadcrumb,Page Title and Breadcrumb,module,MGS_ThemeSettings
+Page Title and Breadcrumb Layout,Page Title and Breadcrumb Layout,module,MGS_ThemeSettings
+Background Type,Background Type,module,MGS_ThemeSettings
+Background color,Background color,module,MGS_ThemeSettings
+Background Repeat,Background Repeat,module,MGS_ThemeSettings
+Use Category Image (Only current category),Use Category Image (Only current category),module,MGS_ThemeSettings
+Optimize Website,Optimize Website,module,MGS_ThemeSettings
+Enable Optimize,Enable Optimize,module,MGS_ThemeSettings
+Defer parsing of JavaScript,Defer parsing of JavaScript,module,MGS_ThemeSettings
+Merge JavaScript code inline,Merge JavaScript code inline,module,MGS_ThemeSettings
+Defer parsing of CSS,Defer parsing of CSS,module,MGS_ThemeSettings
+Merge HTML code inline,Merge HTML code inline,module,MGS_ThemeSettings
+Font Settings,Font Settings,module,MGS_ThemeSettings
+Custom Font Family,Custom Font Family,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Custom Font 1</span>","<span style=""display:block; text-align:center"">Custom Font 1</span>",module,MGS_ThemeSettings
+Font Name,Font Name,module,MGS_ThemeSettings
+TTF File,TTF File,module,MGS_ThemeSettings
+EOT File,EOT File,module,MGS_ThemeSettings
+WOFF File,WOFF File,module,MGS_ThemeSettings
+WOFF2 File,WOFF2 File,module,MGS_ThemeSettings
+SVG File,SVG File,module,MGS_ThemeSettings
+"<hr style=""border:1px solid #ddd; border-bottom:none; width:55%""/>","<hr style=""border:1px solid #ddd; border-bottom:none; width:55%""/>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Custom Font 2</span>","<span style=""display:block; text-align:center"">Custom Font 2</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Custom Font 3</span>","<span style=""display:block; text-align:center"">Custom Font 3</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Custom Font 4</span>","<span style=""display:block; text-align:center"">Custom Font 4</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Custom Font 5</span>","<span style=""display:block; text-align:center"">Custom Font 5</span>",module,MGS_ThemeSettings
+Font,Font,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Default Font</span>","<span style=""display:block; text-align:center"">Default Font</span>",module,MGS_ThemeSettings
+Font Family,Font Family,module,MGS_ThemeSettings
+Font weight to import,Font weight to import,module,MGS_ThemeSettings
+Font weight to use,Font weight to use,module,MGS_ThemeSettings
+"<span id=""default_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""default_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+Font Size,Font Size,module,MGS_ThemeSettings
+Be a number with unit is px.,Be a number with unit is px.,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Heading 1</span>","<span style=""display:block; text-align:center"">Heading 1</span>",module,MGS_ThemeSettings
+Font Weight,Font Weight,module,MGS_ThemeSettings
+"<span id=""heading_one_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""heading_one_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>,Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Heading 2</span>","<span style=""display:block; text-align:center"">Heading 2</span>",module,MGS_ThemeSettings
+"<span id=""heading_two_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""heading_two_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Heading 3</span>","<span style=""display:block; text-align:center"">Heading 3</span>",module,MGS_ThemeSettings
+"<span id=""heading_three_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""heading_three_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Heading 4</span>","<span style=""display:block; text-align:center"">Heading 4</span>",module,MGS_ThemeSettings
+"<span id=""heading_four_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""heading_four_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Heading 5</span>","<span style=""display:block; text-align:center"">Heading 5</span>",module,MGS_ThemeSettings
+"<span id=""heading_five_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""heading_five_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Heading 6</span>","<span style=""display:block; text-align:center"">Heading 6</span>",module,MGS_ThemeSettings
+"<span id=""heading_six_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""heading_six_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Price</span>","<span style=""display:block; text-align:center"">Price</span>",module,MGS_ThemeSettings
+"<span id=""price_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""price_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Menu</span>","<span style=""display:block; text-align:center"">Menu</span>",module,MGS_ThemeSettings
+"<span id=""menu_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""menu_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Button</span>","<span style=""display:block; text-align:center"">Button</span>",module,MGS_ThemeSettings
+"<span id=""button_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""button_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Custom Elements</span>","<span style=""display:block; text-align:center"">Custom Elements</span>",module,MGS_ThemeSettings
+Element classes,Element classes,module,MGS_ThemeSettings
+"Ex: .class-element-1, .class-element-2, #id-element","Ex: .class-element-1, .class-element-2, #id-element",module,MGS_ThemeSettings
+"<hr style=""border:1px solid #ddd; border-bottom:none; width:70%""/>","<hr style=""border:1px solid #ddd; border-bottom:none; width:70%""/>",module,MGS_ThemeSettings
+Import Static Blocks,Import Static Blocks,module,MGS_ThemeSettings
+Color Settings,Color Settings,module,MGS_ThemeSettings
+Main Color,Main Color,module,MGS_ThemeSettings
+Main Primary Color,Main Primary Color,module,MGS_ThemeSettings
+"<hr style=""border:1px solid #ddd; border-bottom:none; width:65%""/>","<hr style=""border:1px solid #ddd; border-bottom:none; width:65%""/>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"""">Background Main</span>","<span style=""display:block; text-align:center"""">Background Main</span>",module,MGS_ThemeSettings
+Use Custom,Use Custom,module,MGS_ThemeSettings
+Background Image,Background Image,module,MGS_ThemeSettings
+Background cover,Background cover,module,MGS_ThemeSettings
+Background Position (x),Background Position (x),module,MGS_ThemeSettings
+Background Position (y),Background Position (y),module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Text & Link</span>","<span style=""display:block; text-align:center"">Text & Link</span>",module,MGS_ThemeSettings
+Text color,Text color,module,MGS_ThemeSettings
+Link color,Link color,module,MGS_ThemeSettings
+Link hover color,Link hover color,module,MGS_ThemeSettings
+Price color,Price color,module,MGS_ThemeSettings
+Special price color,Special price color,module,MGS_ThemeSettings
+Old price color,Old price color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Primary Button</span>","<span style=""display:block; text-align:center"">Primary Button</span>",module,MGS_ThemeSettings
+Text hover color,Text hover color,module,MGS_ThemeSettings
+Background hover color,Background hover color,module,MGS_ThemeSettings
+Border color,Border color,module,MGS_ThemeSettings
+Border hover color,Border hover color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Secondary Button</span>","<span style=""display:block; text-align:center"">Secondary Button</span>",module,MGS_ThemeSettings
+Header Color,Header Color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"""">Header Background</span>","<span style=""display:block; text-align:center"""">Header Background</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Top Header</span>","<span style=""display:block; text-align:center"">Top Header</span>",module,MGS_ThemeSettings
+Custom Top Header,Custom Top Header,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Middle Header</span>","<span style=""display:block; text-align:center"">Middle Header</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Bottom Header</span>","<span style=""display:block; text-align:center"">Bottom Header</span>",module,MGS_ThemeSettings
+Custom color,Custom color,module,MGS_ThemeSettings
+Menu Color,Menu Color,module,MGS_ThemeSettings
+Menu level 1 color,Menu level 1 color,module,MGS_ThemeSettings
+Menu level 1 hover color,Menu level 1 hover color,module,MGS_ThemeSettings
+Dropdown background color,Dropdown background color,module,MGS_ThemeSettings
+Dropdown background opacity,Dropdown background opacity,module,MGS_ThemeSettings
+From 0 to 1. Ex: <strong>0.5</strong>,From 0 to 1. Ex: <strong>0.5</strong>,module,MGS_ThemeSettings
+Dropdown Heading color,Dropdown Heading color,module,MGS_ThemeSettings
+Dropdown Link color,Dropdown Link color,module,MGS_ThemeSettings
+Dropdown Link hover color,Dropdown Link hover color,module,MGS_ThemeSettings
+Dropdown border color,Dropdown border color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Top Footer</span>","<span style=""display:block; text-align:center"">Top Footer</span>",module,MGS_ThemeSettings
+Heading color,Heading color,module,MGS_ThemeSettings
+Icon color,Icon color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Middle Footer</span>","<span style=""display:block; text-align:center"">Middle Footer</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Bottom Footer</span>","<span style=""display:block; text-align:center"">Bottom Footer</span>",module,MGS_ThemeSettings
+MGS Theme Settings,MGS Theme Settings,module,MGS_ThemeSettings
+Enable Dark Style,Enable Dark Style,module,MGS_ThemeSettings
+Enable Right To Left,Enable Right To Left,module,MGS_ThemeSettings
+Main color,Main color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Background</span>","<span style=""display:block; text-align:center"">Background</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Header Background</span>","<span style=""display:block; text-align:center"">Header Background</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Header Border</span>","<span style=""display:block; text-align:center"">Header Border</span>",module,MGS_ThemeSettings
+Border top size,Border top size,module,MGS_ThemeSettings
+Border top color,Border top color,module,MGS_ThemeSettings
+Border bottom size,Border bottom size,module,MGS_ThemeSettings
+Border bottom color,Border bottom color,module,MGS_ThemeSettings
+Display top header,Display top header,module,MGS_ThemeSettings
+Icon hover color,Icon hover color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Mini Cart</span>","<span style=""display:block; text-align:center"">Mini Cart</span>",module,MGS_ThemeSettings
+Number color,Number color,module,MGS_ThemeSettings
+Number background color,Number background color,module,MGS_ThemeSettings
+Close icon color,Close icon color,module,MGS_ThemeSettings
+Divide border color,Divide border color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Header Search</span>","<span style=""display:block; text-align:center"">Header Search</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">My Account</span>","<span style=""display:block; text-align:center"">My Account</span>",module,MGS_ThemeSettings
+Button background color,Button background color,module,MGS_ThemeSettings
+Button text color,Button text color,module,MGS_ThemeSettings
+Button border color,Button border color,module,MGS_ThemeSettings
+Button hover background color,Button hover background color,module,MGS_ThemeSettings
+Button text hover color,Button text hover color,module,MGS_ThemeSettings
+Button border hover color,Button border hover color,module,MGS_ThemeSettings
+Input text color,Input text color,module,MGS_ThemeSettings
+Input background color,Input background color,module,MGS_ThemeSettings
+Input border color,Input border color,module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Dropdown (Store View Switcher, Curency Switcher)</span>","<span style=""display:block; text-align:center"">Dropdown (Store View Switcher, Curency Switcher)</span>",module,MGS_ThemeSettings
+Background opacity,Background opacity,module,MGS_ThemeSettings
+Dropdown divide border color,Dropdown divide border color,module,MGS_ThemeSettings
+"Main Content (Text, Link, Button)","Main Content (Text, Link, Button)",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Footer Background</span>","<span style=""display:block; text-align:center"">Footer Background</span>",module,MGS_ThemeSettings
+"<span style=""display:block; text-align:center"">Footer Border</span>","<span style=""display:block; text-align:center"">Footer Border</span>",module,MGS_ThemeSettings
+Default Template,Default Template,module,MGS_ThemeSettings
+"<span id=""custom_font_note""><span></span> font may not have the font weight that is chosen.</span>","<span id=""custom_font_note""><span></span> font may not have the font weight that is chosen.</span>",module,MGS_ThemeSettings
+Full Width Layout,Full Width Layout,module,MGS_ThemeSettings
+Product Image Dimention (Grid Mode),Product Image Dimention (Grid Mode),module,MGS_ThemeSettings
+Product Image Dimention (List Mode),Product Image Dimention (List Mode),module,MGS_ThemeSettings
+Number of Product per row (Desktop),Number of Product per row (Desktop),module,MGS_ThemeSettings
+Number of Product per row (Tablet),Number of Product per row (Tablet),module,MGS_ThemeSettings
+Number of Product per row (Mobile),Number of Product per row (Mobile),module,MGS_ThemeSettings
+MGS Category Landing,MGS Category Landing,module,MGS_ThemeSettings
+Is Landing,Is Landing,module,MGS_ThemeSettings
+Landing Template,Landing Template,module,MGS_ThemeSettings
+Number of Item per row (Desktop),Number of Item per row (Desktop),module,MGS_ThemeSettings
+Number of Item per row (Tablet),Number of Item per row (Tablet),module,MGS_ThemeSettings
+Number of Item per row (Mobile),Number of Item per row (Mobile),module,MGS_ThemeSettings
+Hide Descriptions,Hide Descriptions,module,MGS_ThemeSettings
+Truncate Description,Truncate Description,module,MGS_ThemeSettings
+Must is numberic,Must is numberic,module,MGS_ThemeSettings
+"Ship Here","Pošaljite ovde",module,Magento_Checkout
+"You added product %1 to the <a href=""%2"">comparison list</a>.","Dodali ste artikal %1 u listu <a href=""%2"">za upoređivanje</a>.",module,Magento_Catalog
+"Place Order","Potvrdite porudžbinu",module,Magento_Checkout

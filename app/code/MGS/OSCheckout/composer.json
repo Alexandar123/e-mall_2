@@ -1,0 +1,25 @@
+{
+  "name": "mgs/module-oscheckout",
+  "description": "Magesolution One Step Checkout for Magento 2",
+  "type": "magento2-module",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Mage Solution",
+      "email": "support@magesolution.com",
+      "homepage": "https://magesolution.com",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "magesolution\\OnestepCheckout\\": ""
+    }
+  }
+}

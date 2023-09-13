@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="default">
+		<job name="import_product" instance="Dynamic\FTPImportExport\Cron\ImportProduct" method="execute">
+			<schedule>*/15 * * * *</schedule>
+		</job>
+		<job name="import_stock" instance="Dynamic\FTPImportExport\Cron\ImportStock" method="execute">
+			<schedule>*/5 * * * *</schedule>
+		</job>
+		<job name="import_category" instance="Dynamic\FTPImportExport\Cron\ImportCategory" method="execute">
+			<schedule>*/30 * * * *</schedule>
+		</job>
+		<job instance="Dynamic\FTPImportExport\Cron\OrderSync" method="execute" name="dd_order_sync">
+			<schedule>* * * * *</schedule>
+		</job>
+		<!-- <job instance="Dynamic\FTPImportExport\Cron\Test" method="execute" name="mageplaza_helloworld_cron">
+			<schedule>* * * * *</schedule>
+		</job> -->
+	</group>
+</config>

@@ -1,0 +1,122 @@
+// /**
+//  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  ---------------------------------------------
+
+@product-name-link__color: @text__color;
+@product-name-link__color__active: @text__color;
+@product-name-link__color__hover: @text__color;
+@product-name-link__color__visited: @text__color;
+
+@product-name-link__text-decoration: none;
+@product-name-link__text-decoration__active: @link__hover__text-decoration;
+@product-name-link__text-decoration__hover: @link__hover__text-decoration;
+@product-name-link__text-decoration__visited: @link__hover__text-decoration;
+
+
+.flex-size (@size) {
+    -ms-flex: 0 0 @size;
+    flex: 0 0 @size;
+    max-width: @size;
+}
+
+.products-grid:not(.active-slider) .product-items {
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+	.product-item {
+		.flex-size(calc(~'100% / 3'));
+		padding: 0 15px;
+		width: 100%;
+	}
+}
+
+.row {
+	&-mobile {
+		&-1 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 1'));
+		}
+		&-2 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 2'));
+		}
+		&-3 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 3'));
+		}
+		&-4 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 4'));
+		}
+		&-5 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 5'));
+		}
+		&-6 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 6'));
+		}
+		&-7 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 7'));
+		}
+		&-8 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 8'));
+		}
+	}
+	@media (min-width: 768px){
+		&-tablet {
+			&-1 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 1'));
+			}
+			&-2 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 2'));
+			}
+			&-3 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 3'));
+			}
+			&-4 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 4'));
+			}
+			&-5 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 5'));
+			}
+			&-6 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 6'));
+			}
+			&-7 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 7'));
+			}
+			&-8 .products-grid .product-items .product-item {
+				.flex-size(calc(~'100% / 8'));
+			}
+		}
+	}
+	@media (min-width: 992px){
+		&-1 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 1'));
+		}
+		&-2 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 2'));
+		}
+		&-3 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 3'));
+		}
+		&-4 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 4'));
+		}
+		&-5 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 5'));
+		}
+		&-6 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 6'));
+		}
+		&-7 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 7'));
+		}
+		&-8 .products-grid .product-items .product-item {
+			.flex-size(calc(~'100% / 8'));
+		}
+	}
+}

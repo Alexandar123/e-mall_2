@@ -1,0 +1,8 @@
+<?php $_product = $block->getProduct(); ?>
+<div class="product-name-wrapper">
+	<h3 class="page-title">
+        <a href="<?= $_product->getProductUrl(); ?>">
+            <span class="base" data-ui-id="page-title-wrapper" itemprop="name"><?= $_product->getName(); ?></span>
+        </a>
+	</h3>
+</div>

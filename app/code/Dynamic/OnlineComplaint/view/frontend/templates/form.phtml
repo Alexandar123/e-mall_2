@@ -1,0 +1,123 @@
+
+<form class="form contact"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="contact-form"
+      method="post"
+      enctype="multipart/form-data"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__("Ime i prezime kupca")) ?></span></label>
+            <div class="control">
+                <input name="buyer_first_and_last_name"
+                       id="name"
+                       title="<?= $block->escapeHtmlAttr(__("Ime i prezime kupca")) ?>"
+                       value=""
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field account_type required">
+            <label class="label" for="account_type"><span><?= $block->escapeHtml(__("Tip naloga")) ?></span></label>
+            <div class="control">
+                <select name="account_type"
+                class="input-text"
+                data-validate="{required:true}"
+                >
+                    <option value=""></option>
+                    <option value="individual">Fizičko lice</option>
+                    <option value="legal_entity">Pravno lice</option>
+                </select>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email"
+                       id="email"
+                       title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                       value=""
+                       class="input-text"
+                       type="email"
+                       data-validate="{required:true, 'validate-email':true}"
+                       data-mage-init='{"mage/trim-input":{}}'
+                />
+            </div>
+        </div>
+        <div class="field order_number">
+            <label class="label" for="order_number"><span><?= $block->escapeHtml(__('Broj porudžbine ili Broj računa')) ?></span></label>
+            <div class="control">
+                <input name="order_number"
+                       id="telephone"
+                       title="<?= $block->escapeHtmlAttr(__('Broj porudžbine ili Broj računa')) ?>"
+                       value=""
+                       class="input-text"
+                       data-validate="{required:true}"
+                       type="text" />
+            </div>
+        </div>
+        <div class="field complaint_related_product required">
+            <label class="label" for="complaint_related_product"><span><?= $block->escapeHtml(__("Reklamacija se odnosina proizvod")) ?></span></label>
+            <div class="control">
+                <input name="complaint_related_product"
+                       id="name"
+                       title="<?= $block->escapeHtmlAttr(__("Reklamacija se odnosina proizvod")) ?>"
+                       value=""
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field complaint_regarding required">
+            <label class="label" for="complaint_regarding"><span><?= $block->escapeHtml(__("Prijavljujem reklamaciju u vezi sa:")) ?></span></label>
+            <div class="control">
+                <input type="radio" id="option1" name="complaint_regarding" value="Isporučen neispravan artikal">
+                <label for="option1">Isporučen neispravan artikal</label>
+            </div>
+            <div class="control">
+                <input type="radio" id="option2" name="complaint_regarding" value="Proizvod se pokvario u garantnom roku">
+                <label for="option2">Proizvod se pokvario u garantnom roku</label>
+            </div>
+            <div class="control">
+                <input type="radio" id="option3" name="complaint_regarding" value="Proizvod se pokvario  nakon isteka garantnog roka">
+                <label for="option3">Proizvod se pokvario  nakon isteka garantnog roka</label>
+            </div>
+            <div class="control">
+                <input type="radio" id="option3" name="complaint_regarding" value="Drugo">
+                <label for="option3">Drugo</label>
+            </div>            
+        </div>
+        <div class="field comment required">
+            <label class="label" for="comment">
+                <span><?= $block->escapeHtml(__('Opišite problem')) ?></span>
+            </label>
+            <div class="control">
+                <textarea name="Describe the problemcomment"
+                          id="describe_problem"
+                          title="<?= $block->escapeHtmlAttr(__('Opišite problem')) ?>"
+                          class="input-text"
+                          cols="5"
+                          rows="3"
+                          data-validate="{required:true}"
+                ></textarea>
+            </div>
+        </div>
+        <div class="field attachment required">
+            <label class="label" for="attachment"><span><?= $block->escapeHtml(__("Prilog(fotografija)")) ?></span></label>
+            <div class="control">
+            <input type="file" name="attachment" id="image_upload"  data-validate="{required:true}">
+            </div>
+        </div>
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

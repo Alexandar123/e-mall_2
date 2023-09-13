@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="adminhtml.locator.container">
+            <block class="MGS\StoreLocator\Block\Adminhtml\Locator\Grid" name="adminhtml.locator.grid" as="grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">locatorGrid</argument>
+                    <argument name="dataSource" xsi:type="object">MGS\StoreLocator\Model\ResourceModel\Store\Grid\Collection</argument>
+                    <argument name="default_sort" xsi:type="string">id</argument>
+                    <argument name="default_dir" xsi:type="string">desc</argument>
+                    <argument name="use_ajax" xsi:type="string">1</argument>
+                </arguments>
+                <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.locator.grid.massaction" as="grid.massaction">
+                    <arguments>
+                        <argument name="massaction_id_field" xsi:type="string">id</argument>
+                        <argument name="form_field_name" xsi:type="string">locator</argument>
+                        <argument name="use_select_all" xsi:type="string">1</argument>
+                        <argument name="options" xsi:type="array">
+                            <item name="delete" xsi:type="array">
+                                <item name="label" xsi:type="string" translate="true">Delete</item>
+                                <item name="url" xsi:type="string">*/*/massDelete</item>
+                            </item>
+                            <item name="enable_status" xsi:type="array">
+                                <item name="label" xsi:type="string" translate="true">Enable Status</item>
+                                <item name="url" xsi:type="string">*/*/massStatus/status/1</item>
+                            </item>
+                            <item name="disable_status" xsi:type="array">
+                                <item name="label" xsi:type="string" translate="true">Disable Status</item>
+                                <item name="url" xsi:type="string">*/*/massStatus/status/0</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Backend\Block\Widget\Grid\Export" name="adminhtml.locator.grid.export" as="grid.export">
+                    <arguments>
+                        <argument name="exportTypes" xsi:type="array">
+                            <item name="csv" xsi:type="array">
+                                <item name="urlPath" xsi:type="string">*/*/exportCsv</item>
+                                <item name="label" xsi:type="string" translate="true">CSV</item>
+                            </item>
+                            <item name="excel" xsi:type="array">
+                                <item name="urlPath" xsi:type="string">*/*/exportXml</item>
+                                <item name="label" xsi:type="string" translate="true">Excel XML</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" name="adminhtml.locator.grid.columnSet" as="grid.columnSet">
+                    <arguments>
+                        <argument name="id" xsi:type="string">problemGrid</argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">ID</argument>
+                            <argument name="index" xsi:type="string">id</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="name">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Store Name</argument>
+                            <argument name="index" xsi:type="string">name</argument>
+                            <argument name="header_css_class" xsi:type="string">col-email</argument>
+                            <argument name="column_css_class" xsi:type="string">ccol-email</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="country">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Country</argument>
+                            <argument name="index" xsi:type="string">country</argument>
+                            <argument name="type" xsi:type="string">country</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="state">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">State</argument>
+                            <argument name="index" xsi:type="string">state</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="city">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">City</argument>
+                            <argument name="index" xsi:type="string">city</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="zipcode">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Zipcode</argument>
+                            <argument name="index" xsi:type="string">zipcode</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="status">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Status</argument>
+                            <argument name="index" xsi:type="string">status</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="options" xsi:type="array">
+                                <item name="status_not_active" xsi:type="array">
+                                    <item name="value" xsi:type="string">1</item>
+                                    <item name="label" xsi:type="string" translate="true">Enable</item>
+                                </item>
+                                <item name="status_subscribed" xsi:type="array">
+                                    <item name="value" xsi:type="string">0</item>
+                                    <item name="label" xsi:type="string" translate="true">Disable</item>
+                                </item>
+                            </argument>
+                            <argument name="header_css_class" xsi:type="string">col-status</argument>
+                            <argument name="column_css_class" xsi:type="string">col-status</argument>
+                        </arguments>
+                    </block>
+                    <!--<block class="Magento\Backend\Block\Widget\Grid\Column\Multistore" as="store_id">-->
+                        <!--<arguments>-->
+                            <!--<argument name="header" xsi:type="string" translate="true">Store View</argument>-->
+                            <!--<argument name="type" xsi:type="string">store</argument>-->
+                            <!--<argument name="id" xsi:type="string">store_id</argument>-->
+                            <!--<argument name="index" xsi:type="string">store</argument>-->
+                            <!--<argument name="store_view" xsi:type="string">1</argument>-->
+                            <!--<argument name="sortable" xsi:type="string">0</argument>-->
+                        <!--</arguments>-->
+                    <!--</block>-->
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="actions">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Action</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="filter" xsi:type="string">0</argument>
+                            <argument name="export" xsi:type="string">0</argument>
+                            <argument name="type" xsi:type="string">action</argument>
+                            <argument name="id" xsi:type="string">actions</argument>
+                            <argument name="index" xsi:type="string">id</argument>
+                            <argument name="actions" xsi:type="array">
+                                <item name="view_action" xsi:type="array">
+                                    <item name="caption" xsi:type="string" translate="true">Edit</item>
+                                    <item name="url" xsi:type="array">
+                                        <item name="base" xsi:type="string">locator/*/edit</item>
+                                    </item>
+                                    <item name="field" xsi:type="string">id</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="mgs-themesettings">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">MGS Theme Settings</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">1010</item>
+            </item>
+        </argument>
+		
+		<field name="full_width">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Eav\Model\Entity\Attribute\Source\Boolean</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Full Width Layout</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="image_dimention_grid">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Product Image Dimention (Grid Mode)</item>
+                    <item name="placeholder" xsi:type="string" translate="true">WidthxHeight. Ex: 240x300</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="image_dimention_list">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Product Image Dimention (List Mode)</item>
+					<item name="placeholder" xsi:type="string" translate="true">WidthxHeight. Ex: 240x300</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="per_row">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">MGS\ThemeSettings\Model\Category\Attribute\Source\Perrow</item>
+                <item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Number of Product per row (Desktop)</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="per_row_tablet">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">MGS\ThemeSettings\Model\Category\Attribute\Source\Perrow</item>
+                <item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Number of Product per row (Tablet)</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="per_row_mobile">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">MGS\ThemeSettings\Model\Category\Attribute\Source\Perrow</item>
+                <item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Number of Product per row (Mobile)</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+        
+    </fieldset>
+	
+	<fieldset name="mgs-category-landing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">MGS Category Landing</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">1020</item>
+            </item>
+        </argument>
+		
+		<field name="is_landing">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Eav\Model\Entity\Attribute\Source\Boolean</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Is Landing</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="cate_landing_type">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">MGS\ThemeSettings\Model\Category\Attribute\Source\Template</item>
+                <item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Landing Template</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="landing_per_row">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">MGS\ThemeSettings\Model\Category\Attribute\Source\Perrow</item>
+                <item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Number of Item per row (Desktop)</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="landing_per_row_tablet">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">MGS\ThemeSettings\Model\Category\Attribute\Source\Perrow</item>
+                <item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Number of Item per row (Tablet)</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="landing_per_row_mobile">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">MGS\ThemeSettings\Model\Category\Attribute\Source\Perrow</item>
+                <item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Number of Item per row (Mobile)</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="hide_description">
+            <argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Eav\Model\Entity\Attribute\Source\Boolean</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Hide Descriptions</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+		
+		<field name="truncate_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">80</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Truncate Description</item>
+                    <item name="placeholder" xsi:type="string" translate="true">Must is numberic</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

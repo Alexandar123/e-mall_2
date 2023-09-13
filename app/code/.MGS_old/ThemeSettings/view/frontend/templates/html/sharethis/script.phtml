@@ -1,0 +1,4 @@
+<?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php if($themeSettingConfig->getStoreConfig('themesettings/sharethis/enabled')): ?>
+	<?php echo $themeSettingConfig->getStoreConfig('themesettings/sharethis/script_share'); ?>
+<?php endif ?>

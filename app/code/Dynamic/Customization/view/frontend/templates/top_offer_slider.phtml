@@ -1,0 +1,132 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\Action\Action;
+
+?>
+<?php
+$_productCollection = $block->getProductCollection();
+/** @var \Magento\Catalog\Helper\Output $_helper */
+$_helper = $block->getData('outputHelper');
+$imageDisplayArea = 'category_page_grid';
+?>
+<?php if (!empty($_productCollection)) : ?>
+    <div class="dd-slider dd-top-offer">
+        <div class="Heading-text">
+            <h2><?= __('Top Offer') ?></h2>
+        </div>
+        <ol class="products list items product-items">
+            <?php foreach ($_productCollection as $_item) {
+                $productImageUrl = $block->getProductImageUrl($_item->getId());
+            ?>
+                <?php $available = ''; ?>
+                <li class="item product product-item">
+                    <div class="product-item-info">
+                        <a href="<?= $_item->getProductUrl(); ?>" class="product photo product-item-photo">
+
+                            <?php $productImage = $block->getImage($_item, $imageDisplayArea); ?>
+                            <?= $productImage->toHtml() ?>
+                        </a>
+                        <h5 class="product name product-item-name">
+                            <a class="product-item-link" href="<?= $escaper->escapeUrl($_item->getProductUrl()) ?>">
+                                <?= /* @noEscape */
+                                $_helper->productAttribute($_item, $_item->getName(), 'name') ?>
+                            </a>
+                        </h5>
+                        <div class="product details product-item-details">
+
+                            <?= /* @noEscape */ $block->getProductPrice($_item) ?>
+
+                        </div>
+                        <?php if ($_item->isSaleable()) : ?>
+                            <div class="action-mobile">
+                                <?php $postParams = $block->getAddToCartPostParams($_item); ?>
+                                <form data-role="tocart-form" data-product-sku="<?= $escaper->escapeHtml($_item->getSku()) ?>" action="<?= $escaper->escapeUrl($postParams['action']) ?>" method="post">
+                                    <input type="hidden" name="product" value="<?= /* @noEscape */
+                                                                                $postParams['data']['product'] ?>">
+                                    <input type="hidden" name="<?= /* @noEscape */
+                                                                Action::PARAM_NAME_URL_ENCODED ?>" value="<?=
+                                                                                                            /* @noEscape */
+                                                                                                            $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
+                                                                                                            ?>">
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <button type="submit" title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart btn-cart primary ">
+                                        <span class="icon pe-7s-shopbag"></span>
+                                        <span class="text"><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                    </button>
+                                </form>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </li>
+
+        </ol>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= $escaper->escapeJs($_item->getSku()) ?>"
+                }
+            }
+        }
+
+        </script>
+<?php } ?>
+<script type="text/javascript">
+    require(['jquery', 'slick', 'jquery/ui'], function($, slick) {
+        $(document).ready(function() {
+            $('.dd-slider.dd-top-offer .product-items').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                arrows: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: false,
+                autoplaySpeed: 5500,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 5,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 375,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+    });
+</script>
+<?php endif; ?>

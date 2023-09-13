@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <fbuilder>
+			<general>
+				<is_enabled>1</is_enabled>
+				<container_width>1240</container_width>
+				<column_padding>15</column_padding>
+			</general>
+			<font_style>
+				<fontawesome>1</fontawesome>
+			</font_style>
+
+			<single_slider>
+				<navigation>font</navigation>
+				<next_font_class>fa fa-angle-right</next_font_class>
+				<prev_font_class>fa fa-angle-left</prev_font_class>
+				<nav_width>40</nav_width>
+				<nav_height>80</nav_height>
+				<nav_font_size>80</nav_font_size>
+			</single_slider>
+
+			<multiple_slider>
+				<navigation>font</navigation>
+				<next_font_class>fa fa-angle-right</next_font_class>
+				<prev_font_class>fa fa-angle-left</prev_font_class>
+				<nav_width>40</nav_width>
+				<nav_height>40</nav_height>
+				<nav_font_size>30</nav_font_size>
+			</multiple_slider>
+		</fbuilder>
+    </default>
+</config>

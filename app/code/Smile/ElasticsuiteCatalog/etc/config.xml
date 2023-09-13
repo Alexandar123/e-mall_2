@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCore
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <search>
+                <engine>elasticsuite</engine>
+            </search>
+        </catalog>
+        <smile_elasticsuite_autocomplete_settings>
+            <product_autocomplete>
+                <max_size>5</max_size>
+            </product_autocomplete>
+            <product_attribute_autocomplete>
+                <max_size>3</max_size>
+            </product_attribute_autocomplete>
+            <category_autocomplete>
+                <max_size>3</max_size>
+            </category_autocomplete>
+        </smile_elasticsuite_autocomplete_settings>
+        <smile_elasticsuite_catalogsearch_settings>
+            <catalogsearch>
+                <category_name_weight>1</category_name_weight>
+                <redirect_if_one_result>1</redirect_if_one_result>
+                <category_filter_use_url_rewrites>1</category_filter_use_url_rewrites>
+                <expanded_facets>3</expanded_facets>
+                <adaptive_slider_enabled>0</adaptive_slider_enabled>
+            </catalogsearch>
+        </smile_elasticsuite_catalogsearch_settings>
+    </default>
+</config>

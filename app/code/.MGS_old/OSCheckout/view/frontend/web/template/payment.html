@@ -1,0 +1,52 @@
+<div id="payment" role="presentation" class="checkout-payment-method">
+    <div class="step-title" data-role="title">
+        <span class="number">3</span>
+        <!--        <i class="fa fa-credit-card"></i>-->
+        <!-- ko if: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+        <span class="fa-stack fa-2x">
+                <i class="fa fa-circle fa-stack-2x"></i>
+            <!-- ko if: !!Number(window.checkoutConfig.quoteData.is_virtual) -->
+                    <strong class="fa-stack-1x fa-stack-text fa-inverse">2</strong>
+            <!-- /ko -->
+            <!-- ko ifnot: !!Number(window.checkoutConfig.quoteData.is_virtual) -->
+                    <strong class="fa-stack-1x fa-stack-text fa-inverse">3</strong>
+            <!-- /ko -->
+            </span>
+        <!-- /ko -->
+        <span data-bind="i18n: 'Payment Methods'"></span>
+    </div>
+    <div id="checkout-step-payment"
+         class="step-content"
+         data-role="content"
+         role="tabpanel"
+         aria-hidden="false"
+         data-bind="blockLoader: isLoading">
+
+        <form id="co-payment-form" class="form payments" novalidate="novalidate">
+            <input data-bind='attr: {value: getFormKey()}' type="hidden" name="form_key"/>
+            <fieldset class="fieldset">
+                <legend class="legend">
+                    <span data-bind="i18n: 'Payment Information'"></span>
+                </legend>
+                <!-- ko foreach: getRegion('beforeMethods') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+                <div id="checkout-payment-method-load" class="opc-payment"
+                     data-bind="visible: isPaymentMethodsAvailable">
+                    <!-- ko foreach: getRegion('payment-methods-list') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                <div class="no-quotes-block" data-bind="visible: isPaymentMethodsAvailable() == false">
+                    <!-- ko i18n: 'No Payment method available.'--><!-- /ko -->
+                </div>
+                <!-- ko if: errorValidationMessage().length > 0 -->
+                <div class="message notice">
+                    <span><!-- ko i18n: errorValidationMessage()--><!-- /ko --></span>
+                </div>
+                <!-- /ko -->
+            </fieldset>
+        </form>
+
+    </div>
+</div>

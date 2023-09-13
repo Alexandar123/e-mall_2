@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Magento_Backend::mgs">
+					<resource id="MGS_Portfolio::portfolio" title="Portfolio" sortOrder="50">
+						<resource id="MGS_Portfolio::category" title="Portfolio Categories" sortOrder="10"/>
+						<resource id="MGS_Portfolio::items" title="Portfolio Items" sortOrder="10"/>
+					</resource>
+				</resource>
+
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="MGS_Mpanel::mpanel" title="MGS" sortOrder="1000">
+                                <resource id="MGS_Portfolio::config_portfolio" title="Portfolio" sortOrder="50" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

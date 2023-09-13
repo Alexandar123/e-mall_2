@@ -1,0 +1,26 @@
+<div class="block items-in-cart" data-bind="mageInit: {'collapsible':{'openedState': 'active', 'active': true}}">
+    <div class="title" data-role="title" data-bind="visible: window.checkoutConfig.mageConfig.isShowItemListToggle">
+        <strong role="heading">
+            <span data-bind="text: getItems().length"></span>
+            <!-- ko if: getItems().length == 1 -->
+            <span data-bind="i18n: 'Item in Cart'"></span>
+            <!-- /ko -->
+            <!-- ko if: getItems().length > 1 -->
+            <span data-bind="i18n: 'Items in Cart'"></span>
+            <!-- /ko -->
+        </strong>
+    </div>
+    <div class="content minicart-items" data-role="content">
+        <div class="minicart-items-wrapper overflowed">
+            <ol class="minicart-items">
+                <!-- ko foreach: getItems() -->
+                <li class="product-item">
+                    <!-- ko foreach: $parent.elems() -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                </li>
+                <!-- /ko -->
+            </ol>
+        </div>
+    </div>
+</div>

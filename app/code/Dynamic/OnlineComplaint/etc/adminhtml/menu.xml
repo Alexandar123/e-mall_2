@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+<menu>
+       <add id="Dynamic_OnlineComplaint::first_level_demo"
+            title="Online Complaint"
+            module="Dynamic_OnlineComplaint"
+            sortOrder="20"
+            resource="Magento_Backend::content" />
+                <add id="Dynamic_OnlineComplaint::second_level_demo"
+                        title="List of Complaint"
+            module="Dynamic_OnlineComplaint"
+            sortOrder="1"
+            action="complaint/complaint/index"
+            parent="Dynamic_OnlineComplaint::first_level_demo"
+            resource="Magento_Backend::content" />
+  </menu>
+</config>

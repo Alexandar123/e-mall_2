@@ -1,0 +1,86 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$collection = $block->getCollection();
+$showThumbnail = $this->getConfig('general_settings/show_thumbnail');
+if ($this->getConfig('general_settings/thumbnail_width') != '') {
+    $width = $this->getConfig('general_settings/thumbnail_width');
+} else {
+    $width = 240;
+}
+if ($this->getConfig('general_settings/thumbnail_height') != '') {
+    $height = $this->getConfig('general_settings/thumbnail_height');
+} else {
+    $height = 180;
+}
+$categoryId = (int)$this->getRequest()->getParam('category_id', false);
+?>
+<?php if (!isset($collection) || (isset($collection) && $collection->getSize()==0)): ?>
+    <div class="message info empty">
+        <div><?php echo __('Have no posts.') ?></div>
+    </div>
+<?php else: ?>
+    <div class="blog-list">
+        <?php foreach ($collection as $post): ?>
+            <div class="blog-post post-item-info">
+                
+                <div class="post-image margin-bottom25 has-image">
+                    <?php if ($showThumbnail): ?>
+                        <?php echo $helper->getThumbnailPost($post); ?>
+                    <?php endif; ?>
+                    <div class="post-info">
+                        <div>
+                            <span class="published-by">
+                                <?php echo __('Author: ')?>
+                                <span class="text-capitalize">
+                                    <?php if ($post->getUpdatedByUser()): ?>
+                                        <?php echo __('%1', $post->getUpdatedByUser()); ?>
+                                    <?php else: ?>
+                                        <?php echo __('%1', $post->getUser()); ?>
+                                    <?php endif; ?>
+                                </span>
+                            </span>
+                            
+                            <?php if ($post->getTags()): ?>
+                            <?php $tags = explode(',', $post->getTags()); ?>
+                                <span class="post-tags">
+                                   <?php echo __('Tag: ')?>
+                                   <?php foreach ($tags as $tag): ?>
+                                      <a class="text-capitalize" title="<?php echo trim($tag); ?>" href="<?php echo $helper->getTagUrl(trim($tag)); ?>"><?php echo trim($tag); ?></a>
+                                   <?php endforeach; ?>
+                               </span>
+                           <?php endif; ?>
+                            
+                            <?php if ($this->getConfig('comment_settings/enabled')): ?>
+                                <span class="comment-link">
+                                    <?php echo __(' - '); ?>
+                                    <a href="<?php echo $post->getPostUrlWithNoCategory(); ?>#comment-box">
+                                    <?php echo __('%1 comment(s)', $post->getCommentCount()) ?>
+                                    </a>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                        <h2 class="post-title">
+                             <a class="post-title-link" title="<?php echo $post->getTitle(); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo $post->getTitle(); ?></a>
+                        </h2>
+                        <div class="create-post-time"><?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></div>
+                    </div>
+                </div>
+                
+                <?php if ($post->getShortContent()): ?>
+                    <div class="post-content">
+                        <div class="post-short-description">
+                            <?php echo $post->getShortContent(); ?>
+                        </div>
+                        <div class="post-link text-center">
+                            <a class="btn btn-default" title="<?php echo __('Continue Reading'); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo __('Continue Reading'); ?><span class="screen-reader-text"><?php echo $post->getTitle(); ?></span></a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="bottom-pagination">
+        <div class="toolbar"><?php echo $block->getPagerHtml(); ?></div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,14 @@
+<div class="order-comment-block">
+    <label class="label">
+        <span data-bind="i18n: 'Order comment'"></span>
+    </label>
+    <div class="control">
+        <textarea class="admin__control-textarea" data-bind="
+            value: orderCommentValue,
+            attr: {
+                name: 'order_comment',
+                placeholder: $t('Order Comment') ,
+            }"
+        ></textarea>
+    </div>
+</div>

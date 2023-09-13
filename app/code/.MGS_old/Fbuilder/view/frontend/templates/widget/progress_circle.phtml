@@ -1,0 +1,74 @@
+<?php
+    $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder');
+    $percent = $this->getPercent();
+    $percentFontSize = $this->getPercentFontSize();
+    $percentColor = $this->getPercentColor();
+    $percentFontweight = $this->getPercentFontweight();
+    $title = $this->getFbuilderSubtitle();
+    $circleType = $this->getCircleType();
+    $barBackground = $this->getBarBackground();
+    $middleBackground = $this->getMiddleBackground();
+if ($middleBackground=='transparent') {
+    $middleBackground = '#ffffff';
+}
+    $progressBackground = $this->getProgressBackground();
+    $circleWidth = $this->getCircleWidth();
+    $progressWidth = $this->getProgressWidth();
+    $showIcon = $this->getShowIcon();
+    
+    $overlayWidth = 0;
+    
+if ($circleWidth!='' && $circleWidth>0) {
+    $halfWidth = $circleWidth/2;
+    $clip = 'clip: rect(0px, '.$circleWidth.'px, '.$circleWidth.'px, '.$halfWidth.'px)';
+    $clip2 = 'clip: rect(0px, '.$halfWidth.'px, '.$circleWidth.'px, 0px)';
+    if ($progressWidth!='' && $progressWidth>0) {
+        $overlayWidth = $circleWidth - $progressWidth - $progressWidth;
+    } else {
+        $overlayWidth = $circleWidth - 20;
+    }
+} else {
+    if ($progressWidth!='' && $progressWidth>0) {
+        $overlayWidth = 120 - $progressWidth - $progressWidth;
+    }
+}
+?>
+<div class="mgs-circle-pie-progress">
+    <div class="mgs-progress-circle progress-type-<?php echo $circleType ?>" data-progress="0" progress-to="<?php echo $percent ?>" style="<?php if ($barBackground!=''): ?>background-color:<?php echo $barBackground ?>;<?php endif ?><?php if ($circleWidth!=''): ?>width:<?php echo $circleWidth ?>px;height:<?php echo $circleWidth ?>px;<?php endif ?>">
+        <div class="mgs-circle">
+            <div class="full mgs-progress-circle__slice" style="<?php if ($circleWidth!=''): ?>width:<?php echo $circleWidth ?>px;height:<?php echo $circleWidth ?>px;<?php echo $clip ?><?php endif ?>">
+                <div class="mgs-progress-circle__fill" style="<?php if ($progressBackground!=''): ?>background-color:<?php echo $progressBackground ?>;<?php endif ?><?php if ($circleWidth!=''): ?>width:<?php echo $circleWidth ?>px;height:<?php echo $circleWidth ?>px;<?php echo $clip2 ?><?php endif ?>"></div>
+            </div>
+            <div class="mgs-progress-circle__slice" style="<?php if ($circleWidth!=''): ?>width:<?php echo $circleWidth ?>px;height:<?php echo $circleWidth ?>px;<?php echo $clip ?><?php endif ?>">
+                <div class="mgs-progress-circle__fill" style="<?php if ($progressBackground!=''): ?> background-color:<?php echo $progressBackground ?>;<?php endif ?><?php if ($circleWidth!=''): ?>width:<?php echo $circleWidth ?>px;height:<?php echo $circleWidth ?>px;<?php echo $clip2 ?><?php endif ?>"></div>
+                <div class="mgs-progress-circle__fill mgs-progress-circle__bar" style="<?php if ($progressBackground!=''): ?>background-color:<?php echo $progressBackground ?>;<?php endif ?><?php if ($circleWidth!=''): ?>width:<?php echo $circleWidth ?>px;height:<?php echo $circleWidth ?>px;<?php echo $clip2 ?><?php endif ?>"></div>
+            </div>
+        </div>
+        <div class="mgs-progress-circle__overlay" style="<?php if ($middleBackground !='' && $circleType=='circle'): ?>background-color:<?php echo $middleBackground ?>;<?php endif ?><?php if ($overlayWidth): ?>width:<?php echo $overlayWidth ?>px;height:<?php echo $overlayWidth ?>px;line-height:<?php echo $overlayWidth ?>px;<?php endif ?><?php if ($progressWidth!='' && $progressWidth>0):?>margin-left:<?php echo $progressWidth ?>px;margin-top:<?php echo $progressWidth ?>px;<?php endif ?>">
+            <?php if ($showIcon && $circleType=='circle'): ?>
+                <?php $iconClass = $this->getFbuilderIcon() ?>
+                <?php if ($iconClass!=''): ?>
+                    <?php $iconColor = $this->getIconColor(); ?>
+                    <?php $iconFontSize = $this->getIconFontSize(); ?>
+                    <?php $iconMargin = 15; ?>
+                    <?php if ($iconFontSize!=''): ?>
+                        <?php $iconMargin = $iconFontSize/2; ?>
+                    <?php endif ?>
+                    <span class="font-container"><span class="<?php echo $builderHelper->decodeHtmlTag($iconClass) ?>" style="<?php if ($iconColor!=''): ?>color:<?php echo $iconColor ?>;<?php endif ?><?php if ($iconFontSize!=''): ?>font-size:<?php echo $iconFontSize ?>px;<?php endif ?>margin-top:-<?php echo $iconMargin ?>px"></span></span>
+                <?php endif ?>
+            <?php else: ?>
+                <?php $percentFontSize = $this->getPercentFontSize(); ?>
+                <?php $percentColor = $this->getPercentColor(); ?>
+                <?php $percentFontweight = $this->getPercentFontweight(); ?>
+                
+                <span style="<?php if ($percentFontSize!=''): ?>font-size:<?php echo $percentFontSize ?>px;<?php endif ?><?php if ($percentColor!=''): ?>color:<?php echo $percentColor ?>;<?php endif ?><?php if ($percentFontweight): ?>font-weight:bold;<?php endif ?>"><?php echo $percent ?>%</span>
+            <?php endif ?>
+        </div>
+    </div>
+    <?php if ($title!=''): ?>
+        <?php $titleFontSize = $this->getTitleFontSize(); ?>
+        <?php $titleColor = $this->getTitleColor(); ?>
+        <?php $titleFontweight = $this->getTitleFontweight(); ?>
+        <div class="progress-info"><h4 style="<?php if ($titleFontSize!=''): ?>font-size:<?php echo $titleFontSize ?>px;<?php endif ?><?php if ($titleColor!=''): ?>color:<?php echo $titleColor ?>;<?php endif ?><?php if ($titleFontweight): ?>font-weight:bold;<?php endif ?>"><?php echo $builderHelper->decodeHtmlTag($title) ?></h4></div>
+    <?php endif ?>
+</div>

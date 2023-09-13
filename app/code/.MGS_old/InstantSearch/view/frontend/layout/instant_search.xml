@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MGS_InstantSearch::css/styles.css"/>
+    </head>
+    <body>
+        <referenceBlock name="top.search">
+            <block class="MGS\InstantSearch\Block\Search\Autocomplete" name="mgs.instant.search.autocomplete" template="MGS_InstantSearch::search/autocomplete_popup.phtml" >
+            	<arguments>
+            		<argument name="jsLayout" xsi:type="array">
+            			<item name="components" xsi:type="array">
+            				<item name="instant_search_form" xsi:type="array">
+            					<item name="component" xsi:type="string">MGS_InstantSearch/js/autocomplete</item>
+            					<item name="displayArea" xsi:type="string">instant_search_form</item>
+                                <item name="children" xsi:type="array">
+                                    <item name="steps" xsi:type="array">
+                                        <item name="component" xsi:type="string">uiComponent</item>
+                                        <item name="displayArea" xsi:type="string">steps</item>
+                                        <item name="children" xsi:type="array">
+                                            <item name="product" xsi:type="array">
+                                                <item name="component" xsi:type="string">MGS_InstantSearch/js/view/product</item>
+                                            </item>
+                                            <item name="category" xsi:type="array">
+                                                <item name="component" xsi:type="string">MGS_InstantSearch/js/view/category</item>
+                                            </item>
+                                            <item name="page" xsi:type="array">
+                                                <item name="component" xsi:type="string">MGS_InstantSearch/js/view/cms/page</item>
+                                            </item>
+                                            <item name="blog" xsi:type="array">
+                                                <item name="component" xsi:type="string">MGS_InstantSearch/js/view/blog</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+            				</item>
+            				<item name="autocompleteBindEvents" xsi:type="array">
+            					<item name="component" xsi:type="string">MGS_InstantSearch/js/action/bindEvents</item>
+            					<item name="config" xsi:type="array">
+                                    <item name="searchFormSelector" xsi:type="string">#search_mini_form</item>
+                                    <item name="searchButtonSelector" xsi:type="string">button.search</item>
+                                    <item name="inputSelector" xsi:type="string">#search, .minisearch input[type="text"]</item>
+                                    <item name="searchDelay" xsi:type="string">500</item>
+                                </item>
+            				</item>
+            				<item name="autocompleteDataProvider" xsi:type="array">
+            					<item name="component" xsi:type="string">MGS_InstantSearch/js/action/dataProvider</item>
+            				</item>
+            			</item>
+            		</argument>
+            	</arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

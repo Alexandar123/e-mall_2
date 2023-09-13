@@ -1,0 +1,100 @@
+
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Checkout Estimated Total
+    //  ---------------------------------------------
+
+    .opc-estimated-wrapper {
+        &:extend(.abs-add-clearfix all);
+        background: #f4f4f4 none repeat scroll 0 0;
+        border: 1px solid #ccc;
+        margin-bottom: 30px;
+        @media only screen and (min-width: 768px) {
+            margin: 0 0 30px;
+        }
+        padding: 11px 20px;
+
+
+        .estimated-block {
+            font-size: 18px;
+            font-weight: 400;
+            float: left;
+            color: #2a2a2a;
+
+            .estimated-label {
+                display: block;
+                margin: 0 0 @indent__xs;
+            }
+            span.estimated-price {
+                color: #56cfe1;
+            }
+        }
+
+        .minicart-wrapper {
+            border: none;
+            .action {
+                &.showcart {
+                    &:before {
+                        .lib-css(color, @button__color);
+                    }
+
+                    &:hover:before {
+                        .lib-css(color, @button__hover__color);
+                    }
+                }
+            }
+            button.action.showcart {
+                border: none;
+                background-color: transparent;
+                &:before {
+                    -webkit-font-smoothing: antialiased;
+                    font-size: 26px;
+                    content: "\e615";
+                    font-family: 'Pe-icon-7-stroke';
+                    overflow: hidden;
+                    speak: none;
+                    line-height: 1;
+                    text-align: center;
+                }
+                span.counter.qty {
+                    background-color: #222;
+                    border-radius: 50%;
+                    text-align: center;
+                    white-space: normal;
+                    position: absolute;
+                    height: 20px;
+                    min-width: 20px;
+                    font-size: 12px;
+                    line-height: 22px;
+                    left: 23px;
+                    top: -10px;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -o-border-radius: 50%;
+                }
+            }
+        }
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__ml) {
+    .opc-estimated-wrapper {
+        display: none;
+    }
+}

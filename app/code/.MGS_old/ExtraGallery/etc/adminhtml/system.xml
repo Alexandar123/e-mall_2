@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="extragallery" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+            <class>separator-top</class>
+            <label>Extra Gallery</label>
+            <tab>mgs</tab>
+            <resource>MGS_ExtraGallery::config</resource>
+            <group id="general" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                <label>General Settings</label>
+				<field id="glr_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Product Gallery type</label>
+					<source_model>MGS\ExtraGallery\Model\Config\Source\Gallery</source_model>
+				</field>
+				<field id="gallery_right" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Gallery In Right</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="glr_effect" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Gallery Effect</label>
+					<source_model>MGS\ExtraGallery\Model\Config\Source\GalleryEffect</source_model>
+				</field>
+				<field id="zoom_mobile" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disable Zoom on Mobile</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="glr_effect">1</field>
+                    </depends>
+				</field>
+				<field id="custom_font_second" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="40">
+                    <label><![CDATA[<span style="display:block; text-align:center;border-top: 1px solid #ddd; padding-top: 20px;">Top Site Slide Gallery Config</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="per_row_xl" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label><![CDATA[Number Images Desktop (screen > 1200px)]]></label>
+				</field>
+				<field id="per_row_lg" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label><![CDATA[Number Images Small Desktop (992px <= screen < 1200px)]]></label>
+				</field>
+				<field id="per_row_md" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label><![CDATA[Number Images Tablet (768px <= screen < 992px)]]></label>
+				</field>
+				<field id="per_row_sm" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label><![CDATA[Number Images Small Tablet (576px <= screen < 768px)]]></label>
+				</field>
+				<field id="per_row_xs" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label><![CDATA[Number Images Mobile (screen <= 575px)]]></label>
+				</field>
+            </group>
+		</section>
+    </system>
+</config>

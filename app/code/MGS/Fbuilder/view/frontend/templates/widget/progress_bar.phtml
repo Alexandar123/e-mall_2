@@ -1,0 +1,85 @@
+<?php
+    $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder');
+    $percent = $this->getPercent();
+    $percentFontSize = $this->getPercentFontSize();
+    $percentColor = $this->getPercentColor();
+    $percentBackground = $this->getPercentBackground();
+    $percentFontweight = $this->getPercentFontweight();
+    $title = $this->getFbuilderSubtitle();
+    $titleFontSize = $this->getTitleFontSize();
+    $titleColor = $this->getTitleColor();
+    $titleFontweight = $this->getTitleFontweight();
+    $barBackground = $this->getBarBackground();
+    $progressBackground = $this->getProgressBackground();
+    $barHeight = $this->getBarHeight();
+    $borderRadius = $this->getBorderRadius();
+    $boxShadow = $this->getBoxShadow();
+    $boxAnimation = $this->getBoxAnimation();
+    $position = $this->getPosition();
+    
+    $progressInfo = '<div class="progress-info"';
+    
+if ($position=='inside' && $barHeight!='') {
+    $progressInfo .= ' style="line-height:'.$barHeight.'px"';
+}
+    
+    $progressInfo .= '>';
+if ($title!='') {
+    $titleStyle = 'style="';
+    if ($titleFontSize!='') {
+        $titleStyle .= 'font-size:'.$titleFontSize.'px;';
+    }
+    if ($titleColor!='') {
+        $titleStyle .= 'color:'.$titleColor.';';
+    }
+    if ($titleFontweight) {
+        $titleStyle .= 'font-weight:bold;';
+    }
+    $titleStyle .= '"';
+    $progressInfo .= '<span class="progress-title" '.$titleStyle.'>'.$builderHelper->decodeHtmlTag($title).'</span> ';
+}
+    
+    $percentStyle = 'style="';
+if ($percentFontSize!='') {
+    $percentStyle .= 'font-size:'.$percentFontSize.'px;';
+}
+if ($percentColor!='') {
+    $percentStyle .= 'color:'.$percentColor.';';
+}
+if ($percentBackground!='') {
+    $percentStyle .= 'background:'.$percentBackground.'; padding:2px 5px; border-radius:2px; -webkit-border-radius:2px;';
+}
+if ($percentFontweight) {
+    $percentStyle .= 'font-weight:bold;';
+}
+    $percentStyle .= '"';
+    
+    $progressInfo .= '<span class="progress-value" '.$percentStyle.'>'.$percent.'%</span></div>';
+    
+    $barStyle = 'style="';
+if ($barBackground!='') {
+    $barStyle .= 'background:'.$barBackground.';';
+}
+if ($barHeight!='') {
+    $barStyle .= 'height:'.$barHeight.'px;';
+}
+if ($borderRadius!='') {
+    $barStyle .= 'border-radius:'.$borderRadius.'px; overflow:hidden; -webkit-border-radius:'.$borderRadius.'px;';
+}
+if ($boxShadow!='') {
+    $barStyle .= 'box-shadow: inset 0 0 5px 3px '.$boxShadow.';-webkit-box-shadow:inset 0 0 5px 3px '.$boxShadow.';';
+}
+    $barStyle .= '"';
+?>
+
+<div class="mgs-progressbar progress-<?php echo $position ?>">
+    <?php if ($position=='top-left' || $position=='top-left-right' || $position=='top-right' || $position=='inside'): ?>
+        <?php echo $progressInfo ?>
+    <?php endif ?>
+    <div class="progressbar" <?php echo $barStyle ?>>
+        <div class="progress<?php if ($boxAnimation): ?> animation<?php endif ?>" aria-valuenow="<?php echo $percent ?>"<?php if ($progressBackground!=''): ?> style="background-color:<?php echo $progressBackground ?>"<?php endif ?>></div>
+    </div> 
+    <?php if ($position=='bottom-left' || $position=='bottom-left-right' || $position=='bottom-right'): ?>
+        <?php echo $progressInfo ?>
+    <?php endif ?>
+</div>

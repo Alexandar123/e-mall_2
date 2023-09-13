@@ -1,0 +1,76 @@
+<?php
+/* @var $block \Magento\Framework\View\Element\Template */
+?>
+<?php
+    $cartSummary = $block->getCartSummary();
+    $cartSummaryText = $cartSummary == 1 ? __('item') : __('items');
+?>
+<div class="popup__columns">
+    <?= $block->getChildHtml('messages') ?>
+    <div class="popup__column">
+        <div class="popup__table">
+            <div class="popup__table-col">
+                <div class="popup__column--media">
+                    <?= $block->getChildHtml('product_image') ?>
+                </div>
+            </div>
+            <div class="popup__table-col">
+                <div class="popup__column--result">
+                    <p class="popup__result-title">
+                        <?= $block->escapeHtml(__('Cart Subtotal')) ?>: <?= $block->getCartSubtotal() ?>
+                    </p>
+                    <?php if ($block->getIsCart()): ?>
+                        <button class="popup__result-view-cart text-center btn btn-xs btn-default" data-href="<?= $block->escapeUrl($block->getUrl('checkout/cart')) ?>">
+                            <?= $block->escapeHtml(__('View Cart')) ?>
+                        </button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php if ($block->getIsCheckout()): ?>
+        <div class="popup__actions-wrapper">
+            <button class="popup__action-redirect--checkout btn btn-primary" data-action="redirect-checkout" data-href="<?= $block->escapeUrl($block->getUrl('checkout')) ?>">
+                <?= $block->escapeHtml(__('Proceed to Checkout')) ?>
+            </button>
+        </div>
+    <?php endif; ?>
+</div>
+
+<script>
+    const quickviewFrame = document.querySelector('.mfp-mgs-quickview-frame'),
+            successAjaxPopup = document.querySelector('.success-ajax--popup'),
+            popupClose = document.querySelector('.popup__action-close'),
+            popupViewCart = document.querySelector('.popup__result-view-cart'),
+            popupRedirectCheckout = document.querySelector('.popup__action-redirect--checkout');
+
+    if (quickviewFrame) {
+        quickviewFrame.classList.add('success-ajax--popup');
+    }
+
+    if (successAjaxPopup) {
+        successAjaxPopup.classList.remove('mfp-mgs-quickview-frame');
+    }
+
+    if (popupClose) {
+        popupClose.addEventListener('click', function() {
+            const close = document.querySelector('.mfp-close');
+
+            if (close) {
+                close.click();
+            }
+        });
+    }
+
+    if (popupViewCart) {
+        popupViewCart.addEventListener('click', function() {
+            window.location.href = this.getAttribute('data-href');
+        });
+    }
+
+    if (popupRedirectCheckout) {
+        popupRedirectCheckout.addEventListener('click', function() {
+            window.location.href = this.getAttribute('data-href');
+        });
+    }
+</script>

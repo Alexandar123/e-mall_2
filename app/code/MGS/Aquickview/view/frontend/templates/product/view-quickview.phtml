@@ -1,0 +1,9 @@
+<?php $_product = $block->getProduct(); ?>
+<div class="column main product_wp_<?= $_product->getId() ?> product-info-clearfix product-info-quickview product details product-item-details">
+	<div class="product-info-media-wrapper">
+		<?= $block->getChildHtml('product.quickview.info.media'); ?>
+	</div>			
+	<div class="product-info-main-wrapper">
+		<?= $block->getChildHtml('product.quickview.info.main'); ?>
+	</div>
+</div>

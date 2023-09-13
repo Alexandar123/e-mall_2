@@ -1,0 +1,105 @@
+<?php $attribute = null ?>
+<?php if ($this->getData('attribute')!=''): ?>
+    <?php $attribute = $this->getData('attribute') ?>
+<?php endif ?>
+<?php $_productCollection = $this->getProductByCategories($this->getCategoryIds(), $attribute) ?>
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Data'); ?>
+<?php $blockType = $this->getData('block_type'); ?>
+<?php $template = 'MGS_Fbuilder::products/list_item.phtml'; ?>
+
+<div class="content-block <?php echo $blockType ?>-products-block <?php echo $blockType ?>-products-list-block">
+    <?php if (count($_productCollection)): ?>
+        <?php $blockId = rand() . time(); ?>
+        <?php $useSlider = $this->getUseSlider(); ?>
+        <?php $numberCol = $this->getNumbercol(); ?>
+        <?php $numberOfCol = $this->getPercol(); ?>
+        <?php $onRow = $numberCol * $numberOfCol; ?>
+        
+        <?php
+            $settingMode = 'multiple';
+            $navPosition = $this->getNavigationPosition();
+    
+            $navType = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/navigation');
+        if ($navType=='image') {
+            $nextIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/next_image');
+            $prevIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/prev_image');
+            $navHtml = '["<span><img src=\''.$builderHelper->getMediaUrl().'mgs/fbuilder/slider/'.$prevIcon.'\'/></span>", "<span><img src=\''.$builderHelper->getMediaUrl().'mgs/fbuilder/slider/'.$nextIcon.'\'/></span>"]';
+        } else {
+            $nextIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/next_font_class');
+            $prevIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/prev_font_class');
+            $navHtml = '["<span><em class=\''.$prevIcon.'\'></em></span>", "<span><em class=\''.$nextIcon.'\'></em></span>"]';
+        }
+        ?>
+
+        <div class="block widget list-products mgs-<?php echo $blockType ?>-products <?php echo $blockType ?>-products-list <?php if ($useSlider): ?>product-list-carousel<?php endif ?>">
+            <div id="<?php echo $blockType ?>-products-list-carousel-<?php echo $blockId; ?>" class="items<?php if ($useSlider): ?> owl-carousel mgs-owl-carousel mgs-carousel-<?php echo $settingMode ?> nav-type-<?php echo $navType ?> nav-position-<?php echo $navPosition ?> <?php if ($this->getHideNav() && ((($items==1) && ($navPosition!='middle-outside')) || (($items>1) && ($navPosition=='middle-inside')))): ?> autohide-nav<?php endif ?> dot-position-<?php echo $this->getPaginationPosition()?><?php else: ?> line row-<?php echo $numberCol ?> row-tablet-<?php echo $numberCol ?> row-mobile-1<?php endif ?>">
+            
+
+                    <?php $i=0;
+                    $j=0;
+                    foreach ($_productCollection as $_product): $i++; ?>
+                                            <?php if ($j++ % $numberCol == 0): ?>
+                        <div class="col">
+                        <?php endif ?>
+                            <div class="product product-item">
+                                                    <?php echo $this->getLayout()
+                                                        ->createBlock('MGS\Fbuilder\Block\Products\ProductItem')
+                                                        ->setProductId($_product->getId())
+                                                        ->setBlockData($this->getData())
+                                                        ->setTemplate($template)
+                                                        ->toHtml(); ?>
+                            </div>
+                                            <?php if ($j % $numberCol == 0 || $j == count($_productCollection)): ?>
+                        </div>
+                        <?php endif ?>
+        
+                                        <?php endforeach ?>
+
+                
+            </div>
+        </div>
+        <?php if ($useSlider): ?>
+            <?php $autoPlay = $this->getAutoplay() ? 'true' : 'false'; ?>
+            <?php $stopAuto = $this->getStopAuto() ? 'true' : 'false'; ?>
+            <?php $nav = $this->getNavigation() ? 'true' : 'false'; ?>
+            <?php $dot = $this->getPagination() ? 'true' : 'false'; ?>
+            <?php $rtl = $this->getRtl() ? 'true' : 'false'; ?>
+            <?php $loop = $this->getLoop() ? 'true' : 'false'; ?>
+            <script type="text/javascript">
+                require([
+                    'jquery',
+                    'mgsowlcarousel'
+                ], function ($) {
+                    $('#<?php echo $blockType ?>-products-list-carousel-<?php echo $blockId; ?>').owlCarousel({
+                        items: <?php echo $numberCol ?>,
+                        autoplay: <?php echo $autoPlay ?>,
+                        autoplayHoverPause: <?php echo $stopAuto ?>,
+                        nav: <?php echo $nav ?>,
+                        dots: <?php echo $dot ?>,
+                        navText: ["<span class='slider-nav nav-prev'></span>","<span class='slider-nav nav-next'></span>"],
+                        autoHeight:true,
+                        slideBy: <?php echo $this->getSlideBy() ?>,
+                        rtl: <?php echo $rtl; ?>,
+                        loop: <?php echo $loop; ?>,
+                        responsive:{
+                            0:{
+                                items:1,
+                                nav: false,
+                            },
+                            768:{
+                                items:2
+                            },
+                            992:{
+                                items:<?php echo $numberCol; ?>
+                            }
+                        },
+                        navText: <?php echo $navHtml ?>,
+                        autoHeight:true
+                    });
+                });
+            </script>
+        <?php endif ?>
+    <?php else: ?>
+        <div class="message info empty"><div><?php echo /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+    <?php endif ?>
+</div>

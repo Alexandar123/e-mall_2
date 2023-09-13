@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="fonts/Pe-icon-7-stroke.woff" rel="preload" as="font"/>
+        <css src="fonts/Poppins-SemiBold.ttf" rel="preload" as="font"/>
+        <css src="fonts/Poppins-Regular.ttf" rel="preload" as="font"/>
+    </head>
+
+    <body>
+        <move element="page.main.title" destination="page.top" before="breadcrumbs"/>
+
+        <!-- Page Wrapper -->
+        <referenceContainer name="page.wrapper">
+            <container name="placeholder_container" as="placeholder_container" label="Custom Container" before="-">
+                <block class="Magento\Framework\View\Element\Template" name="theme.placeholder.header" template="Magento_Theme::html/placeholder_headers.phtml" />
+            </container>
+            <block class="Magento\Framework\View\Element\Template" name="mgs.script" template="Magento_Theme::script.phtml" after="footer-container"/>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <container name="custom.sidebar.content" htmlTag="div" htmlClass="block custom-static-block" after="-">
+				<block class="Magento\Cms\Block\Block" name="custom.sidebar.static.block" before="-">
+					<arguments>
+						<argument name="block_id" xsi:type="string">mgs_default_sidebar_block</argument>
+						<argument name="enabled_builder" xsi:type="string">1</argument>
+					</arguments>
+				</block>
+			</container>
+        </referenceContainer>
+        <referenceBlock name="mgs_gdpr_login_header" remove="true"/>
+    </body>
+</page>

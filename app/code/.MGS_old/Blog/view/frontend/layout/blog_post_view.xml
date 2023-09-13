@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceContainer name="sidebar.additional">
+            <block class="MGS\Blog\Block\Sidebar" name="blog.sidebar" template="MGS_Blog::sidebar.phtml" after="-"/>
+        </referenceContainer>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="script.sharethis" template="MGS_ThemeSettings::html/sharethis/script.phtml" ifconfig="themesettings/sharethis/share_blog_detail"/>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="MGS\Blog\Block\Post\View" name="post_view" template="MGS_Blog::post/view.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="blog.detail.sharethis" template="MGS_ThemeSettings::html/sharethis/html.phtml" ifconfig="themesettings/sharethis/share_blog_detail"/>
+                <block class="MGS\Blog\Block\Post\View\Comment" name="post_view_comment" template="MGS_Blog::post/view/comment.phtml">
+                    <block class="MGS\Blog\Block\Post\View\Commentlist" name="post_view_comment_list" template="MGS_Blog::post/view/comment/list.phtml"/>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

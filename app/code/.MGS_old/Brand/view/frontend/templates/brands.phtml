@@ -1,0 +1,90 @@
+<?php
+$params = $this->getRequest()->getParams();
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$collection = $block->getCollection();
+?>
+<div class="shop-by-brand">
+    <?php if ($helper->getConfig('list_page_settings/description') != ''): ?>
+        <div class="description">
+            <?= $helper->getConfig('list_page_settings/description'); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($helper->getConfig('list_page_settings/show_featured_brands')): ?>
+        <?= $block->getChildHtml('brand_list_featured'); ?>
+    <?php endif; ?>
+	<div class="brand-search">
+		<?= $block->getChildHtml('brand_search'); ?>
+		<?= $block->getChildHtml('brand_filter_by_character'); ?>
+	</div>
+    <div class="all-brands widget mgs-brand brands-grid">
+        <?php $flagDigit = false; ?>
+        <?php if ($collection->count()): ?>
+            <div class="content">
+                <ul class="brand-list line">
+                    <?php $i=0; foreach ($collection as $brand): $i++; ?>
+                        <?php if (isset($params['char']) && $params['char'] != '' && $params['char'] == '0-9') : ?>
+                            <?php $letter = strtoupper(substr($brand->getName(), 0, 1)); ?>
+                            <?php if (ctype_digit($letter)): ?>
+                                <?php $flagDigit = true; ?>
+								<li class="item col-custom-5 col-des-4 col-tb-6 col-mb-6">
+									<div class="image">
+										<a class="brand-image" title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>">
+											<img class="img-responsive" alt="<?= $brand->getName(); ?>" src="<?= $brand->getSmallImageUrl(); ?>">
+										</a>
+									</div>
+									<?php if ($this->getConfig('list_page_settings/show_brand_name')): ?>
+										<div class="brand-name">
+											<h4 class="brand-title">
+												<a title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>">
+													<?= $brand->getName(); ?>
+												</a>
+											</h4>
+											<?php if ($this->getConfig('list_page_settings/show_product_count')): ?>
+												<div class="count"><?= __('%1 ', $block->getProductCount($brand)); ?><?= $block->getProductCount($brand) > 1 ? __('Products') : __('Product'); ?></div>
+											<?php endif; ?>
+										</div>
+									<?php endif; ?>
+								</li>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <li class="item col-custom-5 col-des-4 col-tb-6 col-mb-6">
+								<div class="image">
+									<a class="brand-image" title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>">
+										<img class="img-responsive" alt="<?= $brand->getName(); ?>" src="<?= $brand->getSmallImageUrl(); ?>">
+									</a>
+								</div>
+								<?php if ($this->getConfig('list_page_settings/show_brand_name')): ?>
+									<div class="brand-name">
+										<h4 class="brand-title">
+											<a title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>">
+												<?= $brand->getName(); ?>
+											</a>
+										</h4>
+										<?php if ($this->getConfig('list_page_settings/show_product_count')): ?>
+											<div class="count"><?= __('%1 ', $block->getProductCount($brand)); ?><?= $block->getProductCount($brand) > 1 ? __('Products') : __('Product'); ?></div>
+										<?php endif; ?>
+									</div>
+								<?php endif; ?>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+					<li class="clear"></li>
+                </ul>
+            </div>
+            <?php if (isset($params['char']) && $params['char'] != '' && $params['char'] == '0-9' && $flagDigit == false): ?>
+                <script type="text/javascript">
+                    require(['jquery'], function ($) {
+                        $('ul.brand-list').hide();
+                    });
+                </script>
+                <div class="message warning">
+                    <div><?= __('Have no brands.') ?></div>
+                </div>
+            <?php endif; ?>
+        <?php else: ?>
+            <div class="message warning">
+                <div><?= __('Have no brands.') ?></div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function(jQuery){
+		(function($) {
+			var tabTemplate = $("#field-template").html();
+			$("#add-new-tab").click(function() {
+				$("#field-items").append(tabTemplate);
+				
+				$("button.remove-tab").click(function() {
+					$(this).parents("li").remove();
+				});
+			});
+			
+			$("button.remove-tab").click(function() {
+				$(this).parents("li").remove();
+			});
+			
+			$(window).load(function () {
+				if($("#protabs_items_items_inherit").is(':checked')){
+					setTimeout(disableInput, 500);
+				}
+			});
+			
+			function disableInput(){
+				$('#field-items input').attr('disabled', "");
+				$('#field-items select').attr('disabled', "");
+				$('#field-items button').attr('disabled', "");
+				$('#add-new-tab').attr('disabled', "");
+			}
+		})(jQuery);
+	});
+	
+</script>

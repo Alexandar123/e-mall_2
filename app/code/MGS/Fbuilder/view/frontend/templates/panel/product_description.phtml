@@ -1,0 +1,53 @@
+<?php $canUsePanel = $this->getCanUsePanel() ?>
+<?php $isOverriden = $this->getScopeOverride() ? $this->getScopeOverride() : '0'; ?>
+<?php $product = $this->getProduct()?>
+<?php $sections = $this->getSections($product->getId(), $isOverriden) ?>
+<div class="sort-block" id="sortable_home">
+    <?php if (count($sections)>0): ?>
+        <?php foreach ($sections as $section): ?>
+            <section<?php echo $this->getSectionSetting($section, $canUsePanel) ?>>
+                <div class="frame container-panel no-padding">
+
+                    <?php echo $this->getEditPanel() ?>
+
+                    <?php
+                        $cols = $this->getBlockCols();
+                        $class = $section->getBlockClass();
+                    if ($class!='') {
+                        $class = json_decode($class, true);
+                    }
+                    ?>
+                    
+                    <?php if (count($cols)>1): ?>
+                        <div class="line">
+                            <?php foreach ($cols as $key => $col): ?>
+                                <?php $blockClass = $this->getBlockClass($section, $col, $class, $key, $canUsePanel) ?>
+                                <div class="<?php echo $blockClass ?>">
+                                    <div id="sort-block-<?php echo $section->getName().'-'.$key ?>" class="line sort-block-container">
+                                        <?php echo $this->getLayout()->createBlock('MGS\Fbuilder\Block\Panel\ProductBlock')->setBlockName($section->getName().'-'.$key)->setCanUsePanel($canUsePanel)->setProduct($product)->setOverriden($isOverriden)->setTemplate('panel/block.phtml')->toHtml() ?>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="line">
+                            <div class="col-des-12 col-builder">
+                                <div id="sort-block-<?php echo $section->getName().'-0' ?>" class="line sort-block-container">
+                                    <?php echo $this->getLayout()->createBlock('MGS\Fbuilder\Block\Panel\ProductBlock')->setBlockName($section->getName().'-0')->setCanUsePanel($canUsePanel)->setProduct($product)->setOverriden($isOverriden)->setTemplate('panel/block.phtml')->toHtml() ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif ?>
+                </div>
+            </section>
+        <?php endforeach ?>
+    <?php endif ?>
+</div>
+
+<section class="newsection-section">
+    <div class="frame no-padding">
+        <div class="add-new-section col-des-12">
+            <button class="action primary btn btn-default" type="button" onclick="addNewSection(<?php echo $product->getId() ?>, '<?php echo $isOverriden ?>')"><span id="new-section-load"><em class="fa fa-plus-circle"></span></em>&nbsp;<?php echo __('Add New Section') ?></button>
+        </div>
+    </div>
+</section>

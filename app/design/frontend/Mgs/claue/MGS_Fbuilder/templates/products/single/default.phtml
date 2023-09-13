@@ -1,0 +1,158 @@
+<?php
+use Magento\Framework\App\Action\Action;
+
+$viewMode = 'grid';
+$image = 'category_page_grid';
+$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+$_product = $this->getProduct();
+$_productNameStripped = $block->stripTags($_product->getName(), null, true);
+$productImage = $block->getImage($_product, $image);
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$builderHelper = $this->helper('MGS\Fbuilder\Helper\Data');
+$hideName = $this->getData('hide_name');
+$hideReview = $this->getData('hide_review');
+$hidePrice = $this->getData('hide_price');
+$hideAddCart = $this->getData('hide_addcart');
+$hideAddWishlist = $this->getData('hide_addwishlist');
+$hideAddCompare = $this->getData('hide_addcompare');
+$hideDescription = $this->getData('hide_description');
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$htmlStructure = $builderHelper->getStoreConfig('fbuilder/html_structure/single_product');
+$lazyLoad = $themeSettingConfig->getStoreConfig('themesettings/general/lazy_load');
+$baseImage = $baseImageHover = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
+$baseImageHover = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
+?>
+<div class="block widget mgs-product single-product products-grid product-items product-item">
+    <div class="product-item-info">
+        <div class="product-top">
+            <?php // Product Image ?>
+            <?php $size = $themeSettingConfig->getImageSize();?>
+            <?php $padding = $themeSettingConfig->getImagePadding(); ?>
+
+            <?php
+            $productImage = $_imagehelper->init($_product, $image)->setImageFile($_product->getData('small_image'))->resize($size['width'], $size['height'])->getUrl();
+            $productImageSmall = $_imagehelper->init($_product, 'product_small_image')->resize($size['width'], $size['height'])->getUrl();
+            $productImageHover = $_imagehelper->init($_product, $image)->setImageFile($_product->getData('thumbnail'))->resize($size['width'], $size['height'])->getUrl();
+            $productImageBase = $_imagehelper->init($_product, 'product_base_image')->resize($size['width'], $size['height'])->getUrl();
+            ?>
+            <?php if(!$lazyLoad): ?>
+                <?php $baseImage = $productImage ?>
+                <?php $baseImageHover = $productImageHover ?>
+            <?php endif ?>
+            <!-- Product name-->
+            <a href="<?php  echo $_product->getProductUrl() ?>" class="product photo product-item-photo <?php if((basename($_product->getData('thumbnail') ?? '') !=  'no_selection') && (basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? ''))): ?> has-hover-image<?php endif ?>" style="padding-bottom: <?php echo $padding ?>;"  tabindex="-1">
+
+                <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>" class="img-responsive product-image-photo img-thumbnail<?php if($lazyLoad): ?> arrow-lazy<?php endif ?>"  data-src="<?php echo $productImage ?>"/>
+
+                <?php if(basename($_product->getData('thumbnail') ?? '') !=  'no_selection'): ?>
+                    <?php if(basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? '')): ?>
+                        <img src="<?php echo $baseImageHover ?>" alt="<?php echo $_productNameStripped ?>" class="img-responsive img-hover-show<?php if($lazyLoad): ?> arrow-lazy<?php endif ?>" data-src="<?php echo $productImageHover ?>"/>
+                    <?php endif ?>
+                <?php endif ?>
+            </a>
+
+            <!-- Product label-->
+            <?php echo $themeSettingConfig->getProductLabel($_product); ?>
+
+            <ul class="actions-link">
+                <li>
+                    <a data-productid="<?= $_product->getId(); ?>" class="action quickview qv-list" aria-label="Quickview" title="Quickview" href="<?= $this->getUrl().'aquickview/index/index/catalog/product/id/'.$_product->getId(); ?>">
+                        <span><?= __('Quickview'); ?></span>
+                    </a>
+                </li>
+
+                <?php if($hideAddCompare!=1): ?>
+                    <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare'); ?>
+                    <li>
+                        <button class="action tocompare"
+                                title="<?php echo $block->escapeHtml(__('Add to Compare')); ?>"
+                                data-title="<?php echo __('Add to Compare') ?>"
+                                aria-label="<?php echo $block->escapeHtml(__('Add to Compare')); ?>"
+                                data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product); ?>'
+                                role="button">
+                            <i class="pe-7s-graph3"></i>
+                        </button>
+                    </li>
+                <?php endif ?>
+
+                <?php if(($hideAddWishlist!=1)): ?>
+                    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && ($hideAddWishlist!=1)): ?>
+                        <li>
+                            <button class="action towishlist"
+                                    title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                    data-title="<?php echo __('Add to Wish List') ?>"
+                                    aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                    data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'
+                                    data-action="add-to-wishlist"
+                                    role="button">
+                                <i class="pe-7s-like"></i>
+                            </button>
+                        </li>
+                    <?php endif ?>
+                <?php endif ?>
+            </ul>
+            <div class="action-mobile">
+                <?php if($hideAddCart!=1): ?>
+                    <?php if ($_product->isSaleable()): ?>
+                        <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                        <form data-role="tocart-form" data-product-sku="<?=  /* @NoEscape */ $_product->getSku() ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
+                            <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
+                            <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                            <?= $block->getBlockHtml('formkey') ?>
+                            <?php if($_product->getTypeId() == 'simple'): ?>
+                                <button type="submit"
+                                        title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                        class="action tocart btn-cart primary">
+                                    <span class="icon pe-7s-shopbag"></span>
+                                    <span class="text"><?= /* @escapeNotVerified */
+                                        __('Add to Cart') ?></span>
+                                </button>
+                            <?php else: ?>
+                                <button type="submit"
+                                        title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                        class="action tocart btn-cart primary"
+                                        onclick="window.location.href = '<?php echo $block->getProductUrl($_product)?>'">
+                                    <span class="icon pe-7s-shopbag"></span>
+                                    <span class="text"><?= /* @escapeNotVerified */
+                                        __('Add to Cart') ?></span>
+                                </button>
+                            <?php endif; ?>
+                        </form>
+                    <?php endif; ?>
+                <?php endif ?>
+            </div>
+        </div>
+        <div class="product details product-item-details">
+            <?php if ($hideName!=1): ?>
+                <strong class="product name product-item-name">
+                    <a class="product-item-link"
+                       href="<?php echo $_product->getProductUrl() ?>">
+                        <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                    </a>
+                </strong>
+            <?php endif ?>
+
+            <?php if ($hideReview!=1): ?>
+                <?php echo $block->getReviewsSummaryHtml($_product, $templateType) ?>
+            <?php endif ?>
+
+            <?php if ($hidePrice!=1): ?>
+                <?php echo $block->getProductPrice($_product) ?>
+            <?php endif ?>
+
+            <?php echo $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTemplate('MGS_Fbuilder::products/swatches/renderer.phtml')->toHtml() ?>
+
+            <?php if ($hideDescription!=1):?>
+                <div class="product description product-item-description">
+                    <?php $shortDescription = $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                    <?php if ($this->getData('truncate') && ($this->getData('truncate')>0)): ?>
+                        <?php $shortDescription = $builderHelper->truncateString(strip_tags($shortDescription), $this->getData('truncate')) ?>
+                    <?php endif ?>
+                    <?php echo $shortDescription ?>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    </div>
+</div>

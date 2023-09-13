@@ -1,0 +1,165 @@
+<?php $portfolio = $this->getPortfolio() ?>
+<div class="row portfolio-details">
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="portfolio-image">
+			<?php $galleryArray = $this->getBaseImage($portfolio); ?>
+			<?php if($galleryArray): ?>
+				<?php foreach($galleryArray as $_img): ?>
+					<img id="base_img" src="<?php echo $_img; ?>" alt="" class="img-responsive"/>
+					<?php break; ?>
+				<?php endforeach ?>
+				<div class="row">
+					<div id="portfolio_galley_carousel" class="owl-carousel portfolio_galley_carousel">
+						<?php $i=0; foreach($galleryArray as $_img): $i++; ?>
+							<?php if($i == 1): ?>
+								<a class="gallery_thumb active" href="javascript:void(0);" data-imgchange="<?php echo $_img; ?>"><img src="<?php echo $_img; ?>" alt="" class="img-responsive"/></a>
+							<?php else: ?>
+								<a class="gallery_thumb" href="javascript:void(0);" data-imgchange="<?php echo $_img; ?>"><img src="<?php echo $_img; ?>" alt="" class="img-responsive"/></a>
+							<?php endif ?>
+						<?php endforeach ?>
+					</div>
+				</div>
+				<script type="text/javascript">
+					require([
+						'jquery',
+						'mgsowlcarousel'
+					], function(jQuery){
+						(function($) {
+							$("#portfolio_galley_carousel").owlCarousel({
+								items: 5,
+								nav: true,
+								dots: false,
+								autoplay: false,
+								navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
+								responsive:{
+									0 : {items: 2},
+									480 : {items: 2},
+									768 : {items: 3},
+									980 : {items: 5}
+								}
+							});
+							$(document).ready(function(){
+								$("#portfolio_galley_carousel .gallery_thumb").on('click', function(){
+									var imgUrl = $(this).data('imgchange');
+									var images = $('#base_img').attr('src');
+									if(imgUrl != images){
+										$("#base_img").attr('src',imgUrl);
+										$("#portfolio_galley_carousel .gallery_thumb.active").removeClass('active');
+										$(this).addClass("active");
+									}
+									return false;
+								});
+							});
+						})(jQuery);
+
+					});
+				</script>
+			<?php endif ?>
+
+		</div>
+		<?php echo $block->getChildHtml('portfolio.detail.sharethis'); ?>
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="portfolio-content">
+			<div class="description margin-bottom30"><?php echo nl2br($portfolio->getDescription()) ?></div>
+			<table class="table portfolio-table">
+				<tbody>
+					<?php $date = $portfolio->getPortfolioDate() ?>
+					<?php if($date != ''): ?>
+						<tr>
+							<td><?php echo __('Date:') ?></td>
+							<td><?php echo date('F d, Y', strtotime($date))?></td>
+						</tr>
+					<?php endif ?>
+
+					<?php $service = $portfolio->getServices() ?>
+					<?php if($service != ''): ?>
+						<tr>
+							<td><?php echo __('Project:') ?></td>
+							<td><a href="<?php echo $portfolio->getProjectUrl() ?>" target="_blank"><?php echo $service ?></a></td>
+						</tr>
+					<?php endif ?>
+
+					<?php $client = $portfolio->getClient() ?>
+					<?php if($client != ''): ?>
+						<tr>
+							<td><?php echo __('Client:') ?></td>
+							<td><?php echo $client ?></td>
+						</tr>
+					<?php endif ?>
+
+					<?php $skills = $portfolio->getSkills() ?>
+					<?php if($skills != ''): ?>
+						<tr>
+							<td><?php echo __('Skills:') ?></td>
+							<td><?php echo $skills ?></td>
+						</tr>
+					<?php endif ?>
+					<?php $categoryLinks = $this->getCategoriesLink($portfolio) ?>
+					<?php if($categoryLinks != ''): ?>
+						<tr>
+							<td><?php echo __('Categories:') ?></td>
+							<td><?php echo $categoryLinks ?></td>
+						</tr>
+					<?php endif ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<?php $relatedPortfolio = $this->getRelatedPortfolio($portfolio) ?>
+<?php if(count($relatedPortfolio)>0): ?>
+	<div class="portfolio-container margin-top70">
+		<div class="content-heading">
+			<h2 class="title"><?php echo __('Related Projects') ?></h2>
+		</div>
+		<div class="row">
+			<div class="owl-carousel portfolio-grid portfolio-carousel" id="portfolio_carousel">
+				<?php foreach($relatedPortfolio as $_portfolio): ?>
+					<?php $address = $this->getPortfolioAddress($_portfolio) ?>
+					<div class="item">
+						<div class="portfolio-item">
+							<div class="portfolio-top-content">
+								<a href="<?php echo $address; ?>"><img src="<?php echo $this->getThumbnailSrc($_portfolio)?>" alt="<?php echo $_portfolio->getName() ?>" class="img-responsive"/></a>
+							</div>
+							<div class="portfolio-bottom-content">
+								<h4><a href="<?php echo $address; ?>"><?php echo $_portfolio->getName() ?></a></h4>
+
+								<p class="category-link"><?php echo $this->getCategoriesLink($_portfolio)?></p>
+
+								<div class="short-content">
+									<?php echo $this->truncate($_portfolio->getDescription(), 150); ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'mgs/owlcarousel'
+		], function(jQuery){
+			(function($) {
+				$("#portfolio_carousel").owlCarousel({
+					items: 4,
+					nav: true,
+					dots: false,
+					autoplay: false,
+					navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
+					responsive:{
+						0 : {items: 1},
+						480 : {items: 1},
+						768 : {items: 2},
+						980 : {items: 4},
+						1200 : {items: 4}
+					}
+				});
+			})(jQuery);
+		});
+	</script>
+<?php endif ?>

@@ -1,0 +1,16 @@
+<?php $helper = $this->getBuilderHelper() ?>
+<?php $child = $this->getBuilderChild() ?>
+<div class="data item title" aria-labeledby="tab-label-code-title" data-role="collapsible" id="tab-label-code">
+    <a class="data switch" tabindex="-1" data-toggle="switch" href="#code" id="tab-label-code-title">
+        <?php echo __('Embed Code') ?>
+    </a>
+</div>
+
+<div class="data item content" id="code" data-role="content" style="display:none">
+    <div class="form-group line">
+        <h4 class="col-des-12"><?php echo __('For CMS:') ?></h4>
+        <div class="col-des-12">
+            <pre><?php echo htmlspecialchars($child->getBlockContent()) ?></pre>
+        </div>
+    </div>
+</div>

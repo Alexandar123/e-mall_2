@@ -1,0 +1,337 @@
+.adminhtml-lookbook-edit #anchor-content .page-columns .side-col{display:none}
+.adminhtml-lookbook-edit #anchor-content .page-columns .main-col{margin-left:0; padding-left:30px; width:100%}
+
+button.image-annotate-add {
+    float:right;
+	margin-top:5px;
+}
+.image-annotate-area-editable{text-align:center}
+.image-annotate-add span {
+    background-repeat: no-repeat;
+    line-height: 1.6em;
+}
+
+.image-annotate-canvas {
+    border: solid 1px #ccc;
+    background-position: left top;
+    background-repeat: no-repeat;
+    display: block;
+    margin: 0;
+    position: relative;
+	margin-top:30px;
+	overflow:hidden;
+}
+.image-annotate-view {
+    position: relative;
+}
+.image-annotate-area {
+    position: absolute;
+}
+.image-annotate-area div {
+    display: block;
+}
+.image-annotate-area-hover div {
+    border-color: yellow !important;
+}
+.image-annotate-area-editable {
+    cursor: pointer;
+}
+.image-annotate-area-editable-hover div {
+    border-color: #00AD00 !important;
+}
+.image-annotate-note {
+    background: #E7FFE7 none repeat scroll 0 0;
+    border: solid 1px #397F39;
+    color: #000;
+    display: none;
+    font-family: Verdana, Sans-Serif;
+    font-size: 12px;
+    max-width: 200px;
+    padding: 3px 7px;
+    position: absolute;
+	display:none !important;
+}
+.image-annotate-note .actions {
+    display: block;
+    font-size: 80%;
+}
+.image-annotate-edit {
+    display: none;
+}
+#image-annotate-edit-form {
+    background: #fafafa;
+    border: 1px solid #555;
+    padding: 15px 7px;
+    position: absolute;
+    width: 260px;
+}
+#image-annotate-edit-form .form-list td{
+	padding-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+	border:none;
+}
+#image-annotate-edit-form .form-list td.label label{
+	display: block;
+    font-size: 12px;
+    width: 100px;
+}
+#image-annotate-edit-form .form-list td.value input.input-text, #image-annotate-edit-form .form-list td.value .select{width:128px; font-size:12px}
+#image-annotate-edit-form button{float:left; margin:5px 5px 0 0; position:relative}
+#image-annotate-edit-form button.saving:after{position:absolute; width:100%; height:100%; content:""; top:0; left:0; background:url('../images/loader-1.gif') center center no-repeat; opacity:0.5; background-size:25px 25px}
+#image-annotate-edit-form form {
+    clear: right;
+    margin: 0 !important;
+    padding: 5px 0 5px 0;
+    z-index: 999;
+}
+#image-annotate-edit-form .box {
+    margin: 0;
+}
+#image-annotate-edit-form input.form-text, #image-annotate-edit-form #edit-comment-wrapper textarea {
+    width: 90%;
+}
+#image-annotate-edit-form textarea {
+    height: 65px;
+    font-family: Verdana, Sans-Serif;
+    font-size: 12px;    
+    width: 234px;
+}
+#image-annotate-edit-form fieldset {
+    background: transparent none repeat scroll 0 0;
+}
+#image-annotate-edit-form .form-item {
+    margin: 0 0 5px;
+}
+#image-annotate-edit-form .form-button, #image-annotate-edit-form .form-submit {
+    margin: 0;
+}
+/*
+#image-annotate-edit-form a {
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 3px 3px;
+    border: solid 1px #ccc;
+    color: #333;
+    cursor: pointer;
+    display: block;
+    float: left;    
+    font-family: Verdana, Sans-Serif;
+    font-size: 12px;        
+    height: 18px;
+    line-height: 18px;
+    padding: 2px 6px 2px 24px;
+    margin: 6px 0px 6px 6px;
+}
+
+#image-annotate-edit-form a:hover {
+    background-color: #eee;
+}*/
+
+.image-annotate-edit-area {
+    cursor: move;
+    display: block;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+	text-align:center;
+}
+.image-annotate-edit-area .ui-resizable-handle {
+    opacity: 0.8;
+}
+
+.image-annotate-edit-area:before {
+    position:absolute;
+    display:block; 
+    height:100%; 
+    width:100%; 
+    box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+}
+
+.ui-resizable {
+    position: relative;
+}
+.ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    z-index: 99999;
+    display: block;
+}
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable- autohide .ui-resizable-handle {
+    display: block;
+}
+.ui-resizable-n {
+    cursor: n-resize;
+    height: 7px;
+    width: 100%;
+    top: -5px;
+    left: 0px;
+}
+.ui-resizable-s {
+    cursor: s-resize;
+    height: 7px;
+    width: 100%;
+    bottom: -5px;
+    left: 0px;
+}
+.ui-resizable-e {
+    cursor: e-resize;
+    width: 7px;
+    right: -5px;
+    top: 0px;
+    height: 100%;
+}
+.ui-resizable-w {
+    cursor: w-resize;
+    width: 7px;
+    left: -5px;
+    top: 0px;
+    height: 100%;
+}
+.ui-resizable-se {
+    cursor: se-resize;
+    width: 12px;
+    height: 12px;
+    right: 1px;
+    bottom: 1px;
+}
+.ui-resizable-sw {
+    cursor: sw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    bottom: -5px;
+}
+.ui-resizable-nw {
+    cursor: nw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    top: -5px;
+}
+.ui-resizable-ne {
+    cursor: ne-resize;
+    width: 9px;
+    height: 9px;
+    right: -5px;
+    top: -5px;
+}
+
+.hotspots-msg {
+    display:block;
+    position:absolute;
+    width:100%;  
+    font-weight: bold;    
+    text-align:center;
+    font-size:14px;
+    color: #FFFFFF;
+    text-shadow: #000000 2px 2px 6px;
+}
+
+.products-link{
+    display:block;
+    width:100%;  
+    font-weight: bold;    
+    text-align:center;
+    font-size:14px;
+    color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.products-link a {
+    float:right;
+    padding-right: 16px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    font-weight: normal;
+    color:#EA7601;
+}
+
+.ui-autocomplete{background:#fff; width:161px !important; list-style:none}
+.ui-autocomplete li{padding:3px 10px; border-bottom:1px solid #ddd; cursor:pointer}
+.ui-autocomplete li a{text-decoration:none}
+.ui-helper-hidden-accessible{display:none}
+input.ui-autocomplete-loading{background-image:url('../images/loader-1.gif'); background-position: right top; background-repeat: no-repeat; background-size:15px 15px}
+
+.qq-uploader { position:relative; display:block; float:left;}
+
+.qq-upload-button {
+    background-color: #eb5202;
+    border-color: #eb5202;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+	font-size: 1.6rem;
+    letter-spacing: 0.025em;
+    padding: 0.6rem 1em;
+	float:left;
+}
+
+.qq-upload-button span {
+    background-repeat: no-repeat;
+}
+
+.qq-upload-button:hover {
+    background:#f77c16 url(../images/btn_over_bg.gif) repeat-x 0 0;
+}
+
+.qq-upload-button input {
+	cursor: pointer !important;
+	width:auto !important;
+}
+
+.qq-upload-drop-area {
+    position:absolute; top:0; left:0; width:100%; height:100%; min-height: 70px; z-index:2;
+    background:#FF9797; text-align:center; 
+}
+.qq-upload-drop-area span {
+    display:block; position:absolute; top: 50%; width:100%; margin-top:-8px; font-size:16px;
+}
+.qq-upload-drop-area-active {background:#FF7171;}
+
+.qq-upload-list {margin:6px; padding:0; list-style:none; float:left;}
+.qq-upload-list li {font-size:12px;}
+.qq-upload-file, .qq-upload-spinner, .qq-upload-remove, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
+    margin-right: 7px;
+}
+
+.qq-upload-spinner {display:inline-block; background: url('../images/ajax-loader-tr.gif'); width:15px; height:15px; vertical-align:text-bottom;}
+.qq-upload-remove {display:none; background: url("../images/cancel.png"); width:17px; height:17px; vertical-align:text-bottom;}
+.qq-upload-size,
+.qq-upload-cancel {font-size:11px;}
+
+.qq-upload-failed-text {display:none;}
+.qq-upload-fail .qq-upload-failed-text {display:inline;}
+
+
+#LookbookImageBlock {
+    position:relative;
+}
+#maket_image {
+	margin-top:5px !important;
+    margin-bottom:5px !important;
+    position:relative;
+    float:left;
+}
+
+#lookbook_form {
+    padding:30px 50px;
+}
+#lookbook_form .form-list td.label {
+    width: 100px;
+} 
+
+#lookbook_form .form-list td.label label {
+    width: 100px;
+}
+.admin__field label.label{text-align:left !important}
+#image-annotate-edit-ok{
+	background-color: #eb5202;
+    border-color: #eb5202;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+}

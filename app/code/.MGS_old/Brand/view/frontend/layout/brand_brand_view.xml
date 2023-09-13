@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="MGS\Brand\Block\Brand\View" name="brand.products" template="MGS_Brand::brand/view.phtml">
+                <block class="MGS\Brand\Block\Brand\View" name="brand.image" template="MGS_Brand::brand/image.phtml"/>
+                <block class="MGS\Brand\Block\Brand\View" name="brand.description" template="MGS_Brand::brand/description.phtml"/>
+                <block class="MGS\Brand\Block\Brand\Product\ListProduct" name="brand.products.list" as="product_list" template="Magento_Catalog::product/list.phtml">
+                    <container name="category.product.list.additional" as="additional"/>
+                    <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                        <block class="Magento\Framework\View\Element\Template" as="default"/>
+                    </block>
+					<block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto" as="addto">
+						<block class="Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist"
+						name="category.product.addto.wishlist" as="wishlist" before="compare"
+						template="Magento_Wishlist::catalog/product/list/addto/wishlist.phtml"/>
+                        <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+						   name="category.product.addto.compare" as="compare"
+						   template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                        <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setToolbarBlockName">
+                        <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                    </action>
+					<arguments>
+						<argument name="page_type" xsi:type="string">catalog_brand</argument>
+					</arguments>
+                </block>
+            </block>
+            <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
+                <arguments>
+                    <argument name="triggers" xsi:type="array">
+                        <item name="compareProductLink" xsi:type="string">.action.tocompare</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="MGS\Brand\Block\Brand\Sidebar" name="brand.sidebar" template="MGS_Brand::brand/sidebar.phtml" before="-" />
+        </referenceContainer>
+    </body>
+</page>

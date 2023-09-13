@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function (jQuery) {
+        (function ($) {
+
+            $(document).ajaxStop(function () {
+                $("div[data-index='fbuilder_available_pages']").hide();
+                $("input[name='customer[is_fbuilder_account]']").change(function(){
+                    setAvailablePageDisplay();
+                });
+                $('#tab_customer').click(function () {
+                    setTimeout(function(){
+                        setAvailablePageDisplay();
+                        $("input[name='customer[is_fbuilder_account]']").change(function(){
+                            setAvailablePageDisplay();
+                        });
+                    }, 500);
+
+                });
+
+            });
+        })(jQuery);
+    });
+
+    function setAvailablePageDisplay(){
+        require([
+            'jquery'
+        ], function (jQuery) {
+            (function ($) {
+                if ( $("input[name='customer[is_fbuilder_account]']").prop("checked")==true) {
+                    $("div[data-index='fbuilder_available_pages']").show();
+                }else{
+                    $("div[data-index='fbuilder_available_pages']").hide();
+                }
+            })(jQuery);
+        });
+    }
+</script>

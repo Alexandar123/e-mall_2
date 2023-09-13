@@ -1,0 +1,68 @@
+<?php
+/* @var $block \Magento\Framework\View\Element\Template */
+?>
+<?php
+$cartSummary = $block->getCartSummary();
+$cartSummaryText = $cartSummary == 1 ? __('item') : __('items');
+?>
+<div class="popup__columns">
+    <?php echo $block->getChildHtml('messages') ?>
+    <div class="popup__column">
+        <div class="popup__table">
+            <div class="popup__table-col">
+                <div class="popup__column--media">
+                    <?php echo $block->getChildHtml('product_image') ?>
+                </div>
+            </div>
+            <div class="popup__table-col">
+                <div class="popup__column--result">
+                    <p class="popup__result-title"><?php echo $block->escapeHtml(__('Cart Subtotal')) ?>: <?php /* @noEscape */ echo $block->getCartSubtotal() ?></p>
+                    <?php if ($block->getIsCart()) { ?>
+                        <div class="popup__result-view-cart text-center"><button class="btn btn-xs btn-default" type="button" onclick="setLocation('<?php echo $block->getUrl('checkout/cart') ?>');"><?php echo $block->escapeHtml(__('View Cart')) ?></button></div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php if ($block->getIsCheckout()) : ?>
+        <?php if ($block->getIsGuestCheckout()) : ?>
+            <div class="popup__actions-wrapper">
+                <button class="popup__action-redirect--checkout btn btn-primary" data-action="redirect-checkout" data-href="<?php /* @noEscape */ echo $block->getUrl('checkout') ?>"><?php echo $block->escapeHtml(__('Proceed to Checkout')) ?></button>
+            </div>
+        <?php else : ?>
+            <div class="popup__actions-wrapper">
+                <button class="popup__action-redirect--checkout btn btn-primary" data-action="redirect-checkout" data-href="<?php /* @noEscape */ echo $block->getUrl('checkout/cart') ?>"><?php echo $block->escapeHtml(__('Proceed to Checkout')) ?></button>
+            </div>
+        <?php endif ?>
+    <?php endif ?>
+</div>
+<script>
+    require(["jquery"], function($) {
+        jQuery(document).ready(function() {
+
+            jQuery('.mfp-mgs-quickview-frame').addClass('success-ajax--popup');
+            jQuery('.success-ajax--popup').removeClass('mfp-mgs-quickview-frame');
+
+            jQuery('.popup__action-close').click(function() {
+                jQuery('.mfp-close').trigger('click');
+            });
+            jQuery('.popup__result-view-cart').click(function() {
+                var url_cart_update = '<?php echo $this->getUrl('ajaxcart/index/updatecart') ?>';
+                jQuery.ajax({
+                    url: url_cart_update,
+                    method: "POST"
+                });
+                window.location.href = jQuery(this).attr('data-href');
+            })
+            jQuery('.popup__action-redirect--checkout').click(function() {
+                var url_cart_update = '<?php echo $this->getUrl('ajaxcart/index/updatecart') ?>';
+                jQuery.ajax({
+                    url: url_cart_update,
+                    method: "POST"
+                });
+                window.location.href = jQuery(this).attr('data-href');
+            })
+        });
+
+    });
+</script>

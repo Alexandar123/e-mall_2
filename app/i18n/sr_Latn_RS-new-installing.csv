@@ -1,0 +1,396 @@
+Search for...,Pretraga,theme,frontend/Mgs/claue
+My Account,Moj nalog,module,MGS_ThemeSettings
+My Wish List,Moja lista želja,module,MGS_ThemeSettings
+Setting,Podešavanja,module,Ebizmarts_MailChimp
+Setting,Podešavanja,module,MGS_ExtraGallery
+Setting,Podešavanja,module,MGS_Fbuilder
+Setting,Podešavanja,module,MGS_InstantSearch
+Setting,Podešavanja,module,MGS_Lookbook
+Setting,Podešavanja,module,MGS_Mmegamenu
+Setting,Podešavanja,module,MGS_Protabs
+Setting,Podešavanja,module,MGS_ThemeSettings
+Setting,Podešavanja,module,Smile_ElasticsuiteCore
+Setting,Podešavanja,theme,frontend/Mgs/claue
+You have no items in your shopping cart.,Nemate artikala u korpi za kupovinu.,theme,frontend/Mgs/claue
+You have no items in your shopping cart.,Nemate artikala u korpi za kupovinu.,module,MGS_AjaxCart
+Quickview,Brzi pogled,theme,frontend/Mgs/claue
+Quickview,Brzi pogled,module,MGS_Aquickviewe
+About US,O nama,theme,frontend/Mgs/claue
+Contact Us,Kontaktirajte nas,theme,frontend/Mgs/claue
+Contact Us,Kontaktirajte nas,module,MGS_ThemeSettings
+Terms & Conditions,Uslovi korišćenja,theme,frontend/Mgs/claue
+Returns & Exchanges,Povrati i zamene,theme,frontend/Mgs/claue
+Shipping & Delivery,Slanje i isporuka,theme,frontend/Mgs/claue
+Privacy Policy,Politika privatnosti,theme,frontend/Mgs/claue
+Privacy Policy,Politika privatnosti,module,MGS_GDPR
+Sort by,Sortiraj po,theme,frontend/Mgs/claue
+Sort by,Sortiraj po,module,Smile_ElasticsuiteCore
+You have no items in your wish list.,Nemate nijednu stavku na listi želja,theme,frontend/Mgs/claue
+You have no items in your wish list.,Nemate nijednu stavku na listi želja,module,MGS_ThemeSettings
+Privacy and Cookie Policy,Politika privatnosti i kolačića,theme,frontend/Mgs/claue
+View All,Vidi sve,theme,frontend/Mgs/claue
+View All,Vidi sve,module,MGS_Brand
+Sale Products,Prodaja proizvoda,theme,frontend/Mgs/claue
+Sale Products,Prodaja proizvoda,module,MGS_Fbuilder
+My Wish List,Moja lista želja,theme,frontend/Mgs/claue
+My Wish List,Moja lista želja,module,MGS_ThemeSettings
+Go to Wish List,Idite na Listu želja,theme,frontend/Mgs/claue
+CMS PAGES,CMS STRANICE,theme,frontend/Mgs/claue
+CMS PAGES,CMS STRANICE,module,MGS_Fbuilder
+CMS PAGES,CMS STRANICE,module,MGS_InstantSearch
+Cms Pages,Cms Stranici,theme,frontend/Mgs/claue
+Cms Pages,Cms Stranici,module,MGS_Fbuilder
+Cms Pages,Cms Stranici,module,MGS_InstantSearch
+Your search returned no results.,Vaša pretraga nije dala rezultate.,theme,frontend/Mgs/claue
+Your search returned no results.,Vaša pretraga nije dala rezultate.,module,MGS_ThemeSettings
+Your search returned no results.,Vaša pretraga nije dala rezultate.,module,MGS_InstantSearch
+Your search returned no results.,Vaša pretraga nije dala rezultate.,module,Smile_ElasticsuiteCatalog
+We can't find categories matching the selection.,Ne možemo da pronađemo kategorije koje odgovaraju izboru.,theme,frontend/Mgs/claue
+Search results for:,Rezultati pretrage za:,theme,frontend/Mgs/claue
+Search results for:,Rezultati pretrage za:,module,MGS_InstantSearch
+See All,Vidi sve,theme,frontend/Mgs/claue
+See All,Vidi sve,module,MGS_InstantSearch
+Review,Pregled,theme,frontend/Mgs/claue
+Review,Pregled,module,Ebizmarts_MailChimp
+Review,Pregled,module,MGS_Blog
+Review,Pregled,module,MGS_Fbuilder
+Review,Pregled,module,MGS_InstantSearch
+Review,Pregled,module,MGS_Mmegamenu
+Review,Pregled,module,MGS_OSCheckout
+Review,Pregled,module,MGS_Portfolio
+Review,Pregled,module,MGS_ThemeSettings
+Add Your Review,Dodajte svoj komentar,theme,frontend/Mgs/claue
+Size Guide,Vodič kroz veličine,theme,frontend/Mgs/claue
+Delivery & Return,Isporuka i povrat,theme,frontend/Mgs/claue
+SKU,SKU broj - Šifra proizvoda,theme,frontend/Mgs/claue
+SKU,SKU broj - Šifra proizvoda,module,Ebizmarts_MailChimp
+SKU,SKU broj - Šifra proizvoda,module,MGS_Aquickview
+SKU,SKU broj - Šifra proizvoda,module,MGS_Brand
+SKU,SKU broj - Šifra proizvoda,module,MGS_Lookbook
+SKU,SKU broj - Šifra proizvoda,module,MGS_ThemeSettings
+SKU,SKU broj - Šifra proizvoda,module,Smile_ElasticsuiteCatalog
+Details,Detalji,theme,frontend/Mgs/claue
+Details,Detalji,module,Ebizmarts_MailChimp
+Details,Detalji,module,MGS_AjaxCart
+Details,Detalji,module,MGS_Ajaxlayernavigation
+Details,Detalji,module,MGS_Aquickview
+Details,Detalji,module,MGS_Blog
+Details,Detalji,module,MGS_Brand
+Details,Detalji,module,MGS_ExportBlock
+Details,Detalji,module,MGS_ExtraGallery
+Details,Detalji,module,MGS_Fbuilder
+Details,Detalji,module,MGS_GDPR
+Details,Detalji,module,MGS_InstantSearch
+Details,Detalji,module,MGS_Lookbook
+Details,Detalji,module,MGS_Mmegamenu
+Details,Detalji,module,MGS_OSCheckout
+Details,Detalji,module,MGS_Portfolio
+Details,Detalji,module,MGS_Protabs
+Details,Detalji,module,MGS_Testimonial
+Details,Detalji,module,MGS_ThemeSettings
+More Information,Više informacija,theme,frontend/Mgs/claue
+More Information,Više informacija,module,MGS_Protabs
+More Information,Više informacija,module,MGS_ThemeSettings
+More Information,Više informacija,module,Smile_ElasticsuiteCore
+Reviews,Komentari,theme,frontend/Mgs/claue
+Reviews,Komentari,module,MGS_Aquickview
+Reviews,Komentari,module,MGS_ExtraGallery
+Reviews,Komentari,module,MGS_GDPR
+Reviews,Komentari,module,MGS_InstantSearch
+Reviews,Komentari,module,MGS_Protabs
+Reviews,Komentari,module,MGS_ThemeSettings
+DELIVERY & RETURNS,ISPORUKA I POVRAT,theme,frontend/Mgs/claue
+Customer Reviews,Komentari kupaca,theme,frontend/Mgs/claue
+Customer Reviews,Komentari kupaca,module,MGS_GDPR
+Write Your Own Review,Napišite svoj komentar,theme,frontend/Mgs/claue
+You're reviewing:,Vi gledate:,theme,frontend/Mgs/claue
+Nickname,Nadimak,theme,frontend/Mgs/claue
+Comment,Komentar,theme,frontend/Mgs/claue
+Comment,Komentar,module,MGS_Blog
+Comment,Komentar,module,MGS_Brand
+Comment,Komentar,module,MGS_Fbuilder
+Comment,Komentar,module,MGS_InstantSearch
+Comment,Komentar,module,MGS_Lookbook
+Comment,Komentar,module,MGS_OSCheckout
+Comment,Komentar,module,MGS_Protabs
+Comment,Komentar,module,MGS_ThemeSettings
+Comment,Komentar,module,Smile_ElasticsuiteCatalog
+Comment,Komentar,module,Smile_ElasticsuiteCore
+Comment,Komentar,module,Smile_ElasticsuiteVirtualCategory
+Summary,Rezime,theme,frontend/Mgs/claue
+Summary,Rezime,module,MGS_AjaxCart
+Summary,Rezime,module,MGS_Aquickview
+Summary,Rezime,module,MGS_Fbuilder
+Summary,Rezime,module,MGS_OSCheckout
+Summary,Rezime,module,MGS_ThemeSettings
+Submit Review,Pošalji komentar,theme,frontend/Mgs/claue
+Go to Cart,Idite na Korpu,theme,frontend/Mgs/claue
+Edit item,Uredite stavku,theme,frontend/Mgs/claue
+Edit item,Uredite stavku,module,MGS_AjaxCart
+Edit item,Uredite stavku,module,MGS_Blog
+Edit item,Uredite stavku,module,MGS_Mmegamenu
+Edit item,Uredite stavku,module,MGS_Portfolio
+Edit item,Uredite stavku,module,MGS_Testimonial
+Update Cart,AŽURIRAJTE SADRŽAJ KORPE,theme,frontend/Mgs/claue
+Continue Shopping,Nastavite sa kupovinom,theme,frontend/Mgs/claue
+Estimate Shipping and Tax,Procena isporuke i poreza,theme,frontend/Mgs/claue
+Enter your destination to get a shipping estimate.,Unesite svoje odredište da biste dobili procenu iznosa isporuke.,theme,frontend/Mgs/claue
+Apply Discount Code,Primenite kod za popust,theme,frontend/Mgs/claue
+Apply Discount Code,Primenite kod za popust,module,MGS_OSCheckout
+Order Total,Ukupno narudžbina,theme,frontend/Mgs/claue
+Check Out with Multiple Addresses,Odjavite se sa više adresa,theme,frontend/Mgs/claue
+Table Rate,Cena dostave,theme,frontend/Mgs/claue
+Region,Regija,theme,frontend/Mgs/claue
+Region,Regija,module,MGS_Fbuilder
+Region,Regija,module,MGS_OSCheckout
+Region,Regija,module,MGS_ThemeSettings
+Enter discount code,Unesite kod za popust,theme,frontend/Mgs/claue
+Enter discount code,Unesite kod za popust,module,MGS_OSCheckout
+Apply Discount,Primenite popust,theme,frontend/Mgs/claue
+Apply Discount,Primenite popust,module,MGS_OSCheckout
+SHIPPING ADDRESS,ADRESA ZA DOSTAVU,theme,frontend/Mgs/claue
+SHIPPING ADDRESS,ADRESA ZA DOSTAVU,module,MGS_OSCheckout
+Shipping Methods,NAČINI DOSTAVE,theme,frontend/Mgs/claue
+Shipping Methods,NAČINI DOSTAVE,module,MGS_OSCheckout
+Delivery Comment,Komentar vezan za dostavu,theme,frontend/Mgs/claue
+Delivery Comment,Komentar vezan za dostavu,module,MGS_OSCheckout
+Payment Methods,NAČINI PLAĆANJA,theme,frontend/Mgs/claue
+Payment Methods,NAČINI PLAĆANJA,module,MGS_OSCheckout
+Zip/Postal Code,Poštanski broj,theme,frontend/Mgs/claue
+Zip/Postal Code,Poštanski broj,module,MGS_OSCheckout
+Order comment,Komentar vezan za narudžbinu,theme,frontend/Mgs/claue
+Order comment,Komentar vezan za narudžbinu,module,MGS_OSCheckout
+Order Comment,Komentar vezan za narudžbinu,theme,frontend/Mgs/claue
+Order Comment,Komentar vezan za narudžbinu,module,MGS_OSCheckout
+Sign Up for Our Newsletter,Prijavite se za bilten,theme,frontend/Mgs/claue
+Sign Up for Our Newsletter,Prijavite se za bilten,module,MGS_OSCheckout
+One Step Checkout,Proverite narudžbinu,theme,frontend/Mgs/claue
+One Step Checkout,Proverite narudžbinu,module,MGS_OSCheckout
+We'll email you an order confirmation with details and tracking info.,Poslaćemo vam e-mailom potvrdu porudžbine sa detaljima i informacijama o praćenju.,theme,frontend/Mgs/claue
+Your order number is:,Broj Vaše narudžbine je:,theme,frontend/Mgs/claue
+Thank you for your purchase!,Hvala Vam na kupovini!,theme,frontend/Mgs/claue
+Customer Login,Prijava korisnika,theme,frontend/Mgs/claue
+Email Address,Email adresa,theme,frontend/Mgs/claue
+Email Address,Email adresa,module,Ebizmarts_MailChimp
+Email Address,Email adresa,module,MGS_Blog
+Email Address,Email adresa,module,MGS_OSCheckout
+Email Address,Email adresa,module,MGS_ThemeSettings
+Sign In,Prijava,module,MGS_ThemeSettings
+By using this form you agree with the storage and handling of your data by this website.,Korišćenjem ovog obrasca saglasni ste sa čuvanjem i rukovanjem vašim podacima na ovoj web stranici.,theme,frontend/Mgs/claue
+By using this form you agree with the storage and handling of your data by this website.,Korišćenjem ovog obrasca saglasni ste sa čuvanjem i rukovanjem vašim podacima na ovoj web stranici.,module,MGS_GDPR
+"By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.","Kreiranjem naloga u našoj prodavnici, moći ćete brže da se krećete kroz proces plaćanja, da čuvate više adresa za isporuku, da vidite i pratite svoje narudžbine na svom nalogu i još mnogo toga.",theme,frontend/Mgs/claue
+Please type the letters and numbers below,Unesite slova i brojeve ispod,theme,frontend/Mgs/claue
+Enter your email.,Unesite vašu e-mail adresu.,theme,frontend/Mgs/claue
+Enter your email...,Unesite vašu e-mail adresu.,theme,frontend/Mgs/claue
+Enter your email address,Unesite vašu e-mail adresu.,theme,frontend/Mgs/claue
+You are signed out,Odjavljeni ste,theme,frontend/Mgs/claue
+Personal Information,LIČNE INFORMACIJE,theme,frontend/Mgs/claue
+Create New Customer Account,Kreirajte novi korisnički nalog,theme,frontend/Mgs/claue
+Very Strong,Veoma jaka,theme,frontend/Mgs/claue
+Strong,Jaka,theme,frontend/Mgs/claue
+Strong,Jaka,module,Ebizmarts_MailChimp
+Medium,Srednja,theme,frontend/Mgs/claue
+Medium,Srednja,module,MGS_Fbuilder
+Medium,Srednja,module,MGS_ThemeSettings
+Weak,Slaba,theme,frontend/Mgs/claue
+Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.,Minimalna dužina ovog polja mora biti jednaka ili veća od 8 simbola. Vodeći i zadnji razmaci će biti zanemareni.,theme,frontend/Mgs/claue
+Minimum length of this field must be equal or greater than %1 symbols. Leading and trailing spaces will be ignored.,Minimalna dužina ovog polja mora biti jednaka ili veća od %1 simbola. Vodeći i zadnji razmaci će biti zanemareni.,theme,frontend/Mgs/claue
+Please enter a valid email address (Ex: johndoe@domain.com).,Unesite važeću email adresu (Pr: johndoe@domain.com).,theme,frontend/Mgs/claue
+By using this form you agree with the storage and handling of your data by this website.,Korišćenjem ovog obrasca saglasni ste sa čuvanjem i rukovanjem vašim podacima na ovoj web stranici.,theme,frontend/Mgs/claue
+By using this form you agree with the storage and handling of your data by this website.,Korišćenjem ovog obrasca saglasni ste sa čuvanjem i rukovanjem vašim podacima na ovoj web stranici.,module,MGS_GDPR
+"Subscribe to our newsletters and don't miss new arrivals, the latest fashion updates and our promotions.","Pretplatite se na naše biltene i ne propustite novosti, najnovije modne novosti i naše promocije.",theme,frontend/Mgs/claue
+"Subscribe to our newsletters and don't miss new arrivals, the latest fashion updates and our promotions.","Pretplatite se na naše biltene i ne propustite novosti, najnovije modne novosti i naše promocije.",module,MGS_ThemeSettings
+Don't show this popup again,Ne prikazuj ponovo ovaj iskačući prozor,theme,frontend/Mgs/claue
+Don't show this popup again,Ne prikazuj ponovo ovaj iskačući prozor,module,MGS_ThemeSettings
+SIGN UP NEWSLETTER,PRIJAVITE SE ZA BILTEN,theme,frontend/Mgs/claue
+Sign Up Newsletter,PRIJAVITE SE ZA BILTEN,theme,frontend/Mgs/claue
+Sign Up Newsletter,PRIJAVITE SE ZA BILTEN,module,MGS_ThemeSettings
+Subscribe,Pretplatite se,theme,frontend/Mgs/claue
+Subscribe,Pretplatite se,module,MGS_ThemeSettings
+My Account,Moj nalog,theme,frontend/Mgs/claue
+My Account,Moj nalog,module,MGS_ThemeSettings
+Contact Information,KONTAKT INFORMACIJE,theme,frontend/Mgs/claue
+Newsletters,BILTENI,theme,frontend/Mgs/claue
+newsletters,Bilteni,theme,frontend/Mgs/claue
+newsletters,Bilteni,module,MGS_ThemeSettings
+newsletters,Bilteni,module,Ebizmarts_MailChimp
+"You are subscribed to ""General Subscription"".","Pretplaćeni ste na ""Opštu pretplatu"".",theme,frontend/Mgs/claue
+Change Password,Promenite lozinku,theme,frontend/Mgs/claue
+Default Billing Address,Podrazumevana adresa za plaćanje,theme,frontend/Mgs/claue
+Default Shipping Address,Podrazumevana adresa za dostavu,theme,frontend/Mgs/claue
+Account Navigation,Navigacija kroz nalog,theme,frontend/Mgs/claue
+My Orders,Moje narudžbine,theme,frontend/Mgs/claue
+My Orders,Moje narudžbine,module,MGS_ThemeSettings
+My Downloadable Products,Moji proizvodi za preuzimanje,theme,frontend/Mgs/claue
+My Downloadable Products,Moji proizvodi za preuzimanje,module,MGS_ThemeSettings
+Stored Payment Methods,Sačuvani načini plaćanja,theme,frontend/Mgs/claue
+My Product Reviews,Moje recenzije proizvoda,theme,frontend/Mgs/claue
+My Product Reviews,Moje recenzije proizvoda,module,MGS_ThemeSettings
+Newsletter Subscriptions,Pretplate na bilten,theme,frontend/Mgs/claue
+Newsletter Subscriptions,Pretplate na bilten,module,MGS_ThemeSettings
+GDPR,Zaštita podataka o ličnosti,theme,frontend/Mgs/claue
+GDPR,Zaštita podataka o ličnosti,module,MGS_GDPR
+Date,DATUM,theme,frontend/Mgs/claue
+date,datum,theme,frontend/Mgs/claue
+date,datum,module,Ebizmarts_MailChimp
+date,datum,module,MGS_Blog
+Date,Datum,module,MGS_Blog
+Date,Datum,module,MGS_Fbuilder
+date,datum,module,MGS_OSCheckout
+Date,Datum,module,MGS_OSCheckout
+Date,Datum,module,MGS_Portfolio
+Date,Datum,module,Smile_ElasticsuiteCore
+Ship To,ISPORUČITI,theme,frontend/Mgs/claue
+Ship To,ISPORUČITI,module,Magento_Sales
+Status,STATUS,theme,frontend/Mgs/claue
+Reorder,Promenite redosled,theme,frontend/Mgs/claue
+Reorder,Promenite redosled,module,MGS_Fbuilder
+reorder,Promenite redosled,module,MGS_Fbuilder
+Pending,Na čekanju,theme,frontend/Mgs/claue
+Pending,Na čekanju,module,MGS_ThemeSettings
+pending,na čekanju,module,MGS_ThemeSettings
+Processing,Obrađuje se,theme,frontend/Mgs/claue
+Processing,Obrađuje se,module,Ebizmarts_MailChimp
+processing,obrađuje se,module,Ebizmarts_MailChimp
+Processing,Obrađuje se,module,MGS_AjaxCart
+processing,obrađuje se,module,MGS_AjaxCart
+Processing,Obrađuje se,module,Smile_ElasticsuiteVirtualCategory
+processing,obrađuje se,module,Smile_ElasticsuiteVirtualCategory
+Complete,Završeno,theme,frontend/Mgs/claue
+complete,završeno,theme,frontend/Mgs/claue
+Complete,Završeno,module,MGS_ThemeSettings
+complete,završeno,module,MGS_ThemeSettings
+Complete,Završeno,module,Smile_ElasticsuiteCatalog
+complete,završeno,module,Smile_ElasticsuiteCatalog
+You have placed no orders.,Još uvek niste naručili. ,theme,frontend/Mgs/claue
+per page,po stranici,theme,frontend/Mgs/claue
+Per Page,Po Stranici,module,MGS_Blog
+per page,po stranici,module,MGS_Blog
+Per Page,Po Stranici,module,MGS_InstantSearch
+per page,po stranici,module,MGS_InstantSearch
+Order #,BROJ NARUDŽBINE,theme,frontend/Mgs/claue
+Items Ordered,NARUČENI ARTIKLI,theme,frontend/Mgs/claue
+Back to My Orders,Nazad u Moje narudžbine,theme,frontend/Mgs/claue
+Order Information,INFORMACIJE O NARUDŽBINI,theme,frontend/Mgs/claue
+order information,informacije o narudžbini,module,MGS_OSCheckout
+Shipping Address,Adresa za dostavu,theme,frontend/Mgs/claue
+Shipping Address,Adresa za dostavu,module,MGS_OSCheckout
+shipping address,adresa za dostavu,module,MGS_OSCheckout
+Billing Address,Adresa za plaćanje,theme,frontend/Mgs/claue
+Billing Address,Adresa za plaćanje,module,MGS_OSCheckout
+billing address,adresa za plaćanje,module,MGS_OSCheckout
+Order Shipments,POŠILJKA NARUDŽBINE,theme,frontend/Mgs/claue
+Print All Shipments,Odštampajte sve pošiljke,theme,frontend/Mgs/claue
+Print Shipment,Odštampajte pošiljku,theme,frontend/Mgs/claue
+Track this shipment,Pratite ovu pošiljku,theme,frontend/Mgs/claue
+Invoices,FAKTURE,theme,frontend/Mgs/claue
+Invoice,Faktura,theme,frontend/Mgs/claue
+invoice,faktura,theme,frontend/Mgs/claue
+invoice,faktura,module,Ebizmarts_MailChimp
+Print Invoice,Odštampajte fakturu,theme,frontend/Mgs/claue
+Refunds,Povrat novca,theme,frontend/Mgs/claue
+Closed,Zatvoreno,theme,frontend/Mgs/claue
+closed,zatvoreno,theme,frontend/Mgs/claue
+closed,zatvoreno,module,Ebizmarts_MailChimp
+Print All Refunds,Odštampajte sve povrate novca,theme,frontend/Mgs/claue
+Print Refund,Odštampajte povrat novca,theme,frontend/Mgs/claue
+Refund,Povrat novca,theme,frontend/Mgs/claue
+Shipping & Handling,Pošiljka i rukovanje,theme,frontend/Mgs/claue
+You have not purchased any downloadable products yet.,Još niste kupili nijedan proizvod koji se može preuzeti.,theme,frontend/Mgs/claue
+Update Wish List,Ažurirajte listu želja,theme,frontend/Mgs/claue
+Remove Item,Ukloni proizvod,theme,frontend/Mgs/claue
+Remove Item,Ukloni proizvod,module,MGS_AjaxCart
+remove item,ukloni proizvod,module,MGS_AjaxCart
+Remove Item,Ukloni proizvod,module,MGS_OSCheckout
+remove item,ukloni proizvod,module,MGS_OSCheckout
+Remove Item,Ukloni proizvod,module,MGS_ThemeSettings
+remove item,ukloni proizvod,module,MGS_ThemeSettings
+Share Wish List,Podelite listu želja,theme,frontend/Mgs/claue
+Add All to Cart,Dodaj sve u korpu,theme,frontend/Mgs/claue
+ADDRESS,ADRESA,theme,frontend/Mgs/claue
+Address,Adresa,theme,frontend/Mgs/claue
+address,adresa,theme,frontend/Mgs/claue
+ADDRESS,ADRESA,module,Ebizmarts_MailChimp
+Address,Adresa,module,Ebizmarts_MailChimp
+address,adresa,module,Ebizmarts_MailChimp
+ADDRESS,ADRESA,module,MGS_Blog
+Address,Adresa,module,MGS_Blog
+address,adresa,module,MGS_Blog
+ADDRESS,ADRESA,module,MGS_Fbuilder
+Address,Adresa,module,MGS_Fbuilder
+address,adresa,module,MGS_Fbuilder
+ADDRESS,ADRESA,module,MGS_OSCheckout
+Address,Adresa,module,MGS_OSCheckout
+address,adresa,module,MGS_OSCheckout
+ADDRESS,ADRESA,module,MGS_ThemeSettings
+Address,Adresa,module,MGS_ThemeSettings
+address,adresa,module,MGS_ThemeSettings
+State/Province,Država/Pokrajina,theme,frontend/Mgs/claue
+You have no default billing address in your address book,Nemate podrazumevanu adresu za plaćanje u svom adresaru,theme,frontend/Mgs/claue
+Edit Account Information,Uredite informacije o nalogu,theme,frontend/Mgs/claue
+You have no stored payment methods.,Nemate sačuvanih načina plaćanja.,theme,frontend/Mgs/claue
+Stored Payment Methods,Sačuvani načini plaćanja,theme,frontend/Mgs/claue
+You have submitted no reviews.,Niste poslali nijednu recenziju,theme,frontend/Mgs/claue
+DATA ACCESS,PRISTUP PODACIMA,theme,frontend/Mgs/claue
+Data Access,Pristup Podacima,theme,frontend/Mgs/claue
+DATA ACCESS,PRISTUP PODACIMA,module,MGS_GDPR
+Data Access,Pristup Podacima,module,MGS_GDPR
+Erase Account,Obriši nalog,theme,frontend/Mgs/claue
+Erase Account,Obriši nalog,module,MGS_GDPR
+Submit,Prihvati,theme,frontend/Mgs/claue
+SUBMIT,PRIHVATI,theme,frontend/Mgs/claue
+Submit,Prihvati,module,Ebizmarts_MailChimp
+SUBMIT,PRIHVATI,module,Ebizmarts_MailChimp
+Submit,Prihvati,module,MGS_Fbuilder
+SUBMIT,PRIHVATI,module,MGS_Fbuilder
+Submit,Prihvati,module,MGS_GDPR
+SUBMIT,PRIHVATI,module,MGS_GDPR
+Submit,Prihvati,module,MGS_InstantSearch
+SUBMIT,PRIHVATI,module,MGS_InstantSearch
+Submit,Prihvati,module,MGS_Lookbook
+SUBMIT,PRIHVATI,module,MGS_Lookbook
+Submit,Prihvati,module,MGS_OSCheckout
+SUBMIT,PRIHVATI,module,MGS_OSCheckout
+Submit,Prihvati,module,Smile_ElasticsuiteCore
+SUBMIT,PRIHVATI,module,Smile_ElasticsuiteCore
+Search results for: '%1',Rezultati pretrage za: '%1',module,MGS_InstantSearch
+Search results for: '%1',Rezultati pretrage za: '%1',theme,frontend/Mgs/claue
+Your order number is: %1.,Broj Vaše narudžbine je: %1.,theme,frontend/Mgs/claue
+Your order # is: <span>%1</span>.,Broj Vaše narudžbine je: <span>%1</span>.,module,Magento_Checkout
+Your order # is: <span>%1</span>.,Broj Vaše narudžbine je: <span>%1</span>.,theme,frontend/Mgs/claue
+Print All Invoices,Odštampajte sve fakture,theme,frontend/Mgs/claue
+Invoice #,Fakture #,theme,frontend/Mgs/claue
+Order # ,BROJ NARUDŽBINE # ,theme,frontend/Mgs/claue
+Order # %1,BROJ NARUDŽBINE # %1,theme,frontend/Mgs/claue
+Order # %1 %2 | %3,BROJ NARUDŽBINE # %1 %2 | %3,theme,frontend/Mgs/claue
+Refund #,Povrat novca #,theme,frontend/Mgs/claue
+You have no default billing address in your address book.,Nemate podrazumevanu adresu za plaćanje u svom adresaru.,theme,frontend/Mgs/claue
+Recently Ordered,Nedavno naručeno,theme,frontend/Mgs/claue
+Please select at least one product to add to cart,Izaberite najmanje jedan proizvod koji ćete dodati u korpu,module,Magento_Checkout
+Recent Orders,Nedavne narudžbe,theme,frontend/Mgs/claue
+Print Order,Štampanje narudžbine,theme,frontend/Mgs/claue
+Update Shopping Cart,Ažuriranje korpe sa artiklima,theme,frontend/Mgs/claue
+Proceed to Checkout,Nastavi ka plaćanju,theme,frontend/Mgs/claue
+Please select a shipping address for applicable items.,Odaberite adresu za dostavu odgovarajućih artikala.,theme,frontend/Mgs/claue
+Update Qty &amp; Addresses,Ažurirajte količinu i adrese,theme,frontend/Mgs/claue
+Enter a New Address,Unesite novu adresu,theme,frontend/Mgs/claue
+Go to Shipping Information,Idite na Informacije o otpremi,theme,frontend/Mgs/claue
+Shipping To,Dostava do,theme,frontend/Mgs/claue
+Change Address,Promijeniti adresu,theme,frontend/Mgs/claue
+Edit Items,Uredi stavke,theme,frontend/Mgs/claue
+Back to Select Addresses,Natrag na odabir adresa,theme,frontend/Mgs/claue
+Continue to Billing Information,Nastavite do Podaci o naplati,theme,frontend/Mgs/claue
+Go to Review Your Order,Idite na Pregledajte svoju narudžbu,theme,frontend/Mgs/claue
+Back to Shipping Information,Natrag na informacije o otpremi,theme,frontend/Mgs/claue
+My billing and shipping address are the same,Moja adresa za dostavu i plaćanje su iste,module,MGS_OSCheckout
+New Address,Nova adresa,module,MGS_OSCheckout
+Cart Subtotal,Međuzbroj košarice,module,MGS_AjaxCart
+View Cart,Pogledaj košaricu,module,MGS_AjaxCart
+Proceed to Checkout,Nastavi ka plaćanju,module,MGS_AjaxCart
+Cart Subtotal,Međuzbroj košarice,module,MGS_AjaxCart
+Order Summary,Rezime porudžbine,module,MGS_AjaxCart
+Thank you for your subscription.,Hvala vam na pretplati.,module,Magento_Newsletter
+Save in address book,Spremi u adresar,module,MGS_OSCheckout
+Ship Here,Pošaljite ovdje,module,Magento_Checkout
+Item in Cart,Proizvod u Korpi,module,MGS_OSCheckout
+

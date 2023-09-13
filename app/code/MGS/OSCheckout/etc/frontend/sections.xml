@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * section
+ *
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+    <action name="customer/ajax/login">
+        <section name="checkout-data"/>
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+    <action name="onestepchekout/customer_ajax/register">
+        <section name="checkout-data"/>
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+    <action name="rest/*/V1/carts/*/update-item">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="rest/*/V1/guest-carts/*/update-item">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="rest/*/V1/guest-carts/*/remove-item">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="rest/*/V1/carts/*/remove-item">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="rest/*/V1/carts/*/payment-information">
+        <section name="one-step-checkout-data"/>
+    </action>
+    <action name="rest/*/V1/guest-carts/*/payment-information">
+        <section name="one-step-checkout-data"/>
+    </action>
+    <action name="rest/*/V1/guest-carts/*/selected-payment-method">
+        <section name="one-step-checkout-data"/>
+    </action>
+    <action name="rest/*/V1/carts/*/selected-payment-method">
+        <section name="one-step-checkout-data"/>
+    </action>
+</config>

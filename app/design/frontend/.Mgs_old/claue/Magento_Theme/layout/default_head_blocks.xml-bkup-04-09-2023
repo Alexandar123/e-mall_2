@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../vendor/magento/framework/Module/etc/module.xsd">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+		<css src="css/themes_fonts.css" media="all"/> 
+		<css src="css/dynamic.css" media="all"/> 
+		<css src="MGS_Fbuilder::css/animate.css" media="all"/> 
+	</head>
+</page>

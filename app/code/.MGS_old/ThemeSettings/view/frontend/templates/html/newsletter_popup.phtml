@@ -1,0 +1,145 @@
+<?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config')?>
+
+<?php /* Newsletter Popup */ ?>
+<?php $newsletterPopup = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/enabled') ?>
+<?php if($newsletterPopup): ?>
+	<?php $title = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/title') ?>
+	<?php $background = $themeSettingConfig->getMediaUrl('mgs/setting/'.$themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/background')) ?>
+	<?php $html = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/html') ?>
+	<?php $bottom_html = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/bottom_html') ?>
+	<?php $formSubscribe = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/form_subscribe') ?>
+	<?php $gdprCheckbox = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/gdpr_checkbox') ?>
+	<?php $gdprLabel = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/gdpr_label') ?>
+	<?php $popupWidth = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/popup_width') ?>
+	<?php $popupDelay = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/popup_delay') ?>
+	<?php $showOnMobile = $themeSettingConfig->getStoreConfig('themesettings/newsletter_popup/show_on_mobile') ?>
+
+	<div style="display:none">
+		<div class="newsletter_popup" id="newsletter-popup" style="width: <?php echo $popupWidth; ?>px;">
+			<button class="action-close" data-role="closeBtn" type="button">
+				<span><?php echo __('Close') ?></span>
+            </button>
+			<div class="block-popup-subscribe">
+				<div class="block-popup-top">
+                    <div class="pop-sletter-title" style="<?php if($background!=''):?>background-image: url(<?php echo $background ?>);<?php endif ?>">
+                        <h4>
+                            <?php if($title): ?>
+                                <?php echo $title; ?>
+                            <?php else: ?>
+                                <?php echo __('Sign up Newsletter'); ?>
+                            <?php endif ?>
+                        </h4>
+                    </div>
+					<?php if($html): ?>
+						<div class="newsletter-popup-content">
+							<?php echo $html; ?>
+						</div>
+					<?php endif ?>
+
+					<?php if($formSubscribe): ?>
+						<div class="newsletter-popup-form">
+							<div class="content">
+								<form class="form subscribe" novalidate action="<?php echo $this->getUrl('newsletter/subscriber/new') ?>" method="post" data-mage-init='{"validation": {"errorClass": "mage-error"}}' id="newsletter-popup-validate-detail">
+									<div class="field form-group newsletter">
+										<div class="control">
+											<input name="email" type="email" id="newsletter-popup-email" placeholder="<?php /* @escapeNotVerified */ echo __('Enter your email address') ?>" data-validate="{required:true, 'validate-email':true}"/>
+										</div>
+									</div>
+
+									<?php if($gdprCheckbox): ?>
+										<div class="grpr-checkbox choice mgs-gdpr-checkbox">
+											<input name="popup_accept_gdpr" value="1" id="accept_gdpr_popup" class="checkbox" type="checkbox" data-validate="{required:true}"/>
+											<label for="accept_gdpr_popup" class="label"><?php echo $gdprLabel ?></label>
+										</div>
+									<?php endif ?>
+
+									<div class="actions">
+										<button class="action subscribe btn btn-secondary btn-full" title="<?php /* @escapeNotVerified */ echo __('Subscribe') ?>" type="submit">
+											<span><?php /* @escapeNotVerified */ echo __('Subscribe') ?></span>
+										</button>
+									</div>
+								</form>
+							</div>
+
+						</div>
+					<?php endif ?>
+                    <?php if($bottom_html): ?>
+                        <div class="newsletter-popup-content-bottom">
+                            <?php echo $bottom_html; ?>
+                        </div>
+                    <?php endif ?>
+					<div class="checkbox dont-show-popup">
+						<label for="dont_show">
+							<input id="dont_show" onclick="dontShowPopup('dont_show')" type="checkbox">
+							<?php echo __("Don't show this popup again");  ?>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+			require(
+			[
+				'jquery',
+				'Magento_Ui/js/modal/modal'
+			],
+			function( $, modal ) {
+				$(window).load(function () {
+					<?php if($showOnMobile): ?>
+					if($(window).width() > 991) {
+					<?php endif ?>
+						if(getCookie('newsletterpopup')!='nevershow'){
+							if ($('#newsletter-popup').length) {
+								var options = {
+									type: 'popup',
+									modalClass: 'modal_newsletter_popup',
+									responsive: true,
+									innerScroll: true,
+									title: '',
+									buttons: []
+								};
+                                var newsletterPopup = modal(options, $('#newsletter-popup'));
+                                <?php if($popupDelay): ?>
+                                    setTimeout(function(){ $('#newsletter-popup').trigger('openModal'); }, <?php echo $popupDelay ?>);
+                                <?php else: ?>
+                                    $('#newsletter-popup').trigger('openModal');
+                                <?php endif ?>
+							}
+						}
+
+					<?php if($showOnMobile): ?>
+					}
+					<?php endif ?>
+				});
+			});
+			function getCookie(cname) {
+				var name = cname + "=";
+				var ca = document.cookie.split(';');
+				for(var i=0; i<ca.length; i++) {
+					var c = ca[i];
+					while (c.charAt(0)==' ') c = c.substring(1);
+					if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+				}
+				return "";
+			}
+
+			function dontShowPopup(el){
+				require(
+				[
+					'jquery'
+				],
+				function( $ ) {
+					if($('#'+el).prop('checked')) {
+						var d = new Date();
+						d.setTime(d.getTime() + (24*60*60*1000*365));
+						var expires = "expires="+d.toUTCString();
+						document.cookie = 'newsletterpopup' + "=" + 'nevershow' + "; " + expires;
+					} else {
+						document.cookie = 'newsletterpopup' + "= ''; -1";
+					}
+				});
+			}
+	</script>
+<?php endif ?>

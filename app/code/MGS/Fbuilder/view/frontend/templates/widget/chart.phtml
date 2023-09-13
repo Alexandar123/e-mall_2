@@ -1,0 +1,13 @@
+<?php $blockId = rand() . time(); ?>
+<?php $this->getChartJs($blockId) ?>
+<div class="content-block chart-block"><div style="<?php if ($this->getChartWidth()!=''): ?>max-width:<?php echo $this->getChartWidth() ?>px;<?php endif ?>"><canvas id="mgsChart<?php echo $blockId ?>"></canvas></div></div>
+<script type="text/javascript">
+        require([
+            'jquery',
+            'chartjs'
+        ], function(jQuery){
+            (function($) {
+                <?php echo $this->getChartJs($blockId) ?>
+            })(jQuery);
+        });
+</script>

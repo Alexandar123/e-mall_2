@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php $_product = $block->getProduct(); ?>
+<?php $galleryImages = $block->getGalleryImages(); ?>
+
+<?php // Get Config Gallery Template ?>
+<?php $glrTemplate = $themeSettingConfig->getStoreConfig('extragallery/general/glr_type'); ?>
+<?php $rtl = $themeSettingConfig->getStoreConfig('themesettings/general/rtl_theme') ? 'true' : 'false'; ?>
+
+<?php 
+if($_product->getData('extragallery_glr_type')){
+	$glrTemplate = $_product->getData('extragallery_glr_type');
+} 
+?>
+
+<?php $glr_effect = $themeSettingConfig->getStoreConfig('extragallery/general/glr_effect'); ?>
+<?php $zoom_image = $glr_effect == 1 ? 1 : 0; ?>
+<?php $lbox_image = $glr_effect == 2 ? 1 : 0; ?>
+<?php $zoom_mobile = $themeSettingConfig->getStoreConfig('extragallery/general/zoom_mobile'); ?>
+
+<?php // Image 360 ?>
+<?php $rotateImage = $_product->getData('mgs_j360') ?>
+<?php $rotateImages = [] ?>
+<?php if($rotateImage): ?>
+	<?php $rotateImages = $themeSettingConfig->getRotateImages($_product->getId()) ?>
+<?php endif ?>
+
+<?php if($block->getViewType() == 'quickview'): ?>
+    <?php
+        $glrTemplate = 6;
+    ?>
+<?php endif ?>
+<input id="glr_layout" type="hidden" name="glr_layout" value="<?php echo $glrTemplate; ?>">
+<input id="zoom_image" type="hidden" name="zoom_image" value="<?php echo $zoom_image; ?>">
+<input id="lbox_image" type="hidden" name="lbox_image" value="<?php echo $lbox_image; ?>">
+<input id="zoom_mobile" type="hidden" name="zoom_mobile" value="<?php echo $zoom_mobile; ?>">
+<input id="view_type" type="hidden" name="view_type" value="<?php echo $block->getViewType(); ?>">
+<input id="rtl_theme" type="hidden" name="rtl_theme" value="<?php echo $rtl; ?>">

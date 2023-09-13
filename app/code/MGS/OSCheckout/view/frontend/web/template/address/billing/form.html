@@ -1,0 +1,36 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div class="billing-address-same-as-shipping-block field choice" data-bind="visible: canUseShippingAddress()">
+	<input type="checkbox" name="billing-address-same-as-shipping"
+		   data-bind="checked: isAddressSameAsShipping, click: useShippingAddress, attr: {id: 'billing-address-same-as-shipping-' + getCode($parent)}" checked="checked"/>
+	<label data-bind="attr: {for: 'billing-address-same-as-shipping-' + getCode($parent)}"><span
+			data-bind="i18n: 'My billing and shipping address are the same'"></span></label>
+</div>
+
+<div class="billing-address-form" style="display:none">
+    <!-- ko foreach: getRegion('before-fields') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <form data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+        <fieldset class="fieldset address" data-form="billing-new-address">
+			
+            <!-- ko foreach: getRegion('additional-fieldsets') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <!-- ko if: (isCustomerLoggedIn && customerHasAddresses) -->
+
+            <div class="choice field">
+                <input type="checkbox" class="checkbox"  data-bind="checked: saveInAddressBook, attr: {id: 'billing-save-in-address-book-' + getCode($parent)}" />
+                <label class="label" data-bind="attr: {for: 'billing-save-in-address-book-' + getCode($parent)}" >
+                    <span data-bind="i18n: 'Save in address book'"></span>
+                </label>
+            </div>
+            <!-- /ko -->
+        </fieldset>
+    </form>
+</div>

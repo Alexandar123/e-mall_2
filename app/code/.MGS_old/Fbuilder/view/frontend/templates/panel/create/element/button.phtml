@@ -1,0 +1,765 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Button Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="button">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Button Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                <div class="line">
+                    <div class="col-des-9">
+                        <div class="line form-group">
+                            <div class="col">
+                                <h4 class="no-margin" style="margin-bottom:14px !important"><?php echo __('Text') ?></h4>
+                                <input type="text" class="input-text required-entry" id="subtitle" name="setting[subtitle]"<?php if ($exist && $settings['subtitle']): ?> value="<?php echo $settings['subtitle'] ?>"<?php endif ?> onchange="setPreview()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="text_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="text_font_size" name="setting[text_font_size]"<?php if ($exist && $settings['text_font_size']): ?> value="<?php echo $settings['text_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="text_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="text_color" name="setting[text_color]"<?php if ($exist && $settings['text_color']): ?> value="<?php echo $settings['text_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="text_hover_color" class="control-label"><?php echo __('Hover Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="text_hover_color" name="setting[text_hover_color]"<?php if ($exist && $settings['text_hover_color']): ?> value="<?php echo $settings['text_hover_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <div class="line form-group">
+                            <div class="col-des-12">
+                                <label for="button_link" class="control-label"><?php echo __('Link') ?></label><br/>
+                                <input type="text" class="input-text" id="button_link" name="setting[button_link]"<?php if ($exist && $settings['button_link']): ?> value="<?php echo $settings['button_link'] ?>"<?php endif ?> style="min-width:190px"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="col-des-9" style="border-right: 1px solid #ddd;">
+
+                        <div class="line form-group">
+                            <div class="col-des-4"><h4 class="no-margin"><?php echo __('Background Gradient') ?></h4></div>
+                            <div class="col-des-8">
+                                <div class="admin__actions-switch" data-role="switcher" style="position:relative; top:-7px">
+                                    <input type="checkbox"<?php if ($exist && $settings['button_bg_gradient']): ?> checked="checked"<?php endif ?> value="1" name="setting[button_bg_gradient]" id="button_bg_gradient" class="admin__actions-switch-checkbox" onclick="backgroundGradient()">
+                                    <label for="button_bg_gradient" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group bg-no-gradient">
+                            <label for="button_bg_color" class="control-label col-des-3"><?php echo __('Background') ?></label>
+                            <div class="col-des-3">
+                                <input type="text" class="input-text color-input" id="button_bg_color" name="setting[button_bg_color]"<?php if ($exist && $settings['button_bg_color']): ?> value="<?php echo $settings['button_bg_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <label for="button_bg_hover_color" class="control-label col-des-3"><?php echo __('Background Hover') ?></label>
+                            <div class="col-des-3">
+                                <input type="text" class="input-text color-input" id="button_bg_hover_color" name="setting[button_bg_hover_color]"<?php if ($exist && $settings['button_bg_hover_color']): ?> value="<?php echo $settings['button_bg_hover_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group bg-gradient">
+                            <div class="col">
+                                <label for="button_bg_from" class="control-label"><?php echo __('From') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="button_bg_from" name="setting[button_bg_from]"<?php if ($exist && $settings['button_bg_from']): ?> value="<?php echo $settings['button_bg_from'] ?>"<?php endif ?> onchange="changeContentStyle()" />
+                            </div>
+                            <div class="col">
+                                <label for="button_bg_to" class="control-label"><?php echo __('To') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="button_bg_to" name="setting[button_bg_to]"<?php if ($exist && $settings['button_bg_to']): ?> value="<?php echo $settings['button_bg_to'] ?>"<?php endif ?> onchange="changeContentStyle()" />
+                            </div>
+                            <div class="col">
+                                <label for="button_bg_orientation" class="control-label"><?php echo __('Orientation') ?></label><br/>
+                                <select name="setting[button_bg_orientation]" id="button_bg_orientation" onchange="setPreview()">
+                                    <option value="horizontal"<?php if ($exist && ($settings['button_bg_orientation']=='horizontal')): ?> selected="selected"<?php endif ?>><?php echo __('Horizontal  →') ?></option>
+                                    <option value="vertical"<?php if ($exist && ($settings['button_bg_orientation']=='vertical')): ?> selected="selected"<?php endif ?>><?php echo __('Vertical  ↓') ?></option>
+                                    <option value="diagonal"<?php if ($exist && ($settings['button_bg_orientation']=='diagonal')): ?> selected="selected"<?php endif ?>><?php echo __('Diagonal  ↘') ?></option>
+                                    <option value="diagonal-bottom"<?php if ($exist && ($settings['button_bg_orientation']=='diagonal-bottom')): ?> selected="selected"<?php endif ?>><?php echo __('Diagonal  ↗') ?></option>
+                                    <option value="radial"<?php if ($exist && ($settings['button_bg_orientation']=='radial')): ?> selected="selected"<?php endif ?>><?php echo __('Radial  ○') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group bg-gradient">
+                            <div class="col">
+                                <label for="button_bg_hover_from" class="control-label"><?php echo __('From (Hover)') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="button_bg_hover_from" name="setting[button_bg_hover_from]"<?php if ($exist && $settings['button_bg_hover_from']): ?> value="<?php echo $settings['button_bg_hover_from'] ?>"<?php endif ?> onchange="changeContentStyle()" />
+                            </div>
+                            <div class="col">
+                                <label for="button_bg_hover_to" class="control-label"><?php echo __('To (Hover)') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="button_bg_hover_to" name="setting[button_bg_hover_to]"<?php if ($exist && $settings['button_bg_hover_to']): ?> value="<?php echo $settings['button_bg_hover_to'] ?>"<?php endif ?> onchange="changeContentStyle()" />
+                            </div>
+                            <div class="col">
+                                <label for="button_bg_hover_orientation" class="control-label"><?php echo __('Orientation (Hover)') ?></label><br/>
+                                <select name="setting[button_bg_hover_orientation]" id="button_bg_hover_orientation" onchange="setPreview()">
+                                    <option value="horizontal"<?php if ($exist && ($settings['button_bg_hover_orientation']=='horizontal')): ?> selected="selected"<?php endif ?>><?php echo __('Horizontal  →') ?></option>
+                                    <option value="vertical"<?php if ($exist && ($settings['button_bg_hover_orientation']=='vertical')): ?> selected="selected"<?php endif ?>><?php echo __('Vertical  ↓') ?></option>
+                                    <option value="diagonal"<?php if ($exist && ($settings['button_bg_hover_orientation']=='diagonal')): ?> selected="selected"<?php endif ?>><?php echo __('Diagonal  ↘') ?></option>
+                                    <option value="diagonal-bottom"<?php if ($exist && ($settings['button_bg_hover_orientation']=='diagonal-bottom')): ?> selected="selected"<?php endif ?>><?php echo __('Diagonal  ↗') ?></option>
+                                    <option value="radial"<?php if ($exist && ($settings['button_bg_hover_orientation']=='radial')): ?> selected="selected"<?php endif ?>><?php echo __('Radial  ○') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <hr/>
+                        <div class="line form-group">
+                            <div class="col-des-4">
+                                <div class="line margin-container2">
+                                    <div class="col-des-6"><h4 class="no-margin"><?php echo __('Border') ?></h4></div>
+                                    <div class="col-des-6">
+                                        <div class="admin__actions-switch" data-role="switcher" style="position:relative; top:-7px">
+                                            <input type="checkbox"<?php if ($exist && $settings['use_border']): ?> checked="checked"<?php endif ?> value="1" name="setting[use_border]" id="use_border" class="admin__actions-switch-checkbox" onclick="useBorder()">
+                                            <label for="use_border" class="admin__actions-switch-label">
+                                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-des-8 use-border">
+                                <div class="line">
+                                    <div class="col">
+                                        <label for="border_width" class="control-label"><?php echo __('Width') ?></label><br/>
+                                        <input type="text" class="input-text validate-number" id="border_width" name="setting[border_width]"<?php if ($exist && $settings['border_width']): ?> value="<?php echo $settings['border_width'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                                    </div>
+                                    
+                                    <div class="col">
+                                        <label for="border_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                        <input type="text" class="input-text color-input" id="border_color" name="setting[border_color]"<?php if ($exist && $settings['border_color']): ?> value="<?php echo $settings['border_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                                    </div>
+                                    
+                                    <div class="col">
+                                        <label for="border_hover_color" class="control-label"><?php echo __('Hover Color') ?></label><br/>
+                                        <input type="text" class="input-text color-input" id="border_hover_color" name="setting[border_hover_color]"<?php if ($exist && $settings['border_hover_color']): ?> value="<?php echo $settings['border_hover_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="line form-group use-border">
+                            <div class="col">
+                                <label for="border_top" class="control-label"><?php echo __('Border top') ?></label><br/>
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if (($exist && $settings['border_top']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[border_top]" id="border_top" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                                    <label for="border_top" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="border_right" class="control-label"><?php echo __('Border right') ?></label><br/>
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if (($exist && $settings['border_right']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[border_right]" id="border_right" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                                    <label for="border_right" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="border_bottom" class="control-label"><?php echo __('Border bottom') ?></label><br/>
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if (($exist && $settings['border_bottom']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[border_bottom]" id="border_bottom" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                                    <label for="border_bottom" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="border_left" class="control-label"><?php echo __('Border left') ?></label><br/>
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if (($exist && $settings['border_left']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[border_left]" id="border_left" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                                    <label for="border_left" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr/>
+                        
+                        <div class="line form-group">
+                            <div class="col-des-2"><h4 class="no-margin"><?php echo __('Icon') ?></h4></div>
+                            <div class="col-des-10">
+                                <div class="admin__actions-switch" data-role="switcher" style="position:relative; top:-7px">
+                                    <input type="checkbox"<?php if ($exist && $settings['use_icon']): ?> checked="checked"<?php endif ?> value="1" name="setting[use_icon]" id="use_icon" class="admin__actions-switch-checkbox" onclick="useIcon()">
+                                    <label for="use_icon" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col use-icon">
+                                <label class="control-label"><?php echo __('Font class') ?></label><br/>
+                                <input type="text" class="input-text input-icon-choose" id="icon" name="setting[icon]"<?php if ($exist && $settings['icon']): ?> value="<?php echo $settings['icon'] ?>"<?php endif ?> onchange="setPreview()"/>
+                            </div>
+                            
+                            <div class="col use-icon">
+                                <label for="icon_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="icon_font_size" name="setting[icon_font_size]"<?php if ($exist && $settings['icon_font_size']): ?> value="<?php echo $settings['icon_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                            </div>
+                            
+                            <div class="col use-icon">
+                                <label for="icon_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="icon_color" name="setting[icon_color]"<?php if ($exist && $settings['icon_color']): ?> value="<?php echo $settings['icon_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col use-icon">
+                                <label for="icon_hover_color" class="control-label"><?php echo __('Hover Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="icon_hover_color" name="setting[icon_hover_color]"<?php if ($exist && $settings['icon_hover_color']): ?> value="<?php echo $settings['icon_hover_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col use-icon">
+                                <label for="icon_align" class="control-label"><?php echo __('Align') ?></label><br/>
+                                <select name="setting[icon_align]" id="icon_align" onchange="setPreview()">
+                                    <option value="left"<?php if ($exist && ($settings['icon_align']=='left')): ?> selected="selected"<?php endif ?>><?php echo __('Left'); ?></option>
+                                    <option value="right"<?php if ($exist && ($settings['icon_align']=='right')): ?> selected="selected"<?php endif ?>><?php echo __('Right'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="use-icon">
+                            <hr/>
+                            
+                            <div class="line form-group">
+                                <div class="col-des-4">
+                                    <div class="line margin-container">
+                                        <div class="col-des-6"><h4 class="no-margin"><?php echo __('Divider') ?></h4></div>
+                                        <div class="col-des-6">
+                                            <div class="admin__actions-switch" data-role="switcher" style="position:relative; top:-7px">
+                                                <input type="checkbox"<?php if ($exist && $settings['use_divider']): ?> checked="checked"<?php endif ?> value="1" name="setting[use_divider]" id="use_divider" class="admin__actions-switch-checkbox" onclick="useDivider()">
+                                                <label for="use_divider" class="admin__actions-switch-label">
+                                                    <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-des-8 use-divider">
+                                    <div class="line">
+
+                                        <div class="col">
+                                            <label for="divider_width" class="control-label"><?php echo __('Width') ?></label><br/>
+                                            <input type="text" class="input-text validate-number" id="divider_width" name="setting[divider_width]"<?php if ($exist && $settings['divider_width']): ?> value="<?php echo $settings['divider_width'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                                        </div>
+                                        
+                                        <div class="col">
+                                            <label for="divider_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                            <input type="text" class="input-text color-input" id="divider_color" name="setting[divider_color]"<?php if ($exist && $settings['divider_color']): ?> value="<?php echo $settings['divider_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                                        </div>
+                                        
+                                        <div class="col">
+                                            <label for="divider_hover_color" class="control-label"><?php echo __('Hover Color') ?></label><br/>
+                                            <input type="text" class="input-text color-input" id="divider_hover_color" name="setting[divider_hover_color]"<?php if ($exist && $settings['divider_hover_color']): ?> value="<?php echo $settings['divider_hover_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+    
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <div class="content-block mgs-button-block" id="button-temp">
+                            <button style="display:none; margin-bottom:20px; margin-top:45px; max-width:100%">
+                                <span class="button-icon icon-left" style="display:none"><i class=""></i></span>
+                                <span class="text"></span>
+                                <span class="button-icon icon-right"style="display:none"><i class=""></i></span>
+                            </button>
+                        </div>
+                        
+                        <style type="text/css" id="button-custom-css"></style>
+
+                        
+                        <div class="line form-group">
+                            <label for="box_shadow" class="control-label col-des-7"><?php echo __('Box Shadow') ?></label>
+                            <div class="col-des-5">
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if ($exist && $settings['box_shadow']): ?> checked="checked"<?php endif ?> value="1" name="setting[box_shadow]" id="box_shadow" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                                    <label for="box_shadow" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line form-group">
+                            <label for="border_radius" class="control-label col-des-7"><?php echo __('Border Radius') ?></label>
+                            <div class="col-des-5">
+                                <input type="text" class="input-text validate-number" id="border_radius" name="setting[border_radius]"<?php if ($exist && $settings['border_radius']): ?> value="<?php echo $settings['border_radius'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px" style="min-width:70px"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group">
+                            <label for="button_align" class="control-label col-des-7"><?php echo __('Align') ?></label>
+                            <div class="col-des-5">
+                                <select name="setting[button_align]" id="button_align" onchange="setPreview()" style="min-width:70px">
+                                    <option value="left"<?php if ($exist && ($settings['button_align']=='left')): ?> selected="selected"<?php endif ?>><?php echo __('Left'); ?></option>
+                                    <option value="center"<?php if ($exist && ($settings['button_align']=='center')): ?> selected="selected"<?php endif ?>><?php echo __('Center'); ?></option>
+                                    <option value="right"<?php if ($exist && ($settings['button_align']=='right')): ?> selected="selected"<?php endif ?>><?php echo __('Right'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group">
+                            <label for="full_width" class="control-label col-des-7"><?php echo __('Full width') ?></label>
+                            <div class="col-des-5">
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if ($exist && $settings['full_width']): ?> checked="checked"<?php endif ?> value="1" name="setting[full_width]" id="full_width" class="admin__actions-switch-checkbox" onclick="fullWidth()">
+                                    <label for="full_width" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group no-full">
+                            <label for="button_width" class="control-label col-des-7"><?php echo __('Width') ?></label>
+                            <div class="col-des-5">
+                                <input type="text" class="input-text validate-number" id="button_width" name="setting[button_width]"<?php if ($exist && $settings['button_width']): ?> value="<?php echo $settings['button_width'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px" style="min-width:70px"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group">
+                            <label for="button_height" class="control-label col-des-7"><?php echo __('Height') ?></label>
+                            <div class="col-des-5">
+                                <input type="text" class="input-text validate-number" id="button_height" name="setting[button_height]"<?php if ($exist && $settings['button_height']): ?> value="<?php echo $settings['button_height'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px" style="min-width:70px"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                
+                
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    
+    
+</div>
+
+<?php
+    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+        ->setExist($exist)
+        ->setBuilderChild($child)
+        ->setBuilderHelper($helper)
+        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/font_list.phtml')->toHtml() ;
+?>
+    
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                backgroundGradient();
+                useBorder();
+                fullWidth();
+                useIcon();
+            });
+            
+            $("#subtitle").keypress(function( event ){
+                setPreview();
+            });
+        })(jQuery);
+    });
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                subtitle = $('#subtitle').val();
+                button_align = $('#button_align').val();
+                icon = $('#icon').val();
+                if(subtitle.trim() != ''){
+                    $('#button-temp .text').html(subtitle);
+                    $('#button-temp button').show();
+                }else{
+                    $('#button-temp .text').html('');
+                    $('#button-temp button').hide();
+                }
+                
+                containerClass = 'content-block mgs-button-block';
+                
+                containerClass += ' button-'+button_align;
+                
+                if($('#box_shadow').prop("checked") == true){
+                    containerClass += ' button-shadow';
+                }
+                if($('#full_width').prop("checked") == true){
+                    containerClass += ' button-fullwidth';
+                }
+                
+                $('#button-temp').attr('class', containerClass);
+                
+                if($('#use_icon').prop("checked") == true && icon!=''){
+                    
+                    icon_align = $('#icon_align').val();
+                    
+                    $('#button-temp .button-icon i').attr('class', icon);
+                    $('#button-temp .button-icon').hide();
+                    $('#button-temp .icon-'+icon_align).attr('style', 'display:inline-block');
+                    
+                    if($('#use_divider').prop("checked") == true){
+                        $('#button-temp .button-icon').addClass('has-divider');
+                    }else{
+                        $('#button-temp .button-icon').removeClass('has-divider');
+                    }
+                }else{
+                    $('#button-temp .button-icon').hide();
+                }
+                
+                
+            })(jQuery);
+        });
+        
+        changeContentStyle();
+    }
+    
+    function changeContentStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $customStyle = '';
+                text_font_size = $('#text_font_size').val();
+                text_color = $('#text_color').val();
+                text_hover_color = $('#text_hover_color').val();
+                button_bg_color = $('#button_bg_color').val();
+                button_bg_hover_color = $('#button_bg_hover_color').val();
+                button_bg_from = $('#button_bg_from').val();
+                button_bg_to = $('#button_bg_to').val();
+                button_bg_orientation = $('#button_bg_orientation').val();
+                button_bg_hover_from = $('#button_bg_hover_from').val();
+                button_bg_hover_to = $('#button_bg_hover_to').val();
+                button_bg_hover_orientation = $('#button_bg_hover_orientation').val();
+                border_width = $('#border_width').val();
+                border_color = $('#border_color').val();
+                border_hover_color = $('#border_hover_color').val();
+                icon = $('#icon').val();
+                icon_font_size = $('#icon_font_size').val();
+                icon_color = $('#icon_color').val();
+                icon_hover_color = $('#icon_hover_color').val();
+                icon_align = $('#icon_align').val();
+                divider_width = $('#divider_width').val();
+                divider_color = $('#divider_color').val();
+                divider_hover_color = $('#divider_hover_color').val();
+                border_radius = $('#border_radius').val();
+                button_width = $('#button_width').val();
+                button_height = $('#button_height').val();
+                
+                if(text_font_size!='' && !isNaN(text_font_size) && text_font_size>0){
+                    $customStyle += '#button-temp.mgs-button-block button{font-size:'+text_font_size+'px}';
+                }
+                if(text_color!=''){
+                    $customStyle += '#button-temp.mgs-button-block button{color:'+text_color+'}';
+                }
+                if(text_hover_color!=''){
+                    $customStyle += '#button-temp.mgs-button-block button:hover{color:'+text_hover_color+'}';
+                }
+                if($('#button_bg_gradient').prop("checked") == true){
+                    $customStyle += '#button-temp.mgs-button-block button{' + getGradientBackground(button_bg_orientation, button_bg_from, button_bg_to) +'}';
+                    
+                    if(button_bg_hover_from!='' || button_bg_hover_to!=''){
+                        $customStyle += '#button-temp.mgs-button-block button:hover{' + getGradientBackground(button_bg_hover_orientation, button_bg_hover_from, button_bg_hover_to) + '}';
+                    }
+                }else{
+                    if(button_bg_color!=''){
+                        $customStyle += '#button-temp.mgs-button-block button{background:'+button_bg_color+'}';
+                    }
+                    if(button_bg_hover_color!=''){
+                        $customStyle += '#button-temp.mgs-button-block button:hover{background:'+button_bg_hover_color+'}';
+                    }
+                }
+
+
+                if($('#use_border').prop("checked") == true && border_color!=''){
+                    $customStyle += '#button-temp.mgs-button-block button{border:1px solid '+border_color+'}';
+                    if(border_width!='' && !isNaN(border_width) && border_width>1){
+                        $customStyle += '#button-temp.mgs-button-block button{border-width:'+border_width+'px}';
+                    }
+                    
+                    if($('#border_top').prop("checked") == false){
+                        $customStyle += '#button-temp.mgs-button-block button{border-top:0}';
+                    }
+                    if($('#border_right').prop("checked") == false){
+                        $customStyle += '#button-temp.mgs-button-block button{border-right:0}';
+                    }
+                    if($('#border_bottom').prop("checked") == false){
+                        $customStyle += '#button-temp.mgs-button-block button{border-bottom:0}';
+                    }
+                    if($('#border_left').prop("checked") == false){
+                        $customStyle += '#button-temp.mgs-button-block button{border-left:0}';
+                    }
+                }
+
+                if($('#use_border').prop("checked") == true && border_hover_color!=''){
+                    $customStyle += '#button-temp.mgs-button-block button:hover{border-color:'+border_hover_color+'}';
+                }
+
+                if(border_radius!='' && !isNaN(border_radius) && border_radius>0){
+                    $customStyle += '#button-temp.mgs-button-block button{border-radius:'+border_radius+'px}';
+                }
+
+                if($('#full_width').prop("checked") == false && (button_width!='' && !isNaN(button_width) && button_width>0)){
+                    $customStyle += '#button-temp.mgs-button-block button{width:'+button_width+'px; text-align:center; padding-left:0; padding-right:0}';
+                    $customStyle += '#button-temp.mgs-button-block button span.has-divider{margin:0}';
+                }
+
+                if($('#use_divider').prop("checked") == true && (button_width=='' || button_width==0)){
+                    
+                    if(icon_align=='left' && $('#use_icon').prop("checked") == true && icon!=''){
+                        $customStyle += '#button-temp.mgs-button-block button{padding-left:0}';
+                    }
+                    if(icon_align=='right' && $('#use_icon').prop("checked") == true && icon!=''){
+                        $customStyle += '#button-temp.mgs-button-block button{padding-right:0}';
+                    }
+                }
+
+                if(button_height!='' && !isNaN(button_height) && button_height>0){
+                    $height = parseFloat(button_height);
+                    $customStyle += '#button-temp.mgs-button-block button{height:'+$height+'px; line-height:'+$height+'px;}';
+                    $customStyle += '#button-temp.mgs-button-block button span.has-divider{width:'+$height+'px; padding:0}';
+                }else{
+                    $height = 35;
+                }
+
+                if($('#use_border').prop("checked") == true && border_color!=''){
+                    $borderHeight = 1;
+                    if(border_width!='' && !isNaN(border_width) && border_width>1){
+                        $borderHeight = parseFloat(border_width);
+                    }
+                    
+                    if(border_top){
+                        $height -= parseFloat($borderHeight);
+                    }
+                    if(border_bottom){
+                        $height -= parseFloat($borderHeight);
+                    }
+                    
+                }
+
+
+
+                $customStyle += '#button-temp.mgs-button-block button{line-height:'+$height+'px;}';
+                $customStyle += '#button-temp.mgs-button-block button span{height:'+$height+'px; line-height:'+$height+'px;}';
+
+
+                if($('#use_icon').prop("checked") == true){
+                    if(icon_font_size!='' && !isNaN(icon_font_size) && icon_font_size>0){
+                        $customStyle += '#button-temp.mgs-button-block button i{font-size:'+icon_font_size+'px}';
+                    }
+                    if(icon_color!=''){
+                        $customStyle += '#button-temp.mgs-button-block button i{color:'+icon_color+'}';
+                    }
+                    if(icon_hover_color!=''){
+                        $customStyle += '#button-temp.mgs-button-block button:hover i{color:'+icon_hover_color+'}';
+                    }
+                    if($('#use_divider').prop("checked") == true){
+                        if(divider_width!='' && !isNaN(divider_width) && divider_width>1){
+                            $customStyle += '#button-temp.mgs-button-block button .has-divider{border-width:'+divider_width+'px}';
+                        }
+                        if(divider_color!=''){
+                            $customStyle += '#button-temp.mgs-button-block button .has-divider{border-color:'+divider_color+'}';
+                        }
+                        if(divider_hover_color!=''){
+                            $customStyle += '#button-temp.mgs-button-block button:hover .has-divider{border-color:'+divider_hover_color+'}';
+                        }
+                    }
+                }
+                
+                $('#button-custom-css').html($customStyle);
+            })(jQuery);
+        });
+    }
+    
+    function getGradientBackground($orientation, $gradientFrom, $gradientTo){
+        $html = '';
+        if($gradientFrom==''){
+            $gradientFrom = '#ffffff';
+        }
+        if($gradientTo==''){
+            $gradientTo = '#ffffff';
+        }
+        switch ($orientation) {
+            case "vertical":
+                $html = 'background: '+$gradientFrom+'; background: -moz-linear-gradient(top, '+$gradientFrom+' 0%, '+$gradientTo+' 100%); background: -webkit-linear-gradient(top, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); background: linear-gradient(to bottom, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='+$gradientFrom+', endColorstr='+$gradientTo+',GradientType=0 );';
+                break;
+            case "diagonal":
+                $html = 'background: '+$gradientFrom+'; background: -moz-linear-gradient(-45deg, '+$gradientFrom+' 0%, '+$gradientTo+' 100%); background: -webkit-linear-gradient(-45deg, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); background: linear-gradient(135deg, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='+$gradientFrom+', endColorstr='+$gradientTo+',GradientType=1 );';
+                break;
+            case "diagonal-bottom":
+                $html = 'background: '+$gradientFrom+'; background: -moz-linear-gradient(45deg, '+$gradientFrom+' 0%, '+$gradientTo+' 100%); background: -webkit-linear-gradient(45deg, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); background: linear-gradient(45deg, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='+$gradientFrom+', endColorstr='+$gradientTo+',GradientType=1 );';
+                break;
+            case "radial":
+                $html = 'background: '+$gradientFrom+'; background: -moz-radial-gradient(center, ellipse cover, '+$gradientFrom+' 0%, '+$gradientTo+' 100%); background: -webkit-radial-gradient(center, ellipse cover, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); background: radial-gradient(ellipse at center, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='+$gradientFrom+', endColorstr='+$gradientTo+',GradientType=1 );';
+                break;
+            default:
+                $html = 'background: '+$gradientFrom+'; background: -moz-linear-gradient(left, '+$gradientFrom+' 0%, '+$gradientTo+' 100%); background: -webkit-linear-gradient(left, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); background: linear-gradient(to right, '+$gradientFrom+' 0%,'+$gradientTo+' 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='+$gradientFrom+', endColorstr='+$gradientTo+',GradientType=1 );';
+                break;
+        }
+        return $html;
+    }
+    
+    function useIcon(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#use_icon').prop("checked") == true){
+                    $('.use-icon').show();
+                }else{
+                    $('.use-icon').hide();
+                }
+            })(jQuery);
+        });
+        useDivider();
+        setPreview();
+    }
+    
+    function useDivider(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#use_divider').prop("checked") == true){
+                    $('.use-divider').show();
+                    $('.margin-container').addClass('divider-open');
+                }else{
+                    $('.use-divider').hide();
+                    $('.margin-container').removeClass('divider-open');
+                }
+            })(jQuery);
+        });
+        setPreview();
+    }
+    
+    function useBorder(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#use_border').prop("checked") == true){
+                    $('.use-border').show();
+                    $('.margin-container2').addClass('divider-open');
+                }else{
+                    $('.use-border').hide();
+                    $('.margin-container2').removeClass('divider-open');
+                }
+            })(jQuery);
+        });
+        setPreview();
+    }
+    
+    function fullWidth(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#full_width').prop("checked") == true){
+                    $('.no-full').hide();
+                }else{
+                    $('.no-full').show();
+                }
+            })(jQuery);
+        });
+        setPreview();
+    }
+    
+    function backgroundGradient(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#button_bg_gradient').prop("checked") == true){
+                    $('.bg-no-gradient').hide();
+                    $('.bg-gradient').show();
+                }else{
+                    $('.bg-no-gradient').show();
+                    $('.bg-gradient').hide();
+                }
+            })(jQuery);
+        });
+        setPreview();
+    }
+</script>

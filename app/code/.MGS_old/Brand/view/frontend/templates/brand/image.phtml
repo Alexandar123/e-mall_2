@@ -1,0 +1,8 @@
+<?php
+$brand = $block->getCurrentBrand();
+$img = '';
+if ($img = $brand->getImageUrl()) { ?>
+    <div class="brand-image">
+        <img class="img-fluid" src="<?= $img; ?>" alt="<?= $brand->getName(); ?>" class="image"/>
+    </div>
+<?php } ?>

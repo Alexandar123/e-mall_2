@@ -1,0 +1,112 @@
+<!--
+/**
+ * ElasticSuite Relevance configuration
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCore
+ * @author    Romain RUAUD <romain.ruaud@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Smile_ElasticsuiteCore:etc/elasticsuite_relevance_config.xsd">
+    <system>
+        <tab id="general" translate="label" sortOrder="100">
+            <label>General</label>
+        </tab>
+
+        <section id="relevance" translate="label" type="text" sortOrder="10" showInDefault="1" showInContainer="1" showInStore="1">
+            <tab>general</tab>
+            <label>Relevance Configuration</label>
+            <resource>Smile_ElasticsuiteCore::manage_relevance</resource>
+
+            <group id="fulltext_base_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInContainer="1" showInStore="1">
+                <label>Fulltext Base Settings</label>
+                <field id="minimum_should_match" translate="label" type="text" sortOrder="10" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Minimum Should Match</label>
+                </field>
+                <field id="tie_breaker" translate="label" type="text" sortOrder="20" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Tie Breaker</label>
+                </field>
+            </group>
+
+            <group id="phrase_match_configuration" translate="label" type="text" sortOrder="20" showInDefault="1" showInContainer="1" showInStore="1">
+                <label>Phrase Match Configuration</label>
+                <field id="enable_phrase_match" translate="label" type="select" sortOrder="10" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Enable Boost on Phrase Match</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="phrase_match_boost_value" translate="label" type="text" sortOrder="20" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Phrase Match Boost Value</label>
+                    <depends>
+                        <field id="enable_phrase_match">1</field>
+                    </depends>
+                    <validate>integer validate-greater-than-zero</validate>
+                </field>
+            </group>
+
+            <group id="cutoff_frequency_configuration" translate="label" type="text" sortOrder="30" showInDefault="1" showInContainer="1" showInStore="1">
+                <label>Cutoff Frequency Configuration</label>
+                <field id="cutoff_frequency" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Cutoff Frequency</label>
+                    <!--<validate>validate-digits validate-digits-range validate-zero-or-greater</validate>-->
+                    <comment><![CDATA[A number between 0 and 1. Used as automatic stopwords detection threshold.]]></comment>
+                </field>
+            </group>
+        </section>
+
+        <section id="spellchecking" translate="label" type="text" sortOrder="20" showInDefault="1" showInContainer="1" showInStore="1">
+            <tab>general</tab>
+            <label>Spellchecking Configuration</label>
+            <resource>Smile_ElasticsuiteCore::manage_relevance</resource>
+
+            <group id="fuzziness" translate="label" type="text" sortOrder="40" showInDefault="1" showInContainer="1" showInStore="1">
+                <label>Search Fuzziness Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Enable Fuzziness</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="value" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Fuzziness Value</label>
+                    <source_model>Smile\ElasticsuiteCore\Model\Config\Source\FuzzinessValue</source_model>
+                    <depends>
+                        <field id="enable_fuzziness">1</field>
+                    </depends>
+                    <!--<validate>validate-digits validate-digits-range validate-zero-or-greater</validate>-->
+                    <comment><![CDATA[Allowed values "1", "2" or "AUTO". See doc <a href='https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html#_parameters_7' target='_blank'>here</a> for more information.]]></comment>
+                </field>
+                <field id="prefix_length" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Fuzziness Prefix Length</label>
+                    <depends>
+                        <field id="enable_fuzziness">1</field>
+                    </depends>
+                    <!--<validate>validate-digits validate-digits-range validate-zero-or-greater</validate>-->
+                    <comment><![CDATA[An integer between greater or equal than 0. See doc <a href='https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html#_parameters_7' target='_blank'>here</a> for more information.]]></comment>
+                </field>
+                <field id="max_expansion" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Max Expansion</label>
+                    <depends>
+                        <field id="enable_fuzziness">1</field>
+                    </depends>
+                    <!--<validate>validate-digits validate-digits-range validate-zero-or-greater</validate>-->
+                    <comment><![CDATA[An integer between greater or equal than 0. See doc <a href='https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html#_parameters_7' target='_blank'>here</a> for more information.]]></comment>
+                </field>
+            </group>
+
+            <group id="phonetic" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInContainer="1" showInStore="1">
+                <label>Phonetic Search Configuration</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInContainer="1" showInStore="1">
+                    <label>Enable Phonetic Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment> <![CDATA[Require <a href='https://github.com/elastic/elasticsearch-analysis-phonetic'>Phonetic analysis</a> plugin installation.]]></comment>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

@@ -1,0 +1,141 @@
+<!-- ko foreach: getRegion('amazon-button-region') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->
+
+
+<!-- ko ifnot: isCustomerLoggedIn() -->
+
+<!-- ko foreach: getRegion('before-login-form') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->
+<form class="form form-login asdasldkaskj" data-role="email-with-possible-login"
+      data-bind="submit:login"
+      method="post">
+    <fieldset id="customer-email-fieldset" class="fieldset" data-bind="blockLoader: isLoading">
+        <div class="field required">
+            <!-- ko ifnot: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+            <label class="label" for="customer-email">
+                <span data-bind="i18n: 'Email Address'"></span>
+
+            </label>
+            <!-- /ko -->
+            <div class="control input-field _with-tooltip">
+                <input class="input-text"
+                       type="email"
+                       data-bind="
+                            textInput: email,
+                            hasFocus: emailFocused,
+                            css: hasValue() ,
+                            event: {change: emailHasChanged,blur: hasValue}"
+                       name="username"
+                       data-validate="{required:true, 'validate-email':true}"
+                       id="customer-email" required/>
+                <!-- ko if: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+                <label class="label" for="customer-email">
+                    <span data-bind="i18n: 'Email Address'"></span>
+                    <i class="required-entry">*</i>
+                </label>
+                <div for="customer-email" generated="true" class="mage-error" id="customer-email-error"></div>
+                <!-- /ko -->
+                <!-- ko template: 'ui/form/element/helper/tooltip' --><!-- /ko -->
+
+                <!--<span class="note" data-bind="fadeVisible: isPasswordVisible() == false">&lt;!&ndash; ko i18n: 'You can create an account after checkout.'&ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</span>-->
+            </div>
+        </div>
+
+        <!--Hidden fields -->
+        <fieldset class="fieldset hidden-fields" data-bind="fadeVisible: isPasswordVisible">
+            <div class="field">
+                <label class="label" for="customer-password">
+                    <span data-bind="i18n: 'Password'"></span>
+                </label>
+                <div class="control">
+                    <input class="input-text"
+                           placeholder="optional"
+                           type="password"
+                           name="password"
+                           id="customer-password"
+                           data-validate="{required:true}" autocomplete="off"/>
+                    <span class="note"
+                          data-bind="i18n: 'You already have an account with us. Sign in or continue as guest.'"></span>
+                </div>
+
+            </div>
+            <!-- ko foreach: getRegion('additional-login-form-fields') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+            <div class="actions-toolbar">
+                <input name="context" type="hidden" value="checkout"/>
+                <div class="primary">
+                    <button type="submit" class="action login primary" data-action="checkout-method-login"><span
+                            data-bind="i18n: 'Login'"></span></button>
+                </div>
+                <div class="secondary">
+                    <a class="action remind" data-bind="attr: { href: forgotPasswordUrl }">
+                        <span data-bind="i18n: 'Forgot Your Password?'"></span>
+                    </a>
+                </div>
+            </div>
+        </fieldset>
+        <!--Hidden fields -->
+    </fieldset>
+</form>
+<div class="create-account-block" data-bind="fadeVisible: isPasswordVisible() == false">
+	<div class="create-account-checkbox field choice" data-bind="visible: isCheckboxRegisterVisible">
+		<input type="checkbox" name="create-account-checkbox"
+			   data-bind="checked: isRegisterVisible, attr: {id: 'create-account-checkbox'}"/>
+		<label data-bind="attr: {for: 'create-account-checkbox'}">
+			<span data-bind="i18n: 'Create account'"></span>
+		</label>
+	</div>
+	<fieldset class="fieldset hidden-fields" data-bind="fadeVisible: isRegisterVisible">
+		<form class="form form-create-account" id="create-account-form">
+			<div class="field onestepcheckout-password required">
+				<!-- ko ifnot: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+				<label for="onestepcheckout-password" class="label"><span
+						data-bind="i18n: 'Password'"></span></label>
+				<!-- /ko -->
+				<div class="control input-field">
+					<input type="password" name="password" id="onestepcheckout-password"
+						   class="input-text"
+						   data-bind="
+						   attr: {
+								'data-password-min-length': dataPasswordMinLength,
+								'data-password-min-character-sets': dataPasswordMinCharacterSets
+						   },
+						   event: {change: function(){validate('password')}}"
+						   data-validate="{required:true, 'validate-customer-password':true}"
+						   autocomplete="off" required/>
+					<!-- ko if: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+					<label for="onestepcheckout-password" class="label"><span data-bind="i18n: 'Password'"></span><i
+							class="required-entry">*</i></label>
+					<div for="onestepcheckout-password" generated="true" class="mage-error"
+						 id="onestepcheckout-password-error"></div>
+					<!-- /ko -->
+				</div>
+			</div>
+			<div class="field confirmation required">
+				<!-- ko ifnot: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+				<label for="onestepcheckout-password-confirmation" class="label"><span
+						data-bind="i18n: 'Confirm Password'"></span></label>
+				<!-- /ko -->
+				<div class="control input-field">
+					<input type="password" name="password_confirmation" id="onestepcheckout-password-confirmation"
+						   class="input-text"
+						   data-bind="event: {change: function(){validate('password-confirmation')}}"
+						   data-validate="{required:true, equalTo:'#onestepcheckout-password'}"
+						   autocomplete="off" required/>
+					<!-- ko if: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+					<label for="onestepcheckout-password-confirmation" class="label"><span
+							data-bind="i18n: 'Confirm Password'"></span><i class="required-entry">*</i></label>
+					<div for="onestepcheckout-password-confirmation" generated="true" class="mage-error"
+						 id="onestepcheckout-password-confirmation-error"></div>
+					<!-- /ko -->
+				</div>
+			</div>
+		</form>
+	</fieldset>
+</div>
+
+
+<!-- /ko -->

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * onstepcheckout_index_index
+ *
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_index_index"/>
+    <body>
+        <referenceBlock name="authentication-popup" remove="true"/>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="template" xsi:type="string">MGS_OSCheckout/oscheckout-layout-3-columns</item>
+                            </item>
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/shipping-method</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="component" xsi:type="string">MGS_OSCheckout/js/view/form/element/email</item>
+                                                        </item>
+                                                        <item name="shippingAdditional" xsi:type="array">
+                                                            <item name="component" xsi:type="string">uiComponent</item>
+                                                            <item name="displayArea" xsi:type="string">shippingAdditional</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="delivery_date" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/delivery_date</item>
+                                                                    <item name="componentDisabled" xsi:type="helper" helper="MGS\OSCheckout\Helper\Data::enabledDeliveryTime"/>
+                                                                </item>
+                                                                <item name="place-order-comment" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/function/comment</item>
+                                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="MGS\OSCheckout\Helper\Data::isDisabledComment"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="address-list" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="rendererTemplates" xsi:type="array">
+                                                                    <item name="customer-address" xsi:type="array">
+                                                                        <item name="component" xsi:type="string">MGS_OSCheckout/js/view/shipping-address/address-renderer/default</item>
+                                                                    </item>
+                                                                    <item name="new-customer-address" xsi:type="array">
+                                                                        <item name="component" xsi:type="string">MGS_OSCheckout/js/view/shipping-address/address-renderer/default</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="region_id" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/form/element/region</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                                                                        <item name="customEntry" xsi:type="string">shippingAddress.region</item>
+                                                                    </item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="required-entry" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                    <!-- Value of region_id field is filtered by the value of county_id attribute -->
+                                                                    <item name="filterBy" xsi:type="array">
+                                                                        <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.country_id]]></item>
+                                                                        <item name="field" xsi:type="string">country_id</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="billingAddress" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/billing-address</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="deps" xsi:type="array">
+                                                            <item name="0" xsi:type="string">checkoutProvider</item>
+                                                            <item name="1" xsi:type="string">checkout.steps.shipping-step.shippingAddress</item>
+                                                        </item>
+                                                    </item>
+                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="component" xsi:type="string">MGS_OSCheckout/js/view/form/element/email</item>
+                                                            <item name="displayArea" xsi:type="string">customer-email</item>
+                                                            <item name="tooltip" xsi:type="array">
+                                                                <item name="description" xsi:type="string" translate="true">We'll send your order confirmation here.</item>
+                                                            </item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="before-login-form" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                                    <item name="displayArea" xsi:type="string">before-login-form</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <!-- before login form fields -->
+                                                                    </item>
+                                                                </item>
+                                                                <item name="additional-login-form-fields" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                                    <item name="displayArea" xsi:type="string">additional-login-form-fields</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <!-- additional login form fields -->
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="billing-address-fieldset" xsi:type="array">
+                                                            <item name="component" xsi:type="string">uiComponent</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="deps" xsi:type="array">
+                                                                    <item name="0" xsi:type="string">checkoutProvider</item>
+                                                                </item>
+                                                            </item>
+                                                            <item name="displayArea" xsi:type="string">additional-fieldsets</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <!-- The following items override configuration of corresponding address attributes -->
+                                                                <item name="region" xsi:type="array">
+                                                                    <!-- Make region attribute invisible on frontend. Corresponding input element is created by region_id field -->
+                                                                    <item name="visible" xsi:type="boolean">false</item>
+                                                                </item>
+                                                                <item name="region_id" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/form/element/region</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                                                                        <item name="customEntry" xsi:type="string">billingAddress.region</item>
+                                                                    </item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="required-entry" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                    <!-- Value of region_id field is filtered by the value of county_id attribute -->
+                                                                    <item name="filterBy" xsi:type="array">
+                                                                        <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.country_id]]></item>
+                                                                        <item name="field" xsi:type="string">country_id</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="postcode" xsi:type="array">
+                                                                    <!-- post-code field has custom UI component -->
+                                                                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/post-code</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="required-entry" xsi:type="string">true</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="company" xsi:type="array">
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="fax" xsi:type="array">
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="country_id" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">115</item>
+                                                                </item>
+                                                                <item name="telephone" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="tooltip" xsi:type="array">
+                                                                            <item name="description" xsi:type="string" translate="true">For delivery questions.</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/payment</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="additional-payment-validators" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="agreements-validator" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="MGS\OSCheckout\Helper\Data::disabledPaymentTOC"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="payments-list" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="before-place-order" xsi:type="array">
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="agreements" xsi:type="array">
+                                                                            <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">MGS_OSCheckout/sidebar</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">MGS_OSCheckout/summary</item>
+                                            </item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="additional-payment-validators" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="agreements-validator" xsi:type="array">
+                                                            <item name="component" xsi:type="string">MGS_OSCheckout/js/view/agreement-validation</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="itemsBefore" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">5</item>
+                                                </item>
+                                                <item name="cart_items" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">10</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">MGS_OSCheckout/summary/cart-items</item>
+                                                        <item name="componentDisabled" xsi:type="string">1</item>
+                                                    </item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="details" xsi:type="array">
+                                                            <item name="component" xsi:type="string">MGS_OSCheckout/js/view/summary/item/details</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="thumbnail" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="string">1</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="itemsAfter" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">15</item>
+                                                </item>
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="before_grandtotal" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="comment" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/comments</item>
+                                                    <item name="displayArea" xsi:type="string">summary</item>
+                                                    <item name="sortOrder" xsi:type="string">220</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="componentDisabled" xsi:type="helper" helper="MGS\OSCheckout\Helper\Data::isDisabledOrderComment"/>
+                                                    </item>
+                                                </item>
+
+                                                <item name="newsletter" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/summary/newsletter</item>
+                                                    <item name="sortOrder" xsi:type="string">300</item>
+                                                    <item name="displayArea" xsi:type="string">summary</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="componentDisabled" xsi:type="helper" helper="MGS\OSCheckout\Helper\Data::enabledChecknewletter"/>
+                                                    </item>
+                                                </item>
+                                                <item name="discount" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="errors" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">400</item>
+                                                            <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount-messages</item>
+                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="after-place-agreements" xsi:type="array">
+                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                    <item name="displayArea" xsi:type="string">after-place-agreements</item>
+                                                    <item name="dataScope" xsi:type="string">before-place-order</item>
+                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">Magento_Checkout/payment/before-place-order</item>
+                                                    </item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="agreementss" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magento_CheckoutAgreements/js/view/checkout-agreements</item>
+                                                            <item name="sortOrder" xsi:type="string">100</item>
+                                                            <item name="displayArea" xsi:type="string">after-place-agreements</item>
+                                                            <item name="dataScope" xsi:type="string">checkoutAgreements</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="shipping-information" xsi:type="array">
+                                            <item name="config" xsi:type="array">
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                            </item>
+                                        </item>
+                                        <item name="place-order-information-left" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="displayArea" xsi:type="string">place-order-information-left</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="discount" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/payment/discount</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="componentDisabled" xsi:type="helper" helper="MGS\OSCheckout\Helper\Data::disabledReviewCoupon"/>
+                                                    </item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="errors" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                            <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount-messages</item>
+                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="place-order-information-right" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="displayArea" xsi:type="string">place-order-information-right</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="place-order-button" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MGS_OSCheckout/js/view/function/placeOrder</item>
+                                                    <item name="sortOrder" xsi:type="string">99</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="agreements" xsi:type="array">
+                                                            <item name="component" xsi:type="string">MGS_OSCheckout/js/view/function/checkout-agreements</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="componentDisabled" xsi:type="helper" helper="MGS\OSCheckout\Helper\Data::disabledReviewTOC"/>
+                                                            </item>
+                                                            <item name="displayArea" xsi:type="string">checkout-agreements</item>
+                                                            <item name="dataScope" xsi:type="string">checkoutAgreements</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <attribute name="class" value="checkout-index-index"/>
+        <!-- <referenceBlock name="page.main.title">
+            <block class="MGS\OSCheckout\Block\LayoutOnestepCheckout\Container" name="page.main.description" template="MGS_OSCheckout::onepage/description.phtml"/>
+        </referenceBlock> -->
+        <!-- <referenceContainer name="columns.top">
+            <container name="placeholder_container" as="placeholder_container" label="Custom Container" before="-">
+                <block class="MGS\OSCheckout\Block\LayoutOnestepCheckout\Container" name="page.main.description" template="MGS_OSCheckout::onepage/description.phtml" />
+            </container>
+        </referenceContainer> -->
+        <referenceContainer name="columns.top">
+            <block class="MGS\OSCheckout\Block\LayoutOnestepCheckout\Container" name="page.main.description" template="MGS_OSCheckout::onepage/description.phtml" ifconfig="MGS_OSCheckout/display_configuration/enabled_breadcrumbs" />
+            <block class="MGS\OSCheckout\Block\LayoutOnestepCheckout\Breadcrumbs" name="checkout.breadcrumbs" as="checkout.breadcrumbs" template="MGS_OSCheckout::onepage/breadcrumbs.phtml" ifconfig="MGS_OSCheckout/display_configuration/enabled_breadcrumbs" />
+        </referenceContainer>
+        <referenceContainer name="header.container">
+			<block class="Magento\Framework\View\Element\Template" name="theme.headers" template="Magento_Theme::html/theme_headers.phtml" ifconfig="MGS_OSCheckout/display_configuration/enabled_header">
+				<block class="MGS\ThemeSettings\Block\Form\Login" name="login.form.header" template="MGS_ThemeSettings::form/login.phtml">
+					<container name="form.additional.info.header">
+						<block class="Magento\Framework\View\Element\Template" name="mgs_gdpr_login_header" template="MGS_GDPR::customer/form/login_header.phtml" ifconfig="MGS_OSCheckout/display_configuration/enabled_header"/>
+					</container>
+					<container name="top.link.header"/>
+				</block>
+				<block class="Magento\Cookie\Block\RequireCookie" name="require-cookie-header" template="Magento_Cookie::require_cookie.phtml">
+					<arguments>
+						<argument name="triggers" xsi:type="array">
+							<item name="loginButton" xsi:type="string">.action.login</item>
+						</argument>
+					</arguments>
+				</block>
+                <block class="Magento\Store\Block\Switcher" name="store_language_top" as="store_language_top" template="Magento_Store::switch/languages_top.phtml">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+                    </arguments>
+                </block>
+
+				<block class="MGS\ThemeSettings\Block\Wishlist\Link" name="wishlist-link-header">
+					<block class="Magento\Wishlist\Block\Customer\Sidebar" name="wishlist_header" template="MGS_ThemeSettings::wishlist/list.phtml" />
+				</block>
+			</block>
+        </referenceContainer>
+        <move element="theme.headers" destination="checkout.header.wrapper"/>
+    </body>
+</page>

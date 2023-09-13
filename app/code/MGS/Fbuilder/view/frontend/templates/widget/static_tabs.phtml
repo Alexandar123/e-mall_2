@@ -1,0 +1,33 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<?php $labels = explode(',', $this->getAccordionLabel()) ?>
+<?php $content =  explode(',', $this->getAccordionContent()) ?>
+<?php $extraClass = 'tab-'.$this->getTabStyle().' tab-align-'.$this->getTabAlign() ?>
+<?php if ($this->getTabFontBold()): ?>
+    <?php $extraClass .= ' tab-font-bold' ?>
+<?php endif ?>
+<?php if ($this->getTabItalic()): ?>
+    <?php $extraClass .= ' tab-italic' ?>
+<?php endif ?>
+<?php if ($this->getTabUppercase()): ?>
+    <?php $extraClass .= ' tab-uppercase' ?>
+<?php endif ?>
+<?php $blockId = rand() . time(); ?>
+
+<div class="content-block mgs-product-tab">
+    <div class="data items mgs-tab <?php echo $extraClass?>" data-mage-init='{"tabs":{"openedState":"active"}}'>
+        <?php $i=0; foreach ($labels as $key => $label): $i++ ?>
+        
+            <div class="data item title item<?php echo $i ?><?php if (count($labels)==$i): ?> last-item<?php endif ?>" aria-labeledby="tab-label-static-<?php echo $blockId ?>-title" data-role="collapsible" id="tab-label-static-<?php echo $blockId ?>">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#static<?php echo $blockId ?>" id="tab-label-static-<?php echo $blockId ?>-title">
+                    <?php echo $builderHelper->decodeHtmlTag($label) ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="static<?php echo $blockId ?>" data-role="content"<?php if ($i!=1): ?> style="display:none"<?php endif ?>>
+                <?php if (isset($content[$key])): ?><?php echo nl2br($builderHelper->decodeHtmlTag($content[$key])) ?><?php endif ?>
+            </div>
+        
+            
+        <?php endforeach ?>
+    </div>
+</div>

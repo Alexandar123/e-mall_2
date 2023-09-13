@@ -1,0 +1,312 @@
+/*VARIABLE & FUNCTION */
+@primary-color: #f68872;
+
+.border-radius (@radius) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -o-border-radius: @radius;
+}
+.transform (@translate) {
+    transform: @translate;
+    -webkit-transform: @translate;
+    -moz-transform: @translate;
+    -o-transform: @translate;
+}
+.transform-rotate (@rotate) {
+    transform: @rotate;
+    -webkit-transform: @rotate;
+    -moz-transform: @rotate;
+    -o-transform: @rotate;
+}
+.transition  (@transition) {
+    transition: @transition;
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+}
+.transform-origin(@transform-origin) {
+	transform-origin: @transform-origin;
+	-webkit-transform-origin: @transform-origin;
+	-ms-transform-origin: @transform-origin;
+	-moz-transform-origin: @transform-origin;
+	-o-transform-origin: @transform-origin;
+}
+.transition-delay(@transition-delay) {
+    transition-delay: @transition-delay;
+    -webkit-transition-delay: @transition-delay;
+    -moz-transition-delay: @transition-delay;
+    -o-transition-delay: @transition-delay;
+}
+.box-shadow (@boxshadow) {
+    -webkit-box-shadow: @boxshadow;
+    -moz-box-shadow: @boxshadow;
+    box-shadow: @boxshadow;
+}
+/* &:extend(.display-flex); */
+.display-flex {
+    display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.flex-wrap (@wrap) {
+	-ms-flex-wrap: @wrap;
+	flex-wrap: @wrap;
+}
+
+/* &:extend(.align-items); */
+.align-items {
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/* &:extend(.justify-content-space); */
+.justify-content-space {
+    -ms-flex-pack: space-between;
+	justify-content: space-between;
+}
+
+/* &:extend(.justify-content-center); */
+.justify-content-center {
+    -ms-flex-pack: center;
+	justify-content: center;
+}
+
+/* &:extend(.color-primary); */
+.color-primary {
+	color: @primary-color;
+}
+
+/* &:extend(.bg-primary); */
+.bg-primary {
+	background-color: @primary-color;
+}
+
+/* &:extend(.border-primary); */
+.border-primary {
+	border-color: @primary-color;
+}
+
+/* &:extend(.border-bt-primary); */
+.border-bt-primary {
+	border-bottom-color: @primary-color;
+}
+
+/* &:extend(.border-t-primary); */
+.border-t-primary {
+	border-top-color: @primary-color;
+}
+
+/* &:extend(.border-l-primary); */
+.border-l-primary {
+	border-left-color: @primary-color;
+}
+
+/* &:extend(.border-r-primary); */
+.border-r-primary {
+	border-right-color: @primary-color;
+}
+
+/* &:extend(.fill-primary); */
+.fill-primary {
+	fill: @primary-color !important;
+}
+
+.brands-grid {
+	.item {
+		margin-bottom: 30px;
+		.image {
+			.brand-image {
+				&:extend(.display-flex);
+				&:extend(.justify-content-center);
+				&:extend(.align-items);
+				height: 150px;
+				border: 1px solid #eaeaea;
+			}
+			img {
+				max-width: calc(~'100% - 20px');
+				width: auto;
+				opacity:0.5;
+				.transition(all 300ms);
+			}
+			&:hover img {
+				opacity: 1;
+			}
+		}
+		.brand-name	{
+			text-align:center;
+			margin: 15px 0 0;
+			.brand-title {
+				font-size: 1.125rem;
+				font-weight:500;
+			}
+			.count {
+				color:#999;
+			}
+		}
+	}
+}
+.shop-by-brand {
+	.description {
+		text-align: center;
+		border: 1px solid #eaeaea;
+		padding: 20px 15px;
+		line-height: 1.9;
+		border-radius: 5px;
+		+ .featured-brands {
+			margin-top: 70px;
+		}
+	}
+	.featured-brands {
+		.block-content {
+			margin: 0 -15px;
+			.owl-item {
+				padding: 0 15px;
+				.item {
+					margin: 0;
+				}
+			}
+		}
+		.featured-brand-list {
+			.owl-stage {
+				&:extend(.display-flex);
+				&:extend(.align-items);
+			}
+		}
+		+ .brand-search {
+			padding:50px 0;
+			border-top: 1px solid #eaeaea;
+		}
+	}
+	.content-heading {
+		margin-bottom: 50px;
+		.title {
+			margin: 0 0 5px;
+			font-weight: 600;
+			font-size: 2.5rem;
+			color: #222222;
+			text-align: center;
+		}
+	}
+	.brand-search {
+		margin-top: 70px;						
+		.search_brand_form {
+			border: 1px solid #e7e7e7;
+			overflow: hidden;
+			form {
+				display: table;
+				position: relative;
+				width: 100%;
+				.form-group {
+					> input[type="text"] {
+						border:none;
+						height:42px;
+						line-height:42px;
+						vertical-align:middle;
+					}
+				}
+				.actions {
+					white-space: nowrap;
+					width: 1%;
+					cursor:pointer;
+					.action.primary {
+						margin-right: -4px;
+					}
+				}
+			}
+			.form-group, .actions {
+				display:table-cell;
+			}
+		}
+	}
+	.characters-filter {
+		display: flex;
+		justify-content: center;
+		margin: 15px 0 0;
+		flex-wrap: wrap;
+		li {
+			height: 36px;
+			line-height: 36px;
+			margin: 3px;
+			padding: 0;
+			text-align: center;
+			width: 36px;
+			> a {
+				display: block;
+				border: 1px solid #f0f0f0;
+				border-radius: 4px;
+				color: #999;
+				&:hover {
+					&:extend(.bg-primary);
+					color:#fff;
+				}
+			}
+		}
+	}
+	.btn.btn-secondary, .primary {
+		height:46px;
+	}
+}
+.brand-brand-view .brand-info {
+	.brand-image {
+		text-align:center;
+		+ .brand-description {
+			margin-top:50px;
+		}
+	}
+	.brand-description {
+		font-size:1rem;
+		line-height: 1.9;
+	}
+}
+.brand-product-list {
+	.toolbar-products {
+		width: 100%;
+		.field.limiter {
+			display:none;
+		}
+		.filter-placeholder {
+			display: none !important;
+		}
+		.toolbar-sorter {
+			margin-left: auto;
+		}
+	}
+	.products.list.items {
+		.action.towishlist  {
+			> span {
+				margin: unset;
+				overflow: visible;
+				padding: 0;
+				position: inherit;
+				width: 100%;
+			}
+		}
+	} 	
+}
+
+.shop-by-brand  {
+	@media (min-width: 1200px) {
+		.col-custom-5 {
+			-webkit-box-flex: 0;
+			-ms-flex: 0 0 20%;
+			flex: 0 0 20%;
+			max-width: 20%;
+		}
+	}
+	@media (max-width: 576px) {
+		.all-brands .brand-list.line {
+			margin: 0 -10px;
+			.item {
+				padding: 0 10px;
+			}
+		}
+		.featured-brands .block-content {
+			margin: 0 -10px;
+			.owl-item {
+				padding: 0 10px;
+			}
+		}
+	}
+}

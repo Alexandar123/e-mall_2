@@ -1,0 +1,7 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="newsletter_subscriber" resource="default" engine="innodb" comment="Newsletter Subscriber">
+        <column xsi:type="varchar" name="c_firstname" nullable="false" comment="First Name"/>
+        <column xsi:type="varchar" name="c_surname" nullable="false" comment="Surname"/>
+        <column xsi:type="varchar" name="c_ip" nullable="false" comment="Customer Ip"/>
+    </table>
+</schema>

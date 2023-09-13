@@ -1,0 +1,25 @@
+<script type="text/javascript">
+	require([
+		"jquery"
+	], function(jQuery){
+		(function($) {
+			$(document).ready(function () {
+				if($('.pin__type').length){
+					$('.lookbook-container .pin__type .pin-label').click(function(){
+						$('.lookbook-container .pin__type .pin__popup').removeClass('pin__opened');
+						$(this).parent().find('> .pin__popup').toggleClass('pin__opened');
+						$(this).parent().parent().find('> .pin__image').addClass('pm-mask');
+					});
+					$('.lookbook-container .pin__type > .pin_close').click(function(){
+						$(this).parent().find('> .pin__popup').removeClass('pin__opened');
+						$(this).parent().parent().find('> .pin__image').removeClass('pm-mask');
+					});
+					$('.lookbook-container .pin__image').click(function(){
+						$('.lookbook-container .pin__type > .pin__popup').removeClass('pin__opened');
+						$(this).removeClass('pm-mask');
+					});
+				}
+			});
+		})(jQuery);
+	});
+</script>

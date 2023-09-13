@@ -1,0 +1,11 @@
+<?php
+/* @var $block \Aheadworks\Ajaxcartpro\Block\ProductPage\Config */
+?>
+<script>
+    require([
+        'jquery',
+        'MGS_AjaxCart/js/config'
+    ], function($, awAcpConfig) {
+        awAcpConfig.setOptions(<?php /* @noEscape */ echo $block->getOptions() ?>);
+    });
+</script>

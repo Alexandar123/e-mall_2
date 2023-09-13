@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author MGS Team
+ * @copyright Copyright (c) 2019 MageSolution (https://www.magesolution.com.com)
+ * @package MGS_Fbuilder
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">product_listing.product_listing.product_columns.ids</item>
+                    <item name="component" xsi:type="string">MGS_Fbuilder/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+
+            <action name="copy_template">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">copy_template</item>
+                        <item name="mgs_actions" xsi:type="string">1</item>
+                        <item name="label" xsi:type="string" translate="true">Copy Description Template</item>
+                        <item name="url" xsi:type="url" path="adminhtml/fbuilder/copydescription"></item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="mgs_actions" xsi:type="string">1</item>
+                        <item name="typefield" xsi:type="string">textbox</item>
+                        <item name="fieldLabel" xsi:type="string" translate="true">Source: </item>
+                        <item name="label" xsi:type="string" translate="true">Copy Description Template</item>
+                        <item name="type" xsi:type="string" translate="true">copy_template</item>
+                        <item name="placeholder" xsi:type="string" translate="true">Product Id</item>
+                        <item name="url" xsi:type="url" path="adminhtml/fbuilder/copydescription"></item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

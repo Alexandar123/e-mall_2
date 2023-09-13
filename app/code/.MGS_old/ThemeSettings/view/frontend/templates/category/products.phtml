@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+
+<?php 
+	$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+	$category = $this->getCurrentCategory();
+?>
+<?php if($category->getIsLanding()): ?>
+	<?php 
+		$perRowDefault = $themeSettingConfig->getStoreConfig('themesettings/category_landing/product_per_row');
+		$perRowTablet = $themeSettingConfig->getStoreConfig('themesettings/category_landing/product_per_row_tablet');
+		$perRowMobile = $themeSettingConfig->getStoreConfig('themesettings/category_landing/product_per_row_mobile');
+		
+		if($category->getLandingPerRow()!=''){
+			$perRowDefault = $category->getLandingPerRow();
+		}
+		if($category->getLandingPerRowTablet()!=''){
+			$perRowTablet = $category->getLandingPerRowTablet();
+		}
+		if($category->getLandingPerRowMobile()!=''){
+			$perRowMobile = $category->getLandingPerRowMobile();
+		}
+	?>
+	<div class="landing-categories row-<?php echo $perRowDefault ?> row-tablet-<?php echo $perRowTablet ?> row-mobile-<?php echo $perRowMobile ?>">
+		<?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setCurrentCategory($category)->setThemeSettingConfig($themeSettingConfig)->setTemplate("MGS_ThemeSettings::category/landing/".$category->getCateLandingType().".phtml")->toHtml();?>
+	</div>
+<?php else: ?>
+	<?php 
+		$perRowDefault = $themeSettingConfig->getStoreConfig('themesettings/category/product_per_row');
+		$perRowTablet = $themeSettingConfig->getStoreConfig('themesettings/category/product_per_row_tablet');
+		$perRowMobile = $themeSettingConfig->getStoreConfig('themesettings/category/product_per_row_mobile');
+		
+		if($category->getPerRow()!=''){
+			$perRowDefault = $category->getPerRow();
+		}
+		if($category->getPerRowTablet()!=''){
+			$perRowTablet = $category->getPerRowTablet();
+		}
+		if($category->getPerRowMobile()!=''){
+			$perRowMobile = $category->getPerRowMobile();
+		}
+	?>
+	<?php if (!$block->isContentMode() || $block->isMixedMode()): ?>
+		<div class="product-container category-product-container row-<?php echo $perRowDefault ?> row-tablet-<?php echo $perRowTablet ?> row-mobile-<?php echo $perRowMobile ?>" id="product-container" data-dimension-grid="<?php echo $category->getImageDimentionGrid() ?>" data-dimension-list="<?php echo $category->getImageDimentionList() ?>">
+			<?= $block->getProductListHtml() ?>
+		</div>
+	<?php endif; ?>
+<?php endif ?>

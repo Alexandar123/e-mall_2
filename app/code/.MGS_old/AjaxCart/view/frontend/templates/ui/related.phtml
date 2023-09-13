@@ -1,0 +1,112 @@
+<?php
+/** @var \MGS\AjaxCart\Block\Ui\Related $block */
+
+if (($items = $block->getItems()) && $items->count()):
+    $title = __('Products you might like!');
+?>
+<?php $themeHelper = $this->helper('MGS\AjaxCart\Helper\Data'); ?>
+
+<?php
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$_imagehelper = $this->helper('MGS\ThemeSettings\Helper\Image');
+$size = $themeSettingConfig->getImageSize();
+$padding = $themeSettingConfig->getImagePadding();
+$image = 'upsell_products_list';
+?>
+    <div class="block popup__related">
+        <div class="block-title title text-center margin-bottom10 text-uppercase">
+            <h5 id="block-related-heading" role="heading" aria-level="2"><?php echo $block->escapeHtml($title); ?></h5>
+        </div>
+        <div class="block-content content" aria-labelledby="block-related-heading">
+            <div class="products wrapper grid products-grid products-related mgs-products">
+                <ol data-related-block="items" class="products list items mgs-owl-carousel product-items owl-carousel">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $item): ?>
+                        <?php $available = ''; ?>
+
+                        <?php if (!$item->isComposite() && $item->isSaleable()): ?>
+                            <?php if (!$item->getRequiredOptions()): ?>
+                                <?php $available = 'related-available'; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <li class="item product product-item">
+                            <div class="product-item-info <?php  /* @noEscape */ echo $available; ?>">
+                                <div class="product-top">
+                                    <a href="<?php echo $block->escapeUrl($block->getProductUrl($item)) ?>"
+                                   class="product photo product-item-photo" style="padding-bottom: <?php echo $padding ?>;">
+                                        <?php $productImage = $_imagehelper->init($item, $image)->setImageFile($item->getData('small_image'))->resize($size['width'], $size['height'])->getUrl();
+                                        ?>
+
+                                        <img src="<?php echo $productImage; ?>" alt="<?php echo $block->escapeHtml($item->getName()) ?>" class="img-responsive"/>
+                                    </a>
+                                </div>
+
+                                <div class="product details product-item-details">
+                                    <strong class="product name product-item-name">
+                                        <a class="product-item-link" title="<?php echo $block->escapeHtml($item->getName()) ?>" href="<?php echo $block->escapeUrl($block->getProductUrl($item)) ?>">
+                                            <?php echo $block->escapeHtml($item->getName()) ?>
+                                        </a>
+                                    </strong>
+                                    <?php /* @escapeNotVerified */ echo $block->getProductPrice($item); ?>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'mgsowlcarousel'
+        ], function ($) {
+            $('.popup__related .products.list.product-items').owlCarousel({
+                items: 2,
+                autoplay: true,
+                autoplayHoverPause: true,
+                nav: false,
+                dots: true,
+                margin: 10,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    768:{
+                        items:3
+                    },
+                    1200:{
+                        items:4
+                    }
+                }
+            });
+        });
+    </script>
+<script type="text/x-magento-init">
+    {
+        ".popup__related button.action.tocart": {
+            "widgetAddToCart": {
+                "formKey": <?php /* @noEscape */ echo $block->getFormKey() ?>
+            }
+        }
+    }
+</script>
+<script>
+    require([
+        'jquery',
+        'mage/mage'
+    ], function($, widgetAddToCart) {
+        $(document).ajaxComplete(function(event, xhr) {
+            if (xhr.responseText) {
+                try {
+                    eval("var json = " + xhr.responseText + " || {}");
+                } catch (e) {
+                    return;
+                }
+            }
+        });
+    });
+
+</script>
+<?php endif;?>

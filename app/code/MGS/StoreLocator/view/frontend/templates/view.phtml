@@ -1,0 +1,119 @@
+<?php $themeHelper = $this->helper('MGS\StoreLocator\Helper\Data'); ?>
+<?php if ($themeHelper->getStoreConfig('locator/general/store_api_key')) {
+	$apikey = $themeHelper->getStoreConfig('locator/general/store_api_key');
+} else {
+	$apikey = 'AIzaSyD11c9ZFjYyFvKmbp2eKkpRuiqkjkAUIG0';
+}
+?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?= $apikey ?>&libraries=places&sensor=false"></script>
+
+<?php $_storeView = $this->getStoreView(); ?>
+
+    <div class="storelocator-details">
+        <div class="col-md-5">
+            <div class="page-title">
+                <h1><?php echo $this->escapeHtml($_storeView->getName()) ?></h1>
+				<?php echo $height = $themeHelper->getStoreConfig('locator/general/height_map_detail'); ?>
+            </div>
+            <?php if ($imageUrl = $_storeView->getImageUrl()): ?>
+                <div class="store-image">
+                    <img src="<?php echo $imageUrl ?>" alt="<?php echo $_storeView->getName() ?>" title="<?php echo $_storeView->getName() ?>" class="img-responsive"/>
+                </div>
+            <?php endif ?>
+            <div class="store-info-detail">
+                <div class="row">
+                    <div class="col-sm-3"><?php echo __('Address:') ?></div>
+                    <div class="col-sm-9"><?php echo $_storeView->getStreetAddress().' '.ucfirst($_storeView->getCity()).' '.ucfirst($_storeView->getState()).' '.$_storeView->getZipcode().' '.$_storeView->getCountry() ?> </div>
+                </div>
+                <?php if($_storeView->getPhone()): ?>
+                    <div class="row">
+                        <div class="col-sm-3"><?php echo __('Phone:') ?></div>
+                        <div class="col-sm-9"><a href="tel:<?php echo $this->escapeHtml($_storeView->getPhone()) ?>"><?php echo $this->escapeHtml($_storeView->getPhone()) ?></a></div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if($_storeView->getEmail()): ?>
+                    <div class="row">
+                        <div class="col-sm-3"><?php echo __('Email:') ?></div>
+                        <div class="col-sm-9"><a href="mailto:<?php echo $this->escapeHtml($_storeView->getEmail()) ?>"><?php echo $this->escapeHtml($_storeView->getEmail()) ?></a></div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if($_storeView->getFax()): ?>
+                    <div class="row">
+                        <div class="col-sm-3"><?php echo __('Fax:') ?></div>
+                        <div class="col-sm-9"><?php echo $this->escapeHtml($_storeView->getFax()) ?></div>
+                    </div>
+                <?php endif; ?>
+                <?php if($_storeView->getPhoneNumber()): ?>
+                    <div class="row">
+                        <div class="col-sm-3"><?php echo __('Phone:') ?></div>
+                        <div class="col-sm-9"><?php echo $this->escapeHtml($_storeView->getPhoneNumber()) ?></div>
+                    </div>
+                <?php endif; ?>
+                <?php if($_storeView->getWebsite()): ?>
+                    <div class="row">
+                        <div class="col-sm-12"><a href="<?php echo $_storeView->getWebsite() ?>"><?php echo $_storeView->getWebsite() ?></a></div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if($_storeView->getDescription()): ?>
+                    <div class="store-html-content store-description">
+                        <h2><?php echo __('Store Information') ?></h2>
+                        <div class="content">
+                            <?php echo $this->getDescription(); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
+
+                <?php if($_storeView->getTradingHours()): ?>
+                    <div class="store-html-content store-opening-hours">
+                        <h2><?php echo __('Opening Hours') ?></h2>
+                        <div class="content">
+                            <?php echo $this->getTradingHours(); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div id="map-detail"></div>
+            <p class="back">
+                <button onclick="window.location= '<?php echo $block->getUrl('locator/') ?>';" class="action primary" title="<?php echo __('Back') ?>" type="button">
+                    <span><?php echo __('Back') ?></span>
+                </button>
+            </p>
+        </div>
+    </div>
+<?php
+//Get store google map related information
+$storeName = $_storeView->getName();
+$storeLat = $_storeView->getLat();
+$storeLong = $_storeView->getLng();
+$storeRadius = $this->getRadius($_storeView);
+?>
+<?php if ($storeLat && $storeLong): ?>
+    <script>
+        require(['jquery', 'MGS_StoreLocator/js/storelocator'], function($) {
+            $(window).on('load', function() {
+                var storeLat = <?= $storeLat ;?>;
+                var storeLong = <?= $storeLong ;?>;
+                var storeRadius = <?= $storeRadius ;?>;
+                var storeInfoText = '<div class="map-short-info"><h3><?= $storeName ; ?></h3><p><?= $_storeView->getStreetAddress() ?> <?= $_storeView->getCity() ?> <?= $_storeView->getState() ?> <?= $_storeView->getZipcode() ?> <?= $_storeView->getCountry() ?></p>';
+                var googleMapDivId = 'map-detail';
+                window.addEventListener('load', initializeMap(storeLat, storeLong, storeRadius, storeInfoText, googleMapDivId));
+            });
+        });
+    </script>
+<?php endif; ?>
+
+<?php $height = $themeHelper->getStoreConfig('locator/general/height_map_detail'); ?>
+<?php if (!empty($height)): ?>
+    <script>
+        require(['jquery'], function($) {
+            $(document).ready(function(){
+                $('.locator-index-view #map-detail').css("height", "<?= $height.'px'; ?>");
+            });
+        });
+    </script>
+<?php endif; ?>

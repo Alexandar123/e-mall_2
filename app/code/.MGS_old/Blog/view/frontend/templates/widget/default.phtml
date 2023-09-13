@@ -1,0 +1,136 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$collection = $block->getPostCollection();
+?>
+
+<div class="content-block blog-block blog-grid-block">
+	<?php if($this->hasData('mgs_panel_title') || $this->hasData('mgs_panel_note')): ?>
+		<div class="content-heading">
+			<?php if($this->hasData('mgs_panel_title')): ?>
+				<h2 class="title"><?php echo $helper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></h2>
+			<?php endif ?>
+			<?php if($this->hasData('mgs_panel_note')): ?>
+				<div class="block-note"><?php echo $helper->decodeHtmlTag($this->getData('mgs_panel_note')) ?></div>
+			<?php endif ?>
+		</div>
+	<?php endif ?>
+
+	<?php if (isset($collection) && $collection->getSize()): ?>
+
+		<?php
+			$themeHelper = $this->helper('');
+			$blockId = rand() . time();
+			$showShortContent = $this->getConfig('show_short_content');
+			$viewAs = $this->getConfig('view_as');
+			$showThumbnail = $this->getConfig('show_thumbnail');
+			$perRow = $this->getConfig('items', 5);
+			$col = $themeHelper->convertPerRowtoCol($perRow);
+		?>
+
+		<?php if ($viewAs == 'owl_carousel'): ?>
+			<?php
+				if($this->hasData('number_row') && $this->getNumberRow()>1){
+					$columnCount = $perRow * $this->getNumberRow();
+				}
+			?>
+			<div class="block widget mgs-blog-lastest-posts">
+				<div class="block-content">
+					<div class="owl-carousel mgs-carousel-<?php echo $blockId; ?>">
+						<?php $i=0; $j=0; foreach ($collection as $post): $i++ ?>
+							<?php if($this->hasData('number_row') && $this->getNumberRow()>1): ?>
+								<?php if ($j++ % $columnCount == 0): ?>
+									<div class="item">
+								<?php endif ?>
+							<?php endif ?>
+							<div<?php if($this->getNumberRow()>1): ?> class="<?php echo $themeHelper->getClearClass($perRow, $i) ?> <?php echo $themeHelper->convertColClass($col, 'col') ?>"<?php else: ?> class="item"<?php endif ?>>
+								<?php echo $helper->getThumbnailPost($post); ?>
+								<div class="title"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></div>
+								<?php if ($showShortContent): ?>
+									<div class="short-content">
+										<?php echo substr($post->getShortContent(), 0, $this->getConfig('limit_characters_short_content')); ?>
+									</div>
+									<div class="margin-top15">
+										<a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" class="btn btn-primary" title="<?php echo $post->getTitle(); ?>"><?php echo __('Read More'); ?></a>
+									</div>
+								<?php endif ?>
+							</div>
+							<?php if($this->hasData('number_row') && $this->getNumberRow()>1): ?>
+								<?php if ($j % $columnCount == 0 || $j == count($collection)): ?>
+									</div>
+								<?php endif ?>
+							<?php endif ?>
+						<?php endforeach ?>
+					</div>
+				</div>
+			</div>
+
+			<?php if($this->hasData('number_row') && $this->getNumberRow()>1):?>
+				<?php $perRow = 1; ?>
+			<?php endif ?>
+
+			<script type="text/javascript">
+				require([
+					'jquery',
+					'mgs/owlcarousel'
+				], function ($) {
+					var owl<?php echo $blockId ?> = $('.mgs-carousel-<?php echo $blockId ?>').owlCarousel({
+						items: <?php echo $perRow; ?>,
+						autoplay: <?php echo $this->getConfig('autoplay') ? 'true' : 'false' ?>,
+						autoplayHoverPause: <?php echo $this->getConfig('stop_auto') ? 'true' : 'false' ?>,
+						nav: <?php echo $this->getConfig('navigation') ? 'true' : 'false' ?>,
+						dots: <?php echo $this->getConfig('pagination') ? 'true' : 'false' ?>,
+						navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
+						<?php if(!$this->hasData('number_row') || $this->getNumberRow()==1):?>
+							responsive:{
+								0:{
+									items:1
+								},
+								480:{
+									items:2
+								},
+								768:{
+									items:<?php echo$perRow; ?>
+								}
+							}
+						<?php endif ?>
+					});
+					<?php if($this->getConfig('pagination')): ?>
+						owl<?php echo $blockId ?>.on('changed.owl.carousel', function (event) {
+							if (event.item.count - event.page.size == event.item.index)
+								$(event.target).find('.owl-dots div:last')
+								  .addClass('active').siblings().removeClass('active');
+						});
+					<?php endif ?>
+				});
+			</script>
+		<?php else: ?>
+			<div class="block widget mgs-blog-lastest-posts">
+				<div class="block-content">
+					<?php $perRow = $this->getConfig('items', 5); ?>
+					<?php $col = $helper->convertPerRowtoCol($perRow); ?>
+					<ul class="row <?php echo $helper->convertColClass($col, 'row') ?>">
+						<?php $i=0; foreach ($collection as $post): $i++; ?>
+							<li class="item col-md-<?php echo $col ?> col-sm-6 col-xs-12<?php if($i % $perRow == 1): ?> first-row-item<?php endif ?><?php if($i % 2 == 1): ?> first-sm-item<?php endif ?>">
+								<?php if ($showThumbnail): ?>
+									<?php echo $helper->getThumbnailPost($post); ?>
+								<?php endif ?>
+								<div class="title"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></div>
+								<?php if ($showShortContent): ?>
+									<div class="short-content">
+										<?php echo substr($post->getShortContent(), 0, $this->getConfig('limit_characters_short_content')); ?>
+									</div>
+									<div class="margin-top15">
+										<a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" class="btn btn-primary" title="<?php echo $post->getTitle(); ?>"><?php echo __('Read More'); ?></a>
+									</div>
+								<?php endif ?>
+							</li>
+						<?php endforeach ?>
+					</ul>
+				</div>
+			</div>
+		<?php endif; ?>
+
+	<?php else: ?>
+		<div role="alert" class="alert alert-warning"> <?php echo __('There are no posts matching the selection.') ?> </div>
+	<?php endif; ?>
+</div>

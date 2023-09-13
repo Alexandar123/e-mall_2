@@ -1,0 +1,42 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<?php $fields = $builderHelper->decodeHtmlTag($this->getFields()) ?>
+<?php $fields = json_decode($fields, true); ?>
+
+<div class="content-block mgs-form-block">
+    <?php if (count($fields)>0): ?>
+        <?php $blockId = rand() . time(); ?>
+        
+        <?php $uenc = ['fields'=>$fields, 'block_id'=>$blockId, 'use_mgs_captcha'=>$this->getUseMgsCaptcha(), 'mgs_receive_email'=>$this->getMgsReceiveEmail(), 'mgs_email_subject'=>$this->getMgsEmailSubject(),'top_content'=>$builderHelper->decodeHtmlTag($this->getMgsEmailTemplateTop()), 'bottom_content'=>$builderHelper->decodeHtmlTag($this->getMgsEmailTemplateBottom()), 'success_message'=>$builderHelper->decodeHtmlTag($this->getMgsSuccessMessage())] ?>
+        <?php $uenc = json_encode($uenc) ?>
+        <form class="form" action="<?php echo $this->getUrl('fbuilder/index/form', ['_secure'=>true]) ?>" method="post" id="form-validate-<?php echo $blockId ?>" enctype="multipart/form-data" autocomplete="off" novalidate="novalidate" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+            <input type="hidden" name="uenc" value="<?php echo strtr(base64_encode($uenc), '+/=', '-_,');?>"/>
+            <input type="hidden" name="referurl" value="<?php echo $builderHelper->getCurrentUrl() ?>"/>
+            <fieldset class="fieldset">
+                <?php foreach ($fields as $_field): ?>
+                    <div class="field<?php if ($_field['required']): ?> required<?php endif ?>">
+                        <?php echo $this->getFieldHtml($_field, $blockId) ?>
+                    </div>
+                <?php endforeach ?>
+                <?php if ($this->getUseMgsCaptcha() && $builderHelper->getStoreConfig('customer/captcha/enable')): ?>
+                    <?php echo $this->getLayout()->createBlock('MGS\Fbuilder\Block\Captcha')->setFormId($blockId)->setImgWidth(200)->setImgHeight(50)->toHtml();?>
+                <?php endif ?>
+            </fieldset>
+            
+            <div class="actions-toolbar mgs-button-block button-<?php echo $this->getButtonAlign() ?><?php if ($this->getFullWidth()): ?> button-fullwidth<?php endif ?><?php if ($this->getBoxShadow()): ?> button-shadow<?php endif ?>">
+                <div class="primary">
+                    <button type="submit">
+                        <?php if ($this->getUseIcon() && ($this->getFbuilderIcon()!='') && ($this->getIconAlign()=='left')): ?>
+                            <span class="button-icon icon-left<?php if ($this->getUseDivider()): ?> has-divider<?php endif ?>"><i class="<?php echo $builderHelper->decodeHtmlTag($this->getFbuilderIcon()) ?>"></i></span>
+                        <?php endif ?>
+                        <span><?php echo $builderHelper->decodeHtmlTag($this->getFbuilderSubtitle()) ?></span>
+                        <?php if ($this->getUseIcon() && ($this->getFbuilderIcon()!='') && ($this->getIconAlign()=='right')): ?>
+                            <span class="button-icon icon-right<?php if ($this->getUseDivider()): ?> has-divider<?php endif ?>"><i class="<?php echo $builderHelper->decodeHtmlTag($this->getFbuilderIcon()) ?>"></i></span>
+                        <?php endif ?>
+                    </button>
+                </div>
+            </div>
+        </form>
+    <?php else: ?>
+        <div class="message info empty"><div><?php echo __('Have no field for form.') ?></div></div>
+    <?php endif ?>
+</div>

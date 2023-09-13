@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MGS_StoreLocator::storelocator" title="Store Locator" module="MGS_StoreLocator" sortOrder="80" parent="Magento_Backend::mgs" resource="MGS_StoreLocator::storelocator"/>
+        <add id="MGS_StoreLocator::locator_manage" title="Manage Stores" module="MGS_StoreLocator" sortOrder="10" parent="MGS_StoreLocator::storelocator" action="locator/locator/index/" resource="MGS_StoreLocator::locator_manage"/>
+		<add id="MGS_StoreLocator::settings" title="Settings" module="MGS_StoreLocator" sortOrder="20" parent="MGS_StoreLocator::storelocator" action="adminhtml/system_config/edit/section/locator" resource="MGS_StoreLocator::settings"/>
+    </menu>
+</config>

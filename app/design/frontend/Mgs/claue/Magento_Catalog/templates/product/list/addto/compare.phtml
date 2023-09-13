@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare */
+?>
+<li>
+    <button class="action tocompare"
+            title="<?= $block->escapeHtml(__('Add to Compare')) ?>"
+            data-title="<?= $block->escapeHtml(__('Add to Compare')) ?>"
+            aria-label="<?= $block->escapeHtml(__('Add to Compare')) ?>"
+            data-post='<?= /* @noEscape */ $block->getCompareHelper()->getPostDataParams($block->getProduct()) ?>'
+            role="button">
+        <i class="pe-7s-graph3"></i>
+    </button>
+</li>

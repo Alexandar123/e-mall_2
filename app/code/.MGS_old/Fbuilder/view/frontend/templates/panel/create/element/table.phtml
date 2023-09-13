@@ -1,0 +1,388 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = false ?>
+<?php $content = '' ?>
+<div class="edit-static-form">
+
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="table">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+                $content = $child->getBlockContent();
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+    
+        <div class="line">
+            <div class="col-des-12 builder-title">
+                <h2><?php echo __('Table Block') ?></h2>
+            </div>
+        </div>
+        
+        <div class="mgs-tab product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-additional-title" data-role="collapsible" id="tab-label-additional">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#additional" id="tab-label-additional-title">
+                    <?php echo __('Table Config') ?>
+                </a>
+            </div>
+            <div class="data item content" id="additional" data-role="content" style="display:none">
+                <?php echo $this->getLayout()->createBlock('MGS\Fbuilder\Block\Panel\Create\StaticContent')->setContent($content)->setTemplate('panel/create/element/static/table.phtml')->toHtml() ?>
+            </div>
+            
+            <div class="data item title" aria-labeledby="tab-label-view-title" data-role="collapsible" id="tab-label-view">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#view" id="tab-label-view-title">
+                    <?php echo __('View Config') ?>
+                </a>
+            </div>
+            <div class="data item content" id="view" data-role="content" style="display:none">
+                <div class="line form-group">
+                    <div class="col">
+                        <label for="text_align" class="control-label"><?php echo __('Text align') ?></label><br/>
+                        <select name="setting[text_align]" id="text_align" onchange="setPreview()">
+                            <option value="left"<?php if ($exist && ($settings['text_align']=='left')): ?> selected="selected"<?php endif ?>><?php echo __('Left'); ?></option>
+                            <option value="center"<?php if ($exist && ($settings['text_align']=='center')): ?> selected="selected"<?php endif ?>><?php echo __('Center'); ?></option>
+                            <option value="right"<?php if ($exist && ($settings['text_align']=='right')): ?> selected="selected"<?php endif ?>><?php echo __('Right'); ?></option>
+                        </select>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="border_color" class="control-label"><?php echo __('Border color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="border_color" name="setting[border_color]"<?php if ($exist && $settings['border_color']): ?> value="<?php echo $settings['border_color'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="border_width" class="control-label"><?php echo __('Border width') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="border_width" name="setting[border_width]"<?php if ($exist && $settings['border_width']): ?> value="<?php echo $settings['border_width'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="text_color" class="control-label"><?php echo __('Text color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="text_color" name="setting[text_color]"<?php if ($exist && $settings['text_color']): ?> value="<?php echo $settings['text_color'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="font_size" name="setting[font_size]"<?php if ($exist && $settings['font_size']): ?> value="<?php echo $settings['font_size'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="row_height" class="control-label"><?php echo __('Row height') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="row_height" name="setting[row_height]"<?php if ($exist && $settings['row_height']): ?> value="<?php echo $settings['row_height'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="fullwidth" class="control-label"><?php echo __('Full width') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['fullwidth']): ?> checked="checked"<?php endif ?> value="1" name="setting[fullwidth]" id="fullwidth" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="fullwidth" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col-des-12"><h4 class="no-margin"><?php echo __('Heading (First row)') ?></h4></div>
+                    <div class="col">
+                        <label for="heading_row_height" class="control-label"><?php echo __('Row height') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="heading_row_height" name="setting[heading_row_height]"<?php if ($exist && $settings['heading_row_height']): ?> value="<?php echo $settings['heading_row_height'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="heading_background" class="control-label"><?php echo __('Background color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="heading_background" name="setting[heading_background]"<?php if ($exist && $settings['heading_background']): ?> value="<?php echo $settings['heading_background'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="heading_text_color" class="control-label"><?php echo __('Text color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="heading_text_color" name="setting[heading_text_color]"<?php if ($exist && $settings['heading_text_color']): ?> value="<?php echo $settings['heading_text_color'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="heading_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="heading_font_size" name="setting[heading_font_size]"<?php if ($exist && $settings['heading_font_size']): ?> value="<?php echo $settings['heading_font_size'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col-des-2">
+                        <label for="heading_font_bold" class="control-label"><?php echo __('Font bold') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if (($exist && $settings['heading_font_bold'])): ?> checked="checked"<?php endif ?> value="1" name="setting[heading_font_bold]" id="heading_font_bold" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="heading_font_bold" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="line form-group">
+                    
+                    <div class="col">
+                        <label for="heading_border_color" class="control-label"><?php echo __('Border color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="heading_border_color" name="setting[heading_border_color]"<?php if ($exist && $settings['heading_border_color']): ?> value="<?php echo $settings['heading_border_color'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="heading_border_width" class="control-label"><?php echo __('Border width') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="heading_border_width" name="setting[heading_border_width]"<?php if ($exist && $settings['heading_border_width']): ?> value="<?php echo $settings['heading_border_width'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col-des-2">
+                        <label for="border_vertical" class="control-label"><?php echo __('Border vertical') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if (($exist && $settings['border_vertical']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[border_vertical]" id="border_vertical" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="border_vertical" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-2">
+                        <label for="border_horizontal" class="control-label"><?php echo __('Border horizontal') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if (($exist && $settings['border_horizontal']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[border_horizontal]" id="border_horizontal" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="border_horizontal" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col-des-12"><h4 class="no-margin"><?php echo __('Other rows') ?></h4></div>
+                    
+                    <div class="col">
+                        <label for="other_border_color" class="control-label"><?php echo __('Border color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="other_border_color" name="setting[other_border_color]"<?php if ($exist && $settings['other_border_color']): ?> value="<?php echo $settings['other_border_color'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="other_border_width" class="control-label"><?php echo __('Border width') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="other_border_width" name="setting[other_border_width]"<?php if ($exist && $settings['other_border_width']): ?> value="<?php echo $settings['other_border_width'] ?>"<?php endif ?> onchange="setPreview()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="other_border_vertical" class="control-label"><?php echo __('Border vertical') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if (($exist && $settings['other_border_vertical']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[other_border_vertical]" id="other_border_vertical" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="other_border_vertical" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="other_border_horizontal" class="control-label"><?php echo __('Border horizontal') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if (($exist && $settings['other_border_horizontal']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[other_border_horizontal]" id="other_border_horizontal" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="other_border_horizontal" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="even_background" class="control-label"><?php echo __('Even background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="even_background" name="setting[even_background]"<?php if ($exist && $settings['even_background']): ?> value="<?php echo $settings['even_background'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="odd_background" class="control-label"><?php echo __('Odd background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="odd_background" name="setting[odd_background]"<?php if ($exist && $settings['odd_background']): ?> value="<?php echo $settings['odd_background'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div id="table-temp">
+                <?php if ($content!=''): ?>
+                    <?php echo $content ?>
+                <?php else: ?>
+                    <table class="mgs-table-block" style="width: 500px; margin:auto">
+                        <tbody>
+                            <tr>
+                                <td>Employee</td>
+                                <td>Salary</td>
+                                <td>Bonus</td>
+                            </tr>
+                            <tr>
+                                <td>Stephen C. Cox</td>
+                                <td>$300</td>
+                                <td>$50</td>
+                            </tr>
+                            <tr>
+                                <td>Josephin Tan</td>
+                                <td>$150</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Joyce Ming</td>
+                                <td>$200</td>
+                                <td>$35</td>
+                            </tr>
+                            <tr>
+                                <td>James A. Pentel</td>
+                                <td>$175</td>
+                                <td>$25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <?php endif ?>
+                </div>
+                
+                <style type="text/css" id="table-custom-css"></style>
+            </div>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                setPreview();
+            });
+
+        })(jQuery);
+    });
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                text_align = $('#text_align').val();
+                border_color = $('#border_color').val();
+                border_width = $('#border_width').val();
+                text_color = $('#text_color').val();
+                font_size = $('#font_size').val();
+                row_height = $('#row_height').val();
+                heading_row_height = $('#heading_row_height').val();
+                heading_background = $('#heading_background').val();
+                heading_text_color = $('#heading_text_color').val();
+                heading_font_size = $('#heading_font_size').val();
+                heading_border_color = $('#heading_border_color').val();
+                heading_border_width = $('#heading_border_width').val();
+                other_border_color = $('#other_border_color').val();
+                other_border_width = $('#other_border_width').val();
+                even_background = $('#even_background').val();
+                odd_background = $('#odd_background').val();
+                
+                $customStyle = '';
+                
+                if(text_align!=''){
+                    $customStyle += '#table-temp .mgs-table-block td{text-align:'+text_align+'}';
+                }
+                if(border_color!='' && !isNaN(border_width) && border_width!='' && border_width > 0){
+                    $customStyle += '#table-temp .mgs-table-block{border:'+border_width+'px solid '+border_color+'}';
+                }
+                if(text_color!=''){
+                    $customStyle += '#table-temp .mgs-table-block td{color:'+text_color+'}';
+                }
+
+                if(font_size!='' && !isNaN(font_size) && font_size>0){
+                    $customStyle += '#table-temp .mgs-table-block td{font-size:'+font_size+'px}';
+                }
+
+                if(row_height!='' && !isNaN(row_height) && row_height>0){
+                    $customStyle += '#table-temp .mgs-table-block td{height:'+row_height+'px; line-height:'+row_height+'px; padding-top:0; padding-bottom:0}';
+                }
+
+                if($('#fullwidth').prop("checked") == true){
+                    $customStyle += '#table-temp .mgs-table-block{width:100% !important}';
+                }
+
+                if(heading_row_height!='' && !isNaN(heading_row_height) && heading_row_height>0){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{height:'+heading_row_height+'px; line-height:'+heading_row_height+'px; padding-top:0; padding-bottom:0}';
+                }
+
+                if(heading_background!=''){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{background:'+heading_background+' !important}';
+                }
+
+                if(heading_text_color!=''){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{color:'+heading_text_color+'}';
+                }
+
+                if(heading_font_size!='' && !isNaN(heading_font_size) && heading_font_size>0){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{font-size:'+heading_font_size+'px}';
+                }
+
+                if($('#heading_font_bold').prop("checked") == true){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{font-weight:bold}';
+                }
+
+                if(other_border_color!='' && other_border_width!='' && !isNaN(other_border_width) && other_border_width>0){
+                    $customStyle += '#table-temp .mgs-table-block td{border:'+other_border_width+'px solid '+other_border_color+'}';
+                }
+
+                if($('#other_border_vertical').prop("checked") == false){
+                    $customStyle += '#table-temp .mgs-table-block td{border-left:0; border-right:0}';
+                }
+                if($('#other_border_horizontal').prop("checked") == false){
+                    $customStyle += '#table-temp .mgs-table-block td{border-top:0; border-bottom:0}';
+                }
+
+
+                if(heading_border_color!='' && heading_border_width!='' && !isNaN(heading_border_width) && heading_border_width>0){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{border:'+heading_border_width+'px solid '+heading_border_color+'}';
+                }
+
+                if($('#border_vertical').prop("checked") == false){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{border-left:0; border-right:0}';
+                }
+                if($('#border_horizontal').prop("checked") == false){
+                    $customStyle += '#table-temp .mgs-table-block tr:first-child td{border-top:0; border-bottom:0}';
+                }
+
+                if(even_background!=''){
+                    $customStyle += '#table-temp .mgs-table-block tr:nth-child(even) td{background:'+even_background+'}';
+                }
+
+                if(odd_background!=''){
+                    $customStyle += '#table-temp .mgs-table-block tr:nth-child(odd) td{background:'+odd_background+'}';
+                }
+                
+                $('#table-custom-css').html($customStyle);
+                
+            })(jQuery);
+        });
+    }
+</script>

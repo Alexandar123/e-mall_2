@@ -1,0 +1,25 @@
+<?php
+    $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+    $_headerAbsolute = $themeSettingConfig->getStoreConfig('themesettings/header/header_absolute');
+    $stickyMenu = $themeSettingConfig->getStoreConfig('themesettings/header/sticky_menu');
+?>
+<?php if($_headerAbsolute): ?>
+    <div id="placeholder-header"></div>
+<?php else: ?>
+    <div id="placeholder-header" class="absolute-header"></div>
+<?php endif; ?>
+
+<?php if($_headerAbsolute): ?>
+    <script type="text/javascript">
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                var height_header = $('.page-header').height();
+                $(document).ready(function(){
+                    $('#placeholder-header').height(height_header);
+                });
+            })(jQuery);
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Admin routes configuration.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCatalogRule
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="smile_elasticsuite_catalog_rule" frontName="catalog_search_rule">
+            <module name="Smile_ElasticsuiteCatalogRule" before="Magento_Backend" />
+        </route>
+    </router>
+</config>

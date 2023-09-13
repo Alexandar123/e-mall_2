@@ -1,0 +1,374 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<?php $countdownDate = '' ?>
+
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Countdown Box Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="countdown_box">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+                $countdownDate = 'value="'.$settings['coundown_date'].'"';
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Content Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                <?php $dateBlock = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob')->toHtml() ?>
+                <?php //$dateBlock = str_replace('value=""','value="06/29/2018 10:12"',$dateBlock) ?>
+                
+                <?php
+                    $from=['maxDate: "-1d",', 'showsTime: false,','yearRange: "-120y:c+nn",', 'name="dob"', 'dob','class="','value=""', 'dd/MM/y', 'dd\/MM\/y'];
+                    $to=['minDate: "d",', 'showsTime: true,','','name="setting[coundown_date]" onchange="setCounter()"', 'coundown_date','class="input-text required-entry ', $countdownDate, 'MM/dd/y', 'MM\/dd\/y'];
+                    
+                ?>
+                <div class="line form-group">
+                    <h4 class="no-margin col-des-12"><?php echo __('Date') ?></h4>
+                    <div class="col">
+                        <label for="coundown_date" class="control-label">&nbsp;</label><br/>
+                        <?php echo str_replace($from, $to, $dateBlock); ?>
+
+                    </div>
+                    <div class="col">
+                        <label class="control-label" for="date_font_size"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="date_font_size" name="setting[date_font_size]"<?php if ($exist && $settings['date_font_size']): ?> value="<?php echo $settings['date_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="date_fontweight" class="control-label"><?php echo __('Font bold') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['date_fontweight']): ?> checked="checked"<?php endif ?> value="1" name="setting[date_fontweight]" id="date_fontweight" class="admin__actions-switch-checkbox" onclick="changeContentStyle()">
+                            <label for="date_fontweight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="date_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="date_color" name="setting[date_color]"<?php if ($exist && $settings['date_color']): ?> value="<?php echo $settings['date_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                </div>
+                
+                <div class="line form-group">
+                    <div class="col">
+                        <label class="control-label" for="date_background"><?php echo __('Background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="date_background" name="setting[date_background]"<?php if ($exist && $settings['date_background']): ?> value="<?php echo $settings['date_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="date_border"><?php echo __('Border') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="date_border" name="setting[date_border]"<?php if ($exist && $settings['date_border']): ?> value="<?php echo $settings['date_border'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="date_border_size"><?php echo __('Border size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="date_border_size" name="setting[date_border_size]"<?php if ($exist && $settings['date_border_size']): ?> value="<?php echo $settings['date_border_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="date_border_radius"><?php echo __('Border radius') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="date_border_radius" name="setting[date_border_radius]"<?php if ($exist && $settings['date_border_radius']): ?> value="<?php echo $settings['date_border_radius'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="content-block mgs-countdown-block" id="countdown_sample" style="display:none">
+                    <div class="countdown-timer">
+                        <div class="time-text ">
+                            <span class="days"></span>
+                            <span class="hours"></span>
+                            <span class="mins"></span>
+                            <span class="secs"></span>
+                        </div>
+                        <span id="countdown-number"></span>
+                    </div>
+                    
+                    <hr/>
+                </div>
+
+                <style type="text/css" id="counter-custom-css"></style>
+                
+                <div class="line form-group">
+                    <h4 class="no-margin col-des-12"><?php echo __('Text') ?></h4>
+
+                    <div class="col">
+                        <label class="control-label" for="days"><?php echo __('Days') ?></label><br/>
+                        <input type="text" class="input-text required-entry" id="days" name="setting[days]"<?php if ($exist && $settings['days']): ?> value="<?php echo $settings['days'] ?>"<?php endif ?> onchange="setPreview()" />
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="hours"><?php echo __('Hours') ?></label><br/>
+                        <input type="text" class="input-text required-entry" id="hours" name="setting[hours]"<?php if ($exist && $settings['hours']): ?> value="<?php echo $settings['hours'] ?>"<?php endif ?> onchange="setPreview()" />
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="minutes"><?php echo __('Minutes') ?></label><br/>
+                        <input type="text" class="input-text required-entry" id="minutes" name="setting[minutes]"<?php if ($exist && $settings['minutes']): ?> value="<?php echo $settings['minutes'] ?>"<?php endif ?> onchange="setPreview()" />
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="seconds"><?php echo __('Seconds') ?></label><br/>
+                        <input type="text" class="input-text required-entry" id="seconds" name="setting[seconds]"<?php if ($exist && $settings['seconds']): ?> value="<?php echo $settings['seconds'] ?>"<?php endif ?> onchange="setPreview()" />
+                    </div>
+                </div>
+                
+                <div class="line form-group">
+                    <div class="col">
+                        <label class="control-label" for="position"><?php echo __('Position') ?></label><br/>
+                        <select name="setting[position]" id="position" onchange="setPreview()">
+                            <option value="bottom"<?php if ($exist && ($settings['position']=='bottom')): ?> selected="selected"<?php endif ?>><?php echo __('Bottom'); ?></option>
+                            <option value="top"<?php if ($exist && ($settings['position']=='top')): ?> selected="selected"<?php endif ?>><?php echo __('Top'); ?></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="control-label" for="text_font_size"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="text_font_size" name="setting[text_font_size]"<?php if ($exist && $settings['text_font_size']): ?> value="<?php echo $settings['text_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="text_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="text_color" name="setting[text_color]"<?php if ($exist && $settings['text_color']): ?> value="<?php echo $settings['text_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="text_fontweight" class="control-label"><?php echo __('Font bold') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['text_fontweight']): ?> checked="checked"<?php endif ?> value="1" name="setting[text_fontweight]" id="text_fontweight" class="admin__actions-switch-checkbox" onclick="changeContentStyle()">
+                            <label for="text_fontweight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    
+    
+</div>
+
+<?php
+    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+        ->setExist($exist)
+        ->setBuilderChild($child)
+        ->setBuilderHelper($helper)
+        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/font_list.phtml')->toHtml() ;
+?>
+    
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                setPreview();
+                setCounter();
+            });
+            
+            $("#days,#hours,#minutes,#seconds").keypress(function( event ){
+                setPreview();
+            });
+        })(jQuery);
+    });
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                day = $('#days').val();
+                hours = $('#hours').val();
+                minutes = $('#minutes').val();
+                seconds = $('#seconds').val();
+                position = $('#position').val();
+                
+                $('.time-text .days').html(day);
+                $('.time-text .hours').html(hours);
+                $('.time-text .mins').html(minutes);
+                $('.time-text .secs').html(seconds);
+                
+                if(position=='top'){
+                    $('.time-text').insertBefore('#countdown-number');
+                }else{
+                    $('.time-text').insertAfter('#countdown-number');
+                }
+            })(jQuery);
+        });
+        
+        changeContentStyle();
+    }
+    
+    function changeContentStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                date_font_size = parseFloat($('#date_font_size').val());
+                date_color = $('#date_color').val();
+                date_background = $('#date_background').val();
+                date_border = $('#date_border').val();
+                date_border_size = 1;
+                if($('#date_border_size').val()!=''){
+                    date_border_size = parseFloat($('#date_border_size').val());
+                }
+                
+                date_border_radius = parseFloat($('#date_border_radius').val());
+                position = $('#position').val();
+                text_font_size = parseFloat($('#text_font_size').val());
+                text_color = $('#text_color').val();
+                
+                $customStyle = '*{}';
+                
+                if(date_font_size!='' && !isNaN(date_font_size)){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{font-size:'+date_font_size+'px}';
+                }
+                
+                /* if($countdownStyle['date_fontweight']){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{font-weight:bold}';
+                } */
+                
+                if($('#date_fontweight').prop("checked") == true){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{font-weight:bold}';
+                }
+                
+                if(date_color!=''){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{color:'+date_color+'}';
+                }
+                
+                if(date_background!=''){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{background:'+date_background+'}';
+                }
+                
+                if(date_border!=''){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{border:1px solid '+date_border+'}';
+                }
+                
+                if(date_border_size!='' && !isNaN(date_border_size)){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{border-width:'+date_border_size+'px}';
+                }
+                
+                if(date_border_radius!='' && !isNaN(date_border_radius)){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{border-radius:'+date_border_radius+'px}';
+                }
+                
+                if(date_background!='' || date_border!=''){
+                    $size = 20;
+                    if(date_border!=''){
+                        $size = 22;
+                        if(date_border_size!=''){
+                            $size = 20 + parseFloat(date_border_size);
+                        }
+                    }
+
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .countdown span b{padding:20px;}';
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown{padding:'+parseFloat($size)+'px 0;}';
+                    if(position=='top'){
+                        $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .time-text{margin-bottom:10px}';
+                    }else{
+                        $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .time-text{margin-top:10px}';
+                    }
+                }
+                
+                if(text_font_size!=''){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .time-text{font-size:'+text_font_size+'px}';
+                }
+                
+                if(text_color!=''){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .time-text{color:'+text_color+'}';
+                }
+                
+                if($('#text_fontweight').prop("checked") == true){
+                    $customStyle += '#countdown_sample.mgs-countdown-block .countdown-timer .time-text{font-weight:bold}';
+                }
+                //alert($customStyle);
+                
+                $('#counter-custom-css').html($customStyle);
+            })(jQuery);
+        });
+    }
+    
+    function setCounter(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                coundown_date = $('#coundown_date').val();
+                if(coundown_date!=''){
+                    $('#countdown_sample').show();
+                    randomNumber = 'countdown-timer' + Math.random();
+                    $('#countdown-number').html('<div id="' + randomNumber + '" class="countdown"></div>');
+                    var dthen = new Date(coundown_date);
+                    start = new Date();
+                    start_date = Date.parse(start);
+                    var dnow = new Date(start_date);
+                    ddiff = new Date((dthen)-(dnow));
+                    gsecs = Math.floor(ddiff.valueOf()/1000);
+
+                    var timer = CountBack(gsecs,randomNumber, '');
+                    
+                }
+                
+            })(jQuery);
+        });
+    }
+</script>

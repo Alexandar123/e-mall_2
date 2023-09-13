@@ -1,0 +1,45 @@
+<?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCatalog
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
+/**
+ * Template for layer navigation view
+ *
+ * @var $block \Smile\ElasticsuiteCatalog\Block\Navigation
+ */
+?>
+<?php $_helper = $this->helper('MGS\Ajaxlayernavigation\Helper\Config');?>
+<?php if ($block->canShowBlock()) : ?>
+    <?php $activeFilters = $block->getActiveFilters(); ?>
+    <div class="block filter mgs-filter" id="layered-filter-block">
+
+        <div class="block-content filter-content">
+			<div class="block-filter-content">
+				<div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": <?php echo $_helper->getActiveItems(count($block->getFilters())) ?>, "multipleCollapsible": <?= /* @noEscape */ $block->isInline() ? "false" : "true"; ?>}}'>
+				<?php foreach ($block->getFilters() as $filter) : ?>
+					<?php if ($filter->getItemsCount()) : ?>
+	
+							<div data-role="collapsible" class="filter-options-item">
+								<div data-role="title" class="filter-options-title"><?php echo __($_helper->getFilterByText(), $block->escapeHtml(__($filter->getName()))) ?></div>
+								<div data-role="content" class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></div>
+							</div>
+
+					<?php endif; ?>
+				<?php endforeach; ?>
+
+				</div>
+
+			</div>
+        </div>
+    </div>
+<?php endif; ?>

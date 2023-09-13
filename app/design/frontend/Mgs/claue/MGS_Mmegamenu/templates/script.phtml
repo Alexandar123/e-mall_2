@@ -1,0 +1,19 @@
+<script type="text/javascript">
+	function toggleEl(el, elId){
+		require([
+			'jquery',
+		], function(jQuery){
+			(function($) {
+                let element = $('#'+elId);
+                element.toggleClass('active');
+				$(el).toggleClass('active');
+                element.parent().toggleClass('is-active');
+                if (element.hasClass('active')){
+                    element.show();
+                }else{
+                    element.hide();
+                }
+			})(jQuery);
+		});
+	}
+</script>

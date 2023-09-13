@@ -1,0 +1,38 @@
+<?php $slider = $this->getSlider() ?>
+<?php if($slider && ($this->getLookbooks()->getSize()>0)): ?>
+	<div class="lookbook-slider owl-carousel owl-theme <?php echo $slider->getCustomClass() ?>" id="lookbook_slider_<?php echo $slider->getId() ?>">
+		<?php $lookbooks = $this->getLookbooks() ?>
+		<?php foreach($lookbooks as $lookbook): ?>
+			<div class="lookbook-container">
+				<div class="mgs-lookbook-container">
+					<div class="pin__image">
+						<img src="<?php echo $this->getImageUrl($lookbook) ?>" alt="<?php $lookbook->getName() ?>" class="lookbook-image"/>
+					</div>
+					<?php echo $this->getPinHtml($lookbook) ?>
+				</div>
+			</div>
+		<?php endforeach ?>
+	</div>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'lookbook/owlcarousel',
+		], function(jQuery){
+			(function($) {
+				$(document).ready(function () {
+					$('#lookbook_slider_<?php echo $slider->getId() ?>').owlCarousel({
+						items: 1,
+						loop: <?php echo $this->getLoop(); ?>,
+						nav: <?php echo $this->getNavigation(); ?>,
+						dots: <?php echo $this->getPagination(); ?>,
+						autoplay: <?php echo $this->getAutoPlay(); ?>,
+						autoplayHoverPause: <?php echo $this->getStopAuto(); ?>,
+						autoplayTimeout: <?php echo $this->getAutoplayTimeout(); ?>,
+						navText: ['<?php echo $this->getPrevIcon() ?  $this->getPrevIcon() : '<i class="lnr-chevron-left"></i>' ?>','<?php echo $this->getNextIcon() ? $this->getNextIcon() : '<i class="lnr-chevron-right"></i>' ?>']
+						
+					});
+				});
+			})(jQuery);
+		});
+	</script>
+<?php endif ?>

@@ -1,0 +1,30 @@
+<?php $menu = $this->getMenu() ?>
+<div class="block block-portfolio-menu">
+	<div class="block-title">
+		<strong class="title"><?php echo __('Portfolio Categories') ?></strong>
+	</div>
+	<div class="block-content">
+		<ul class="portfolio-list list-group">
+			<?php foreach($menu as $_menu ): ?>
+				<?php if($this->getRequest()->getParam('id')): ?>
+					<?php if($_menu->getId() == $this->getRequest()->getParam('id')): ?>
+						<li class="list-group-item active">
+							<span><?php echo $_menu->getCategoryName() ?></span>
+							<span class="badge"><?php echo count($this->getPortfoliosByCategory($_menu->getId())); ?></span>
+						</li>
+					<?php else: ?>
+						<li class="list-group-item">
+							<a title="<?php echo $_menu->getCategoryName() ?>" href="<?php echo $_menu->getLinkCate(); ?>"><?php echo $_menu->getCategoryName() ?></a>
+							<span class="badge"><?php echo count($this->getPortfoliosByCategory($_menu->getId())); ?></span>
+						</li>
+					<?php endif ?>
+				<?php else: ?>
+					<li class="list-group-item">
+						<a title="<?php echo $_menu->getCategoryName() ?>" href="<?php echo $_menu->getLinkCate(); ?>"><?php echo $_menu->getCategoryName() ?></a>
+						<span class="badge"><?php echo count($this->getPortfoliosByCategory($_menu->getId())); ?></span>
+					</li>
+				<?php endif ?>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="brand" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+            <class>separator-top</class>
+            <label>Shop By Brand</label>
+            <tab>mgs</tab>
+            <resource>MGS_Brand::config_brand</resource>
+            <group id="general_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+                <label>General Settings</label>
+                <field id="enabled" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="route" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Route</label>
+                </field>
+            </group>
+            <group id="list_page_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                <label>List Page Settings</label>
+                <field id="title" type="text" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Page Title</label>
+                </field>
+                <field id="template" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Page Template</label>
+                    <source_model>MGS\Brand\Model\System\Config\Template</source_model>
+                </field>
+				<field id="product_per_row" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number Of Product Per Row</label>
+					<source_model>MGS\Brand\Model\Config\Source\Perrow</source_model>
+				</field>
+                <field id="show_brand_name" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Show Brand Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_product_count" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="51">
+                    <label>Show Product Count</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_brand_name">1</field>
+                    </depends>
+                </field>
+                <field id="show_featured_brands" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="55">
+                    <label>Show Featured Brands</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="meta_keywords" type="textarea" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Meta Keywords</label>
+                </field>
+                <field id="meta_description" type="textarea" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+                    <label>Meta Description</label>
+                </field>
+                <field id="description" type="textarea" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="80">
+                    <label>Description</label>
+                </field>
+            </group>
+            <group id="view_page_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                <label>View Page Settings</label>
+                <field id="template" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Page Template</label>
+                    <source_model>MGS\Brand\Model\System\Config\Template</source_model>
+                </field>
+            </group>
+            <group id="product_page_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>Product Page Settings</label>
+                <field id="show_brand" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Show Brand</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_brand_img" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="11">
+                    <label>Show Brand Images on Sidebar</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_brand">1</field>
+                    </depends>
+                </field>
+                <field id="show_related_products_by_brand" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Show Related Products By Brand</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title_related_products" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Title For Related Products By Brand</label>
+                    <depends>
+                        <field id="show_related_products_by_brand">1</field>
+                    </depends>
+                </field>
+				<field id="product_brand_position" translate="label comment" type="select" sortOrder="53" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Product By Brand Position</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\RelatedPosition</source_model>
+					<depends>
+                        <field id="product_brand_position">1</field>
+                    </depends>
+				</field>
+				
+				 <field id="limit_related_products" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="55">
+                    <label>Number Of Related Products By Brand Will Display</label>
+                    <depends>
+                        <field id="show_related_products_by_brand">1</field>
+                    </depends>
+                </field>
+				
+                <field id="perrow_brand_products" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Number Product Per Row</label>
+                    <source_model>MGS\Brand\Model\System\Config\Perrow</source_model>
+                </field>
+				
+				<field id="brand_per_row_tablet" translate="label comment" type="select" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Tablet)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+				
+				<field id="brand_per_row_mobile" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Mobile)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+				
+                <field id="brand_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:50%; margin:auto"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+					<depends>
+                        <field id="brand_products">1</field>
+                    </depends>
+                </field>
+				
+				<field id="brand_products_slider" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Slider</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="brand_products">1</field>
+                    </depends>
+				</field>
+				
+				<field id="brand_products_autoplay" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Auto play</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="brand_products">1</field>
+                        <field id="brand_products_slider">1</field>
+                    </depends>
+				</field>
+				
+				<field id="brand_products_stop_auto" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Stop autoplay on mouse hover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="brand_products">1</field>
+                        <field id="brand_products_slider">1</field>
+                    </depends>
+				</field>
+				<field id="brand_products_loop" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Loop</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="brand_products">1</field>
+                        <field id="brand_products_slider">1</field>
+                    </depends>
+				</field>
+				
+				<field id="brand_products_navigation" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display navigation</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="brand_products">1</field>
+                        <field id="brand_products_slider">1</field>
+                    </depends>
+				</field>
+				
+				<field id="brand_products_pagination" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display pagination</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="brand_products">1</field>
+                        <field id="brand_products_slider">1</field>
+                    </depends>
+				</field>
+				
+				<field id="brand_products_slide_by" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Navigation slide by</label>
+					<validate>required-entry validate-number</validate>
+					<depends>
+                        <field id="brand_products">1</field>
+                        <field id="brand_products_slider">1</field>
+                    </depends>
+				</field>
+				
+            </group>
+            <group id="sidebar_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                <label>Sidebar Settings</label>
+                <field id="enabled" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_product_count" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Show Product Count</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_brand_name">1</field>
+                    </depends>
+                </field>
+                <field id="number_of_brands" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Default Number Of Brands Will Display</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

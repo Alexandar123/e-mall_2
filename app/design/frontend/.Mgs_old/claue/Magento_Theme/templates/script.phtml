@@ -1,0 +1,15 @@
+<?php $themeHelper = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php if (!$themeHelper->getStoreConfig('checkout/cart/redirect_to_cart')) : ?>
+	<script type="text/x-magento-init">
+	{
+		"[data-role=tocart-form], .form.map.checkout": {
+			"catalogAddToCart": {}
+		}
+	}
+	</script>
+<?php endif; ?>	
+
+<div class="mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-ready" id="mgs-ajax-loading">
+	<div class="mfp-bg mfp-ready"></div>
+	<div class="preloader"></div>
+</div>

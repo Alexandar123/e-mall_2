@@ -1,0 +1,179 @@
+.dd-top-offer-container {
+    clear: both;
+    order: 4;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
+.dd-top-offer-container .product-image-wrapper .product-image-photo {
+    height: 100%;
+    width: 100%;
+}
+.dd-slider.dd-top-offer .slick-slide li.product-item{
+    padding: 0 5px;
+}
+.category-bottom-description{
+    order: 5;
+}
+[data-content-type='row'][data-appearance='contained']{
+    max-width: 1200px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.onestepcheckout-index-index .checkout-payment-method .payment-method._active .payment-method-content {
+    padding: 10px 0 0 30px;
+}
+
+.checkout-cart-index .page-main .checkout-extra > .block > .title{
+    padding: 10px 10px 9px;
+}
+/* Zankhana Vertical Menu Css 02-03-2023 Start*/
+.slick-prev, .slick-next{
+    z-index: 2;
+}
+.vertical-menu li.mega-menu-fullwidth > ul.dropdown-menu ul.sub-menu li.level1 > a {
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    padding-top: 0;
+    text-transform: capitalize;
+}
+.vertical-menu li.category-menu.level0 > a {
+    font-weight: 600;
+}
+.vertical-menu li.category-menu.level0:first-child > a {
+    font-weight: 700;
+    font-size: 16px;
+    padding-top: 15px;
+}
+.vertical-menu li.mega-menu-fullwidth > ul.dropdown-menu ul.sub-menu li.level1 .sub-menu > li > a {
+    font-weight: 400;
+    font-size: 13px;
+}
+.mega-menu-content div[class*="col-"] {
+    padding: 0 15px;
+}
+.vertical-menu li.category-menu.level0.dropdown #mobile-menu-8-2 ul > li.level1 a {
+    font-size: 13px;
+}
+@media (min-width: 1200px){
+    .mega-menu-content div[class*="col-md-4"] {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .mega-menu-content div[class*="col-md-6"] {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+@media (min-width: 1199px){
+    .vertical-menu li{
+        position: static;
+    }
+    .vertical-menu li > ul.dropdown-menu{
+        width: 46vw !important;
+        height: 100%;
+        transform: none;
+    }
+    .vertical-menu li:not(:last-child) a {
+        border-bottom: none;
+    }    
+}
+@media (max-width: 1199px){
+    .vertical-menu li > .dropdown-menu ,
+    .vertical-menu li > .dropdown-menu.active{
+        transform: none !important;
+        transition: none !important;
+    }
+    .vertical-menu li > a {
+        border-bottom: none;
+    }
+    .vertical-menu li > a .nav-back .fa {
+        padding-right: 5px;
+    }
+    .vertical-menu li > .dropdown-menu li ul li.hidden-des {
+        display: none;
+    }
+    .vertical-menu li > .dropdown-menu li ul{
+        padding-left: 0;
+    }
+    .vertical-menu li > a {
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .vertical-menu li > .dropdown-menu .sub-menu li ul.sub-menu > li > a ,
+    .vertical-menu li.mega-menu-fullwidth > ul.dropdown-menu ul.sub-menu li.level1 > a{
+        padding-left: 15px;
+    }   
+    .vertical-menu li > .dropdown-menu.active li.hidden-des > a {
+        padding-left: 15px;
+        padding-top: 15px;
+    } 
+    header.page-header .header-area.header3 .vertical-menu-widget .vertical-menu {
+        left: -15px;
+        right: auto;
+        min-width: 335px;
+        height: 700px;
+    }
+    .vertical-menu li .toggle-menu{
+        right: 15px;
+    }
+    .vertical-menu li .sub-menu .toggle-menu a {
+        padding-top: 0;
+        padding-bottom: 0;
+    }  
+    .vertical-menu li a + .toggle-menu > a .fa {
+        line-height: 34px;
+    }
+    .vertical-menu li ul.sub-menu a + .toggle-menu > a .fa {
+        line-height: normal;
+    }
+    .vertical-menu li.category-menu.level0.dropdown #mobile-menu-8-2 ul {
+        padding-left: 0;
+    }    
+    .vertical-menu li.category-menu.level0.dropdown #mobile-menu-8-2 ul > li.level1 a {
+        padding-left: 15px;
+    }
+    .vertical-menu li.category-menu.level0 > a{
+        padding-left: 15px;
+    }
+    .vertical-menu > li.category-menu.level0:first-child a {
+        font-weight: bold;
+        padding-top: 15px;
+        font-size: 16px;
+    }  
+    .vertical-menu li a span.nav-back {
+        font-weight: 600;
+    }  
+    .vertical-menu li.mega-menu-fullwidth > ul.dropdown-menu ul.sub-menu li.level1 > a{
+        font-size: 14px;
+    }
+    .mega-menu-content .line {
+        flex-direction: column;
+    }
+    .mega-menu-content .line .col-md-6 {
+        margin-bottom: 10px;
+    }
+    .mega-menu-content .col-md-4 {
+        margin-top: 10px;
+    }
+    .vertical-menu li .toggle-menu a {
+        padding-top: 0;
+    }
+    .vertical-menu li > .dropdown-menu.active {
+        transition: none;
+    }
+    .vertical-menu li a span.nav-back{
+        transition: none;
+    }
+    .vertical-menu li a {
+        transition: none !important;
+    }
+}
+/* Zankhana Vertical Menu Css 02-03-2023 End*/

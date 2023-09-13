@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+		<add id="MGS_Testimonial::testimonial" title="Testimonial" module="MGS_Testimonial" sortOrder="40" parent="Magento_Backend::mgs" resource="MGS_Testimonial::testimonial"/>
+		<add id="MGS_Testimonial::manage" title="Manage Items" module="MGS_Testimonial" sortOrder="10" parent="MGS_Testimonial::testimonial" action="adminhtml/testimonial/index" resource="MGS_Testimonial::testimonial_manage"/>
+    </menu>
+</config>

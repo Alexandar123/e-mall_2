@@ -1,0 +1,229 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $block = $helper->getCmsBlockByIdentifier($params['id']) ?>
+<?php $content = $block->getContent() ?>
+<div class="edit-static-form">    
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/post/staticblock') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <input type="hidden" name="block_id" value="<?php echo $block->getId() ?>"/>
+        
+        <div class="line">
+            <div class="col-des-12 builder-title">
+                <h2><?php echo __('Edit Static Block "%1"', $block->getTitle()) ?></h2>
+            </div>
+        </div>
+        
+        <div class="product data items mgs-tab" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <div class="data item title" aria-labeledby="tab-label-additional-title" data-role="collapsible" id="tab-label-additional">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#additional" id="tab-label-additional-title">
+                    <?php echo __('Content') ?>
+                </a>
+            </div>
+            <div class="data item content" id="additional" data-role="content" style="display:none">
+                <?php echo $this->getLayout()->createBlock('MGS\Fbuilder\Block\Panel\Create\StaticContent')->setContent($content)->setTemplate('panel/create/element/static/content.phtml')->toHtml() ?>
+            </div>
+            
+            <div class="data item title" aria-labeledby="tab-label-images-title" data-role="collapsible" id="tab-label-images">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#images" id="tab-label-images-title">
+                    <?php echo __('Images') ?>
+                </a>
+            </div>
+            <div class="data item content" id="images" data-role="content" style="display:none">
+                <?php $images = $helper->getPanelUploadImages('fbuilder') ?>
+                        
+                <table class="table table-bordered images-table">
+                    <thead>
+                        <tr>
+                            <th class="td-image"><?php echo __('Image') ?></th>
+                            <th class="td-code"><?php echo __('Code (click to copy)') ?></th>
+                            <th class="td-remove"><?php echo __('Remove') ?></th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="panel-image-list">
+                    <table class="table table-bordered" id="panel-images">
+                        <tbody id="list-images">
+                        <?php if (count($images)>0): ?>
+                            <?php foreach ($images as $_image): ?>
+                                <tr>
+                                    <td class="a-center td-image">
+                                        <img src="<?php echo $this->getPanelUploadSrc('fbuilder', $_image) ?>" alt=""/>
+                                    </td>
+                                    <td class="td-code">
+                                        <textarea style="height:70px;resize:none;min-height:70px; font-size:12px" readonly="readonly" onclick="this.focus();this.select(); copyToClipboard(this)"><?php echo $helper->convertImageWidgetCode('fbuilder', $_image) ?></textarea>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="remove[]" value="<?php echo $_image ?>"/>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <table class="table table-bordered" id="image-foot"<?php if (count($images)==0): ?> style="display:none"<?php endif ?>>
+                    <tfoot>
+                        <tr><td colspan="3"><?php echo __('If you want to insert image to content, please copy code and paste to content in HTML mode.') ?></td></tr>
+                    </tfoot>
+                </table>
+            
+                <div id="upload-container">
+                    <div id="list-upload"></div>
+                    <button class="btn btn-default" onclick="newImageUpload()" type="button"><span class="fa fa-plus"></span> <?php echo __('Upload new Image') ?></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function changeAnimationClass(animate){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if(currentAnimate!=''){
+                    $('#animation-test').removeClass(currentAnimate);
+                }
+                $('#animation-test').addClass(animate);
+                currentAnimate = animate;
+            })(jQuery);
+        });
+    }
+    
+    function newImageUpload(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#file_upload').length){
+                    if($('#upload_button').length){
+                        alert('<?php echo __('Please upload selected image first.') ?>');
+                    }else{
+                        alert('<?php echo __('Please choose file to upload.') ?>');
+                    }
+                }else{
+                    html = '<div class="form-group line"><div class="col-tb-3 choose-file-upload"><input id="file_upload" name="file_upload" type="file" onchange="chooseFileAction(this.id)"><span class="choose-label"><span class="fa fa-folder-o"> </span> &nbsp;<?php echo __('Choose File to Upload') ?></span></div><div class="col-tb-9" id="upload_action"></div></div>';
+                    $('#list-upload').html(html);
+                }
+                
+            })(jQuery);
+        });
+    }
+    
+    function chooseFileAction(elId){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                fileName = $('#'+elId).val();
+                arrName = fileName.split(".");
+                extensionName = arrName[arrName.length - 1];
+                extensionName = extensionName.toLowerCase();
+                if((extensionName=='jpg') || (extensionName=='jpeg') || (extensionName=='png') || (extensionName=='gif')){
+                    html = fileName + ' <button type="button" class="btn btn-default" id="upload_button" onclick="uploadImage()"><img src="<?php echo $this->getViewFileUrl('MGS_Fbuilder::images/small-ajax-loader.gif') ?>" id="upload-loading" style="display:none"/> <span class="fa fa-upload" id="upload-icon"></span> <?php echo __('Upload') ?></button>';
+                    $('#upload_action').html(html);
+                }
+            })(jQuery);
+        });
+    }
+    
+    function uploadImage(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('.alert-image-success').length){
+                    $('.alert-image-success').remove();
+                }
+                $('#upload-loading').show();
+                $('#upload-icon').hide();
+                var formData = new FormData();
+                formData.append('file', $('#file_upload')[0].files[0]);
+                $.ajax({
+                    url: "<?php echo $this->getUrl('fbuilder/post/upload', ['type'=>'fbuilder']) ?>",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(data){
+                        var result = jQuery.parseJSON(data);
+                        if(result.result=='success'){
+                            html = '<tr ><td class="a-center td-image"><img src="<?php echo $this->getPanelUploadFolder('fbuilder') ?>'+result.data+'" alt=""></td><td class="td-code"><textarea style="height:70px;resize:none;min-height:70px; font-size:12px" readonly="readonly" onclick="this.focus();this.select(); copyToClipboard(this)">&lt;img src="{{media url="wysiwyg/fbuilder/'+result.data+'"}}" alt=""/&gt;</textarea><div class="alert alert-success alert-image-success"><?php echo __('The image was successfully uploaded.') ?></div></td><td><input name="remove[]" value="'+result.data+'" type="checkbox"></td></tr>';
+                            $('#list-images').append(html);
+                            $(".panel-image-list").animate({ scrollTop: $('#list-images').height()}, 300);
+                            $('#image-foot').show();
+                        }else{
+                            alert(result.data);
+                        }
+                        
+                        $('#list-upload').html('');
+                    }
+                });
+            })(jQuery);
+        });
+    }
+    
+    function copyToClipboard(elem) {
+      // create hidden text element, if it doesn't already exist
+        var targetId = "_hiddenCopyText_";
+        var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+        var origSelectionStart, origSelectionEnd;
+        if (isInput) {
+            // can just use the original source element for the selection and copy
+            target = elem;
+            origSelectionStart = elem.selectionStart;
+            origSelectionEnd = elem.selectionEnd;
+        } else {
+            // must use a temporary form element for the selection and copy
+            target = document.getElementById(targetId);
+            if (!target) {
+                var target = document.createElement("textarea");
+                target.style.position = "absolute";
+                target.style.left = "-9999px";
+                target.style.top = "0";
+                target.id = targetId;
+                document.body.appendChild(target);
+            }
+            target.textContent = elem.textContent;
+        }
+        // select the content
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+        
+        // copy the selection
+        var succeed;
+        try {
+              succeed = document.execCommand("copy");
+        } catch(e) {
+            succeed = false;
+        }
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+        
+        if (isInput) {
+            // restore prior selection
+            elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+        } else {
+            // clear temporary content
+            target.textContent = "";
+        }
+        if(succeed){
+            alert('Copied to Clipboard');
+        }
+        return succeed;
+    }
+</script>

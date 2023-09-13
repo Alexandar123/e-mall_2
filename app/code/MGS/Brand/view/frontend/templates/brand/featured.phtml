@@ -1,0 +1,77 @@
+<?php
+$params = $this->getRequest()->getParams();
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$collection = $block->getCollection();
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config'); 
+$rtl = $themeSettingConfig->getStoreConfig('themesettings/general/rtl_theme') ? 'true' : 'false';
+?>
+<?php if ($collection->count()): ?>
+    <div class="featured-brands mgs-brand widget brands-grid">
+		<div class="content-heading">
+			<h2 class="title"><?= __('Featured Brands'); ?></h2>
+		</div>
+        <div class="block-content">
+            <ul class="featured-brand-list owl-carousel" id="featured-brand-list">
+                <?php foreach ($collection as $brand): ?>
+					<?php 
+						$_countProduct = $block->getProductCount($brand); 
+						$_brandName = $brand->getName();
+						$_brandUrl = $brand->getUrl();
+					?>
+					<li class="item">
+						<div class="image">
+							<a class="brand-image" title="<?= $_brandName; ?>" href="<?= $_brandUrl; ?>">
+								<img alt="<?= $_brandName; ?>" src="<?= $brand->getSmallImageUrl(); ?>">
+							</a>
+						</div>
+						<?php if ($this->getConfig('list_page_settings/show_brand_name')): ?>
+							<div class="brand-name">
+								<h4 class="brand-title">
+									<a title="<?= $_brandName; ?>" href="<?= $_brandUrl; ?>"><?= $_brandName; ?></a>
+								</h4>
+								<?php if ($this->getConfig('list_page_settings/show_product_count')): ?>
+									<div class="count"><?= __('%1 ', $_countProduct); ?><?= $_countProduct > 1 ? __('Products') : __('Product'); ?></div>
+								<?php endif; ?>
+							</div>
+						<?php endif; ?>
+					</li>
+                <?php endforeach; ?>
+            </ul>
+			<script type="text/javascript">
+				require([
+				'jquery',
+				'mgsowlcarousel'
+				], function($){			
+					$(document).ready(function(){
+						$("#featured-brand-list").owlCarousel({
+							items: 10,
+							loop: true,
+							nav: false,
+							dots: true,
+							autoplayTimeout: 5000,
+							rtl: <?= $rtl ?>,
+							autoplay: false,
+							autoplayHoverPause: true,
+							margin: 0,
+							autoHeight:true,
+							responsive:{
+								0:{
+									items: 2
+								},
+								576:{
+									items: 3
+								},
+								767:{
+									items: 4
+								},
+								992:{
+									items: 5						
+								}
+							}
+						});
+					});  	
+				});		
+			</script>
+        </div>
+    </div>
+<?php endif; ?>

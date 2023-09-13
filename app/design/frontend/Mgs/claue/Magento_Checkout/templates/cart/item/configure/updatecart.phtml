@@ -1,0 +1,90 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Update Cart'); ?>
+<?php if ($_product->isSaleable()) :?>
+    <div class="box-tocart update">
+        <fieldset class="fieldset">
+            <?php if ($block->shouldRenderQuantity()) :?>
+            <div class="field qty">
+                <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+                <div class="control">
+                    <span class="edit-qty minus" onclick="minusQty('qty')">-</span>
+                    <input type="number"
+                           name="qty"
+                           id="qty"
+                           maxlength="12"
+                           min="0"
+                           value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                           title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                           class="input-text qty"
+                           data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+                    <span class="edit-qty plus" onclick="plusQty('qty')">+</span>
+                </div>
+            </div>
+            <?php endif; ?>
+            <div class="actions">
+                <button type="submit"
+                        title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                        class="action primary tocart"
+                        id="product-updatecart-button">
+                    <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                </button>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </fieldset>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "#product_addtocart_form": {
+                "validation": {},
+                "addToCart": {
+                    "cartButtonId": "#product-updatecart-button",
+                    "cartForm": "#product_addtocart_form"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>
+<?php if ($block->shouldRenderQuantity()): ?>
+    <script type="text/javascript">
+        function plusQty(qtyInput){
+            require([
+                'jquery'
+            ], function(jQuery){
+                (function($) {
+                    if($('#'+qtyInput).attr('disabled')!='disabled'){
+                        qty = $('#'+qtyInput).attr('value');
+                        qty = parseInt(qty);
+                        qty++;
+                        $('#'+qtyInput).val(qty);
+                    }
+                })(jQuery);
+            });
+
+        }
+        function minusQty(qtyInput){
+            require([
+                'jquery'
+            ], function(jQuery){
+                (function($) {
+                    if($('#'+qtyInput).attr('disabled')!='disabled'){
+                        qty = $('#'+qtyInput).attr('value');
+                        qty = parseInt(qty);
+
+                        if(qty>1){
+                            qty--;
+                            $('#'+qtyInput).val(qty);
+                        }
+                    }
+                })(jQuery);
+            });
+        }
+    </script>
+<?php endif; ?>

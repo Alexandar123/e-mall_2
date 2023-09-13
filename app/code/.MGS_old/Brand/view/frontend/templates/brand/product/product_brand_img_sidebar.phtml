@@ -1,0 +1,14 @@
+<?php if ($block->getConfig('product_page_settings/show_brand')): ?>
+	<?php if ($brand = $block->getBrand()): ?>
+		<div class="block product-brand">
+			<?php $img = $brand->getSmallImageUrl(); ?>
+			<?php if ($img) { ?>
+				<div class="brand-image">
+					<a class="brand-image" title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>">
+						<img src="<?= $img; ?>" alt="<?= $brand->getName(); ?>" class="image"/>
+					</a>
+				</div>
+			<?php } ?>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>

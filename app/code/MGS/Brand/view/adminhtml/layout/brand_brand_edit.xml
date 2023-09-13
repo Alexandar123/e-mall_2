@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="left">
+            <block class="MGS\Brand\Block\Adminhtml\Brand\Edit\Tabs" name="brand_edit_tabs">
+                <block class="MGS\Brand\Block\Adminhtml\Brand\Edit\Tab\Main" name="brand_edit_tab_main"/>
+                <block class="MGS\Brand\Block\Adminhtml\Brand\Edit\Tab\Meta" name="brand_edit_tab_meta"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">brand_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">meta_section</argument>
+                    <argument name="block" xsi:type="string">brand_edit_tab_meta</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="MGS\Brand\Block\Adminhtml\Brand\Edit" name="brand_edit"/>
+        </referenceContainer>
+    </body>
+</page>

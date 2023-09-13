@@ -1,0 +1,106 @@
+<?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php $enabled = $themeSettingConfig->getStoreConfig('themesettings/contact/display_google_map') ?>
+<?php if($enabled): ?>
+	<?php if($themeSettingConfig->getStoreConfig('themesettings/contact/map_type')=='embed'): ?>
+		<div class="map-info">
+			<div class="map-container">
+				<?php echo $themeSettingConfig->getStoreConfig('themesettings/contact/embeded_code') ?>
+			</div>
+		</div>
+	<?php else: ?>
+		<?php $api = $themeSettingConfig->getStoreConfig('fbuilder/social/google_api_key') ?>
+		<?php if($api!=''): ?>
+			<?php $address = $themeSettingConfig->getStoreConfig('themesettings/contact/address_google_map') ?>
+			<?php if($address!=''): ?>
+				<?php $height = $themeSettingConfig->getStoreConfig('themesettings/contact/map_height') ?>
+				<?php $width = $themeSettingConfig->getStoreConfig('themesettings/contact/map_width') ?>
+				<?php $html = $themeSettingConfig->getStoreConfig('themesettings/contact/html_google_map') ?>
+				<?php $image = ''; ?>
+				<?php if($themeSettingConfig->getStoreConfig('themesettings/contact/pin_google_map')!=''): ?>
+					<?php $image = $themeSettingConfig->getMediaUrl('mgs/setting/'.$themeSettingConfig->getStoreConfig('themesettings/contact/pin_google_map')) ?>
+				<?php endif ?>
+				<?php $scrollwheel = $themeSettingConfig->getStoreConfig('themesettings/contact/scroll_wheel') ? 'true' : 'false'; ?>
+				<?php $navigationControl = $themeSettingConfig->getStoreConfig('themesettings/contact/navigation') ? 'true' : 'false'; ?>
+				<?php $mapTypeControl = $themeSettingConfig->getStoreConfig('themesettings/contact/control') ? 'true' : 'false'; ?>
+				<?php $scaleControl = $themeSettingConfig->getStoreConfig('themesettings/contact/scale') ? 'true' : 'false'; ?>
+				<?php $draggable = $themeSettingConfig->getStoreConfig('themesettings/contact/draggable') ? 'true' : 'false'; ?>
+				<div class="map-info">
+					<div class="map-container">
+						<div id="map-contact" style="height: <?php echo $height ?>px;<?php if($width!='' && $width>0): ?>width:<?php echo $width ?>px<?php endif ?>"></div>
+					</div>
+				</div>
+				<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api ?>"></script>
+				<script type="text/javascript">
+					require([
+						'jquery'
+					], function(jQuery){
+						(function($) {
+							var address = '<?php echo $address ?>';
+							var html = '<?php echo $html ?>';
+							var image = '<?php echo $image ?>';
+							$.ajax({
+								type: "GET",
+								dataType: "json",
+								url: "https://maps.googleapis.com/maps/api/geocode/json?key=<?php echo $api ?>",
+								data: {'address': address,'sensor':false},
+								success: function(data){
+									if(data.results.length){
+										latitude = data.results[0].geometry.location.lat;
+										longitude = data.results[0].geometry.location.lng;
+										
+										var locations = [
+											[html, latitude, longitude, 2]
+										];
+										
+										var style = '';
+										<?php if($themeSettingConfig->getStoreConfig('themesettings/contact/grayscale')): ?>
+											style = [ { "stylers": [ { "hue": "#000" },  {saturation: -100},
+											{gamma: 0.90} ] } ];
+										<?php endif ?>
+								
+										var map = new google.maps.Map(document.getElementById('map-contact'), {
+											zoom: <?php echo $themeSettingConfig->getStoreConfig('themesettings/contact/map_zoom') ?>,
+											scrollwheel: <?php echo $scrollwheel ?>,
+											navigationControl: <?php echo $navigationControl ?>,
+											mapTypeControl: <?php echo $mapTypeControl ?>,
+											scaleControl: <?php echo $scaleControl ?>,
+											draggable: <?php echo $draggable ?>,
+											center: new google.maps.LatLng(latitude, longitude),
+											styles: style,
+											mapTypeId: google.maps.MapTypeId.ROADMAP
+										});
+								
+										var infowindow = new google.maps.InfoWindow();
+									
+										var marker, i;
+									
+										for (i = 0; i < locations.length; i++) {  
+									  
+											marker = new google.maps.Marker({ 
+												position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
+												map: map ,
+												icon: image
+											});
+									
+									
+										  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+											return function() {
+											  infowindow.setContent(locations[i][0]);
+											  infowindow.open(map, marker);
+											}
+										  })(marker, i));
+										}
+									}
+								}
+							});
+						})(jQuery);
+					});
+				</script>
+			<?php else: ?>
+				<div class="message info empty"><div><?php echo __('Missing address configuration. Please check in admin > MGS > Theme Setting > Contact Us Page') ?></div></div>
+			<?php endif ?>
+		<?php else: ?>
+			<div class="message info empty"><div><?php echo __('Missing Google API. Please check in admin > MGS > Page Builder Setting > Social > Google API Key') ?></div></div>
+		<?php endif ?>
+	<?php endif ?>
+<?php endif ?>

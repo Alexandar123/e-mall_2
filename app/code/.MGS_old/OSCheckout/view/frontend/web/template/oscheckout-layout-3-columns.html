@@ -1,0 +1,39 @@
+<!-- ko foreach: getRegion('estimation') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->
+
+<!-- ko foreach: getRegion('authentication') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->
+
+<!-- ko foreach: getRegion('messages') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->
+
+<div class="opc-wrapper one-step-checkout-wrapper">
+    <div class="opc mgs-onestepcheckout-container" id="checkoutSteps">
+        <div class="shipping-step opc-shipping-address">
+            <div class="opc-shipping-address-box">
+                <div class="checkout-shippingAddress" data-bind="scope: 'checkout.steps.shipping-step.shippingAddress'">
+                    <!-- ko template: getAddressTemplate() --><!-- /ko -->
+                </div>
+            </div>
+        </div>
+        <div class="checkout-step-address shipping-payment-method">
+            <div class="shipping-payment-box">
+                <div class="checkout-shipping-step hoverable" data-bind="scope: 'checkout.steps.shipping-step'">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                </div>
+
+                <div class="checkout-billing-step hoverable" data-bind="scope: 'checkout.steps.billing-step'">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="mgs-checkout-step-sidebar" data-bind="scope: 'checkout.sidebar'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="online_compaint" resource="default" engine="innodb" comment="Online Complaint Form">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID" identity="true"/>
+        <column xsi:type="varchar" name="buyer_first_and_last_name" nullable="false" length="255" comment="Buyer's first and last name"/>
+        <column xsi:type="varchar" name="account_type" nullable="false" length="255" comment="Account Type"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="varchar" name="order_number" nullable="false" length="255" comment="Order Number"/>
+        <column xsi:type="varchar" name="complaint_related_product" nullable="false" length="255" comment="The complaint is related to the product"/>
+        <column xsi:type="varchar" name="complaint_regarding" nullable="false" length="255" comment="I am reporting a complaint regarding:"/>
+        <column xsi:type="text" name="describe_problem" nullable="true" comment="Describe the problem"/>
+        <column xsi:type="varchar" name="attachment" nullable="false" length="255" comment="attachment (photo)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>

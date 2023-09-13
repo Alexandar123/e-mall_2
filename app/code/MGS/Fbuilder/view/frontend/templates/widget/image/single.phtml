@@ -1,0 +1,29 @@
+<?php $image = $this->getImage() ?>
+<div class="content-block mgs-image-block">
+    <?php if ($image!=''): ?>
+        <?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Data'); ?>
+        <?php if ($builderHelper->isFileExist('images', $image)): ?>
+            <div class="image-content<?php if ($this->getEffect()!=''): ?> mgs-effect-<?php echo $this->getEffect() ?><?php endif ?>">
+                <span class="span-container<?php if ($this->getBoxShadown()): ?> mgs-box-shadow<?php endif ?>">
+                    <?php if ($this->getLightbox()): ?>
+                        <a href="<?php echo $builderHelper->getImageUrl('images', $image) ?>" data-lightbox="lightbox-<?php if ($this->getLightboxGroup()!=''): ?><?php echo $this->getLightboxGroup() ?><?php else: ?><?php echo rand() . time(); ?><?php endif ?>">
+                    <?php elseif ($builderHelper->getRealUrl($this->getData('url'))!='#'): ?>
+                        <a href="<?php echo $builderHelper->getRealUrl($this->getData('url')) ?>">
+                    <?php endif ?>
+                    
+                    <img src="<?php echo $builderHelper->getImageUrl('images', $image) ?>" alt="<?php echo $this->getData('alt') ?> " />
+                    <?php if ($this->getLightbox() || (!$this->getLightbox() && ($builderHelper->getRealUrl($this->getData('url'))!='#'))): ?>
+                        </a>
+                    <?php endif ?>
+                </span>
+            </div>
+        <?php else: ?>
+            <div class="message info empty"><div><?php echo __('File is not exist on server.') ?></div></div>
+        <?php endif ?>
+    <?php else: ?>
+        <div class="message info empty"><div><?php echo __('Have no image to display.') ?></div></div>
+    <?php endif ?>
+</div>
+
+
+

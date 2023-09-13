@@ -1,0 +1,143 @@
+<?php $galleryImages = $this->getGalleryImages(); ?>
+<?php $zoom_image = $this->getEnableZoom(); ?>
+<?php $lbox_image = $this->getLbox(); ?>
+<?php $rtl = $this->getRightToLeft(); ?>
+
+<?php $galleryImages = $this->getGalleryImages(); ?>
+<?php $zoom_image = $this->getEnableZoom(); ?>
+<?php $lbox_image = $this->getLbox(); ?>
+<?php if($this->getRotateImage() && (count($this->getRotateImages())>0)): ?>
+	<a class="rotate-image" href="#" onclick="rotate360(); return false"></a>
+<?php endif ?>
+<div class="product-thumbnail">
+	<div id="owl-carousel-gallery" class="owl-carousel gallery-horizontal">
+		<?php foreach($galleryImages as $image): ?>
+		<?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+		<?php $isVideo = $image->getMediaType() == 'external-video' ? true : false; ?>
+		<?php $href = $isVideo ? $image->getVideoUrl() : $image->getImageZoom(); ?>
+			
+		<div class="product item-image imgzoom<?php if($isVideo): ?> item-image-video<?php endif ?>" data-zoom="<?php echo $image->getImageZoom(); ?>">
+			
+			<?php if($isVideo): ?><div class="label-video"><?php echo __('Video') ?></div><?php endif ?>
+			
+			<?php if($lbox_image): ?>
+				<a class="lb<?php if($isVideo): ?> video-link<?php endif ?>" href="<?php echo $href; ?>">
+					<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+				</a>
+			<?php else: ?>
+				<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+				<?php if($isVideo): ?>
+					<a target="_blank" class="popup-video" href="<?php echo $image->getVideoUrl(); ?>">
+						<span class="ti-video-camera"></span>
+					</a>
+				<?php endif ?>
+			<?php endif ?>
+		</div>
+	<?php endforeach ?>
+	</div>
+	<?php if(count($galleryImages) > 1): ?>
+	<div id="horizontal-thumbnail" class="owl-carousel horizontal-thumbnail">
+		<?php $i = 0; foreach($galleryImages as $image): ?>
+			<?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+			<div class="item-thumb<?php if($i == 0): ?> active<?php endif ?>" data-owl="<?php echo $i ?>">
+				<img class="img-fluid" src="<?php echo $image->getSmallImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+				<?php if($image->getMediaType() == 'external-video'): ?>
+					<div class="popup-video-thumb"><span class="ti-video-camera"></span></div>
+				<?php endif ?>
+			</div>
+			<?php $i++; ?>
+		<?php endforeach ?>
+	</div>
+	<?php endif ?>
+</div>
+<script type="text/javascript">
+    require([ 'jquery', 'mgsowlcarousel' ], function ($) {
+        $('#owl-carousel-gallery').owlCarousel({
+            items: 1,
+            autoplay: false,
+            lazyLoad: false,
+            nav: true,
+            dots: false,
+            navText: ["<span></span>","<span></span>"],
+            rtl: <?= $rtl ?>,
+			responsive:{
+				0:{ 
+					nav: false,
+					dots: true
+				},
+				768:{ 
+					nav: true,
+					dots: false
+				}
+			}
+        });
+        
+        $('#owl-carousel-gallery').on('changed.owl.carousel', function(event) {
+            var index = event.item.index;
+            $('#horizontal-thumbnail .item-thumb').removeClass('active');
+            $('#horizontal-thumbnail .item-thumb[data-owl='+index+']').addClass('active');
+            $('#horizontal-thumbnail').trigger('to.owl.carousel', index);
+        });
+        
+        $('#horizontal-thumbnail').owlCarousel({
+            items: 4,
+            autoplay: false,
+            lazyLoad: false,
+            nav: true,
+            dots: false,
+            rtl: <?= $rtl ?>,
+            navText: ["<span></span>","<span></span>"],
+            responsive:{
+                0:{ items: 2 },
+				576:{ items: 3 }, 
+                992:{ items: 4 },
+                1200:{ items: 4 }
+            },
+        });
+        
+        $('#horizontal-thumbnail .item-thumb').click(function(){
+            $('#horizontal-thumbnail .item-thumb').removeClass('active');
+            var position = $(this).attr('data-owl');
+            $('#owl-carousel-gallery').trigger('to.owl.carousel', position);
+            $(this).addClass('active');
+        });
+    });
+    <?php if($zoom_image): ?>
+        require([ 'jquery', 'zoom-images' ],function($) { 
+            $(".imgzoom").each(function( index ) {
+                zoomElement(this);
+            });
+        });
+    <?php endif ?>
+	<?php if($lbox_image): ?>
+	require([ 'jquery', 'magnificPopup' ], function ($) {
+		$('.product.media').magnificPopup({
+			delegate: '.imgzoom .lb',
+			type: 'image',
+			tLoading: 'Loading image #%curr%...',
+			mainClass: 'mfp-img-gallery',
+			fixedContentPos: true,
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+				preload: [0,1]
+			},
+			iframe: {
+				markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></div>'
+			},
+			image: {
+				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			},
+			callbacks: {
+				elementParse: function(item) {
+					if(item.el.context.className == 'lb video-link') {
+						item.type = 'iframe';
+					} else {
+						item.type = 'image';
+					}
+				}
+			}
+		});
+	});
+	<?php endif ?>
+</script>

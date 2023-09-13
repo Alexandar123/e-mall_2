@@ -1,0 +1,106 @@
+<?php
+$builderHelper = $this->helper('MGS\Fbuilder\Helper\Data');
+$html = $this->getHtmlSlider();
+$fullheight = $this->getFullheight();
+$offset = $this->getOffset();
+$margin = 0;
+
+if ($this->getItems() > 1 && $this->getSlideMargin() != '' ) {
+    $margin = $this->getSlideMargin();
+}
+
+$navHtml = '["<span class=\'slider-nav nav-prev\'></span>","<span class=\'slider-nav nav-next\'></span>"]';
+$settingMode = 'multiple';
+
+$items = $this->getItems();
+if ($items==1) {
+    $settingMode = 'single';
+}
+
+$navPosition = $this->getNavigationPosition();
+
+$navType = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/navigation');
+if ($navType=='image') {
+    $nextIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/next_image');
+    $prevIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/prev_image');
+    $navHtml = '["<span><img src=\''.$builderHelper->getMediaUrl().'mgs/fbuilder/slider/'.$prevIcon.'\'/></span>", "<span><img src=\''.$builderHelper->getMediaUrl().'mgs/fbuilder/slider/'.$nextIcon.'\'/></span>"]';
+} else {
+    $nextIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/next_font_class');
+    $prevIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/prev_font_class');
+    $navHtml = '["<span><em class=\''.$prevIcon.'\'></em></span>", "<span><em class=\''.$nextIcon.'\'></em></span>"]';
+}
+?>
+
+<?php if ($html != ""): ?>
+    <?php $tpControls = $this->getTemplateControls() ?>
+    <?php $customclass = $this->getCustomclass() ?>
+    <?php $blockId = rand() . time(); ?>
+    <?php //$animated = $this->getAnimateSlider(); ?>
+
+    <div id="page-header-sliders" class="page-header-sliders template-<?= $tpControls ?><?= $fullheight ? ' fullscreen-slider' : '' ?>">
+        <div id="mgs-slider-<?= $blockId ?>" class="slider_mgs_carousel owl-carousel mgs-carousel-<?= $settingMode ?> mgs-owl-carousel nav-type-<?= $navType ?> nav-position-<?= $navPosition ?><?php if($this->getHideNav() && ((($items==1) && ($navPosition!='middle-outside')) || (($items>1) && ($navPosition=='middle-inside')))): ?> autohide-nav<?php endif ?> dot-position-<?php echo $this->getPaginationPosition()?>">
+            <?= html_entity_decode($html) ?>
+        </div>
+    </div>
+
+    <script>
+        require(['jquery', 'mgsowlcarousel'], function(jQuery) {
+            (function($) {
+                <?php if ($fullheight && $this->getItems() == 1): ?>
+                    var windowHeight = $(window).height();
+                    var offsetSlider = $('#page-header-sliders').offset();
+                    var sliderHeight = windowHeight - offsetSlider.top;
+
+                    $(".fullscreen-slider").height(sliderHeight);
+
+                    $(window).on('resize', function() {
+                        $(".fullscreen-slider").height($(window).height() - offsetSlider.top);
+                    });
+                <?php endif; ?>
+
+                const owl = $("#mgs-slider-<?= $blockId ?>").owlCarousel({
+                    items: <?= $items; ?>,
+                    loop: <?= $this->getLoop(); ?>,
+                    nav: <?= $this->getControlNav(); ?>,
+                    dots: <?= $this->getControlDots(); ?>,
+                    autoplayTimeout: <?= $this->getAutoSpeed(); ?>,
+                    rtl: <?= $this->getRtl(); ?>,
+                    autoplay: <?= $this->getAutoPlay(); ?>,
+                    autoplayHoverPause: <?= $this->getStopAuto() ? 'true' : 'false'; ?>,
+                    navText: <?= $navHtml ?>,
+                    margin: <?= $margin ?>,
+                    autoHeight: false,
+                    onInitialized: function(){
+                        <?php if ($items > 1 && ($navPosition=='top-left' || $navPosition=='top-right')): ?>
+                            $("#mgs-slider-<?= $blockId ?> .owl-nav").attr('style', 'top: <? $this->getNavTop() ?>px');
+                            $("#page-header-sliders").addClass('loaded');
+                        <?php else: ?>
+                            $("#page-header-sliders").addClass('loaded');
+                        <?php endif; ?>
+                    },
+                    responsive: {
+                        0:{
+                            items: <?= $this->getItemsMobile(); ?>,
+                            nav: false
+                        },
+                        767:{
+                            items: <?= $this->getItemsTablet(); ?>,
+                            nav: false
+                        },
+                        992:{
+                            items: <?= $items; ?>,
+                            nav: <?= $this->getControlNav(); ?>
+                        }
+                    }
+                });
+
+                const owlTimer = setInterval(function() {
+                    if(owl.height() > 1) clearInterval(owlTimer);
+                    owl.trigger('refresh.owl.carousel');
+                }, 300);
+            })(jQuery);
+        });
+    </script>
+<?php else: ?>
+    <div role="alert" class="alert alert-warning"><?= __('There are no sliders matching the selection.') ?></div>
+<?php endif ?>

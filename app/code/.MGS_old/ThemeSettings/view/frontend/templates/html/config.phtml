@@ -1,0 +1,45 @@
+<?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config')?>
+
+<?php /* Back To Top */ ?>
+<?php $backToTop = $themeSettingConfig->getStoreConfig('themesettings/general/back_to_top') ?>
+<?php if($backToTop): ?>
+	<a href="#" class="scroll-to-top"><i class="fa fa-arrow-up"></i></a>
+	<script type="text/javascript">
+		require([
+			'jquery'
+		], function(jQuery){
+			(function($) {
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 1) {
+						$('.scroll-to-top').css({bottom:"25px",opacity: 1});
+					} else {
+						$('.scroll-to-top').css({bottom:"-45px",opacity: 0});
+					}
+				});
+
+				$('.scroll-to-top').click(function(){
+					$('html, body').animate({scrollTop: '0px'}, 800);
+					return false;
+				});
+			})(jQuery);
+		});
+	</script>
+<?php endif ?>
+
+<?php /* Lazy Load */ ?>
+<?php $lazyLoad = $themeSettingConfig->getStoreConfig('themesettings/general/lazy_load') ?>
+<?php if($lazyLoad): ?>
+	<script type="text/javascript">
+		require(['jquery','mlazyload'],function($){
+			$(document).ready(function() {
+				$("img.lazy").unveil(25, function(){
+					var self = $(this);
+					setTimeout(function(){
+						self.removeClass('lazy');
+					}, 0);
+				});
+			});
+
+		});
+	</script>
+<?php endif ?>

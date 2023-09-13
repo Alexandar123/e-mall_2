@@ -1,0 +1,5 @@
+<?php if ($description = $block->getCurrentBrand()->getDescription()): ?>
+    <div class="brand-description">
+        <?= $this->helper('MGS\Brand\Helper\Data')->filter($description); ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,11 @@
+<?php $lookbook = $this->getLookbook() ?>
+<?php if($lookbook): ?>
+	<div class="lookbook-container">
+		<div class="mgs-lookbook-container">
+			<div class="pin__image">
+				<img src="<?php echo $this->getImageUrl($lookbook) ?>" alt="<?php $lookbook->getName() ?>" class="lookbook-image"/>
+			</div>
+			<?php echo $this->getPinHtml($lookbook) ?>
+		</div>
+	</div>
+<?php endif ?>

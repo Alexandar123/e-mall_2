@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Smile_ElasticsuiteCatalog dependency injection configuration.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCatalog
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="catalogProductSearchIndexHandler" type="\Smile\ElasticsuiteCore\Indexer\GenericIndexerHandler">
+        <arguments>
+            <argument name="indexName" xsi:type="string">catalog_product</argument>
+            <argument name="typeName" xsi:type="string">product</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\CatalogSearch\Model\Indexer\IndexerHandlerFactory">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="elasticsuite" xsi:type="string">catalogProductSearchIndexHandler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\FullFactory"
+                type="Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Action\FullFactory" />
+
+    <type name="Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Action\FullFactory">
+        <arguments>
+            <argument name="fullActionPool"  xsi:type="array">
+                <item name="default" xsi:type="string">Magento\CatalogSearch\Model\Indexer\Fulltext\Action\Full</item>
+                <item name="elasticsuite" xsi:type="string">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Action\Full</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Search\Dynamic\IntervalFactory">
+        <arguments>
+            <argument name="intervals" xsi:type="array">
+                <item name="elasticsuite" xsi:type="string">Magento\Framework\Search\Adapter\Mysql\Aggregation\Interval</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Search\Dynamic\DataProviderFactory">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="elasticsuite" xsi:type="string">Magento\CatalogSearch\Model\Adapter\Mysql\Dynamic\DataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\ResourceModel\EngineProvider">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="elasticsuite" xsi:type="string">Smile\ElasticsuiteCatalog\Model\ResourceModel\Engine</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Search\Model\EngineResolver">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="elasticsuite" xsi:type="string">elasticsuite</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Search\Model\Adminhtml\System\Config\Source\Engine">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="elasticsuite" xsi:type="string">ElasticSuite</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection"
+                type="Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection" />
+
+    <virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory"
+                 type="Magento\Catalog\Model\ResourceModel\Product\CollectionFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollection"
+                 type="Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection">
+        <arguments>
+            <argument name="searchRequestName" xsi:type="string">quick_search_container</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Layer related configurations -->
+    <type name="Magento\Catalog\Model\Layer">
+        <plugin name="createSortOrdersOnPrepareFrontCollection" type="Smile\ElasticsuiteCatalog\Plugin\LayerPlugin"/>
+    </type>
+
+    <virtualType name="Magento\CatalogSearch\Model\Layer\Category\Context" type="Magento\Catalog\Model\Layer\Category\Context">
+        <arguments>
+            <argument name="collectionProvider" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Layer\Category\ItemCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Smile\ElasticsuiteCatalog\Model\Layer\Category\ItemCollectionProvider" type="Magento\Catalog\Model\Layer\Search\ItemCollectionProvider">
+        <arguments>
+            <argument name="collectionFactory" xsi:type="object">Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magento\CatalogSearch\Model\Layer\Search\Context" type="Magento\Catalog\Model\Layer\Search\Context">
+        <arguments>
+            <argument name="collectionProvider" xsi:type="object">Magento\CatalogSearch\Model\Layer\Search\ItemCollectionProvider</argument>
+            <argument name="stateKey" xsi:type="object">Magento\CatalogSearch\Model\Layer\Search\StateKey</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Since Magento 2.3.2 -->
+
+    <!-- Enforce Elasticsuite context (virtualType defined above) into the Layer. Otherwise the Magento_Elasticsearch module would take precedence -->
+    <type name="Magento\Catalog\Model\Layer\Search">
+        <arguments>
+            <argument name="context" xsi:type="object">Magento\CatalogSearch\Model\Layer\Search\Context</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Layer\Category">
+        <arguments>
+            <argument name="context" xsi:type="object">Magento\CatalogSearch\Model\Layer\Category\Context</argument>
+        </arguments>
+    </type>
+    <!-- End of enforcing context. -->
+
+    <!-- Ensure proper collection for Advanced Search -->
+    <type name="Magento\CatalogSearch\Model\Search\ItemCollectionProvider">
+        <arguments>
+            <argument name="factories" xsi:type="array">
+                <!-- This collection is a virtual type -->
+                <item name="elasticsuite" xsi:type="object">Magento\CatalogSearch\Model\ResourceModel\Advanced\CollectionFactory</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- End of proper collection for Advanced Search -->
+
+    <!-- End since Magento 2.3.2 -->
+
+    <!-- End Layer related configuration -->
+
+    <type name="Magento\CatalogSearch\Block\Result">
+        <plugin name="smile_es_spellchecker" type="Smile\ElasticsuiteCatalog\Block\Plugin\ResultPlugin" />
+    </type>
+
+    <type name="\Magento\Catalog\Model\Category">
+        <plugin name="smile_elasticsuite_catalog_reindex_products_after_category_reindex" type="\Smile\ElasticsuiteCatalog\Plugin\Indexer\Category\Save\ReindexProductsAfterSave" />
+        <plugin name="smile_elasticsuite_catalog_reindex_category_after_category_reindex" type="\Smile\ElasticsuiteCatalog\Plugin\Indexer\Category\Save\ReindexCategoryAfterSave" />
+    </type>
+
+    <type name="Magento\CatalogInventory\Model\Indexer\Stock">
+        <plugin name="smile_elasticsuite_catalog_reindex_products_after_stock_reindex" type="\Smile\ElasticsuiteCatalog\Plugin\Indexer\Stock\ReindexProductsAfterStockUpdate"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Indexer\Product\Price">
+        <plugin name="smile_elasticsuite_catalog_reindex_products_after_price_reindex" type="\Smile\ElasticsuiteCatalog\Plugin\Indexer\Price\ReindexProductsAfterPriceUpdate"/>
+    </type>
+
+    <virtualType name="catalogCategorySearchIndexHandler" type="\Smile\ElasticsuiteCore\Indexer\GenericIndexerHandler">
+        <arguments>
+            <argument name="indexName" xsi:type="string">catalog_category</argument>
+            <argument name="typeName" xsi:type="string">category</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Smile\ElasticsuiteCatalog\Model\Category\Indexer\Fulltext">
+        <arguments>
+            <argument name="indexerHandler" xsi:type="object">catalogCategorySearchIndexHandler</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Smile\ElasticsuiteCatalog\Model\ResourceModel\Category\Indexer\Fulltext\Datasource\AttributeData"
+                 type="Smile\ElasticsuiteCatalog\Model\ResourceModel\Eav\Indexer\Fulltext\Datasource\AbstractAttributeData">
+        <arguments>
+            <argument name="entityType" xsi:type="string">Magento\Catalog\Api\Data\CategoryInterface</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Smile\ElasticsuiteCatalog\Model\Category\Indexer\Fulltext\Datasource\AttributeData">
+        <arguments>
+            <argument name="attributeHelper" xsi:type="object">Smile\ElasticsuiteCatalog\Helper\CategoryAttribute</argument>
+            <argument name="resourceModel" xsi:type="object">Smile\ElasticsuiteCatalog\Model\ResourceModel\Category\Indexer\Fulltext\Datasource\AttributeData</argument>
+        </arguments>
+    </type>
+
+    <type name="Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData">
+        <arguments>
+            <argument name="attributeHelper" xsi:type="object">Smile\ElasticsuiteCatalog\Helper\ProductAttribute</argument>
+            <argument name="resourceModel" xsi:type="object">Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Indexer\Fulltext\Datasource\AttributeData</argument>
+            <!--
+                Only values are taken into account for materializing forbidden attributes. If you want to remove one of these attributes from the forbidden attributes list,
+                you can add a new line with the same name and a non-existing attribute code, like:
+                <item name="visibility" xsi:type="string">_doNothing</item>
+            -->
+            <argument name="forbiddenChildrenAttributes" xsi:type="array">
+                <item name="visibility" xsi:type="string">visibility</item>
+                <item name="status" xsi:type="string">status</item>
+                <item name="price" xsi:type="string">price</item>
+                <item name="tax_class_id" xsi:type="string">tax_class_id</item>
+                <item name="name" xsi:type="string">name</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\PriceData">
+        <arguments>
+            <argument name="priceReaderPool" xsi:type="array">
+                <item name="default" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\PriceData\PriceDefault</item>
+                <item name="configurable" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\PriceData\PriceConfigurable</item>
+                <item name="grouped" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\PriceData\PriceGrouped</item>
+                <item name="bundle" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\PriceData\PriceGrouped</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Advanced Search Compatibility -->
+    <virtualType name="Magento\CatalogSearch\Model\ResourceModel\Advanced\CollectionFactory"
+                 type="Magento\Catalog\Model\ResourceModel\Product\CollectionFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Advanced\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Set reserved nested fields of elasticsuite as reserved to prevent anyone creating an attribute with the same name. -->
+    <type name="Magento\Catalog\Model\Product\ReservedAttributeList">
+        <arguments>
+            <argument name="reservedAttributes" xsi:type="array">
+                <item name="stock" xsi:type="string">stock</item>
+                <item name="category" xsi:type="string">category</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Handle saving of filterable attributes by category -->
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magento\Catalog\Api\Data\CategoryInterface" xsi:type="array">
+                    <item name="create" xsi:type="array">
+                        <item name="filterableAttributesPersistor" xsi:type="string">Smile\ElasticsuiteCatalog\Model\Category\FilterableAttribute\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="filterableAttributesPersistor" xsi:type="string">Smile\ElasticsuiteCatalog\Model\Category\FilterableAttribute\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Smile\ElasticsuiteCore\Model\Search\RequestMapper">
+        <plugin name="catalogProductRequestMapper" type="Smile\ElasticsuiteCatalog\Plugin\Search\RequestMapperPlugin" sortOrder="10"/>
+    </type>
+
+    <!-- Cleanup popular searches tag after fulltext reindex -->
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext">
+        <plugin name="smile_elasticsuite_cleanup_popular_searches_cache"
+                type="Smile\ElasticsuiteCatalog\Plugin\CatalogSearch\Indexer\FulltextPlugin"
+                sortOrder="100"
+        />
+    </type>
+
+    <type name="Smile\ElasticsuiteCatalog\Search\Request\Product\Attribute\AggregationResolver">
+        <arguments>
+            <argument name="aggregations" xsi:type="array">
+                <item name="price" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Attribute\Aggregation\Price</item>
+                <item name="decimal" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Attribute\Aggregation\Decimal</item>
+                <item name="boolean" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Attribute\Aggregation\Boolean</item>
+                <item name="category" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Attribute\Aggregation\Category</item>
+            </argument>
+            <argument name="defaultAggregation" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Attribute\Aggregation\DefaultAttribute</argument>
+        </arguments>
+    </type>
+
+    <preference for="Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Indexer\Fulltext\Datasource\InventoryDataInterface"
+                type="Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Indexer\Fulltext\Datasource\InventoryData" />
+
+    <virtualType name="Smile\ElasticsuiteCatalog\Search\Request\Product\Coverage\Builder"
+        type="\Smile\ElasticsuiteCore\Search\Request\Builder">
+        <arguments>
+            <argument name="aggregationResolver" xsi:type="object">\Smile\ElasticsuiteCatalog\Search\Request\Product\Coverage\Aggregation\Resolver</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="searchFilterableAttributesProvider" type="Smile\ElasticsuiteCatalog\Search\Request\Product\Aggregation\Provider\FilterableAttributes">
+        <arguments>
+            <argument name="attributeList" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Aggregation\Provider\FilterableAttributes\Search\AttributeList</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="categoryFilterableAttributesProvider" type="Smile\ElasticsuiteCatalog\Search\Request\Product\Aggregation\Provider\FilterableAttributes">
+        <arguments>
+            <argument name="attributeList" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Aggregation\Provider\FilterableAttributes\Category\AttributeList</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="autocompleteFilterableAttributesProvider" type="Smile\ElasticsuiteCatalog\Search\Request\Product\Aggregation\Provider\FilterableAttributes">
+        <arguments>
+            <argument name="attributeList" xsi:type="object">Smile\ElasticsuiteCatalog\Search\Request\Product\Aggregation\Provider\FilterableAttributes\Autocomplete\AttributeList</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Smile\ElasticsuiteCatalog\Search\Request\Product\Aggregation\Provider\FilterableAttributes\Category\AttributeList">
+        <arguments>
+            <argument name="collectionFactory" xsi:type="object">Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\FilterableAttribute\Category\CollectionFactory</argument>
+        </arguments>
+    </type>
+
+    <!-- Datasources resolver -->
+    <type name="Smile\ElasticsuiteCore\Index\DataSourceResolver">
+        <arguments>
+            <argument name="datasources" xsi:type="array">
+                <item name="catalog_product" xsi:type="array">
+                    <item name="prices" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\PriceData</item>
+                    <item name="categories" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\CategoryData</item>
+                    <item name="attributes" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\AttributeData</item>
+                    <item name="stock" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\InventoryData</item>
+                    <item name="searchPositions" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Product\Indexer\Fulltext\Datasource\SearchPositionData</item>
+                </item>
+                <item name="catalog_category" xsi:type="array">
+                    <item name="attributes" xsi:type="object">Smile\ElasticsuiteCatalog\Model\Category\Indexer\Fulltext\Datasource\AttributeData</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Dealing with index invalidation and mapping changes -->
+    <type name="\Smile\ElasticsuiteCatalog\Plugin\Catalog\Eav\AttributePlugin">
+        <arguments>
+            <!-- Index Operation is injected as a proxy so that it's instantiated just-in-time (after cleaning indices config cache) to fetch latest config version -->
+            <argument name="indexOperation" xsi:type="object">\Smile\ElasticsuiteCore\Api\Index\IndexOperationInterface\Proxy</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\ResourceModel\Attribute">
+        <!-- Disable the legacy plugin, we'll do nearly the same thing in our own plugin -->
+        <plugin name="catalogsearchFulltextIndexerAttribute" disabled="true"/>
+    </type>
+
+    <!-- Plugin to deal with index invalidation, mapping update and config flush when editing an attribute -->
+    <type name="\Magento\Catalog\Api\Data\ProductAttributeInterface">
+        <plugin name="resetIndexConfigAfterAttributeSave" type="\Smile\ElasticsuiteCatalog\Plugin\Catalog\Eav\AttributePlugin" />
+    </type>
+
+    <!-- Inject Category Name Weight just after reading XML files-->
+    <type name="Smile\ElasticsuiteCore\Index\Indices\Config\Reader">
+        <plugin name="injectCategoryWeight" type="\Smile\ElasticsuiteCatalog\Plugin\Index\Indices\Config\ReaderPlugin"/>
+    </type>
+    <type name="Smile\ElasticsuiteCore\Api\Index\MappingInterface">
+        <plugin name="copyCategoryName" type="\Smile\ElasticsuiteCatalog\Plugin\Index\MappingPlugin"/>
+    </type>
+</config>

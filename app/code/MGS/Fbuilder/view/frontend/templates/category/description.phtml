@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+<?php $currentCategory = $block->getCurrentCategory() ?>
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\CategoryBuilder') ?>
+<?php $canUsePanel = $builderHelper->acceptToUsePanel(); ?>
+<?php if($canUsePanel): ?>
+	<?php $isOverriden = $builderHelper->getScopeOverride($currentCategory) ?>
+	<?php echo $this->getLayout()->createBlock('MGS\Fbuilder\Block\Panel\CategoryDescription')->setCanUsePanel($canUsePanel)->setCategory($currentCategory)->setScopeOverride($isOverriden)->setTemplate('panel/category_description.phtml')->toHtml(); ?>
+<?php else: ?>
+	<?php if ($_description = $currentCategory->getDescription()): ?>
+		<div class="category-description">
+			<?= /* @escapeNotVerified */ $builderHelper->getContentByShortcode($this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($currentCategory, $_description, 'description')) ?>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>
+<?php
+    $generateHelper = $this->helper('MGS\Fbuilder\Helper\Generate');
+?>
+<?php if ($generateHelper->getCurrentTheme() == "Smartwave/porto"): ?>
+	<?php $_category_desc = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_settings/category/category_description'); ?>
+	<?php if ($_category_desc == "main_column" && $_description = $block->getCurrentCategory()->getDescription()): ?>
+		<?php 
+			$layout = $this->getLayout();
+			$cate_desc_main_column_block = $layout->getBlock('category_desc_main_column');
+			if($cate_desc_main_column_block){
+				$layout->unsetElement('category_desc_main_column');
+			}
+		?>
+	<?php endif;?>
+<?php endif; ?>
+ 

@@ -1,0 +1,362 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Content Box Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="content_box">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Content Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                
+                <div class="line form-group">
+                    <div class="col-des-12"><h4 class="no-margin"><?php echo __('Icon') ?></h4></div>
+                    <div class="col">
+                        <label class="control-label"><?php echo __('Icon font class') ?></label><br/>
+                        <input type="text" class="input-text input-icon-choose" id="icon" name="setting[icon]"<?php if ($exist && $settings['icon']): ?> value="<?php echo $settings['icon'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="icon_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="icon_font_size" name="setting[icon_font_size]"<?php if ($exist && $settings['icon_font_size']): ?> value="<?php echo $settings['icon_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    
+                    
+                    <div class="col">
+                        <label for="border" class="control-label"><?php echo __('Border') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="border" name="setting[border]"<?php if ($exist && $settings['border']): ?> value="<?php echo $settings['border'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="border_hover" class="control-label"><?php echo __('Hover border') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="border_hover" name="setting[border_hover]"<?php if ($exist && $settings['border_hover']): ?> value="<?php echo $settings['border_hover'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="border_width" class="control-label"><?php echo __('Border width') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="border_width" name="setting[border_width]"<?php if ($exist && $settings['border_width']): ?> value="<?php echo $settings['border_width'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                </div>
+                
+                <div class="line form-group">
+                    <div class="col">
+                        <label for="width" class="control-label"><?php echo __('Width') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="width" name="setting[width]"<?php if ($exist && $settings['width']): ?> value="<?php echo $settings['width'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="icon_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="icon_color" name="setting[icon_color]"<?php if ($exist && $settings['icon_color']): ?> value="<?php echo $settings['icon_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="icon_color_hover" class="control-label"><?php echo __('Hover color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="icon_color_hover" name="setting[icon_color_hover]"<?php if ($exist && $settings['icon_color_hover']): ?> value="<?php echo $settings['icon_color_hover'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="icon_background" class="control-label"><?php echo __('Background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="icon_background" name="setting[icon_background]"<?php if ($exist && $settings['icon_background']): ?> value="<?php echo $settings['icon_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="icon_background_hover" class="control-label"><?php echo __('Hover background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="icon_background_hover" name="setting[icon_background_hover]"<?php if ($exist && $settings['icon_background_hover']): ?> value="<?php echo $settings['icon_background_hover'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col-des-6" style="border-right: 1px solid #ccc;">
+
+                        
+                        <div class="line form-group">
+                            <h4 class="no-margin-top col-des-12"><?php echo __('Title') ?></h4>
+                            <div class="col-des-12">
+                                <input type="text" class="input-text" id="subtitle" name="setting[subtitle]"<?php if ($exist && $settings['subtitle']): ?> value="<?php echo $settings['subtitle'] ?>"<?php endif ?> onchange="setPreview()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fields">
+                            <div class="col-des-4">
+                                <label for="subtitle_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="subtitle_font_size" name="setting[subtitle_font_size]"<?php if ($exist && $settings['subtitle_font_size']): ?> value="<?php echo $settings['subtitle_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col-des-4">
+                                <label for="subtitle_font_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="subtitle_font_color" name="setting[subtitle_font_color]"<?php if ($exist && $settings['subtitle_font_color']): ?> value="<?php echo $settings['subtitle_font_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col-des-4">
+                                <label for="subtitle_color_hover" class="control-label"><?php echo __('Hover color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="subtitle_color_hover" name="setting[subtitle_color_hover]" <?php if ($exist && $settings['subtitle_color_hover']): ?> value="<?php echo $settings['subtitle_color_hover'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                        </div>
+                        
+                        <hr/>
+                        
+                        <div class="line form-group">
+                            <h4 class="no-margin-top col-des-12"><?php echo __('Description') ?></h4>
+                            <div class="col-des-12">
+                                <textarea class="input-text" id="text_content" name="setting[text_content]" onchange="setPreview()"><?php if ($exist && $settings['text_content']): ?><?php echo $settings['text_content'] ?><?php endif ?></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fieldss">
+                            <label for="desc_font_size" class="col-des-3 control-label"><?php echo __('Font size') ?></label>
+                            <div class="col-des-9">
+                                <input type="text" class="input-text validate-number" id="desc_font_size" name="setting[desc_font_size]"<?php if ($exist && $settings['desc_font_size']): ?> value="<?php echo $settings['desc_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group fields">
+                            <label for="style" class="col-des-3 control-label"><?php echo __('Style') ?></label>
+                            <div class="col-des-9">
+                                <select name="setting[style]" id="style" onchange="setPreview()">
+                                    <option value="vertical"<?php if ($exist && ($settings['style']=='vertical')): ?> selected="selected"<?php endif ?>><?php echo __('Vertical'); ?></option>
+                                    <option value="horizontal"<?php if ($exist && ($settings['style']=='horizontal')): ?> selected="selected"<?php endif ?>><?php echo __('Horizontal'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fields">
+                            <label for="link" class="col-des-3 control-label"><?php echo __('Link') ?></label>
+                            <div class="col-des-9">
+                                <input type="text" class="input-text" id="link" name="setting[link]"<?php if ($exist && $settings['link']): ?> value="<?php echo $settings['link'] ?>"<?php endif ?> onchange="setPreview()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="mgs-content-box" id="content-box-sample">
+                            <div class="icon-wrapper">
+                                <span class="" id="icon-font"></span>
+                            </div>
+                            <div class="content-wrapper">
+                                <h4></h4>
+                                <div class="content"></div>
+                            </div>
+                        </div>
+                        
+                        <style type="text/css" id="content-box-custom-css"></style>
+                    </div>
+                </div>
+                
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    
+    
+</div>
+
+<?php
+    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+        ->setExist($exist)
+        ->setBuilderChild($child)
+        ->setBuilderHelper($helper)
+        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/font_list.phtml')->toHtml() ;
+?>
+    
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                setPreview();
+            });
+            
+            $("#text_content, #subtitle, #link").keypress(function( event ){
+                setPreview();
+            });
+        })(jQuery);
+    });
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                fontClass = $('#icon').val();
+                boxStyle = $('#style').val();
+                subtitle = $('#subtitle').val();
+                textContent = $('#text_content').val();
+                link = $('#link').val();
+                $('#icon-font').attr('class', fontClass);
+                $('#content-box-sample').removeClass('box-vertical');
+                $('#content-box-sample').removeClass('box-horizontal');
+                $('#content-box-sample').addClass('box-'+boxStyle);
+                
+                if(subtitle!=''){
+                    $('#content-box-sample h4').html(subtitle);
+                }
+                
+                if(textContent!=''){
+                    $('#content-box-sample .content').html(textContent);
+                }
+                
+                if(link!=''){
+                    $('#content-box-sample').addClass('cursor');
+                }else{
+                    $('#content-box-sample').removeClass('cursor');
+                }
+            })(jQuery);
+        });
+        
+        changeContentStyle();
+    }
+    
+    function changeContentStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                icon_font_size = $('#icon_font_size').val();
+                border = $('#border').val();
+                border_hover = $('#border_hover').val();
+                border_width = $('#border_width').val();
+                width = $('#width').val();
+                icon_color = $('#icon_color').val();
+                icon_color_hover = $('#icon_color_hover').val();
+                icon_background = $('#icon_background').val();
+                icon_background_hover = $('#icon_background_hover').val();
+                subtitle_font_size = $('#subtitle_font_size').val();
+                subtitle_font_color = $('#subtitle_font_color').val();
+                subtitle_color_hover = $('#subtitle_color_hover').val();
+                desc_font_size = $('#desc_font_size').val();
+                style = $('#style').val();
+                
+                customStyle = '*{}';
+                
+                $width = 100;
+                if(width!=''){
+                    $width = parseFloat(width);
+                }
+                
+                if(icon_font_size!=''){
+                    customStyle += '#content-box-sample.mgs-content-box .icon-wrapper{font-size:'+icon_font_size+'px}';
+                }
+                
+                if(border!='' && border_width!=''){
+                    $lineHeight = $width - parseFloat(border_width) - parseFloat(border_width);
+                    customStyle += '#content-box-sample.mgs-content-box .icon-wrapper{border:'+border_width+'px solid '+border+'; line-height:'+$lineHeight+'px}';
+                }
+                
+                if(border_hover!='' && border_width!=''){
+                    customStyle += '#content-box-sample.mgs-content-box:hover .icon-wrapper{border:'+border_width+'px solid '+border_hover+'}';
+                }
+                
+                if(width!=''){
+                    customStyle += '#content-box-sample.mgs-content-box .icon-wrapper{width:'+width+'px; height:'+width+'px;';
+                    if(border=='' || border_width==''){
+                        customStyle += 'line-height:'+width+'px';
+                    }
+                    customStyle += '}';
+                    
+                    if(style=='horizontal'){
+                        $marginLeft = parseFloat(width) + 20;
+                        customStyle += '#content-box-sample.mgs-content-box.box-horizontal .content-wrapper{margin-left:'+$marginLeft+'px}';
+                    }
+                }
+                
+                if(icon_color!=''){
+                    customStyle += '#content-box-sample.mgs-content-box .icon-wrapper{color:'+icon_color+'}';
+                }
+                
+                if(icon_color_hover!=''){
+                    customStyle += '#content-box-sample.mgs-content-box:hover .icon-wrapper{color:'+icon_color_hover+'}';
+                }
+                
+                if(icon_background!=''){
+                    customStyle += '#content-box-sample.mgs-content-box .icon-wrapper{background:'+icon_background+'}';
+                }
+                
+                if(icon_background_hover!=''){
+                    customStyle += '#content-box-sample.mgs-content-box:hover .icon-wrapper{background:'+icon_background_hover+'}';
+                }
+                
+                if(subtitle_font_size!=''){
+                    customStyle += '#content-box-sample.mgs-content-box .content-wrapper h4{font-size:'+subtitle_font_size+'px}';
+                }
+                
+                if(subtitle_font_color!=''){
+                    customStyle += '#content-box-sample.mgs-content-box .content-wrapper h4{color:'+subtitle_font_color+'}';
+                }
+                
+                if(subtitle_color_hover!=''){
+                    customStyle += '#content-box-sample.mgs-content-box:hover .content-wrapper h4{color:'+subtitle_color_hover+'}';
+                }
+                
+                if(desc_font_size!=''){
+                    customStyle += '#content-box-sample.mgs-content-box .content-wrapper .content{font-size:'+desc_font_size+'px}';
+                }
+                
+                $('#content-box-custom-css').html(customStyle);
+            })(jQuery);
+        });
+    }
+</script>

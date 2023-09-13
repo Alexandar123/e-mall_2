@@ -1,0 +1,50 @@
+<div class="page-footer">
+   <div class="footer content">
+       <div class="footer-container">
+           <div class="middle-footer">
+               <div class="frame">
+                   <div class="line">
+                       <div class="col-des-3 col-tb-6 col-mb-12">
+                           <!-- Static block: footer_contact_us -->
+                           <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_contact_us')->toHtml() ?>
+                       </div>
+                       <div class="col-des-2 col-tb-6 col-mb-12">
+                           <!-- Static block: footer_block_categories -->
+                           <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_block_categories')->toHtml() ?>
+                       </div>
+                       <div class="col-des-2 col-tb-6 col-mb-12">
+                           <!-- Static block: footer_block_infomation -->
+                           <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_block_infomation')->toHtml() ?>
+                       </div>
+                       <div class="col-des-2 col-tb-6 col-mb-12">
+                           <!-- Static block: footer_block_quick_link -->
+                           <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_block_quick_link')->toHtml() ?>
+                       </div>
+                       <div class="col-des-3 col-tb-6 col-mb-12">
+                           <!-- Static block: footer_block_subscribe -->
+                           <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_block_subscribe')->toHtml() ?>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="bottom-footer">
+               <div class="frame">
+                   <div class="line">
+                       <div class="col-des-6 col-tb-12 col-mb-12 copyright">
+                           <address>
+                               <small class="copyright">
+                                   <span><?= __('Copyright © 1999 - 2022, 13 Moons LLC') ?></span>
+                               </small>
+                           </address>
+                       </div>
+                       <div class="col-des-6 col-tb-12 col-mb-12">
+                           <!-- Static block: footer_block_menu_bottom -->
+                           <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_block_menu_bottom')->toHtml() ?>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+

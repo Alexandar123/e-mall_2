@@ -1,0 +1,64 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); ?>
+<?php $moduleManager = $objectManager->get('\Magento\Framework\Module\Manager'); ?>
+<?php $_helper = $this->helper('MGS\Ajaxlayernavigation\Helper\Config');?>
+<?php if ($block->canShowBlock()): ?>
+    <div class="block filter mgs-filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+        <div class="block-title filter-title" data-count="<?php /* @escapeNotVerified */ echo $filtered; ?>">
+            <strong class="title" data-role="title"><span class="icon pe-7s-edit"></span></strong>
+        </div>
+        <div class="block-content filter-content">
+            <h3 class="close-filter-fixed">
+                <?php echo __('Filter'); ?>
+            </h3>
+            <div class="block-filter-content">
+                <?php echo $block->getChildHtml('state') ?>
+                <?php $wrapOptions = false; ?>
+                <?php foreach ($block->getFilters() as $filter): ?>
+            <?php if ($filter->getItemsCount()): ?>
+            <?php if (!$wrapOptions): ?>
+                <div class="filter-options" id="narrow-by-list">
+                    <?php  $wrapOptions = true; endif; ?>
+                    <div data-role="collapsible" class="filter-options-item"  data-mage-init='{
+                    "collapsible":{
+                        "collapsible": true,
+                        "openedState": "active",
+                        "animate":{ "duration" :1000, "easing":"easeOutCubic"},
+                        "active": true
+                    }}'>
+                        <div data-role="title" class="filter-options-title"><?php echo __($_helper->getFilterByText(), $block->escapeHtml(__($filter->getName()))) ?></div>
+                        <div data-role="content" class="filter-options-content"><?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?></div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php endforeach; ?>
+                    <?php if ($wrapOptions): ?>
+                </div>
+            <?php else: ?>
+                <script>
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $('#layered-filter-block').addClass('filter-no-options');
+                    });
+                </script>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

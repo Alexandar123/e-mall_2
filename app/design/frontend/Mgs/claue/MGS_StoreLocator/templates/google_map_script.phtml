@@ -1,0 +1,10 @@
+<?php
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$apikey = $themeSettingConfig->getStoreConfig('fbuilder/social/google_api_key');
+if (empty($apikey)) {
+    $apikey = $themeSettingConfig->getStoreConfig('locator/general/store_api_key');
+}
+?>
+<?php if ($apikey): ?>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?= $apikey ?>&libraries=places"></script>
+<?php endif; ?>

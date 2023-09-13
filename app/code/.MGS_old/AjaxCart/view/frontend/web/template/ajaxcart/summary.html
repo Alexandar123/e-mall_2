@@ -1,0 +1,14 @@
+<div class="summary-content">
+	<!-- ko if: cartSidebar().summary_count -->
+	<div class="summary-field">
+    	<span class="title"><!-- ko i18n: 'Total Item' --><!-- /ko --></span>
+        <span class="value" data-bind="text: cartSidebar().summary_count"></span>
+    </div>
+	<!-- /ko -->
+    <!-- ko if: cartSidebar().subtotal -->
+	<div class="summary-field">
+    	<span class="title"><!-- ko i18n: 'Subtotal' --><!-- /ko --></span>
+        <span class="value" data-bind="html: cartSidebar().subtotal"></span>
+    </div>
+	<!-- /ko -->
+</div>

@@ -1,0 +1,99 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $helper = $this->helper('MGS\Protabs\Helper\Data') ?>
+<?php $tabCollection = $helper->getTabsCollection() ?>
+<?php if($tabCollection->getSize()): ?>
+	<div class="product info detailed">
+		<?php $layout = $block->getLayout(); ?>
+		<div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+			<?php foreach($tabCollection as $_tab): ?>
+				<?php if(($_tab->getTabType() == 'attribute') || ($_tab->getTabType() == 'static')): ?>
+					<?php if(trim($_tab->getValue()) !=''): ?>
+						<?php if($_tab->getTabType() == 'attribute'): ?>
+							<?php 
+								$html = $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Description')
+								->setAtCall($helper->convertAttributeToCallName($_tab->getValue()))
+								->setAtCode($_tab->getValue())
+								->setCssClass('description')
+								->setAtLabel('none')
+								->setAtType($helper->getAttributeType($_tab->getValue()))
+								->setTitle($_tab->getTitle())
+								->setTemplate('MGS_Protabs::product/view/attribute.phtml')
+								->toHtml() 
+							?>
+						<?php else: ?>
+							<?php $html = $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($_tab->getValue())->toHtml() ?>
+						<?php endif ?>
+						
+						<?php 
+							if (!trim($html)) {
+								continue;
+							}
+							$alias = $_tab->getTabType().$_tab->getValue();
+							$label = $_tab->getTitle();
+						?>
+						
+						<div class="data item title"
+							 aria-labeledby="tab-label-<?php echo $alias;?>-title"
+							 data-role="collapsible" id="tab-label-<?php echo $alias;?>">
+							<a class="data switch"
+							   tabindex="-1"
+							   data-toggle="switch"
+							   href="#<?php echo $alias; ?>"
+							   id="tab-label-<?php echo $alias;?>-title">
+								<?php echo $label; ?>
+							</a>
+						</div>
+						<div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+							<?php /* @escapeNotVerified */ echo $html; ?>
+						</div>
+						
+					<?php endif ?>
+				<?php else: ?>
+					<?php 
+						$html = $layout->renderElement($_tab->getTabType());
+						if (!trim($html)) {
+							continue;
+						}
+						$alias = $layout->getElementAlias($_tab->getTabType());
+						
+						$label = $_tab->getTitle();
+						
+						
+						if($alias == 'reviews'){
+							$oldLabel = $block->getChildData($alias, 'title');
+							if(is_object($oldLabel)){
+								$labelObject = (array)$oldLabel;
+								$countArray = end($labelObject);
+								if(isset($countArray[0])){
+									$label = $label.' '.$countArray[0].'';
+								}
+							}
+						}
+					?>
+					<div class="data item title"
+						 aria-labeledby="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title"
+						 data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>">
+						<a class="data switch"
+						   tabindex="-1"
+						   data-toggle="switch"
+						   href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
+						   id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
+							<?php /* @escapeNotVerified */ echo $label; ?>
+						</a>
+					</div>
+					<div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+						<?php /* @escapeNotVerified */ echo $html; ?>
+					</div>
+				<?php endif ?>
+			<?php endforeach ?>
+		</div>
+	</div>
+<?php endif ?>

@@ -1,0 +1,93 @@
+<script>
+    require([
+        'jquery'
+    ], function(jQuery){
+        (function($) {
+            $(document).ajaxComplete(function() {
+                $('.fieldset-wrapper-title').click(function(){
+                    if(($('#buttonsproduct_form_description').length > 0) && ($('.copy-description-template').length==0)){
+                        var buttonHtml = '<span class="copy-description-template"><button type="button" class="btn button" onclick="showHideCopyForm()"><span><?php echo __("Copy Description Template") ?></span></button><div class="mgs-file-form"><table><tbody><tr><td><label><?php echo __("Source:") ?></label></td><td style="white-space: nowrap;"><input type="text" class="admin__control-text product_id" placeholder="Product Id"></td><td><button type="button" class="action-check" onclick="loadAvailableStore(\'product\'); return false"><span><?php echo __("Check") ?></span></button><button type="button" class="action-save" onclick="copyProductDescriptionTemplate()"><span><?php echo __("Apply") ?></span></button></td></tr></tbody></table></div></span>';
+                        $("#buttonsproduct_form_description").append(buttonHtml);
+                        
+                        
+                    }
+                });
+                
+            });
+        })(jQuery);
+    });
+    
+    function showHideCopyForm(){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                $('.copy-description-template').toggleClass('_show');
+            })(jQuery);
+        });
+    }
+    
+    function loadAvailableStore(type){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                var productId = $('.mgs-file-form .'+type+'_id').val();
+                if(isNaN(productId) || productId=='' || productId==0 || productId=='0'){
+                    $('.mgs-file-form .'+type+'_id').addClass("invalid");
+                }else{
+                    $('.mgs-file-form .'+type+'_id').removeClass("invalid");
+                    $('.mgs-file-form .action-check span').html("Checking...");
+                    $('.mgs-file-form .action-check').attr("disabled", "disabled");
+                    $.ajax({
+                        url:'<?php echo $this->getUrl("adminhtml/fbuilder/checkstore") ?>' + '?product_id='+productId+'&type='+type+'&form_key='+FORM_KEY,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        success: function(data){
+                            $('.mgs-file-form .action-check').removeAttr("disabled");
+                            $('.mgs-file-form .action-check span').html("Check");
+                            var result = jQuery.parseJSON(data);
+                            if(result.result=='success'){
+                                $(result.data).insertAfter('.mgs-file-form .'+type+'_id');
+                                $('.mgs-file-form .action-check').hide();
+                                $('.mgs-file-form .action-save').show();
+                                $('.mgs-file-form .'+type+'_id').attr('readonly','readonly');
+                            }else{
+                                $('.mgs-file-form .'+type+'_id').addClass("invalid");
+                            }
+                        }
+                    });
+                }
+            })(jQuery);
+        });
+    }
+    
+    function copyProductDescriptionTemplate(){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                $('.mgs-file-form .action-save').attr("disabled", "disabled");
+                $('.mgs-file-form .action-save span').html("Saving...");
+                var parentProductId = $('.mgs-file-form .product_id').val();
+                var storeId = $('.mgs-file-form .store_id').val();
+                var productId = '<?php echo $this->getRequest()->getParam("id") ?>';
+                var ajaxUrl = '<?php echo $this->getUrl("adminhtml/fbuilder/saveproductdescription") ?>' + '?parent_product_id='+parentProductId+'&product_id='+productId+'&storeId='+storeId+'&form_key='+FORM_KEY;
+                <?php if ($storeId = $this->getRequest()->getParam('store')): ?>
+                    ajaxUrl += '&store=<?php echo $storeId ?>';
+                <?php endif ?>
+                $.ajax({
+                    url:ajaxUrl,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(data){
+                        location.reload();
+                    }
+                });
+                
+            })(jQuery);
+        });
+    }
+</script>

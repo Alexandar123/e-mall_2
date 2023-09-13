@@ -1,0 +1,16 @@
+<?php
+	$_mgsHelper = $this->helper('MGS\InstantSearch\Helper\Data');
+	$isEndableMgsBlog = false;
+	if($_mgsHelper->isModuleEnabled('MGS_Blog') && $_mgsHelper->isOutputEnabled('MGS_Blog')){
+		$isEndableMgsBlog = true;
+	}
+?>
+<?php if(!$isEndableMgsBlog) : ?>
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function($){
+		$('#instantsearch_additional_blog').closest('div.section-config').hide();
+	});
+</script>
+<?php endif; ?>

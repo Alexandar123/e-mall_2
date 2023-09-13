@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <referenceBlock name="adminhtml.newslettrer.subscriber.grid.columnSet.firstname" remove="true"/>
+    <referenceBlock name="adminhtml.newslettrer.subscriber.grid.columnSet.lastname" remove="true"/>
+    <referenceBlock name="adminhtml.newslettrer.subscriber.grid.columnSet.type" remove="true"/>
+    <referenceBlock name="adminhtml.newslettrer.subscriber.grid.columnSet">
+      <block class="Magento\Backend\Block\Widget\Grid\Column" as="custom_firstname">
+        <arguments>
+          <argument name="header" xsi:type="string" translate="true">Firstname</argument>
+          <argument name="index" xsi:type="string">c_firstname</argument>
+          <argument name="header_css_class" xsi:type="string">col-firstname</argument>
+          <argument name="column_css_class" xsi:type="string">ccol-firstname</argument>
+        </arguments>
+      </block>
+      <block class="Magento\Backend\Block\Widget\Grid\Column" as="custom_surname">
+        <arguments>
+          <argument name="header" xsi:type="string" translate="true">Surname</argument>
+          <argument name="index" xsi:type="string">c_surname</argument>
+          <argument name="header_css_class" xsi:type="string">col-surname</argument>
+          <argument name="column_css_class" xsi:type="string">ccol-surname</argument>
+        </arguments>
+      </block>
+    </referenceBlock>
+  </body>
+</page>

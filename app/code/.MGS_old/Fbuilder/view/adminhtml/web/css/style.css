@@ -1,0 +1,43 @@
+#mColorPicker{overflow:hidden}
+#fbuilder_single_slider_color,
+#fbuilder_single_slider_border,
+#fbuilder_single_slider_background,
+#fbuilder_single_slider_hover_color,
+#fbuilder_single_slider_hover_border,
+#fbuilder_single_slider_hover_background,
+#fbuilder_single_slider_dot_background,
+#fbuilder_single_slider_dot_active_background,
+#fbuilder_multiple_slider_color,
+#fbuilder_multiple_slider_border,
+#fbuilder_multiple_slider_background,
+#fbuilder_multiple_slider_hover_color,
+#fbuilder_multiple_slider_hover_border,
+#fbuilder_multiple_slider_hover_background,
+#fbuilder_multiple_slider_dot_background,
+#fbuilder_multiple_slider_dot_active_background{width:93% !important}
+#mColorPickerFooter a{display:none !important}
+.copy-description-template{position:relative}
+.mgs-file-form{padding:8px; border: 1px solid #007bdb; box-shadow: 1px 1px 5px rgba(0,0,0,0.5); color: #41362f; font-weight: 400; background-color: #fff; position:absolute; z-index:100; left:0; margin-top:5px; display:none}
+.copy-description-template._show .mgs-file-form{display:block}
+.mgs-file-form table {
+	width: 100%;
+}
+.mgs-file-form label {
+	display: inline-block;
+	margin-right: 8px;
+	max-width: 84px;
+	vertical-align: middle;
+}
+.mgs-file-form input {
+	vertical-align: middle;
+	margin-right: 8px;
+}
+.mgs-file-form .admin__control-text.category_id, .mgs-file-form .admin__control-text.product_id {
+	width: 100px;
+}
+.mgs-file-form .action-save {
+	display: none;
+}
+.mgs-file-form .admin__control-text.category_id.invalid, .mgs-file-form .admin__control-text.product_id.invalid {
+	border: 1px solid #ff0000;
+}

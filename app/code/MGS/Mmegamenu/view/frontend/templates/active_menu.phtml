@@ -1,0 +1,17 @@
+<?php
+$helperMegamenu = $this->helper('MGS\Mmegamenu\Helper\Data');
+$currentCate = $helperMegamenu->getCurentCateId();
+$currentCateId = $currentCate->getId(); 
+$currentCateClass = 'mmegamenu-' . $currentCateId;
+?>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function($){
+        $(document).ready(function(){
+            $("#mainMenu .<?php echo $currentCateClass ?>").addClass('active');
+            $("#mainMenu li.level0").has('.<?php echo $currentCateClass ?>').addClass('active');
+        });
+    });
+</script>

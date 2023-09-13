@@ -1,0 +1,133 @@
+// /**
+//  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+	.message {
+		&.info,
+		&.error,
+		&.warning,
+		&.notice,
+		&.success {
+			padding: 12px 20px 12px 45px;
+			display: block;
+			font-size: 14px;
+			position: relative;
+			margin: 0;
+            .lib-border-radius(5px);
+			> *:first-child:before {
+				-webkit-font-smoothing: antialiased;
+				font-size: 24px;
+				line-height: 24px;
+				font-family: 'fontAwesome';
+				vertical-align: middle;
+				display: inline-block;
+				font-weight: normal;
+				overflow: hidden;
+				left: 0;
+				width: 45px;
+				position: absolute;
+				text-align: center;
+				top: 50%;
+				.lib-transform(translateY(-50%));
+			}
+			* a {
+				color: @theme-primary-color;
+				&:hover {
+					text-decoration: underline
+				}
+
+			}
+			.close {
+			    position: absolute;
+				cursor: pointer;
+				right: 6px;
+				top: 50%;
+				.lib-transform(translateY(-50%));
+				font-size: 40px;
+				color: #000;
+			}
+		}
+		&.info {
+			background: #d9edf7;
+			color: #31708f;
+			> *:first-child:before {
+				color: #31708f;
+				content: '\f024';
+			}
+		}
+		&.error {
+            background: #fae5e5;
+			color: #1979c3;
+			> *:first-child:before {
+				color: #b30000;
+				content: '\f06a';
+			}
+		}
+		&.warning {
+			 background: #fdf0d5;
+			color: #6f4400;
+			> *:first-child:before {
+				color: #b30000;
+				content: '\f071';
+			}
+		}
+		&.notice {
+             background: #fdf0d5;
+			color: #6f4400;
+			> *:first-child:before {
+				color: #c07600;
+				content: '\f12a';
+			}
+		}
+		&.success {
+			background: #e5efe5;
+			color: #006400;
+			> *:first-child:before {
+				color: #006400;
+				content: '\f00c';
+			}
+		}
+	}
+
+	.column.main,
+	.sidebar {
+		.message {
+			&.info,
+			&.error,
+			&.warning,
+			&.notice,
+			&.success {
+				position: relative;
+				max-width: 100%;
+				left: auto;
+				right: auto;
+				top: auto;
+			}
+		}
+	}
+    .footer.page-footer {
+        .message {
+            &.info.empty{
+                position: relative;
+            }
+        }
+    }
+
+    .page.messages {
+        .messages {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            & > .message {
+                margin-bottom: 15px;
+            }
+        }
+    }
+}

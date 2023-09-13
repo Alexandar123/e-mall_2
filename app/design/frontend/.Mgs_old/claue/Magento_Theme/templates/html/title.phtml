@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+$cssClass = $block->getCssClass() ? ' ' . $block->getCssClass() : '';
+$title = '';
+if (trim($block->getPageHeading())) {
+    $title = '<span class="base" data-ui-id="page-title-wrapper" ' .  $block->getAddBaseAttribute() . '>'
+        . $block->escapeHtml($block->getPageHeading()) . '</span>';
+}
+?>
+
+<?php
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$layoutType = $themeSettingConfig->getStoreConfig('themesettings/page_title/design') ? $themeSettingConfig->getStoreConfig('themesettings/page_title/design') : 1;
+
+$customClass = $customStyle = "";
+if($themeSettingConfig->getStoreConfig('themesettings/page_title/background') == 2){
+	/* Image */
+	if($image = $themeSettingConfig->getStoreConfig('themesettings/page_title/background_image')){
+		$customClass = "ttbg-image";
+		if($themeSettingConfig->getStoreConfig('themesettings/page_title/bg_repeat')){
+			$customClass .= " ttbg-image-repeat";
+		}
+		$imageBg = $themeSettingConfig->getPageTitleBackground();
+		$customStyle = "background-image: url(".$imageBg.");";
+	}
+}elseif($themeSettingConfig->getStoreConfig('themesettings/page_title/background') == 3) {
+	/* Color */
+	if($color = $themeSettingConfig->getStoreConfig('themesettings/page_title/background_color')){
+		$customClass = "ttbg-color";
+		$customStyle = "background-color: ".$color.";";
+	}
+}
+?>
+<?php if ($title): ?>
+
+    <div class="layout_type<?= $layoutType ?> page-title-wrapper<?php /* @escapeNotVerified */ echo $cssClass; ?> <?php if($layoutType == 1): ?><?= $customClass ?><?php endif ?>" <?php if($layoutType == 1): ?>style="<?= $customStyle ?>"<?php endif ?>>
+        <h1 <?php if($layoutType == 2): ?>style="<?= $customStyle ?>"<?php endif ?> class="page-title <?php if($layoutType == 2): ?><?= $customClass ?><?php endif ?>"
+            <?php if ($block->getId()): ?> id="<?php /* @escapeNotVerified */ echo $block->getId();?>" <?php endif; ?>
+            <?php if ($block->getAddBaseAttributeAria()): ?>
+                aria-labelledby="<?php /* @escapeNotVerified */ echo $block->getAddBaseAttributeAria(); ?>"
+            <?php endif; ?>>
+            <?php /* @escapeNotVerified */ echo $title ?>
+        </h1>
+        <?= $block->getChildHtml(); ?>
+    </div>
+<?php endif; ?>
+

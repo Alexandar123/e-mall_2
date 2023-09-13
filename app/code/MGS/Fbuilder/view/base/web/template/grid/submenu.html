@@ -1,0 +1,36 @@
+<!--
+/**
+* @author MGS Team
+* @copyright Copyright (c) 2019 MGS (http://www.magesolution.com)
+* @package MGS_Fbuilder
+*/
+-->
+
+<ul
+    class="action-submenu"
+    data-bind="foreach: {data: action.actions, as: 'action'},
+    css: { _active: action.visible }">
+    <li data-bind="css: { '_visible': $data.visible}">
+        <div data-bind="" class="mgs-file-form">
+            <table>
+                <tr>
+                    <td>
+                        <label data-bind="i18n: action.fieldLabel"></label>
+                    </td>
+                    <td style="white-space: nowrap;">
+                        <input type="text" class="admin__control-text product_id" data-bind="attr: { placeholder: action.placeholder}">
+                    </td>
+                    <td>
+						<button type="button" class="action-check" onclick="loadAvailableStore(); return false">
+                            <span data-bind="i18n: 'Check'">Check</span>
+                        </button>
+						
+                        <button type="button" data-bind="click: function(){$parent.applyMassaction(action)}" class="action-save">
+                            <span data-bind="i18n: 'Apply'">Apply</span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </li>
+</ul>

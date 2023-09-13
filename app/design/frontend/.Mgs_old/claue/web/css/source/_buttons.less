@@ -1,0 +1,196 @@
+// /**
+//  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+	button  {
+		font-family: @font-family__base;
+        -webkit-appearance: button;
+        cursor: pointer;
+	}
+	.btn,
+	.btn-secondary,
+	.action-secondary,
+	.action-primary,
+	.btn-default	{
+		display: inline-block;
+		font-size: @theme-button-font-size;
+		line-height: 36px;
+		font-weight: 600;
+        height: 40px;
+		outline: none;
+		cursor: pointer;
+		text-decoration: none;
+		.lib-border-radius(@theme-button-border-radius);
+		.lib-transition(all 300ms);
+		padding: @theme-button-padding;
+		border-width: @theme-button-border-width;
+		border-style: @theme-button-border-type;
+		text-align: center;
+		&:hover,
+		&._hover,
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
+		&.btn-lg {
+			padding: 0 40px;
+			height: 44px;
+			line-height: 40px;
+		}
+		&.btn-sm {
+			font-size: 14px;
+			padding: 0 30px;
+		}
+		&.btn-xs {
+			padding: 0 25px;
+			line-height: 34px;
+			height: 36px;
+		}
+	}
+
+    .btn:hover,
+    .btn:focus,
+    .btn:active {
+        color: #fff;
+        border-color: #f8991d;
+        background-color: #f8991d;
+    }
+
+	.btn.btn-primary,
+	.action.primary,
+	.action-primary {
+		border-color: @theme-button-primary-border;
+		background-color: @theme-button-primary-background;
+		color: @theme-button-primary-color;
+		&:hover,
+		&._hover,
+		&:focus {
+			border-color: #f8991d;
+			background-color: #f8991d;
+			color: @theme-button-primary-color__hover;
+		}
+	}
+	.action-secondary {
+		border-color: #222222;
+		background-color: #222222;
+		color: #FFFFFF;
+		&:hover,
+		&._hover,
+		&:focus {
+			border-color: @theme-primary-color;
+			background-color: @theme-primary-color;
+			color: #FFFFFF;
+		}
+	}
+	.btn-secondary	{
+		border-color: #f8991d;
+		background-color: #fff;
+		color: #f8991d !important;
+		&:hover,
+		&._hover,
+		&:focus {
+			border-color: #f8991d;
+			background-color: #f8991d;
+			color: #fff !important;
+		}
+	}
+	.btn-default {
+		color: #222222;
+		background-color: #fff;
+		border-color:  #222222;
+		border-width: 2px;
+		&:hover,
+		&._hover,
+		&:focus {
+			color: #fff;
+			background-color:  #222222;
+			border-color: #222222;
+		}
+	}
+	.btn-default-primary  {
+		border-color: @theme-primary-color;
+		border-width: 2px;
+		text-transform: uppercase;
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: 0.075em;
+		&:hover,
+		&._hover,
+		&:focus {
+			color: #fff;
+			background-color:  @theme-primary-color;
+			border-color: @theme-primary-color;
+			box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+		}
+	}
+	.btn.btn-square,
+	.action.btn-square {
+		border-radius: 0;
+	}
+	.btn-shadow {
+		box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+	}
+	.btn-full {
+		width: 100%
+	}
+	.action.action-delete, .action.close {
+		display: inline-block;
+		color: #999999;
+		&:before {
+			font-family: @theme-icon-font-family-name;
+			display: inline-block;
+		}
+	}
+	.bg-image {
+		.btn-default-dark {
+			color: #fff;
+			border-color: #fff;
+			&:hover {
+				color:  @theme-button-primary-color;
+				background-color: #fff;
+				border-color: #fff;
+			}
+		}
+		.btn-default:hover {
+			color: #fff;
+			background-color:  #f8991d;
+			border-color:  #f8991d;
+		}
+	}
+	.modal-popup .action-close {
+		width: 40px;
+		height: 40px;
+		padding: 0;
+		cursor: pointer;
+		color: #1a1a1a;
+		&:before {
+			content: "\e936";
+			font-size: 15px;
+			font-family: "iconGemmart";
+			line-height: 1;
+			vertical-align: middle;
+		}
+		&:hover {
+			color: #fff;
+			background-color:  @theme-button-primary-color;
+			border-color:  @theme-button-primary-color;
+		}
+	}
+	.btn-default2 {
+		color: #fff;
+		border: 2px solid #fff;
+		background-color: transparent;
+	}
+	.btn.btn-custom {
+		background-color: transparent;
+		color: #fff;
+		border: none;
+	}
+
+}

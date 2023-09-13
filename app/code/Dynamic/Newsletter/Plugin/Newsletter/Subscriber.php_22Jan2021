@@ -1,0 +1,39 @@
+<?php
+
+namespace Dynamic\Newsletter\Plugin\Newsletter;
+
+use Magento\Framework\App\Request\Http;
+
+class Subscriber {
+  protected $request;
+
+  public function __construct(
+    Http $request
+  ) {
+    $this->request = $request;
+  }
+
+  public function aroundSubscribe($subject, \Closure $proceed, $email) {
+    //$result = $proceed($email);
+     
+    if ($this->request->isPost() && $this->request->getPost('c_firstname')) {
+
+      $firstname = $this->request->getPost('c_firstname');
+      $surname = $this->request->getPost('c_surname');
+      $ip = $this->request->getPost('c_ip');
+
+      $subject->setCFirstname($firstname);
+      $subject->setCSurname($surname);
+      $subject->setCIp($ip);
+
+      try {
+        $result = $proceed($email);
+        $subject->save();
+      }catch (\Exception $e) {
+        throw new \Exception($e->getMessage());
+      }
+    }
+
+    return $result;
+  }
+}

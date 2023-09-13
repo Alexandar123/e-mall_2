@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">blog_post_form.blog_post_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item> 
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="MGS\Blog\Block\Adminhtml\Post\SaveButton"/>
+            <button name="back" class="MGS\Blog\Block\Adminhtml\Category\BackButton"/>
+        </buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <namespace>blog_post_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>blog_post_form.blog_post_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="blog_post_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+         <settings>
+            <submitUrl path="blog/post/save"/>
+        </settings>
+        <dataProvider class="MGS\Blog\Model\Post\DataProvider" name="blog_post_data_source">
+            <settings>
+                <requestFieldName>post_id</requestFieldName>
+                <primaryFieldName>post_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+   <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="title" sortOrder="10" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+
+        <field name="store_id" sortOrder="65" formElement="hidden">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company</item>
+                    </item>
+            </argument>
+            <settings>
+                <dataType>hidden</dataType>
+                <dataScope>store_id</dataScope>
+                </settings>
+        </field>
+
+        <field name="published_at" formElement="date" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Publish Date</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="sortOrder" xsi:type="number">21</item>
+                    <item name="dataScope" xsi:type="string">published_at</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="storeTimeZone" xsi:type="string">string</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="url_key" formElement="input" sortOrder="30">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <visible>true</visible>
+                <elementTmpl>ui/form/element/input</elementTmpl>
+                <label translate="true">URL</label>
+            </settings>
+        </field>
+
+        <field name="categories" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Blog\Model\Options\Category</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" translate="true" xsi:type="string">Category</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="thumb_type" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Blog\Model\Options\Thumbnail</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">MGS_Blog/js/form/thumbnail</item>
+                    <item name="elementTmpl" xsi:type="string">MGS_Blog/form/thumbnail</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Thumbnail Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">thumb_type</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="notice" xsi:type="string" translate="true">Show on Widget, Sidebar, List Post</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="thumbnail" sortOrder="60" formElement="imageUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+                <item name="additionalClasses" xsi:type="array">
+                     <item name="my-custom-class" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Thumbnail</label>
+                <visible>true</visible>
+                 <additionalClasses>
+                <class name="thumbnail">true</class>
+                </additionalClasses>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="blog/post/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>blog/post/upload</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+
+        <field name="video_thumbnail_type" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Blog\Model\Options\Video</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Video Thumbnail Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">video_thumb_type</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="video_thumb_id" formElement="input" sortOrder="55">
+            <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="additionalInfo" xsi:type="string" translate="true">
+                         <![CDATA[For Examples:<br> 1. Youtube 
+                         <br> Link: https://www.youtube.com/watch?v=BBvsB5PcitQ
+                         <br>VideoID:<b>BBvsB5PcitQ</b>
+                         <br>2. Vimeo
+                         <br>Link: https://vimeo.com/145947876
+                         <br>VideoID:<b>145947876</b>
+                         ]]>
+                        </item>
+                    </item>
+                </argument>
+            <settings>
+                <visible>true</visible>
+                <elementTmpl>ui/form/element/input</elementTmpl>
+                <label translate="true">Video Thumbnail Id</label>
+            </settings>
+        </field>
+
+
+        <field name="image_type" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Blog\Model\Options\Image</item>
+                <item name="config" xsi:type="array">
+                     <item name="component" xsi:type="string">MGS_Blog/js/form/imagetype</item>
+                    <item name="elementTmpl" xsi:type="string">MGS_Blog/form/imagetype</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Image Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">image_type</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="notice" xsi:type="string" translate="true">Show on Post Detail</item>
+                </item>
+            </argument>
+                <settings>
+                    <additionalClasses>
+                    <class name="image_type">true</class>
+                    </additionalClasses>
+                </settings>
+        </field>
+
+        <field name="image" sortOrder="80" formElement="imageUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+                <item name="additionalClasses" xsi:type="array">
+                     <item name="my-custom-class" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Image</label>
+                <visible>true</visible>
+                 <additionalClasses>
+                <class name="image_big">true</class>
+                </additionalClasses>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="blog/post/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>blog/post/upload</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+
+        <field name="video_big_type" sortOrder="80">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Blog\Model\Options\VideoBig</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Video Big Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">video_big_type</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="video_big_id" formElement="input" sortOrder="80">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="additionalInfo" xsi:type="string" translate="true">
+                        <![CDATA[For Examples:<br> 1. Youtube 
+                        <br> Link: https://www.youtube.com/watch?v=BBvsB5PcitQ
+                        <br>VideoID:<b>BBvsB5PcitQ</b>
+                        <br>2. Vimeo
+                        <br>Link: https://vimeo.com/145947876
+                        <br>VideoID:<b>145947876</b>
+                        ]]>
+                        </item>
+                    </item>
+            </argument>
+            <settings>
+                <visible>true</visible>
+                <elementTmpl>ui/form/element/input</elementTmpl>
+                <label translate="true">Video Big Id</label>
+            </settings>
+        </field>
+
+        <field name="short_content" sortOrder="90">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">sample_shop</item>
+                    <item name="label" xsi:type="string">Short Content</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">short_content</item>
+                    <item name="rows" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="content" sortOrder='100'>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">sample_shop</item>
+                    <item name="label" xsi:type="string">Content</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">content</item>
+                    <item name="rows" xsi:type="number">8</item>
+                     <item name="validation" xsi:type="array">
+                    <item name="required-entry" xsi:type="boolean">true</item><!-- this validates it as required -->
+                </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="tags" sortOrder="110" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Tags</label>
+                <dataScope>tags</dataScope>
+            </settings>
+        </field>
+
+        <field name="author" sortOrder="120" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Author Name</item>
+                    <item name="source" xsi:type="string">index</item>
+                    <item name="dataScope" xsi:type="string">updated_by_user</item>
+                </item>
+            </argument>
+        </field>
+        
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Blog\Model\Options\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+
+    <fieldset name="meta">
+        <settings>
+            <label translate="true">Meta Information</label>
+        </settings>
+        <field name="meta_keywords" sortOrder="10" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Keywords</label>
+                <dataScope>meta_keywords</dataScope>
+            </settings>
+        </field>
+
+          <field name="meta_description" sortOrder="10" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Description</label>
+                <dataScope>meta_description</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+  
+</form>

@@ -1,0 +1,12 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<div class="content-block mgs-button-block button-<?php echo $this->getButtonAlign() ?><?php if ($this->getFullWidth()): ?> button-fullwidth<?php endif ?><?php if ($this->getBoxShadow()): ?> button-shadow<?php endif ?>">
+    <button<?php if ($builderHelper->getRealUrl($this->getButtonLink())!='#'): ?> onclick="setLocation('<?php echo $builderHelper->getRealUrl($this->getButtonLink()) ?>')"<?php endif ?>>
+        <?php if ($this->getUseIcon() && ($this->getFbuilderIcon()!='') && ($this->getIconAlign()=='left')): ?>
+            <span class="button-icon icon-left<?php if ($this->getUseDivider()): ?> has-divider<?php endif ?>"><i class="<?php echo $builderHelper->decodeHtmlTag($this->getFbuilderIcon()) ?>"></i></span>
+        <?php endif ?>
+        <span><?php echo $builderHelper->decodeHtmlTag($this->getFbuilderSubtitle()) ?></span>
+        <?php if ($this->getUseIcon() && ($this->getFbuilderIcon()!='') && ($this->getIconAlign()=='right')): ?>
+            <span class="button-icon icon-right<?php if ($this->getUseDivider()): ?> has-divider<?php endif ?>"><i class="<?php echo $builderHelper->decodeHtmlTag($this->getFbuilderIcon()) ?>"></i></span>
+        <?php endif ?>
+    </button>
+</div>

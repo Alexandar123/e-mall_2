@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+    <widget id="mgs_blog_lastest_posts" class="MGS\Blog\Block\Widget\Latest">
+        <label translate="true">Blog Lastest Posts</label>
+        <description translate="true"></description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="number_of_posts" xsi:type="text" visible="true" required="true" sort_order="20">
+                <label translate="true">Number Of Posts To Display</label>
+                <value>10</value>
+            </parameter>
+            <parameter name="show_thumbnail" xsi:type="select" visible="true" sort_order="30" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Thumbnail</label>
+            </parameter>
+            <parameter name="thumbnail_width" xsi:type="text" visible="true" sort_order="40">
+                <label translate="true">Thumbnail Width</label>
+                <depends>
+                    <parameter name="show_thumbnail" value="1"/>
+                </depends>
+                <value>240</value>
+            </parameter>
+            <parameter name="thumbnail_height" xsi:type="text" visible="true" sort_order="50">
+                <label translate="true">Thumbnail Height</label>
+                <depends>
+                    <parameter name="show_thumbnail" value="1"/>
+                </depends>
+                <value>180</value>
+            </parameter>
+            <parameter name="show_short_content" xsi:type="select" visible="true" sort_order="60" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Short Content</label>
+            </parameter>
+            <parameter name="limit_characters_short_content" xsi:type="text" visible="true" sort_order="65">
+                <label translate="true">Limit Characters Of Short Content To Display</label>
+                <depends>
+                    <parameter name="show_short_content" value="1"/>
+                </depends>
+                <value>100</value>
+            </parameter>
+            <parameter name="view_as" xsi:type="select" visible="true" sort_order="70" source_model="MGS\Blog\Model\System\Config\Widget\Viewas">
+                <label translate="true">View As</label>
+            </parameter>
+            <parameter name="custom_class" xsi:type="text" visible="true" sort_order="80">
+                <label translate="true">Custom Class</label>
+            </parameter>
+            <parameter name="items" xsi:type="text" visible="true" required="true" sort_order="90">
+                <label translate="true">Items</label>
+                <description translate="true">This variable allows you to set the maximum amount of items displayed at a time with the widest browser width.</description>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+                <value>5</value>
+            </parameter>
+            <parameter name="autoplay" xsi:type="select" visible="true" sort_order="100" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Autoplay</label>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+            </parameter>
+            <parameter name="stop_on_hover" xsi:type="select" visible="true" sort_order="110" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Stop On Hover</label>
+                <description>Stop autoplay on mouse hover.</description>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+            </parameter>
+            <parameter name="navigation" xsi:type="select" visible="true" sort_order="120" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Navigation</label>
+                <description>Display "next" and "prev" buttons.</description>
+                <depends>
+                    <parameter name="view_as" value="owl_carousel"/>
+                </depends>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" sort_order="130" source_model="MGS\Blog\Model\System\Config\Widget\Template">
+                <label translate="true">Template</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,20 @@
+<div class="pages pages-list" data-bind="visible: isVisible()">
+    <div class="title">
+        <!-- ko i18n: 'Cms pages'--><!-- /ko -->
+        <a class="see-all" data-bind="attr: {href: result.page.url}">
+            <!-- ko i18n: 'See All' --><!-- /ko -->
+            (<span data-bind="text: result.page.size"></span>)
+        </a>
+    </div>
+    <ul class="page-cms-items" role="listbox" data-bind="foreach: result.page.data">
+        <li class="page-cms-item">
+            <div class="page-item-info">
+                <div class="page details page-item-details">
+                    <div class="page name page-item-name" data-bind="visible: name">
+                        <a class="page-item-link" data-bind="attr: { href: url, title: name }, text: name"></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

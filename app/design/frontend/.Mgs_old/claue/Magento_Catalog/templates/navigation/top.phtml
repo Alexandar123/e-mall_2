@@ -1,0 +1,43 @@
+
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Category left navigation
+ *
+ * @var $block \Magento\Catalog\Block\Navigation
+ */
+?>
+<?php
+$themeHelper = $this->helper('MGS\ThemeSettings\Helper\Config');
+$themeSettings = $themeHelper->getThemeSettings();
+$subCategories = $themeSettings['catalog']['sub_categories'];
+$fullActionName = $themeHelper->getFullActionName();
+?>
+
+<?php if ($subCategories ): ?>
+    <?php if ($fullActionName != 'catalog_category_view') {
+        return;
+    } ?>
+    <?php $_categories = $block->getCurrentChildCategories(); ?>
+    <?php $_count = is_array($_categories) ? count($_categories) : $_categories->count(); ?>
+    <?php if ($_count): ?>
+        <div class="sub-categories">
+            <ol class="items">
+                <?php foreach ($_categories as $_category): ?>
+                    <?php if ($_category->getIsActive()): ?>
+                        <li class="item">
+                            <a href="<?php /* @escapeNotVerified */ echo $block->getCategoryUrl($_category) ?>"<?php if ($block->isCategoryActive($_category)): ?> class="current"<?php endif; ?>><?php echo $block->escapeHtml($_category->getName()) ?></a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach ?>
+            </ol>
+        </div>
+    <?php endif; ?>
+
+<?php endif;?>

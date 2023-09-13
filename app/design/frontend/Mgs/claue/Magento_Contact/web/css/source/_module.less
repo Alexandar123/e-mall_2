@@ -1,0 +1,81 @@
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+*/
+
+& when (@media-common = true) {
+    .contact-index-index {
+        .column:not(.sidebar-main) {
+            .form.contact {
+                float: none;
+                width: 50%;
+            }
+        }
+
+        .column:not(.sidebar-additional) {
+            .form.contact {
+                float: none;
+                width: 50%;
+            }
+        }
+        .contact-form-content {
+            h2 {
+                font-size: 24px;
+            }
+            ul.list-icon {
+                li {
+                    padding-left: 70px;
+                    position: relative;
+                    margin-bottom: 30px;
+                    .icon {
+                        font-size: 50px;
+                        font-weight: normal;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                    }
+                }
+            }
+            form.form.contact {
+                .actions-toolbar {
+                    margin-left: 0;
+                    margin-top: 15px;
+                }
+                .field.comment textarea + .mage-error {
+                    margin-top: -7px;
+                }
+            }
+        }
+
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .contact-index-index .column:not(.sidebar-additional) .form.contact {
+        min-width: 100%;
+    }
+}
+
+//  Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .contact-index-index {
+        .column:not(.sidebar-main) {
+            .form.contact {
+                float: none;
+                width: 100%;
+            }
+        }
+
+        .column:not(.sidebar-additional) {
+            .form.contact {
+                float: none;
+                width: 100%;
+            }
+        }
+    }
+}
+

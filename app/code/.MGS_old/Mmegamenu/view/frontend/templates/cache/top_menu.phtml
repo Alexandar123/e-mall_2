@@ -1,0 +1,88 @@
+<?php
+/* @var $block \MGS\Mmegamenu\Block\Mmegamenu */
+?>
+
+<?php
+    $megaMenu = $this->getMegamenuItems();
+    $themeHelper = $this->helper('MGS\Mmegamenu\Helper\Data');
+    $logo = $block->getLogo();
+    $url = $block->getLogoPathResolver();
+    $getMediaUrl = $block->getMediaUrl();
+?>
+
+<?php if((count($megaMenu)>0) || $themeHelper->getStoreConfig('megamenu/general/home')):?>
+    <?php if($themeHelper->getStoreConfig('megamenu/general/homeposition') == "" || $themeHelper->getStoreConfig('megamenu/general/homeposition') == 0): ?>
+        <?php $positionHomeLink = 0; ?>
+    <?php else: ?>
+        <?php $positionHomeLink = $themeHelper->getStoreConfig('megamenu/general/homeposition'); ?>
+    <?php endif ?>
+    <nav class="navigation" role="navigation">
+        <ul id="mainMenu" class="nav nav-main nav-main-menu">
+            <?php if(count($megaMenu)>0): ?>
+
+                <?php if($themeHelper->getStoreConfig('megamenu/general/home')): ?>
+                    <?php if($positionHomeLink <= 0): ?>
+                        <li class="mega-menu-item megamenu-homelink<?php if($themeHelper->getStoreConfig('megamenu/general/homelogo')): ?> logo-item<?php endif ?><?php if($this->isHomePage()): ?> active<?php endif ?>">
+                            <?php if($themeHelper->getStoreConfig('megamenu/general/homelogo')): ?>
+                              
+                                    <a href="<?php echo $this->getUrl() ?>" class="level0">
+                                
+                                <img src="<?php echo $getMediaUrl.'/'.$url->getPath() ?>" alt="<?php echo $logo->getLogoAlt() ?>" width="<?php echo $logo->getLogoWidth() ?>" height="<?php echo $logo->getLogoHeight() ?>">
+                               
+                                    </a>
+                                
+                            <?php else: ?>
+                                <a href="<?php echo $this->getUrl() ?>" class="level0">
+                                    <?php echo $themeHelper->getStoreConfig('megamenu/general/hometext') ?>
+                                </a>
+                            <?php endif ?>
+                        </li>
+                        <?php $i=0; foreach($megaMenu as $item): $i++ ?>
+                            <li class="<?php echo $this->getClass($item) ?>">
+                                <?php echo $this->getMenuHtml($item) ?>
+                            </li>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <?php foreach($megaMenu as $item): ?>
+                            <?php if($item->getPosition() < $positionHomeLink): ?>
+                                <li class="<?php echo $this->getClass($item) ?>">
+                                    <?php echo $this->getMenuHtml($item) ?>
+                                </li>
+                            <?php endif ?>
+                        <?php endforeach ?>
+
+                        <li class="mega-menu-item megamenu-homelink<?php if($themeHelper->getStoreConfig('megamenu/general/homelogo')): ?> logo-item<?php endif ?><?php if($this->isHomePage()): ?> active<?php endif ?>">
+                            <?php if($themeHelper->getStoreConfig('megamenu/general/homelogo')): ?>
+                              
+                                    <a href="<?php echo $this->getUrl() ?>" class="level0">
+                               
+                                <img src="<?php echo $getMediaUrl.'/'.$url->getPath() ?>" alt="<?php echo $logo->getLogoAlt() ?>" width="<?php echo $logo->getLogoWidth() ?>" height="<?php echo $logo->getLogoHeight() ?>">
+                               
+                                    </a>
+                                
+                            <?php else: ?>
+                                <a href="<?php echo $this->getUrl() ?>" class="level0">
+                                    <?php echo $themeHelper->getStoreConfig('megamenu/general/hometext') ?>
+                                </a>
+                            <?php endif ?>
+                        </li>
+
+                        <?php foreach($megaMenu as $item): ?>
+                            <?php if($item->getPosition() >= $positionHomeLink): ?>
+                                <li class="<?php echo $this->getClass($item) ?>">
+                                    <?php echo $this->getMenuHtml($item) ?>
+                                </li>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                <?php else: ?>
+                    <?php $i=0; foreach($megaMenu as $item): $i++ ?>
+                        <li class="<?php echo $this->getClass($item) ?>">
+                            <?php echo $this->getMenuHtml($item) ?>
+                        </li>
+                    <?php endforeach ?>
+                <?php endif ?>
+            <?php endif ?>
+        </ul>
+    </nav>
+<?php endif ?>

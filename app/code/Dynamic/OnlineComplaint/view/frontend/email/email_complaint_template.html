@@ -1,0 +1,34 @@
+{{template config_path="design/email/header_template"}}
+<table class="message-details">
+    <tr>
+        <td><strong>{{trans "Wellcome To:"}}</strong></td>
+        <td>{{var data.buyer_first_and_last_name}}</td>
+   </tr>
+    <tr>
+        <td><strong>{{trans "Name"}}</strong></td>
+        <td>{{var data.buyer_first_and_last_name}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Email"}}</strong></td>
+        <td>{{var data.email}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Tip naloga"}}</strong></td>
+        <td>{{var data.account_type}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Broj porudžbine ili Broj računa"}}</strong></td>
+        <td>{{var data.order_number}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Reklamacija se odnosina proizvod"}}</strong></td>
+        <td>{{var data.complaint_related_product}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Prijavljujem reklamaciju u vezi sa"}}</strong></td>
+        <td>{{var data.complaint_regarding}}</td>
+    </tr>
+</table>
+<p><strong>{{trans "Describe The Problem comment"}}</strong></p>
+<p>{{var data.Describe_the_problemcomment}}</p>
+{{template config_path="design/email/footer_template"}}

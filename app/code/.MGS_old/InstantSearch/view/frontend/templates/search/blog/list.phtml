@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Blog list template
+ *
+ * @var $block \MGS\InstantSearch\Block\SearchResult\ListBlog
+ */
+?>
+<?php
+$_postCollection = $block->getLoadedPostCollection();
+$limit = $block->getPositionLimit();
+?>
+<div class="block block-title">
+	<h4><?php echo __('Blogs') ?></h4>
+	<?php if($_postCollection->count() && $_postCollection->getSize() > $limit): ?>
+        <div class="view-more">
+            <a href="<?php /* @escapeNotVerified */ echo $block->getResultUrl() ?>"><?php /* @escapeNotVerified */ echo $block->getViewMoreLabel() ?></a>
+        </div>
+    <?php endif; ?>
+</div>
+<?php if (!$_postCollection->count()): ?>
+	<div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find posts matching the selection.') ?></div></div>
+<?php else: ?>
+	<?php
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = true;
+        //$imageSize = $block->getImageSize($image);
+        //print_r($imageSize);
+    ?>
+	<div class="posts wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> posts-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+		<?php $iterator = 1; ?>
+		<ol class="posts list items post-items">
+			<?php /** @var $_post \MGS\Blog\Model\Post */ ?>
+			<?php foreach ($_postCollection as $_post): ?>
+				<?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item post post-item">' : '</li><li class="item post post-item">' ?>
+					<div class="post-item-info" data-container="post-grid">
+						<?php // Post Image ?>
+	                    <a href="<?php /* @escapeNotVerified */ echo $_post->getPostUrlWithNoCategory() ?>" class="post photo post-item-photo" tabindex="-1">
+	                    	<span class="post-image-container">
+	                    		<span class="post-image-wrapper">
+	                        		<img class="post-image-photo" src="<?php echo $block->getImageThumbnailPost($_post); ?>" alt="<?php /* @escapeNotVerified */ echo $_post->getTitle() ?>"/>
+	                        	</span>
+	                        </span>
+	                    </a>
+						<div class="post details post-item-details">
+							<strong class="post name post-item-name">
+	                            <a class="post-item-link"
+	                               href="<?php /* @escapeNotVerified */ echo $_post->getPostUrlWithNoCategory() ?>">
+	                                <?php /* @escapeNotVerified */ echo $_post->getTitle() ?>
+	                            </a>
+	                        </strong>
+	                        <div class="post-item-inner">
+	                        	<?php if ($showDescription):?>
+	                                <div class="post description post-item-description">
+	                                    <?php /* @escapeNotVerified */ echo $_post->getShortContent() ?>
+	                                </div>
+                            	<?php endif; ?>
+	                        </div>
+						</div>
+					</div>
+				<?php echo($iterator == count($_postCollection)+1) ? '</li>' : '' ?>
+			<?php endforeach; ?>
+		</ol>
+	</div>
+<?php endif; ?>

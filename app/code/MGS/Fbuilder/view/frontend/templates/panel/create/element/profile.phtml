@@ -1,0 +1,525 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Profile Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="profile">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-profile-title" data-role="collapsible" id="tab-label-profile">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#profile" id="tab-label-profile-title">
+                    <?php echo __('Profile Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="profile" data-role="content" style="display:none">
+                <div class="line form-group">
+                    <div class="col-des-6">
+                        <div class="line">
+                            <label for="photo" class="col-des-2 control-label"><?php echo __('Photo') ?></label>
+                            <div class="col-des-10">
+                                <input type="file" id="photo" name="photo" onchange="setPreview()">
+                                <input type="hidden" name="setting[profile_photo]" <?php if ($exist && isset($settings['profile_photo'])): ?> value="<?php echo $settings['profile_photo'] ?>"<?php endif ?>>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-6">
+                        <div class="line">
+                            <label for="style" class="col-des-2 control-label"><?php echo __('Style') ?></label>
+                            <div class="col-des-5">
+                                <select name="setting[style]" id="style" onchange="setPreview()">
+                                    <option value="vertical"<?php if ($exist && ($settings['style']=='vertical')): ?> selected="selected"<?php endif ?>><?php echo __('Vertical'); ?></option>
+                                    <option value="horizontal"<?php if ($exist && ($settings['style']=='horizontal')): ?> selected="selected"<?php endif ?>><?php echo __('Horizontal'); ?></option>
+                                    <option value="circle"<?php if ($exist && ($settings['style']=='circle')): ?> selected="selected"<?php endif ?>><?php echo __('Circle'); ?></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col-des-7">
+                        <div class="line form-group">
+                            <h4 class="no-margin-top col-des-12"><?php echo __('Name') ?></h4>
+                            <div class="col-des-12">
+                                <input type="text" class="input-text required-entry" id="profile_name" name="setting[profile_name]"<?php if ($exist && $settings['profile_name']): ?> value="<?php echo $settings['profile_name'] ?>"<?php endif ?> onchange="setPreview()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fields">
+                            <div class="col-des-6">
+                                <label for="name_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                                <input type="text" class="input-text" id="name_font_size" name="setting[name_font_size]"<?php if ($exist && $settings['name_font_size']): ?> value="<?php echo $settings['name_font_size'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                            </div>
+                            
+                            <div class="col-des-6">
+                                <label for="name_font_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="name_font_color" name="setting[name_font_color]"<?php if ($exist && $settings['name_font_color']): ?> value="<?php echo $settings['name_font_color'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                            </div>
+                        </div>
+                        
+                        <hr/>
+                        
+                        <div class="line form-group">
+                            <h4 class="no-margin-top col-des-12"><?php echo __('Subtitle') ?></h4>
+                            <div class="col-des-12">
+                                <input type="text" class="input-text" id="subtitle" name="setting[subtitle]"<?php if ($exist && $settings['subtitle']): ?> value="<?php echo $settings['subtitle'] ?>"<?php endif ?> onchange="setPreview()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fields">
+                            <div class="col-des-4">
+                                <label for="subtitle_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                                <input type="text" class="input-text" id="subtitle_font_size" name="setting[subtitle_font_size]"<?php if ($exist && $settings['subtitle_font_size']): ?> value="<?php echo $settings['subtitle_font_size'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                            </div>
+                            
+                            <div class="col-des-4">
+                                <label for="subtitle_font_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="subtitle_font_color" name="setting[subtitle_font_color]"<?php if ($exist && $settings['subtitle_font_color']): ?> value="<?php echo $settings['subtitle_font_color'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                            </div>
+                            
+                            <div class="col-des-4">
+                                <label for="subtitle_border_color" class="control-label"><?php echo __('Border color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="subtitle_border_color" name="setting[subtitle_border_color]"<?php if ($exist && $settings['subtitle_border_color']): ?> value="<?php echo $settings['subtitle_border_color'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                            </div>
+                        </div>
+                        
+                        <hr/>
+                        
+                        <div class="line form-group">
+                            <h4 class="no-margin-top col-des-12"><?php echo __('Description') ?></h4>
+                            <div class="col-des-12">
+                                <textarea class="input-text" id="text_content" name="setting[text_content]" onchange="setPreview()"><?php if ($exist && $settings['text_content']): ?><?php echo $settings['text_content'] ?><?php endif ?></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fieldss">
+                            <div class="col-des-6">
+                                <label for="desc_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                                <input type="text" class="input-text" id="desc_font_size" name="setting[desc_font_size]"<?php if ($exist && $settings['desc_font_size']): ?> value="<?php echo $settings['desc_font_size'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                            </div>
+                            
+                            <div class="col-des-6">
+                                <label for="desc_font_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="desc_font_color" name="setting[desc_font_color]"<?php if ($exist && $settings['desc_font_color']): ?> value="<?php echo $settings['desc_font_color'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-des-5">
+                        <div class="mgs-profile" id="sample-profile1" style="display:none">
+                            <div class="photo"<?php if (!$exist): ?> style="display:none"<?php endif ?>>
+                                <img src="<?php if ($exist && ($settings['profile_photo']!='')): ?><?php echo $helper->getMediaUrl() ?>mgs/fbuilder/profiles<?php echo $settings['profile_photo'] ?><?php endif ?>" />
+                            </div>
+                            <div class="profile-info">
+                                <h4></h4>
+                                <p class="subtitle"><span></span></p>
+                                            
+                                <div class="profile-description"></div>
+                                            
+                                <div class="social">
+                                    <ul>
+                                        <li class="mail" style="display:none"><a href="#"><em class="fa fa-envelope"></em></a></li>
+                                        <li class="fb" style="display:none"><a href="#"><em class="fa fa-facebook"></em></a></li>
+                                        <li class="tw" style="display:none"><a href="#"><em class="fa fa-twitter"></em></a></li>
+                                        <li class="in" style="display:none"><a href="#"><em class="fa fa-linkedin"></em></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mgs-profile" id="sample-profile2" style="display:none">
+                            <div class="line">
+                                <div class="col-des-6">
+                                    <div class="photo"<?php if (!$exist): ?> style="display:none"<?php endif ?>>
+                                        <img src="<?php if ($exist && ($settings['profile_photo']!='')): ?><?php echo $helper->getMediaUrl() ?>mgs/fbuilder/profiles<?php echo $settings['profile_photo'] ?><?php endif ?>" />
+                                    </div>
+                                </div>
+                                
+                                <div class="col-des-6">
+                                    <div class="profile-info">
+                                        <h4></h4>
+                                        <p class="subtitle"><span></span></p>
+                                                    
+                                        <div class="profile-description"></div>
+                                                    
+                                        <div class="social">
+                                            <ul>
+                                                <li class="mail" style="display:none"><a href="#"><em class="fa fa-envelope"></em></a></li>
+                                                <li class="fb" style="display:none"><a href="#"><em class="fa fa-facebook"></em></a></li>
+                                                <li class="tw" style="display:none"><a href="#"><em class="fa fa-twitter"></em></a></li>
+                                                <li class="in" style="display:none"><a href="#"><em class="fa fa-linkedin"></em></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        <style type="text/css" id="profile-custom-css"></style>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <h4 class="no-margin-top col-des-12"><?php echo __('Social') ?></h4>
+                    <div class="col-des-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><em class="fa fa-envelope-o"></em></span>
+                            </div>
+                            <input type="text" class="input-text validate-email" id="email" name="setting[email]"<?php if ($exist && $settings['email']): ?> value="<?php echo $settings['email'] ?>"<?php endif ?> placeholder="<?php echo __('Email') ?>"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">&nbsp;<em class="fa fa-facebook"></em>&nbsp;</span>
+                            </div>
+                            <input type="text" class="input-text validate-url" id="facebook" name="setting[facebook]"<?php if ($exist && $settings['facebook']): ?> value="<?php echo $settings['facebook'] ?>"<?php endif ?> placeholder="<?php echo __('Facebook') ?>"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><em class="fa fa-twitter"></em></span>
+                            </div>
+                            <input type="text" class="input-text validate-url" id="twitter" name="setting[twitter]"<?php if ($exist && $settings['twitter']): ?> value="<?php echo $settings['twitter'] ?>"<?php endif ?> placeholder="<?php echo __('Twitter') ?>"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><em class="fa fa-linkedin"></em></span>
+                            </div>
+                            <input type="text" class="input-text validate-url" id="linkedin" name="setting[linkedin]"<?php if ($exist && $settings['linkedin']): ?> value="<?php echo $settings['linkedin'] ?>"<?php endif ?> placeholder="<?php echo __('Linkedin') ?>"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="line form-group">
+                    <div class="col-des-4">
+                        <label for="social_font_size" class="control-label"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text" id="social_font_size" name="setting[social_font_size]"<?php if ($exist && $settings['social_font_size']): ?> value="<?php echo $settings['social_font_size'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <label for="social_box_width" class="control-label"><?php echo __('Width') ?></label><br/>
+                        <input type="text" class="input-text" id="social_box_width" name="setting[social_box_width]"<?php if ($exist && $settings['social_box_width']): ?> value="<?php echo $settings['social_box_width'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <label for="social_box_shadow" class="control-label"><?php echo __('Box shadow') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if (($exist && $settings['social_box_shadow']) || !$exist): ?> checked="checked"<?php endif ?> value="1" name="setting[social_box_shadow]" id="social_box_shadow" class="admin__actions-switch-checkbox" onclick="setPreview()">
+                            <label for="social_box_shadow" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="line form-group">
+                    <div class="col-des-4">
+                        <label for="social_font_color" class="control-label"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="social_font_color" name="setting[social_font_color]"<?php if ($exist && $settings['social_font_color']): ?> value="<?php echo $settings['social_font_color'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <label for="social_background" class="control-label"><?php echo __('Background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="social_background" name="setting[social_background]"<?php if ($exist && $settings['social_background']): ?> value="<?php echo $settings['social_background'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <label for="social_border" class="control-label"><?php echo __('Border') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="social_border" name="setting[social_border]"<?php if ($exist && $settings['social_border']): ?> value="<?php echo $settings['social_border'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                </div>
+                
+                <div class="line form-group">
+                    <div class="col-des-4">
+                        <label for="social_hover_color" class="control-label"><?php echo __('Hover color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="social_hover_color" name="setting[social_hover_color]"<?php if ($exist && $settings['social_hover_color']): ?> value="<?php echo $settings['social_hover_color'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <label for="social_hover_background" class="control-label"><?php echo __('Hover background') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="social_hover_background" name="setting[social_hover_background]"<?php if ($exist && $settings['social_hover_background']): ?> value="<?php echo $settings['social_hover_background'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                    
+                    <div class="col-des-4">
+                        <label for="social_hover_border" class="control-label"><?php echo __('Hover border') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="social_hover_border" name="setting[social_hover_border]"<?php if ($exist && $settings['social_hover_border']): ?> value="<?php echo $settings['social_hover_border'] ?>"<?php endif ?> onchange="changeProfileStyle()"/>
+                    </div>
+                </div>
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                $('#photo').change( function(event) {        
+                    var tmppath = URL.createObjectURL(event.target.files[0]);
+                    $(".mgs-profile .photo img").attr('src',URL.createObjectURL(event.target.files[0])).show();
+                    $(".mgs-profile .photo").show();
+                });
+                
+                setPreview();
+            });
+            
+            $("#profile_name, #text_content, #subtitle, #email, #facebook, #twitter, #linkedin").keypress(function( event ){
+                setPreview();
+            });
+        })(jQuery);
+    });
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                profileName = $('#profile_name').val();
+                subtitle = $('#subtitle').val();
+                textContent = $('#text_content').val();
+                mail = $('#email').val();
+                fb = $('#facebook').val();
+                tw = $('#twitter').val();
+                lin = $('#linkedin').val();
+                style = $('#style').val();
+                
+                if(style=='horizontal'){
+                    $('#sample-profile1').hide();
+                    $('#sample-profile2').show();
+                    $('.mgs-profile').removeClass('profile-circle');
+                    $('.mgs-profile').removeClass('profile-vertical');
+                }else{
+                    $('#sample-profile1').show();
+                    $('#sample-profile2').hide();
+                    $('.mgs-profile').removeClass('profile-circle');
+                    $('.mgs-profile').removeClass('profile-vertical');
+                    $('.mgs-profile').removeClass('profile-horizontal');
+                }
+                
+                $('.mgs-profile').addClass('profile-'+style);
+                
+                if(profileName!=''){
+                    $('.mgs-profile .profile-info h4').html(profileName);
+                }
+                
+                if(subtitle!=''){
+                    $('.mgs-profile .profile-info .subtitle span').html(subtitle);
+                }
+                
+                if(textContent!=''){
+                    $('.mgs-profile .profile-info .profile-description').html(textContent);
+                }
+                
+                if(mail!=''){
+                    $('.mgs-profile .social .mail').show();
+                }else{
+                    $('.mgs-profile .social .mail').hide();
+                }
+                
+                if(fb!=''){
+                    $('.mgs-profile .social .fb').show();
+                }else{
+                    $('.mgs-profile .social .fb').hide();
+                }
+                
+                if(lin!=''){
+                    $('.mgs-profile .social .in').show();
+                }else{
+                    $('.mgs-profile .social .in').hide();
+                }
+                
+                if(tw!=''){
+                    $('.mgs-profile .social .tw').show();
+                }else{
+                    $('.mgs-profile .social .tw').hide();
+                }
+                
+                if($('#social_box_shadow').length){
+                    if($('#social_box_shadow').prop("checked") == true){
+                        $('.mgs-profile .social').addClass('box-shadow');
+                    }else{
+                        $('.mgs-profile .social').removeClass('box-shadow');
+                    }
+                }
+            })(jQuery);
+        });
+        
+        changeProfileStyle();
+    }
+    
+    function changeProfileStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                name_font_size = $('#name_font_size').val();
+                name_font_color = $('#name_font_color').val();
+                subtitle_font_size = $('#subtitle_font_size').val();
+                subtitle_font_color = $('#subtitle_font_color').val();
+                subtitle_border_color = $('#subtitle_border_color').val();
+                desc_font_size = $('#desc_font_size').val();
+                desc_font_color = $('#desc_font_color').val();
+                social_font_size = $('#social_font_size').val();
+                social_box_width = $('#social_box_width').val();
+                //social_box_shadow = $('#social_box_shadow').val();
+                
+                if($('#social_box_shadow').length){
+                    if($('#social_box_shadow').prop("checked") == true){
+                        social_box_shadow = true;
+                    }else{
+                        social_box_shadow = false;
+                    }
+                }
+                
+                social_font_color = $('#social_font_color').val();
+                social_background = $('#social_background').val();
+                social_border = $('#social_border').val();
+                social_hover_color = $('#social_hover_color').val();
+                social_hover_background = $('#social_hover_background').val();
+                social_hover_border = $('#social_hover_border').val();
+                                
+                customStyle = '*{}';
+
+                if(name_font_size!=''){
+                    customStyle += '.mgs-profile h4{font-size:'+name_font_size+'px}';
+                }
+
+                if(name_font_color!=''){
+                    customStyle += '.mgs-profile h4{color:'+name_font_color+'}';
+                }
+
+                if(subtitle_font_size!=''){
+                    customStyle += '.mgs-profile .subtitle{font-size:'+subtitle_font_size+'px}';
+                }
+
+                if(subtitle_font_color!=''){
+                    customStyle += '.mgs-profile .subtitle{color:'+subtitle_font_color+'}';
+                }
+
+                if(subtitle_border_color!=''){
+                    customStyle += '.mgs-profile .subtitle span::after{background:'+subtitle_border_color+'}';
+                }
+
+                if(desc_font_size!=''){
+                    customStyle += '.mgs-profile .profile-description{font-size:'+desc_font_size+'px}';
+                }
+
+                if(desc_font_color!=''){
+                    customStyle += '.mgs-profile .profile-description{color:'+desc_font_color+'}';
+                }
+
+                if(social_font_size!=''){
+                    customStyle += '.mgs-profile .social ul li a{font-size:'+social_font_size+'px}';
+                }
+
+                if(social_box_width!=''){
+                    customStyle += '.mgs-profile .social ul li{width:'+social_box_width+'px; height:'+social_box_width+'px; line-height:'+social_box_width+'px}';
+                }
+
+                if(social_font_color!=''){
+                    customStyle += '.mgs-profile .social ul li a{color:'+social_font_color+'}';
+                }
+
+                if(social_background!=''){
+                    customStyle += '.mgs-profile .social ul li a{background-color:'+social_background+'}';
+                }
+
+                if(social_border!=''){
+                    customStyle += '.mgs-profile .social ul li a{border-color:'+social_border+'}';
+                    if(social_box_shadow){
+                        customStyle += '.mgs-profile .social ul li a{-webkit-box-shadow: inset 0 0 5px 0 '+social_border+'; box-shadow: inset 0 0 5px 0 '+social_border+';}';
+                    }
+                }
+
+                if(social_hover_color!=''){
+                    customStyle += '.mgs-profile .social ul li a:hover{color:'+social_hover_color+'}';
+                }
+                
+                if(social_hover_background!=''){
+                    customStyle += '.mgs-profile .social ul li a:hover{background-color:'+social_hover_background+'}';
+                }
+                
+                if(social_hover_border!=''){
+                    customStyle += '.mgs-profile .social ul li a:hover{border-color:'+social_hover_border+'}';
+                    if(social_box_shadow){
+                        customStyle += '.mgs-profile .social ul li a:hover{-webkit-box-shadow: inset 0 0 5px 0 '+social_hover_border+'; box-shadow: inset 0 0 5px 0 '+social_hover_border+';}';
+                    }
+                }
+                
+                $('#profile-custom-css').html(customStyle);
+            })(jQuery);
+        });
+    }
+</script>

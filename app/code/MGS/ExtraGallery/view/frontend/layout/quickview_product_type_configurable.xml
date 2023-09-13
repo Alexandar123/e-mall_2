@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © 2016 Magento. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+	<body>
+		<referenceBlock name="product.quickview.info.media.image" remove="true" />
+		
+		<referenceContainer name="product.quickview.info.main">
+			<block class="MGS\ExtraGallery\Block\Product\View\Gallery" name="product.info.extra.media.image.config" template="MGS_ExtraGallery::config.phtml">
+				<arguments>
+					<argument name="view_type" xsi:type="string">quickview</argument>
+				</arguments>
+			</block>
+		</referenceContainer>
+		
+		<referenceContainer name="product.quickview.info.media">
+			<block class="MGS\ExtraGallery\Block\Product\View\Gallery" name="product.quickview.info.extra.media.image" template="MGS_ExtraGallery::gallery.phtml">
+				<arguments>
+					<argument name="view_type" xsi:type="string">quickview</argument>
+				</arguments>
+			</block>
+		</referenceContainer>
+	</body>
+</layout>

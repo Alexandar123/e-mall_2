@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config/etc/system.xsd">
+    <system>
+        <tab id="dynamic" translate="label" sortOrder="10">
+            <label>Dynamic Module</label>
+        </tab>
+        <section id="postcode" translate="label" sortOrder="600" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Postcode</label>
+            <tab>dynamic</tab>
+            <resource>Dynamic_Postcode::config_postcode</resource>
+            <group id="settings" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <field id="postcode" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Post Codes</label>
+                    <backend_model>Dynamic\Postcode\Model\Config\Backend\ZipCodes</backend_model>
+                    <comment>Add comma separated postcodes</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

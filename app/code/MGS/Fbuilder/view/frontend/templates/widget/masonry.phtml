@@ -1,0 +1,57 @@
+<?php
+    $images = $this->getImages();
+    $images = explode(',', $images);
+?>
+<div class="content-block mgs-masonry-block">
+<?php if (count($images)>0): ?>
+    <?php
+        $links = $this->getLinks();
+        $links = explode(',', $links);
+        $column = $this->getColumn();
+        $itemMargin = 30;
+    if ($this->getItemMargin()!='') {
+        $itemMargin = $this->getItemMargin();
+    }
+    if ($itemMargin!=0) {
+        $colMargin = $itemMargin/2;
+    } else {
+        $colMargin = 0;
+    }
+    ?>
+    <?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+    <?php $blockId = rand() . time(); ?>
+    <div class="line row-<?php echo $column ?>" id="masonry<?php echo $blockId ?>" style="margin-left:-<?php echo $colMargin ?>px; margin-right:-<?php echo $colMargin ?>px">
+        <?php foreach ($images as $key => $imageName): ?>
+            <div class="grid-item col<?php if ($this->getEffect()!=''): ?> mgs-effect-<?php echo $this->getEffect() ?><?php endif ?>" style="margin-bottom:<?php echo $itemMargin ?>px; padding-left:<?php echo $colMargin ?>px; padding-right:<?php echo $colMargin ?>px">
+                <span<?php if ($this->getBoxShadow()): ?> class="mgs-box-shadow"<?php endif ?>>
+                    <?php if ($this->getLightbox()): ?>
+                        <a href="<?php echo $builderHelper->getPanelUploadSrc('masonry', $imageName) ?>" data-lightbox="lightbox-<?php echo $blockId ?>">
+                    <?php elseif ($builderHelper->getRealUrl($links[$key])!='#'): ?>
+                        <a href="<?php echo $builderHelper->getRealUrl($links[$key]) ?>">
+                    <?php endif ?>
+                    <img src="<?php echo $builderHelper->getPanelUploadSrc('masonry', $imageName) ?>" alt="" />
+                    <?php if ($this->getLightbox() || (!$this->getLightbox() && ($builderHelper->getRealUrl($links[$key]))!='#')): ?>
+                        </a>
+                    <?php endif ?>
+                </span>
+            </div>
+        <?php endforeach ?>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'bridget',
+            'mgsmasonry'
+        ], function(jQuery){
+            (function($) {
+                $('#masonry<?php echo $blockId ?>').masonry({
+                  itemSelector: '.grid-item',
+                  percentPosition: true,
+                });
+            })(jQuery);
+        });
+    </script>
+<?php else: ?>
+    <div class="message info empty"><div><?php echo __('Have no image to display.') ?></div></div>
+<?php endif ?>
+</div>

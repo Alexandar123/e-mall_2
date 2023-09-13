@@ -1,0 +1,59 @@
+<?php
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$params = $this->getRequest()->getParams();
+?>
+<div class="search">
+	<div class="content-heading">
+		<h3 class="title">Search Brand</h3>
+	</div>
+	<div class="search_brand_form">
+		<form id="search_brand_form" action="" method="get">
+			<div class="control form-group">
+				<input id="search_brand"
+					   type="text"
+					   name="keyword"
+					   value="<?php if (isset($params['keyword'])) {
+						   echo $params['keyword'];
+					   } ?>"
+					   placeholder="<?= __('Search brand here...'); ?>"
+					   class="input-text"
+					   autocomplete="off"/>
+				<?php if (isset($params['char']) && $params['char'] != ''): ?>
+					<input id="search_brand_by_char"
+						   type="hidden"
+						   name="char"
+						   value="<?= $params['char']; ?>"/>
+				<?php endif; ?>
+			</div>
+			<div class="actions">
+				<button type="submit"
+						title="<?= $block->escapeHtml(__('Search')) ?>"
+						class="action primary">
+					<span><?= __('Search'); ?></span>
+				</button>
+				<?php if (isset($params['keyword']) || isset($params['char'])): ?>
+					<a href="<?= $helper->getBrandUrl(); ?>"
+							title="<?= $block->escapeHtml(__('Reset')) ?>"
+							class="action btn btn-secondary btn-sm search">
+						<span><?= __('Reset'); ?></span>
+					</a>
+				<?php endif; ?>
+			</div>
+		</form>
+	</div> 
+</div>
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function($){
+		$(document).ready(function() {
+			$("#search_brand").change(function() {
+				if ($(this).val()) {
+					$('button[type="submit"]').attr('disabled', false);
+				} else {
+					$('button[type="submit"]').attr('disabled', true);
+				}
+			});
+		});
+	});
+</script>

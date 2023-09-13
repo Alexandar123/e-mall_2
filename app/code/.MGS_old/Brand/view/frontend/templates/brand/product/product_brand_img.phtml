@@ -1,0 +1,23 @@
+<?php if ($block->getConfig('general_settings/enabled')): ?>
+    <?php if ($block->getConfig('product_page_settings/show_brand')): ?>
+		<?php if ($block->getConfig('product_page_settings/show_brand_img') && !$block->getConfig('product_page_settings/show_brand_img_sidebar')): ?>
+			<?php if ($brand = $block->getBrand()): ?>
+				<?php
+				if ($block->getConfig('product_page_settings/small_image_width') != '') {
+					$width = $block->getConfig('product_page_settings/small_image_width');
+				} else {
+					$width = 240;
+				}
+				?>
+				<div class="product-brand">
+					<?php $img = $brand->getSmallImageUrl(); ?>
+					<?php if ($img) { ?>
+						<div class="brand-image">
+							<a title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>"><img class="img-responsive" style="max-width: <?= $width ?>px;" src="<?= $img; ?>" alt="<?= $brand->getName(); ?>" class="image"/></a>
+						</div>
+					<?php } ?>
+				</div>
+			<?php endif; ?>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

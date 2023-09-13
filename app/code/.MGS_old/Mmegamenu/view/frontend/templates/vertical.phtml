@@ -1,0 +1,5 @@
+<?php $helperGenerator = $this->helper('MGS\Mmegamenu\Helper\Generator') ?>
+<?php $menuId = $this->getMenuId(); ?>
+<?php $html = $helperGenerator->getMenuCacheHtml($menuId,'vertical'); ?>
+
+<?php echo $helperGenerator->filter($html); ?>

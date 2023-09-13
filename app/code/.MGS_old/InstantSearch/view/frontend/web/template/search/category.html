@@ -1,0 +1,20 @@
+<div class="categories categories-list" data-bind="visible: isVisible()">
+    <div class="title">
+        <!-- ko i18n: 'Categories'--><!-- /ko -->
+        <a class="see-all" data-bind="attr: {href: result.category.url}">
+            <!-- ko i18n: 'See All' --><!-- /ko -->
+            (<span data-bind="text: result.category.size"></span>)
+        </a>
+    </div>
+    <ul class="categories list items category-items" role="listbox" data-bind="foreach: result.category.data">
+        <li class="item category category-item">
+            <div class="category-item-info">
+                <div class="category details category-item-details">
+                    <div class="category name category-item-name" data-bind="visible: name">
+                        <a class="category-item-link" data-bind="attr: { href: url, title: name }, text: name"></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

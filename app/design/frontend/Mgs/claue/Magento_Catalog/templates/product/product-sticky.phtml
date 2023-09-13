@@ -1,0 +1,18 @@
+<script>
+    require([
+        'jquery',
+        'domReady!',
+        'stickyContent'
+    ], function ($) {
+        $(document).ready(function() {
+            $(window).on( 'scroll', function(){
+                $(".columns-main-sticky .product-info-main").stick_in_parent({
+                    parent: $('.columns-main-sticky')
+                });
+                $(".columns-main-sticky .product-detail-information").stick_in_parent({
+                    parent: $('.columns-main-sticky')
+                });
+            });
+        });
+    });
+</script>

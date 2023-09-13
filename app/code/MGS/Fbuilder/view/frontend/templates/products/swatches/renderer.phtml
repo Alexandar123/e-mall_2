@@ -1,0 +1,44 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/** @var $block \Magento\Swatches\Block\Product\Renderer\Listing\Configurable */
+$productId = $block->getProduct()->getId();
+/** @var \Magento\Swatches\ViewModel\Product\Renderer\Configurable $configurableViewModel */
+$configurableViewModel = $block->getConfigurableViewModel()
+?>
+<div class="swatch-opt-<?php echo $block->escapeHtmlAttr($productId) ?>"
+     data-role="swatch-option-<?php echo $block->escapeHtmlAttr($productId) ?>"></div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-option-<?php echo $block->escapeJs($productId) ?>]": {
+            "Magento_Swatches/js/swatch-renderer": {
+                "selectorProduct": ".product-item-details",
+                "onlySwatches": true,
+                "enableControlLabel": false,
+                "numberToShow": <?php echo  $block->escapeJs($block->getNumberSwatchesPerProduct()) ?>,
+                "jsonConfig": <?php echo /* @noEscape */ $block->getJsonConfig() ?>,
+                "jsonSwatchConfig": <?php echo /* @noEscape */ $block->getJsonSwatchConfig() ?>,
+                "mediaCallback": "<?php echo $block->escapeJs($block->escapeUrl($block->getMediaCallback())) ?>",
+                "jsonSwatchImageSizeConfig": <?php echo /* @noEscape */ $block->getJsonSwatchSizeConfig() ?>
+            }
+        }
+    }
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=priceBox][data-price-box=product-id-<?php echo $block->escapeJs($productId) ?>]": {
+            "priceBox": {
+                "priceConfig": {
+                    "priceFormat": <?php echo /* @noEscape */ $block->getPriceFormatJson(); ?>,
+                    "prices": <?php echo /* @noEscape */ $block->getPricesJson(); ?>
+                }
+            }
+        }
+    }
+</script>

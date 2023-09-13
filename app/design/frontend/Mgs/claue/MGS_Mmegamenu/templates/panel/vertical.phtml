@@ -1,0 +1,59 @@
+<?php $megaMenu = $this->getMegamenuItems(); ?>
+<?php $themeHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<div class="container" id="check_width"></div>
+<div class="widget megamenu-widget vertical-menu-widget">
+	<?php if($this->hasData('mgs_panel_title') && $this->getData('mgs_panel_title') != ""): ?>
+		<div class="vertical-title" onclick="toggleVerticalMenu('#vertical-menu-<?php echo $this->getMenuId() ?>');"><span class="fa fa-bars"></span><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></div>
+	<?php endif ?>
+	<?php if (count($megaMenu) > 0): ?>
+		<ul id="vertical-menu-<?php echo $this->getMenuId() ?>" class="vertical-menu nav nav-pills nav-main">
+			<?php foreach ($megaMenu as $item): ?>
+				<li class="<?php echo $this->getClass($item) ?>">
+					<?php echo $this->getMenuHtml($item) ?>
+				</li>
+			<?php endforeach ?>
+		</ul>
+	<?php else: ?>
+		<div role="alert" class="alert alert-warning"><?php echo __('There are no menus matching the selection.') ?></div>
+	<?php endif ?>
+	<script type="text/javascript">
+		require([
+			'jquery'
+		], function ($) {
+			$(document).ready(function(){
+				$(".vertical-menu li.level1.category-submenu .toggle-menu>a>span").on('click', function(){
+                	$(".vertical-menu li.level1.category-submenu>.dropdown-submenu").slideToggle();
+            	});
+				if($(window).width() > 1199){
+					setWidth();
+				}else {
+					$('.vertical-menu li.mega-menu-fullwidth:not(.menu-2columns) > .dropdown-menu').css("width", "");
+				}
+			});
+			$(window).resize(function(){
+				if($(this).width() > 1199){
+					setWidth();
+				}else {
+					$('.vertical-menu li.mega-menu-fullwidth:not(.menu-2columns) > .dropdown-menu').css("width", "");
+				}
+			});
+		});
+		function setWidth(){
+			require([
+				'jquery'
+			], function( $ ) {
+				var containerW = $('#check_width').width() - 60;
+				var menuW = $('#vertical-menu-<?php echo $this->getMenuId() ?>').width();
+				var menuCtW = containerW - menuW;
+				$('.vertical-menu li.mega-menu-fullwidth:not(.menu-2columns) > .dropdown-menu').width(menuCtW);
+			});
+		}
+		function toggleVerticalMenu(el){
+			require([
+				'jquery'
+			], function( $ ) {
+				$(el).slideToggle();
+			});
+		}
+   </script>
+</div>

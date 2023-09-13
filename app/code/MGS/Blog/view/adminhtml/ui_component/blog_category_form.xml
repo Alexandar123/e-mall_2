@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">blog_category_form.blog_category_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">CATEGORY</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item> 
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="MGS\Blog\Block\Adminhtml\Category\SaveButton"/>
+            <button name="back" class="MGS\Blog\Block\Adminhtml\Category\BackButton"/>
+        </buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <namespace>blog_category_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>blog_category_form.blog_category_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="blog_category_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+         <settings>
+            <submitUrl path="blog/category/save"/>
+        </settings>
+        <dataProvider class="MGS\Blog\Model\Category\DataProvider" name="blog_category_data_source">
+            <settings>
+                <requestFieldName>category_id</requestFieldName>
+                <primaryFieldName>category_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+   <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="title" sortOrder="10" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+
+        <field name="url_key" formElement="input" sortOrder="20">
+            <settings>
+                <visible>true</visible>
+                <elementTmpl>ui/form/element/input</elementTmpl>
+                <label translate="true">URL</label>
+                <dataScope>url_key</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="status" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Blog\Model\Options\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="store_id" sortOrder="65" formElement="hidden">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">company</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>hidden</dataType>
+                    <dataScope>store_id</dataScope>
+                </settings>
+        </field>
+
+        <field name="scope" sortOrder="65" formElement="hidden">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">company</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>hidden</dataType>
+                    <dataScope>scope</dataScope>
+                </settings>
+        </field>
+             
+        <field name="sort_order" sortOrder="40" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Sort Order</label>
+                <dataScope>sort_order</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+
+     <fieldset name="meta">
+        <settings>
+            <label translate="true">Meta Information</label>
+        </settings>
+        <field name="meta_keywords" sortOrder="10" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Keywords</label>
+                <dataScope>meta_keywords</dataScope>
+            </settings>
+        </field>
+
+        <field name="meta_description" sortOrder="10" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Description</label>
+                <dataScope>meta_description</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+  
+</form>

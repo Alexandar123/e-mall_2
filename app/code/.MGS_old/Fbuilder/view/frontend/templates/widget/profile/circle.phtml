@@ -1,0 +1,37 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<div class="content-block profile-block">
+    <div class="mgs-profile profile-circle">
+        <div class="photo">
+            <img src="<?php echo $this->getProfilePhoto() ?>" alt="" />
+        </div>
+        <div class="profile-info">
+            <h4><?php echo $builderHelper->decodeHtmlTag($this->getFbuilderProfileName()) ?></h4>
+            <?php if ($this->getData('fbuilder_subtitle')): ?>
+                <p class="subtitle"><span><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_subtitle')) ?></span></p>
+            <?php endif ?>
+            
+            <?php if ($this->getData('fbuilder_text_content')): ?>
+                <div class="profile-description"><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_text_content')) ?></div>
+            <?php endif ?>
+            
+            <?php if (($this->getEmail()!='') || ($this->getFacebook()!='') || ($this->getTwitter()!='') || ($this->getLinkedin()!='')): ?>
+                <div class="social<?php if ($this->getSocialBoxShadow()): ?> box-shadow<?php endif ?>">
+                    <ul>
+                        <?php if ($this->getEmail()!=''): ?>
+                            <li class="mail"><a href="mailto:<?php echo $this->getEmail() ?>"><em class="fa fa-envelope"></em></a></li>
+                        <?php endif ?>
+                        <?php if ($this->getFacebook()!=''): ?>
+                            <li class="fb"><a href="<?php echo $this->getFacebook() ?>"><em class="fa fa-facebook"></em></a></li>
+                        <?php endif ?>
+                        <?php if ($this->getTwitter()!=''): ?>
+                            <li class="tw"><a href="<?php echo $this->getTwitter() ?>"><em class="fa fa-twitter"></em></a></li>
+                        <?php endif ?>
+                        <?php if ($this->getLinkedin()!=''): ?>
+                            <li class="in"><a href="<?php echo $this->getLinkedin() ?>"><em class="fa fa-linkedin"></em></a></li>
+                        <?php endif ?>
+                    </ul>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+</div>

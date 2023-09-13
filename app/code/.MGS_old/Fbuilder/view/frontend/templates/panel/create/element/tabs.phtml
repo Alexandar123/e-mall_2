@@ -1,0 +1,508 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $attributes = $this->getAvailableAttributes() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<?php $settings = null ?>
+<div class="edit-static-form">
+    
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Product Tabs') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="tabs">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+                $tabs = $settings['tabs'];
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setBuilderChild($child)
+                    ->setDisableContent(1)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-tab-title" data-role="collapsible" id="tab-label-tab">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#tab" id="tab-label-tab-title">
+                    <?php echo __('Tab Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="tab" data-role="content" style="display:none">
+                <div class="form-group line">
+                    <label class="col-des-3 control-label" for="new_products"><?php echo __('New Products') ?></label>
+                    <div class="col-des-3">
+                        <div data-role="switcher" class="admin__actions-switch">
+                            <input type="checkbox"<?php if ($exist && (isset($tabs['mgs_new_products_tabs']['value']) && ($tabs['mgs_new_products_tabs']['value']!=''))): ?> checked="checked"<?php endif ?> class="admin__actions-switch-checkbox product-tabs-check" id="new_products" name="setting[tabs][mgs_new_products_tabs][value]" value="mgs_new_products_tabs">
+                            <label class="admin__actions-switch-label" for="new_products">
+                                <span class="admin__actions-switch-text" data-text-on="<?php echo __('Yes') ?>" data-text-off="<?php echo __('No') ?>"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-des-3"><input type="text" placeholder="<?php echo __('Tab Title') ?>" name="setting[tabs][mgs_new_products_tabs][label]" class="input-text required-entry" id="new_products_label"<?php if ($exist && (isset($tabs['mgs_new_products_tabs']['label']) && ($tabs['mgs_new_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_new_products_tabs']['label'] ?>"<?php endif ?>></div>
+                    <div class="col-des-2"><input type="text" placeholder="<?php echo __('Position') ?>" name="setting[tabs][mgs_new_products_tabs][position]" class="input-text validate-number" id="new_products_position"<?php if ($exist && (isset($tabs['mgs_new_products_tabs']['label']) && ($tabs['mgs_new_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_new_products_tabs']['position'] ?>"<?php endif ?>></div>
+                    <div class="col-des-1"></div>
+                </div>
+                
+                <div class="form-group line">
+                    <label class="col-des-3 control-label" for="sale_products"><?php echo __('Sale Products') ?></label>
+                    <div class="col-des-3">
+                        <div data-role="switcher" class="admin__actions-switch">
+                            <input type="checkbox"<?php if ($exist && (isset($tabs['mgs_sale_products_tabs']['value']) && ($tabs['mgs_sale_products_tabs']['value']!=''))): ?> checked="checked"<?php endif ?> class="admin__actions-switch-checkbox product-tabs-check" id="sale_products" name="setting[tabs][mgs_sale_products_tabs][value]" value="mgs_sale_products_tabs">
+                            <label class="admin__actions-switch-label" for="sale_products">
+                                <span class="admin__actions-switch-text" data-text-on="<?php echo __('Yes') ?>" data-text-off="<?php echo __('No') ?>"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-des-3"><input type="text" placeholder="<?php echo __('Tab Title') ?>" name="setting[tabs][mgs_sale_products_tabs][label]" class="input-text required-entry" id="sale_products_label"<?php if ($exist && (isset($tabs['mgs_sale_products_tabs']['label']) && ($tabs['mgs_sale_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_sale_products_tabs']['label'] ?>"<?php endif ?>></div>
+                    <div class="col-des-2"><input type="text" placeholder="<?php echo __('Position') ?>" name="setting[tabs][mgs_sale_products_tabs][position]" class="input-text validate-number" id="sale_products_position"<?php if ($exist && (isset($tabs['mgs_sale_products_tabs']['label']) && ($tabs['mgs_sale_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_sale_products_tabs']['position'] ?>"<?php endif ?>></div>
+                    <div class="col-des-1"></div>
+                </div>
+                
+                <div class="form-group line">
+                    <label class="col-des-3 control-label" for="rate_products"><?php echo __('Top Rate Products') ?></label>
+                    <div class="col-des-3">
+                        <div data-role="switcher" class="admin__actions-switch">
+                            <input type="checkbox"<?php if ($exist && (isset($tabs['mgs_rate_products_tabs']['value']) && ($tabs['mgs_rate_products_tabs']['value']!=''))): ?> checked="checked"<?php endif ?> class="admin__actions-switch-checkbox product-tabs-check" id="rate_products" name="setting[tabs][mgs_rate_products_tabs][value]" value="mgs_rate_products_tabs">
+                            <label class="admin__actions-switch-label" for="rate_products">
+                                <span class="admin__actions-switch-text" data-text-on="<?php echo __('Yes') ?>" data-text-off="<?php echo __('No') ?>"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-des-3"><input type="text" placeholder="<?php echo __('Tab Title') ?>" name="setting[tabs][mgs_rate_products_tabs][label]" class="input-text required-entry" id="rate_products_label"<?php if ($exist && (isset($tabs['mgs_rate_products_tabs']['label']) && ($tabs['mgs_rate_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_rate_products_tabs']['label'] ?>"<?php endif ?>></div>
+                    <div class="col-des-2"><input type="text" placeholder="<?php echo __('Position') ?>" name="setting[tabs][mgs_rate_products_tabs][position]" class="input-text validate-number" id="rate_products_position"<?php if ($exist && (isset($tabs['mgs_rate_products_tabs']['label']) && ($tabs['mgs_rate_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_rate_products_tabs']['position'] ?>"<?php endif ?>></div>
+                    <div class="col-des-1"></div>
+                </div>
+                
+                <div id="new-tab-container">
+                    <?php if ($exist): ?>
+                        <?php
+                        if (isset($tabs['mgs_new_products_tabs']['value'])) {
+                            unset($tabs['mgs_new_products_tabs']);
+                        }
+                        if (isset($tabs['mgs_sale_products_tabs']['value'])) {
+                            unset($tabs['mgs_sale_products_tabs']);
+                        }
+                        if (isset($tabs['mgs_rate_products_tabs']['value'])) {
+                            unset($tabs['mgs_rate_products_tabs']);
+                        }
+                        ?>
+                        <?php if (count($tabs)>0): ?>
+                            <?php foreach ($tabs as $key => $tab): ?>
+                                <div id="form-group-<?php echo $key ?>" class="form-group line">
+                                    <label class="col-des-3 control-label" for="rate_products"></label>
+                                    <div class="col-des-3">
+                                        <select name="setting[tabs][<?php echo $key ?>][value]" class="input-text required-entry">
+                                            <option value=""><?php echo __('Choose an attribute') ?></option>
+                                            <?php if (count($attributes)>0): ?>
+                                                <?php foreach ($attributes as $attributeCode => $attributeLabel): ?>
+                                                    <option value="<?php echo $attributeCode ?>"<?php if ($tab['value']==$attributeCode): ?> selected="selected"<?php endif ?>><?php echo $attributeLabel ?></option>
+                                                <?php endforeach ?>
+                                            <?php endif ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-des-3"><input type="text" value="<?php echo $tab['label'] ?>" placeholder="<?php echo __('Tab Title') ?>" name="setting[tabs][<?php echo $key ?>][label]" class="input-text required-entry"></div>
+                                    <div class="col-des-2"><input type="text" value="<?php echo $tab['position'] ?>" placeholder="<?php echo __('Position') ?>" name="setting[tabs][<?php echo $key ?>][position]" class="input-text validate-number"></div>
+                                    <div class="col-des-1"><a onclick="removeFormGroup('#form-group-<?php echo $key ?>'); return false" href="#"><span class="fa fa-close"></span></a></div>
+                                </div>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    <?php endif ?>
+                </div>
+                
+                <div class="form-group line">
+                    <label class="col-des-3 control-label"><button onclick="newAttributeTab()" type="button" class="action"><em class="fa fa-plus-circle"></em> <?php echo __('Add new tab') ?></button></label>
+                </div>
+                
+                <hr/>
+                
+                <div class="category-tab-config">
+                    <div id="tab-sample">
+                        <div class="builder-tab data items">
+                            <div class="form-group line">
+                                <label for="tab_style" class="col-des-3 control-label"><?php echo __('Tab Style') ?></label>
+                                <div class="col-des-9">
+                                    <select id="tab_style" class="input-text" name="setting[tab_style]" onchange="changeTabStyle()">
+                                        <option value="style1"<?php if ($exist && ($settings['tab_style']=='style1')): ?> selected="selected"<?php endif ?>><?php echo __('Style 1') ?></option>
+                                        <option value="style2"<?php if ($exist && ($settings['tab_style']=='style2')): ?> selected="selected"<?php endif ?>><?php echo __('Style 2') ?></option>
+                                        <option value="style3"<?php if ($exist && ($settings['tab_style']=='style3')): ?> selected="selected"<?php endif ?>><?php echo __('Style 3') ?></option>
+                                        <option value="style4"<?php if ($exist && ($settings['tab_style']=='style4')): ?> selected="selected"<?php endif ?>><?php echo __('Style 4') ?></option>
+                                        <option value="style5"<?php if ($exist && ($settings['tab_style']=='style5')): ?> selected="selected"<?php endif ?>><?php echo __('Style 5') ?></option>
+                                        <option value="style6"<?php if ($exist && ($settings['tab_style']=='style6')): ?> selected="selected"<?php endif ?>><?php echo __('Style 6') ?></option>
+                                        <option value="style7"<?php if ($exist && ($settings['tab_style']=='style7')): ?> selected="selected"<?php endif ?>><?php echo __('Style 7') ?></option>
+                                    </select>
+                                    
+                                    <div id="tab_style_image" style="margin-top:5px; height:80px; overflow:hidden" class="mgs-product-tab">
+                                        <div class="product data items mgs-tab" id="tab-style-container">
+                                            <div class="data item title item1 active"><a class="data switch">Title 1</a></div>
+                                            <div class="data item content"></div>
+                                            <div class="data item title"><a class="data switch">Title 2</a></div>
+                                            <div class="data item content"></div>
+                                            <div class="data item title last-item"><a class="data switch">Title 3</a></div>
+                                            <div class="data item content"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <style type="text/css" id="head-custom-css"></style>
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-group line">
+                        <div class="col-des-3">
+                        </div>
+                        <div class="col-des-9">
+                            <div class="line">
+                                <div class="col-des-3">
+                                    <label for="tab_font_bold" class="control-label"><?php echo __('Font Bold') ?></label>
+                                    <div class="admin__actions-switch" data-role="switcher">
+                                        <input type="checkbox"<?php if ($exist && $settings['tab_font_bold']): ?> checked="checked"<?php endif ?> value="1" name="setting[tab_font_bold]" id="tab_font_bold" class="admin__actions-switch-checkbox" onclick="changeFontWeight()">
+                                        <label for="tab_font_bold" class="admin__actions-switch-label">
+                                            <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-des-3">
+                                    <label for="tab_italic" class="control-label"><?php echo __('Font Italic') ?></label>
+                                    <div class="admin__actions-switch" data-role="switcher">
+                                        <input type="checkbox"<?php if ($exist && $settings['tab_italic']): ?> checked="checked"<?php endif ?> value="1" name="setting[tab_italic]" id="tab_italic" class="admin__actions-switch-checkbox" onclick="changeFontStyle()">
+                                        <label for="tab_italic" class="admin__actions-switch-label">
+                                            <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-des-3">
+                                    <label for="tab_uppercase" class="control-label"><?php echo __('Uppercase') ?></label>
+                                    <div class="admin__actions-switch" data-role="switcher">
+                                        <input type="checkbox"<?php if ($exist && $settings['tab_uppercase']): ?> checked="checked"<?php endif ?> value="1" name="setting[tab_uppercase]" id="tab_uppercase" class="admin__actions-switch-checkbox" onclick="changeTextTransform()">
+                                        <label for="tab_uppercase" class="admin__actions-switch-label">
+                                            <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-des-3">
+                                    <label for="tab_align" class="control-label"><?php echo __('Align') ?></label><br/>
+                                    <div>
+                                        <select id="tab_align" class="input-text" name="setting[tab_align]" onchange="changeTabAlign()">
+                                            <option value="left"<?php if ($exist && ($settings['tab_align']=='left')): ?> selected="selected"<?php endif ?>><?php echo __('Left') ?></option>
+                                            
+                                            <option value="center"<?php if ($exist && ($settings['tab_align']=='center')): ?> selected="selected"<?php endif ?>><?php echo __('Center') ?></option>
+                                            
+                                            <option value="right"<?php if ($exist && ($settings['tab_align']=='right')): ?> selected="selected"<?php endif ?>><?php echo __('Right') ?></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                            
+                            <div class="form-group line">
+                                <label for="font_size" class="col-des-3 control-label"><?php echo __('Font Size') ?></label>
+                                <div class="col-des-9">
+                                    <input type="text" id="font_size" class="input-text validate-number" name="setting[font_size]"<?php if ($exist): ?> value="<?php echo $settings['font_size'] ?>"<?php endif ?> placeholder="px" onchange="changeTabColor()"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group line">
+                                <label for="tab_primary_color" class="col-des-3 control-label"><?php echo __('Primary Color') ?></label>
+                                <div class="col-des-9">
+                                    <input type="text" id="tab_primary_color" class="input-text color-input" name="setting[tab_primary_color]"<?php if ($exist): ?> value="<?php echo $settings['tab_primary_color'] ?>"<?php endif ?> onchange="changeTabColor()"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group line">
+                                <label for="tab_secondary_color" class="col-des-3 control-label"><?php echo __('Secondary Color') ?></label>
+                                <div class="col-des-9">
+                                    <input type="text" id="tab_secondary_color" class="input-text color-input" name="setting[tab_secondary_color]"<?php if ($exist): ?> value="<?php echo $settings['tab_secondary_color'] ?>"<?php endif ?> onchange="changeTabColor()"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group line">
+                                <label for="tab_third_color" class="col-des-3 control-label"><?php echo __('Third Color') ?></label>
+                                <div class="col-des-9">
+                                    <input type="text" id="tab_third_color" class="input-text color-input" name="setting[tab_third_color]"<?php if ($exist): ?> value="<?php echo $settings['tab_third_color'] ?>"<?php endif ?> onchange="changeTabColor()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data item title" aria-labeledby="tab-label-additional-title" data-role="collapsible" id="tab-label-additional">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#additional" id="tab-label-additional-title">
+                    <?php echo __('Product Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="additional" data-role="content" style="display:none">
+                <div class="form-group line">
+                    <label for="number_of_posts" class="col-des-4 control-label"><?php echo __('Number of product to display') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="limit" class="input-text required-entry validate-number" name="setting[limit]"<?php if ($exist): ?> value="<?php echo $settings['limit'] ?>"<?php endif ?> />
+                    </div>
+                </div>
+                
+                <div class="form-group line grid-perrow">
+                    <label for="perrow" class="col-des-4 control-label"><?php echo __('Items per row (default)') ?></label>
+                    <div class="col-des-8">
+                        <select id="perrow" class="input-text" name="setting[perrow]">
+                            <option value="1"<?php if ($exist && ($settings['perrow']==1)): ?> selected="selected"<?php endif ?>>1</option>
+                            <option value="2"<?php if ($exist && ($settings['perrow']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['perrow']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['perrow']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                            <option value="5"<?php if ($exist && ($settings['perrow']==5)): ?> selected="selected"<?php endif ?>>5</option>
+                            <option value="6"<?php if ($exist && ($settings['perrow']==6)): ?> selected="selected"<?php endif ?>>6</option>
+                            <option value="7"<?php if ($exist && ($settings['perrow']==7)): ?> selected="selected"<?php endif ?>>7</option>
+                            <option value="8"<?php if ($exist && ($settings['perrow']==8)): ?> selected="selected"<?php endif ?>>8</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line grid-perrow">
+                    <label for="perrow_tablet" class="col-des-4 control-label"><?php echo __('Items per row (tablet)') ?></label>
+                    <div class="col-des-8">
+                        <select id="perrow_tablet" class="input-text" name="setting[perrow_tablet]">
+                            <option value="1"<?php if ($exist && ($settings['perrow_tablet']==1)): ?> selected="selected"<?php endif ?>>1</option>
+                            <option value="2"<?php if ($exist && ($settings['perrow_tablet']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['perrow_tablet']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['perrow_tablet']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                            <option value="5"<?php if ($exist && ($settings['perrow_tablet']==5)): ?> selected="selected"<?php endif ?>>5</option>
+                            <option value="6"<?php if ($exist && ($settings['perrow_tablet']==6)): ?> selected="selected"<?php endif ?>>6</option>
+                            <option value="7"<?php if ($exist && ($settings['perrow_tablet']==7)): ?> selected="selected"<?php endif ?>>7</option>
+                            <option value="8"<?php if ($exist && ($settings['perrow_tablet']==8)): ?> selected="selected"<?php endif ?>>8</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line grid-perrow">
+                    <label for="perrow_mobile" class="col-des-4 control-label"><?php echo __('Items per row (mobile)') ?></label>
+                    <div class="col-des-8">
+                        <select id="perrow_mobile" class="input-text" name="setting[perrow_mobile]">
+                            <option value="1"<?php if ($exist && ($settings['perrow_mobile']==1)): ?> selected="selected"<?php endif ?>>1</option>
+                            <option value="2"<?php if ($exist && ($settings['perrow_mobile']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['perrow_mobile']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['perrow_mobile']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                            <option value="5"<?php if ($exist && ($settings['perrow_mobile']==5)): ?> selected="selected"<?php endif ?>>5</option>
+                            <option value="6"<?php if ($exist && ($settings['perrow_mobile']==6)): ?> selected="selected"<?php endif ?>>6</option>
+                            <option value="7"<?php if ($exist && ($settings['perrow_mobile']==7)): ?> selected="selected"<?php endif ?>>7</option>
+                            <option value="8"<?php if ($exist && ($settings['perrow_mobile']==8)): ?> selected="selected"<?php endif ?>>8</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_name" class="col-des-4 control-label"><?php echo __('Hide Product Name') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_name']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_name]" id="hide_name" class="admin__actions-switch-checkbox">
+                            <label for="hide_name" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_review" class="col-des-4 control-label"><?php echo __('Hide Review') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_review']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_review]" id="hide_review" class="admin__actions-switch-checkbox">
+                            <label for="hide_review" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_price" class="col-des-4 control-label"><?php echo __('Hide Price') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_price']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_price]" id="hide_price" class="admin__actions-switch-checkbox">
+                            <label for="hide_price" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_addcart" class="col-des-4 control-label"><?php echo __('Hide Add to Cart') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_addcart']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_addcart]" id="hide_addcart" class="admin__actions-switch-checkbox">
+                            <label for="hide_addcart" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_addwishlist" class="col-des-4 control-label"><?php echo __('Hide Add to Wishlist') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_addwishlist']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_addwishlist]" id="hide_addwishlist" class="admin__actions-switch-checkbox">
+                            <label for="hide_addwishlist" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_addcompare" class="col-des-4 control-label"><?php echo __('Hide Add to Compare') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_addcompare']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_addcompare]" id="hide_addcompare" class="admin__actions-switch-checkbox">
+                            <label for="hide_addcompare" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line" id="use-slider">
+                    <label for="use_slider" class="col-des-4 control-label"><?php echo __('Use slider') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['use_slider']): ?> checked="checked"<?php endif ?> value="1" name="setting[use_slider]" id="use_slider" class="admin__actions-switch-checkbox" onclick="useSlider()">
+                            <label for="use_slider" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setSettings($settings)
+                        ->setDisableSliderMargin(1)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/slider_setting.phtml')->toHtml() ;
+                ?>
+            </div>
+            
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setDisableCategoryTab(1)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/category_tab.phtml')->toHtml() ;
+            ?>
+            
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                $('.product-tabs-check').each(function() {
+                    if($(this).prop("checked") == true){
+                        $(this).parents('div.form-group').find('input.input-text').removeAttr('disabled');
+                    }else{
+                        $(this).parents('div.form-group').find('input.input-text').attr('disabled', 'disabled');
+                    }
+                });
+                
+                $('.product-tabs-check').click(function() {
+                    if($(this).prop("checked") == true){
+                        $(this).parents('div.form-group').find('input.input-text').removeAttr('disabled');
+                    }else{
+                        $(this).parents('div.form-group').find('input.input-text').attr('disabled', 'disabled');
+                    }
+                });
+            });
+        })(jQuery);
+    });
+    
+    function newAttributeTab(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                randomNumber = Math.floor((Math.random() * 10000) + 1);
+                html = '<div class="form-group line" id="form-group-{{random_number}}"><label for="rate_products" class="col-des-3 control-label"></label><div class="col-des-3">';
+                html = html + '<select class="input-text required-entry" name="setting[tabs][{{random_number}}][value]"><option value="">Choose an attribute</option>';
+                
+                <?php if (count($attributes)>0): ?>
+                    <?php foreach ($attributes as $attributeCode => $attributeLabel): ?>
+                        html = html + '<option value="<?php echo $attributeCode ?>"><?php echo $attributeLabel ?></option>';
+                    <?php endforeach ?>
+                <?php endif ?>
+                                                        
+                html = html + '</select>';
+                                        
+                html = html + '</div><div class="col-des-3"><input type="text" class="input-text required-entry" name="setting[tabs][{{random_number}}][label]" placeholder="Tab Title"/></div><div class="col-des-2"><input type="text" class="input-text validate-number" name="setting[tabs][{{random_number}}][position]" placeholder="Position"/></div><div class="col-des-1"><a href="#" onclick="removeFormGroup(\'#form-group-{{random_number}}\'); return false"><span class="fa fa-close"></span></a></div></div>';
+                
+                html = html.replace(/{{random_number}}/g, randomNumber);
+                                    
+                $('#new-tab-container').append(html);
+            })(jQuery);
+        });
+    }
+    
+    function removeFormGroup(number){
+            require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $(number).remove();
+            })(jQuery);
+        });
+    }
+</script>

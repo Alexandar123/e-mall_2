@@ -1,0 +1,59 @@
+<script type="text/javascript">
+	require([
+		"jquery"
+	], function(jQuery){
+		(function($) {
+			$(document).ready(function () {
+				if($('.pin__type').length && $(window).width() > 767){
+					$('.lookbook-container .pin__type .pin-label').click(function(){
+						$('.lookbook-container .pin__type .pin__popup').removeClass('pin__opened');
+						$(this).parent().find('> .pin__popup').toggleClass('pin__opened');
+						$(this).parent().parent().find('> .pin__image').addClass('pm-mask');
+					});
+					$('.lookbook-container .pin__type > .pin_close').click(function(){
+						$(this).parent().find('> .pin__popup').removeClass('pin__opened');
+						$(this).parent().parent().find('> .pin__image').removeClass('pm-mask');
+					});
+					$('.lookbook-container .pin__image').click(function(){
+						$('.lookbook-container .pin__type > .pin__popup').removeClass('pin__opened');
+						$(this).removeClass('pm-mask');
+					});
+				}
+			});
+		})(jQuery);
+	});
+</script>
+
+
+<script type="text/javascript">
+    requirejs([
+        'jquery',
+        'domReady!',
+        'aQuickView'
+    ], function($){
+		if ($(window).width() <= 767){
+			$('#loading_overlay').removeClass('loading');
+			$(document).ready(function(){
+				includeQuickviewAction($);
+			});
+
+			$(document).on('click','.lookbook-container .pin__type .pin-label',function(e){
+				lookBookPro = $(this).attr("data-href") ? 1 : 0;
+				if(lookBookPro) {
+					e.preventDefault();
+					if($('body.catalog-product-view').size() > 0){
+						$('body').addClass('origin-catalog-product-view');
+					}else {
+						$('body').addClass('catalog-product-view');
+					}
+					$('#loading_overlay').addClass('loading');
+					var widgetQv = $(this).aQuickView();
+					var url = $(this).attr('data-href');
+					var id = $(this).attr('data-productid');
+					widgetQv.aQuickView('productQuickView',url, id);
+				}
+			});
+		}        
+    });
+
+</script>

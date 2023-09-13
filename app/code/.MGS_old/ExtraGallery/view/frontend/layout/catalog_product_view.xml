@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+	<referenceContainer name="product.info.media">
+		<block class="MGS\ExtraGallery\Block\Product\View\Gallery" name="product.info.extra.media.image" template="MGS_ExtraGallery::gallery.phtml"/>
+	</referenceContainer>
+	
+	<referenceContainer name="page.wrapper">
+		<block class="MGS\ExtraGallery\Block\Product\View\Gallery" name="product.info.extra.media.image.config" template="MGS_ExtraGallery::config.phtml" />
+		
+		<block class="MGS\ExtraGallery\Block\Product\View\Gallery" name="product.info.extra.media.image.type" template="MGS_ExtraGallery::gallery.phtml" before="main.content" />
+	</referenceContainer>
+</page>

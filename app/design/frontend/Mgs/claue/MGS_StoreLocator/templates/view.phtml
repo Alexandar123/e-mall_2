@@ -1,0 +1,131 @@
+<?php
+$themeHelper = $this->helper('MGS\StoreLocator\Helper\Data');
+$_storeView = $this->getStoreView();
+$imageUrl = $_storeView->getImageUrl();
+?>
+
+<div class="storelocator-details">
+    <div class="line">
+        <div class="col-des-6 col-tb-12 col-mb-12">
+            <div class="box-store">
+                <h2><?= __('Store Information') ?></h2>
+                <?php if ($imageUrl): ?>
+                    <div class="store-image">
+                        <img src="<?= $imageUrl ?>" alt="<?= $_storeView->getName() ?>" title="<?= $_storeView->getName() ?>" class="img-responsive"/>
+                    </div>
+                <?php endif ?>
+                <div class="store-info-detail">
+                    <div class="store-field">
+                        <div class="store-field__label"><?= __('Address:') ?> </div>
+                        <div class="store-field__content"><?= $_storeView->getStreetAddress().' '.ucfirst($_storeView->getCity()).' '.ucfirst($_storeView->getState()).' '.$_storeView->getZipcode().' '.$_storeView->getCountry() ?> </div>
+                    </div>
+                    <?php if($_storeView->getPhone()): ?>
+                        <div class="store-field">
+                            <div class="store-field__label"><?= __('Phone:') ?> </div>
+                            <div class="store-field__content"><a href="tel:<?= $this->escapeHtml($_storeView->getPhone()) ?>"><?= $this->escapeHtml($_storeView->getPhone()) ?></a></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if($_storeView->getEmail()): ?>
+                        <div class="store-field">
+                            <div class="store-field__label"><?= __('Email:') ?></div>
+                            <div class="store-field__content"><a href="mailto:<?= $this->escapeHtml($_storeView->getEmail()) ?>"><?= $this->escapeHtml($_storeView->getEmail()) ?></a></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if($_storeView->getFax()): ?>
+                        <div class="store-field">
+                            <div class="store-field__label"><?= __('Fax:') ?></div>
+                            <div class="store-field__content"><?= $this->escapeHtml($_storeView->getFax()) ?></div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if($_storeView->getPhoneNumber()): ?>
+                        <div class="store-field">
+                            <div class="store-field__label"><?= __('Phone:') ?></div>
+                            <div class="store-field__content"><?= $this->escapeHtml($_storeView->getPhoneNumber()) ?></div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if($_storeView->getWebsite()): ?>
+                        <div class="store-field">
+                            <div class="store-field__label"><?= __('Website:') ?></div>
+                            <div class="store-field__content"><a href="<?= $_storeView->getWebsite() ?>"><?= $_storeView->getWebsite() ?></a></div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-des-6 col-tb-12 col-mb-12">
+            <div class="box-store">
+                <?php if($_storeView->getDescription()): ?>
+                    <div class="store-html-content store-description">
+                        <h2><?= __('Store Overview') ?></h2>
+                        <div class="content">
+                            <?= $this->getDescription(); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
+            </div>
+
+            <div class="box-store">
+                <?php if($_storeView->getTradingHours()): ?>
+                    <div class="store-html-content store-opening-hours">
+                        <h2><?= __('Opening Hours') ?></h2>
+                        <div class="content">
+                            <?= $this->getTradingHours(); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$apikey = $themeSettingConfig->getStoreConfig('fbuilder/social/google_api_key');
+if (empty($apikey)) {
+    $apikey = $themeSettingConfig->getStoreConfig('locator/general/store_api_key');
+}
+?>
+<?php if ($apikey): ?>
+    <?php
+        $_storeView = $this->getStoreView();
+        $storeName = $_storeView->getName();
+        $storeLat = $_storeView->getLat();
+        $storeLong = $_storeView->getLng();
+        $storeRadius = $this->getRadius($_storeView);
+
+        if ($themeSettingConfig->getStoreConfig('locator/general/height_map_detail')) {
+            $_mapHeight = $themeSettingConfig->getStoreConfig('locator/general/height_map_detail');
+        } else {
+            $_mapHeight = 500;
+        }
+    ?>
+    <div id="map-detail" style="height: <?= $_mapHeight ?>px"></div>
+    <?php if ($storeLat && $storeLong): ?>
+        <script>
+            require(['jquery', 'MGS_StoreLocator/js/storelocator'], function($) {
+                $(window).on('load', function() {
+                    var storeLat = <?= $storeLat ;?>;
+                    var storeLong = <?= $storeLong ;?>;
+                    var storeRadius = <?= $storeRadius ;?>;
+                    var storeInfoText = '<div class="map-short-info"><h3><?= $storeName ; ?></h3><p><?= $_storeView->getStreetAddress() ?> <?= $_storeView->getCity() ?> <?= $_storeView->getState() ?> <?= $_storeView->getZipcode() ?> <?= $_storeView->getCountry() ?></p>';
+                    var googleMapDivId = 'map-detail';
+                    window.addEventListener('load', initializeMap(storeLat, storeLong, storeRadius, storeInfoText, googleMapDivId));
+                });
+            });
+        </script>
+    <?php endif ?>
+<?php else: ?>
+	<div class="message warning"><span><?= __('Please config Google Map API') ?></span></div>
+<?php endif ?>
+
+<?php $height = $themeHelper->getStoreConfig('locator/general/height_map_detail'); ?>
+<?php if (!empty($height)): ?>
+    <script >
+        require(['jquery'], function($) {
+            $('.locator-index-view #map-detail').css("height", "<?= $height.'px'; ?>");
+        });
+    </script>
+<?php endif ?>

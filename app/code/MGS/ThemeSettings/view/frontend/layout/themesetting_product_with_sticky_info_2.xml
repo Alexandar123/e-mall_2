@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="page-layout-product-with-sticky-info-2"/>
+        <referenceContainer name="page.wrapper" htmlClass="page-wrapper product-sticky-info" />
+
+        <referenceContainer name="product.detail.information">
+            <block class="Magento\Catalog\Block\Product\View" name="product.detail.name" template="product/view/name.phtml" before="-" />
+            <block class="Magento\Catalog\Block\Product\View" name="product.detail.review" template="product/view/review.phtml" after="product.detail.name" />
+            <container name="product.detail.price" label="Product detail container" htmlTag="div" htmlClass="product-info-price" after="product.detail.review">
+                <block class="Magento\Catalog\Pricing\Render" name="product.detail.price.final" before="-">
+                    <arguments>
+                        <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                        <argument name="price_type_code" xsi:type="string">final_price</argument>
+                        <argument name="zone" xsi:type="string">item_view</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <block class="Magento\Catalog\Pricing\Render" name="product.detail.price.tier" after="product.detail.price">
+                <arguments>
+                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                    <argument name="price_type_code" xsi:type="string">tier_price</argument>
+                    <argument name="zone" xsi:type="string">item_view</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.detail.price.overview" template="product/view/attribute.phtml" group="detailed_info" after="product.detail.info.tier">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                    <argument name="at_code" xsi:type="string">short_description</argument>
+                    <argument name="css_class" xsi:type="string">overview</argument>
+                    <argument name="at_label" translate="true" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Overview</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                </arguments>
+            </block>
+
+            <container name="product.detail.type">
+                <block class="Magento\Catalog\Block\Product\View\Type\Simple" name="product.detail.simple" as="product_type_data" template="product/view/type/default.phtml"/>
+                <container name="product.info.simple.extra" after="product.detail.simple" as="product_type_data_extra" label="Product Extra Info"/>
+            </container>
+
+            <container name="product.detail.stock.sku" label="Product auxiliary info" htmlTag="div" htmlClass="product-info-stock-sku">
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.detail.sku" template="product/view/attribute.phtml" after="product.info.type">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getSku</argument>
+                        <argument name="at_code" xsi:type="string">sku</argument>
+                        <argument name="css_class" xsi:type="string">sku</argument>
+                        <argument name="at_label" xsi:type="string">default</argument>
+                        <argument name="add_attribute" xsi:type="string">itemprop="sku"</argument>
+                    </arguments>
+                </block>
+            </container>
+            <block class="MGS\Brand\Block\Product\Brand" name="product.detail.brand.name" template="MGS_Brand::brand/product/product_brand_name.phtml" after="-" ifconfig="brand/product_page_settings/show_brand"/>
+        </referenceContainer>
+        <referenceContainer name="columns">
+            <container name="columns.main.sticky" htmlTag="div" htmlClass="columns-main-sticky" before="-" />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\View" name="product.with.sticky" template="Magento_Catalog::product/product-sticky.phtml" after="-" />
+        </referenceContainer>
+
+        <move element="product.info.main" destination="columns.main.sticky" after="-" />
+        <move element="product.info.media" destination="columns.main.sticky" after="product.detail.information" />
+        <move element="product.detail.information" destination="columns.main.sticky" before="-" />
+
+    </body>
+</page>

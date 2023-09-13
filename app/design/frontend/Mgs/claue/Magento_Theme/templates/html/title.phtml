@@ -1,0 +1,149 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+$cssClass = $block->getCssClass() ? ' ' . $block->getCssClass() : '';
+$title = '';
+if (trim($block->getPageHeading())) {
+    $title = '<span class="base" data-ui-id="page-title-wrapper" ' .  $block->getAddBaseAttribute() . '>'
+        . $block->escapeHtml($block->getPageHeading()) . '</span>';
+}
+?>
+
+<?php
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$backgroundType = $themeSettingConfig->getStoreConfig('themesettings/page_title/background');
+$layoutType = $themeSettingConfig->getStoreConfig('themesettings/page_title/design') ? $themeSettingConfig->getStoreConfig('themesettings/page_title/design') : 1;
+
+$showTitlePosition = '';
+
+$templates = $this->getRequest()->getFullActionName();
+
+$showTitle = 1;
+
+// If is product detail page.
+if ($templates == 'catalog_product_view') {
+    $breadcrumbType = $themeSettingConfig->getStoreConfig('themesettings/product_details/breadcrumb_layout');
+
+    $breadcrumbTitle = $themeSettingConfig->getStoreConfig('themesettings/product_details/breadcrumb_title');
+
+    if( ! empty($breadcrumbType)) {
+        $layoutType = $breadcrumbType;
+
+        if ( $breadcrumbType == 2 && !$breadcrumbTitle) {
+            $showTitle = 0;
+        }
+    }
+}
+
+
+// If is product category product page.
+if ($templates == 'catalog_category_view' && $templates != 'blog_post_view') {
+
+    $breadcrumbType = $themeSettingConfig->getStoreConfig('themesettings/category/breadcrumb_layout');
+    $showTitlePosition = $themeSettingConfig->getStoreConfig('themesettings/category/breadcrumb_position_title');
+
+    if( ! empty($breadcrumbType)) {
+        $layoutType = $breadcrumbType;
+
+        if ( $breadcrumbType == 2 && !$showTitlePosition) {
+            $showTitlePosition = ['bottom'];
+        }
+    }
+
+}
+
+// If is blog category product page.
+if ($templates == 'blog_index_index' || $templates == 'blog_tag_view' || $templates == 'blog_category_view') {
+
+    $breadcrumbType = $themeSettingConfig->getStoreConfig('blog/general_settings/breadcrumb_layout');
+    $showTitlePosition = $themeSettingConfig->getStoreConfig('blog/general_settings/breadcrumb_position_title');
+
+    if( ! empty($breadcrumbType)) {
+        $layoutType = $breadcrumbType;
+
+        if ( $breadcrumbType == 2 && !$showTitlePosition) {
+            $showTitlePosition = ['bottom'];
+        }
+    }
+
+}
+
+$customClass = $customStyle = "";
+if($backgroundType == 2){
+	/* Image */
+	if($image = $themeSettingConfig->getStoreConfig('themesettings/page_title/background_image')){
+		$customClass = "ttbg-image";
+		if($themeSettingConfig->getStoreConfig('themesettings/page_title/bg_repeat')){
+			$customClass .= " ttbg-image-repeat";
+		}
+		$imageBg = $themeSettingConfig->getPageTitleBackground();
+		$customStyle = "background-image: url(".$imageBg.");";
+	}
+}elseif($backgroundType == 3) {
+	/* Color */
+	if($color = $themeSettingConfig->getStoreConfig('themesettings/page_title/background_color')){
+		$customClass = "ttbg-color";
+		$customStyle = "background-color: ".$color.";";
+	}
+}
+
+if ($layoutType == 2 && $showTitlePosition == 'bottom' ) {
+    $customStyle = "display: none; background: unset; padding: 0;";
+}
+
+if ($templates == 'blog_post_view' ) {
+    $customStyle = "display: none; background: unset; padding: 0;";
+    $layoutType = '2';
+}
+
+?>
+
+<?php if ($title): ?>
+    <?php if ($showTitle): ?>
+        <div id="page-title-wrapper" class="layout_type<?= $layoutType ?> page-title-wrapper<?php /* @escapeNotVerified */ echo $cssClass; ?> <?= $customClass ?>" style="<?= $customStyle ?>">
+            <h1 class="page-title"
+                <?php if ($block->getId()): ?> id="<?php /* @escapeNotVerified */ echo $block->getId();?>" <?php endif; ?>
+                <?php if ($block->getAddBaseAttributeAria()): ?>
+                    aria-labelledby="<?php /* @escapeNotVerified */ echo $block->getAddBaseAttributeAria(); ?>"
+                <?php endif; ?>>
+                <?php /* @escapeNotVerified */ echo $title ?>
+            </h1>
+            <?= $block->getChildHtml(); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($layoutType == 1) : ?>
+        <script>
+            require(['jquery'], function($){
+                $(".breadcrumbs").appendTo("#page-title-wrapper");
+            });
+        </script>
+    <?php endif; ?>
+
+    <?php if ($layoutType == 2) : ?>
+        <?php if($showTitlePosition == 'bottom') { ?>
+            <script>
+            require(['jquery'], function($){
+                $(".breadcrumbs").insertBefore("#page-title-wrapper");
+                $(".breadcrumbs").addClass("layout-title-below");
+                $("#page-title-wrapper").css("display", "block");
+            });
+        </script> <?php
+        } elseif($showTitlePosition == 'top') { ?>
+            <script>
+            require(['jquery'], function($){
+                $(".breadcrumbs").insertAfter("#page-title-wrapper");
+                $(".breadcrumbs").removeClass("layout-title-below");
+            });
+        </script> <?php
+        } ?>
+    <?php endif; ?>
+<?php endif; ?>
+

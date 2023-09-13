@@ -1,0 +1,15 @@
+<?php $themeHelper = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+<?php // Image AR ?>
+<?php $arImage = $_product->getData('mgs_arimage') ?>
+<?php $arImages = $themeHelper->getArImages($_product->getId());
+
+?>
+<?php if (! empty($arImages[0])): ?>
+    <model-viewer src="<?= $block->escapeUrl($arImages[0]) ?>" alt="" auto-rotate camera-controls data-js-focus-visible style="width:<?= $this->getFullWidth() ? '100%' : $this->getStoreConfig("themesettings/product_image_dimention/ar_width") ?>">
+    </model-viewer>
+    <script>
+        require([ 'jquery', 'domReady!', 'MgsModelViewLegacy']);
+    </script>
+<?php endif; ?>

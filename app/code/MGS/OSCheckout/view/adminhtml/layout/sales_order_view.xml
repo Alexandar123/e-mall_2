@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * sales_order_view
+ *
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    magesolution
+ * @category magesolution
+ * @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <body>
+       <!--add custom block -->
+       <referenceBlock name="order_additional_info">
+           <block class="MGS\OSCheckout\Block\Adminhtml\Order\View\Comment" name="sales_custom_view" template="MGS_OSCheckout::order/view/comments.phtml" />
+       </referenceBlock>
+
+   </body>
+</page>

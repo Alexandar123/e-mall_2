@@ -1,0 +1,222 @@
+// /**
+//  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Theme Lib
+//  _____________________________________________
+
+//
+//  Rotate
+//  ---------------------------------------------
+
+.lib-transform(@_transform) {
+    -webkit-transform: @_transform; //  Use in 8 Safari
+       -moz-transform: @_transform; //  Use in 16 Firefox
+        -ms-transform: @_transform; //  Use in 9 IE
+         -o-transform: @_transform; //  Use in 10.5 Opera
+            transform: @_transform;
+}
+
+.lib-transition(@_transition) {
+    -webkit-transition: @_transition; //  Use in 8 Safari
+       -moz-transition: @_transition; //  Use in 16 Firefox
+        -ms-transition: @_transition; //  Use in 9 IE
+         -o-transition: @_transition; //  Use in 10.5 Opera
+            transition: @_transition;
+}
+
+.lib-transform-origin(@_transformorigin) {
+    -webkit-transform-origin: @_transformorigin; //  Use in 8 Safari
+       -moz-transform-origin: @_transformorigin; //  Use in 16 Firefox
+        -ms-transform-origin: @_transformorigin; //  Use in 9 IE
+         -o-transform-origin: @_transformorigin; //  Use in 10.5 Opera
+            transform-origin: @_transformorigin;
+}
+
+.lib-transition-delay(@_transitiondelay) {
+    -webkit-transition-delay: @_transitiondelay; //  Use in 8 Safari
+       -moz-transition-delay: @_transitiondelay; //  Use in 16 Firefox
+        -ms-transition-delay: @_transitiondelay; //  Use in 9 IE
+         -o-transition-delay: @_transitiondelay; //  Use in 10.5 Opera
+            transition-delay: @_transitiondelay;
+}
+
+.lib-box-shadow (@boxshadow) {
+    -webkit-box-shadow: @boxshadow;
+       -moz-box-shadow: @boxshadow;
+            box-shadow: @boxshadow;
+}
+
+.lib-background-gradient (@boxshadow) {
+    -webkit-box-shadow: @boxshadow;
+       -moz-box-shadow: @boxshadow;
+            box-shadow: @boxshadow;
+}
+
+.lib-border-radius (@radius) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+           border-radius: @radius;
+}
+
+.lib-flex() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.lib-flex-wrap() {
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+}
+
+.lib-flex-nowrap() {
+	-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+}
+
+.lib-align-items-start() {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.lib-align-items-end() {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
+.lib-align-items-center() {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.lib-align-items-baseline() {
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+.lib-align-items-stretch() {
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.lib-align-content-start() {
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+}
+
+.lib-align-content-end() {
+  -ms-flex-line-pack: end;
+  align-content: flex-end;
+}
+
+.lib-align-content-center() {
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.lib-align-content-between() {
+  -ms-flex-line-pack: justify;
+  align-content: space-between;
+}
+
+.lib-align-content-around() {
+  -ms-flex-line-pack: distribute;
+  align-content: space-around;
+}
+
+.lib-align-content-stretch() {
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+}
+
+.lib-align-self-auto() {
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.lib-align-self-start() {
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+}
+
+.lib-align-self-end() {
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+
+.lib-align-self-center() {
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.lib-align-self-baseline() {
+  -ms-flex-item-align: baseline;
+  align-self: baseline;
+}
+
+.lib-align-self-stretch() {
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+.justify-content-start() {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.justify-content-end() {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.justify-content-center() {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.justify-content-between() {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.justify-content-around() {
+  justify-content: space-around;
+	-ms-flex-pack: distribute;
+}
+.lib-background-clip() {
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+.lib-text-fill-color() {
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+}
+.lib-themify-icon() {
+	font-family: "fontAwesome2";
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.lib-border-bottom-dashed() {
+    border-bottom: 1px dashed #d8d8d8;
+}

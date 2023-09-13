@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Category list template
+ *
+ * @var $block \MGS\InstantSearch\Block\SearchResult\ListCategory
+ */
+?>
+<?php
+$_categoryCollection = $block->getLoadedCategoryCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$limit = $block->getPositionLimit();
+?>
+<div class="block block-title">
+	<h4><?php echo __('Categories') ?></h4>
+	<?php if($_categoryCollection->count() && $_categoryCollection->getSize() > $limit): ?>
+        <div class="view-more">
+            <a href="<?php /* @escapeNotVerified */ echo $block->getResultUrl() ?>"><?php /* @escapeNotVerified */ echo $block->getViewMoreLabel() ?></a>
+        </div>
+    <?php endif; ?>
+</div>
+<?php if (!$_categoryCollection->count()): ?>
+	<div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find categories matching the selection.') ?></div></div>
+<?php else: ?>
+	<?php
+        $viewMode = 'grid';
+    ?>
+	<div class="categories wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> categories-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+		<?php $iterator = 1; ?>
+		<ol class="categories list items category-items">
+			<?php /** @var $_category \Magento\Catalog\Model\Category */ ?>
+			<?php foreach ($_categoryCollection as $_category): ?>
+				<?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item category category-item">' : '</li><li class="item category category-item">' ?>
+					<div class="category-item-info" data-container="category-grid">
+						<div class="category details category-item-details">
+							<strong class="category name category-item-name">
+	                            <a class="category-item-link"
+	                               href="<?php /* @escapeNotVerified */ echo $_category->getUrl() ?>">
+	                                <?php /* @escapeNotVerified */ echo $_helper->categoryAttribute($_category, $_category->getName(), 'name'); ?>
+	                            </a>
+	                        </strong>
+						</div>
+					</div>
+				<?php echo($iterator == count($_categoryCollection)+1) ? '</li>' : '' ?>
+			<?php endforeach; ?>
+		</ol>
+	</div>
+<?php endif; ?>

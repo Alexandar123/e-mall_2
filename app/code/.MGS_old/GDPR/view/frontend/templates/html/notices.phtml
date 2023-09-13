@@ -1,0 +1,107 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Cookie\Block\Html\Notices $block */
+?>
+<?php $helper = $this->helper('MGS\GDPR\Helper\Data') ?>
+<?php $title = $helper->getStoreConfig('gdpr/cookie_restriction/title') ?>
+<?php $content = $helper->getStoreConfig('gdpr/cookie_restriction/content') ?>
+<?php $showMoreView = $helper->getStoreConfig('gdpr/cookie_restriction/more_view') ?>
+<?php $moreViewText = $helper->getStoreConfig('gdpr/cookie_restriction/more_text') ?>
+<?php $buttonText = $helper->getStoreConfig('gdpr/cookie_restriction/button_text') ?>
+<?php $background = $helper->getStoreConfig('gdpr/cookie_restriction/background') ?>
+<?php $border = $helper->getStoreConfig('gdpr/cookie_restriction/border_color') ?>
+<?php $textColor = $helper->getStoreConfig('gdpr/cookie_restriction/text_color') ?>
+<?php $boxShadow = $helper->getStoreConfig('gdpr/cookie_restriction/box_shadow') ?>
+<?php $width = $helper->getStoreConfig('gdpr/cookie_restriction/width') ?>
+<?php $widthCustom = $helper->getStoreConfig('gdpr/cookie_restriction/width_custom') ?>
+<?php $position = $helper->getStoreConfig('gdpr/cookie_restriction/position') ?>
+<?php $marginLeft = $helper->getStoreConfig('gdpr/cookie_restriction/margin_left') ?>
+<?php $marginRight = $helper->getStoreConfig('gdpr/cookie_restriction/margin_right') ?>
+<?php $marginBottom = $helper->getStoreConfig('gdpr/cookie_restriction/margin_bottom') ?>
+<?php $fontSize = $helper->getStoreConfig('gdpr/cookie_restriction/font_size') ?>
+<?php $textAlign = $helper->getStoreConfig('gdpr/cookie_restriction/text_align') ?>
+<?php $identifier = $helper->getStoreConfig('gdpr/cookie_restriction/identifier') ?>
+<?php if ($this->helper('Magento\Cookie\Helper\Cookie')->isUserNotAllowSaveCookie()): ?>
+    <div role="alertdialog"
+         tabindex="-1"
+         class="mgs-gdpr-cookie-notice message global cookie text-align-<?php echo $textAlign ?><?php if($boxShadow): ?> gdpr-box-shadow<?php endif ?>"
+         id="notice-cookie-block"
+         style="display: none;<?php if($background!=''): ?> background:<?php echo $background ?>;<?php endif ?><?php if($border!=''): ?> border:1px solid <?php echo $border ?>;<?php endif ?><?php if($textColor!=''): ?> color:<?php echo $textColor ?>;<?php endif ?><?php if($width == 'custom' && $widthCustom!=''): ?>width:<?php echo $widthCustom ?>px;<?php endif ?><?php if($marginBottom!=''): ?>bottom:<?php echo $marginBottom ?>px;<?php endif ?><?php if($width == 'custom' && $position=='left' && $marginLeft!=''): ?>left:<?php echo $marginLeft ?>px; right:unset;<?php endif ?><?php if($width == 'custom' && $position=='right' && $marginLeft!=''): ?>right:<?php echo $marginRight ?>px; left:unset;<?php endif ?><?php if($fontSize!=''): ?>font-size:<?php echo $fontSize ?>px;<?php endif ?>">
+        <div role="document" class="content" tabindex="0">
+            <div>
+                <?php if($title!=''): ?>
+					<h3 class="notice-cookie-title"><?php echo $title ?></h3>
+				<?php endif ?>
+				<?php if($content!='' || ($showMoreView!='not-show' && $moreViewText!='')): ?>
+					<div class="notice-cookie-content">
+						<?php echo $content ?> 
+						<?php if($showMoreView!='not-show' && $moreViewText!=''): ?>
+							<a href="<?php echo $helper->getUrlBuilder($identifier) ?>"<?php if($showMoreView=='popup'): ?> onclick="showGdprPopup(); return false"<?php endif ?>><?php echo $moreViewText ?></a>
+						<?php endif ?>
+					</div>
+				<?php endif ?>
+                
+            </div>
+            <div class="actions">
+                <button id="btn-cookie-allow" class="action allow primary <?php echo $helper->getStoreConfig('gdpr/cookie_restriction/button_class') ?>">
+                    <span><?php echo $buttonText ?></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "#notice-cookie-block": {
+                "cookieNotices": {
+                    "cookieAllowButtonSelector": "#btn-cookie-allow",
+                    "cookieName": "<?php /* @escapeNotVerified */ echo \Magento\Cookie\Helper\Cookie::IS_USER_ALLOWED_SAVE_COOKIE ?>",
+                    "cookieValue": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Cookie\Helper\Cookie')->getAcceptedSaveCookiesWebsiteIds() ?>,
+                    "cookieLifetime": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Cookie\Helper\Cookie')->getCookieRestrictionLifetime()?>,
+                    "noCookiesUrl": "<?php /* @escapeNotVerified */ echo $block->getUrl('cookie/index/noCookies') ?>"
+                }
+            }
+        }
+    </script>
+	<?php if($showMoreView=='popup' && $moreViewText!=''): ?>
+		<div style="display:none" id="mgs-gdpr-popup-container">
+			<div class="mgs-gdpr-popup" id="mgs-gdpr-popup">
+				<?php echo $helper->getPageContent($identifier) ?>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var popupContent = document.getElementById('mgs-gdpr-popup-container').innerHTML;
+			function showGdprPopup(){
+				require(
+				[
+					'jquery',
+					'Magento_Ui/js/modal/modal'
+				],
+				function( $, modal ) {
+					if ($('#mgs-gdpr-popup').length) {
+						var options = {
+							type: 'popup',
+							modalClass: 'modal-mgs-gdpr',
+							responsive: true,
+							innerScroll: true,
+							title: '',
+							buttons: []
+						};
+						var gdprPopup = modal(options, $('#mgs-gdpr-popup'));
+						$('#mgs-gdpr-popup').trigger('openModal');
+						
+						$('.modal-mgs-gdpr .action-close').click(function(){
+							setTimeout(function(){ $('.modals-wrapper .modal-mgs-gdpr').remove(); $('#mgs-gdpr-popup-container').html(popupContent) }, 500);
+						});
+					}
+				});
+			}
+		</script>
+	<?php endif ?>
+<?php endif; ?>

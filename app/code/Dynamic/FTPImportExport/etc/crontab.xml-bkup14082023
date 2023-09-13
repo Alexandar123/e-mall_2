@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="default">
+		<job name="import_product" instance="Dynamic\FTPImportExport\Cron\ImportProduct" method="execute">
+			<schedule>*/15 * * * *</schedule>
+		</job>
+		<!-- <job name="import_stock" instance="Dynamic\FTPImportExport\Cron\ImportStock" method="execute">
+			<schedule>*/30 * * * *</schedule>
+		</job> -->
+		<job name="import_stock" instance="Dynamic\FTPImportExport\Cron\ImportStock" method="execute">
+    		<schedule>0 */2 * * *</schedule>
+		</job>
+		<job name="import_category" instance="Dynamic\FTPImportExport\Cron\ImportCategory" method="execute">
+			<schedule>*/45 * * * *</schedule>
+		</job>
+		<job name="dd_order_sync" instance="Dynamic\FTPImportExport\Cron\OrderSync" method="execute">
+			<schedule>* * * * *</schedule>
+		</job>
+		<job name="mageplaza_helloworld_cron" instance="Dynamic\FTPImportExport\Cron\Test" method="execute">
+			<schedule>*/7 * * * *</schedule>
+		</job>
+		<job name="image_import_bakidoo" instance="Dynamic\FTPImportExport\Cron\ImportImageBakidoo" method="execute">
+            <schedule>0 0 * * *</schedule><!-- Running the job once a day at 00:00 (midnight) -->
+        </job>
+	</group>
+</config>

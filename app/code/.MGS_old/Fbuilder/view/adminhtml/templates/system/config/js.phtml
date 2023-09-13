@@ -1,0 +1,202 @@
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function(jQuery){
+        (function($) {
+            $.fn.mColorPicker.defaults.imageFolder="<?php echo $this->getViewFileUrl('MGS_Fbuilder::images') ?>/";
+        })(jQuery);
+    });
+    
+    function exportPage(url){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                if($('#fbuilder_export_page_id').length){
+                    var page_id = $('#fbuilder_export_page_id').val();
+                    if(page_id!=''){
+                        $('#fbuilder_export_page_id').removeClass('required-entry');
+                        $('#fbuilder_export_page_id').removeClass('mage-error');
+                        url += '?page_id='+page_id;
+                        setLocation(url);
+                        return;
+                    }else{
+                        $('#fbuilder_export_page_id').addClass('required-entry mage-error');
+                    }
+                }
+            })(jQuery);
+        });
+    }
+    
+    function importPage(url){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                if($('#fbuilder_import_page_id').length){
+                    var page_id = $('#fbuilder_import_page_id').val();
+                    if(page_id!=''){
+                        $('#import-text').hide();
+                        $('#wait-text').show();
+                        $('#fbuilder_import_page_id').removeClass('required-entry');
+                        $('#fbuilder_import_page_id').removeClass('mage-error');
+                        
+                        var formData = new FormData();
+                        formData.append('file', $('#fbuilder_import_file')[0].files[0]);
+                        console.log(formData);
+                        $.ajax({
+                            url:url+'?page_id='+page_id+'&form_key='+FORM_KEY,
+                            type: "POST",
+                            data: formData,
+                            contentType: false,
+                            cache: false,
+                            processData:false,
+                            success: function(data){
+                                var result = jQuery.parseJSON(data);
+                                if(result.result=='success'){
+                                    location.reload();
+                                }else{
+                                    alert(result.result);
+                                }
+                            }
+                        });
+                        
+                        return;
+                    }else{
+                        $('#fbuilder_import_page_id').addClass('required-entry mage-error');
+                    }
+                }
+            })(jQuery);
+        });
+    }
+
+    function restorePage(url){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                if($('#fbuilder_restore_page_id').length){
+                    var page_id = $('#fbuilder_restore_page_id').val();
+                    var version_id = $('#fbuilder_restore_version_id').val();
+                    if(page_id!='' && version_id!='' && version_id!=null){
+                        $('#restore-import-text').hide();
+                        $('#restore-wait-text').show();
+                        $('#fbuilder_restore_page_id').removeClass('required-entry');
+                        $('#fbuilder_restore_page_id').removeClass('mage-error');
+
+                        $.ajax({
+                            url:url+'?page_id='+page_id+'&version_id='+version_id+'&form_key='+FORM_KEY,
+                            success: function(){
+                                location.reload();
+                            }
+                        });
+
+                        return;
+
+                    }else{
+                        $('#fbuilder_restore_page_id').addClass('required-entry mage-error');
+                    }
+                }
+            })(jQuery);
+        });
+    }
+
+    function deletePage(url){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                if($('#fbuilder_delete_version_id').length) {
+                    var version_id = $('#fbuilder_delete_version_id').val();
+                    if(version_id!='' && version_id!=null){
+                        if (confirm('Are you sure you want to delete this file?')) {
+                            $('#delete-import-text').hide();
+                            $('#delete-wait-text').show();
+                            $('#fbuilder_delete_version_id').removeClass('required-entry');
+                            $('#fbuilder_delete_version_id').removeClass('mage-error');
+
+                            $.ajax({
+                                url:url+'?version_id='+version_id+'&form_key='+FORM_KEY,
+                                success: function(){
+                                    location.reload();
+                                }
+                            });
+                            return;
+                        }
+                    }else{
+                        $('#fbuilder_delete_version_id').addClass('required-entry mage-error');
+                    }
+                }
+
+            })(jQuery);
+        });
+    }
+
+    function deleteAllPage(url){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                if($('#fbuilder_delete_version_id').length) {
+                    if(confirm('Are you sure you want to delete all files?')) {
+                        $('#delete-all-import-text').hide();
+                        $('#delete-all-wait-text').show();
+                        $('#fbuilder_delete_version_id').removeClass('required-entry');
+                        $('#fbuilder_delete_version_id').removeClass('mage-error');
+
+                        $.ajax({
+                            url:url+'?&form_key='+FORM_KEY,
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                        return;
+                    }
+                }
+            })(jQuery);
+        });
+    }
+    
+    function generateInstagramData(){
+        require([
+            'jquery'
+        ], function($){
+            if($('#fbuilder_social_instagram_access_token').length){
+                var accessToken = $('#fbuilder_social_instagram_access_token').val();
+                var inLimit = $('#fbuilder_social_instagram_limit').val();
+                if(accessToken!=''){
+                    $.ajax({
+                        url: "https://graph.instagram.com/me/media",
+                        data: {
+                            access_token: accessToken,
+                            fields: 'id, media_type, media_url, permalink'
+                        },
+                        dataType: "json",
+                        type: "GET",
+                        success: function (data) {
+                            var result = new Array();
+                            var items = data.data,
+                                count = 0;
+                            $.each(items, function (index, item) {
+                                if (count >= parseInt(inLimit)) {
+                                    return false;
+                                }
+                                result.push(item);
+                                count++;
+                            });
+                            var myJsonString = JSON.stringify(result);
+                            $('#fbuilder_social_instagram_data').val(myJsonString);
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
+                    
+                    return;
+                }else{
+                    $('#fbuilder_social_instagram_access_token').addClass('required-entry mage-error');
+                }
+            }
+        });
+    }
+</script>

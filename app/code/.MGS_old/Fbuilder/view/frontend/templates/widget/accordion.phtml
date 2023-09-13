@@ -1,0 +1,55 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<?php $labels = explode(',', $this->getAccordionLabel()) ?>
+<?php $content =  explode(',', $this->getAccordionContent()) ?>
+<?php $blockId = rand() . time(); ?>
+<?php $class = '' ?>
+<?php if ($this->getAccordionIcon()!=''): ?>
+    <?php $class .= ' accordion-title-'.$this->getAccordionIcon() ?>
+<?php endif ?>
+<?php if ($this->getIconPosition()!=''): ?>
+    <?php $class .= ' accordion-icon-'.$this->getIconPosition() ?>
+<?php endif ?>
+
+
+    <div class="content-block accordion-block">
+        <?php if (count($labels)>0): ?>
+            <div id="fbuilder-accordion-<?php echo $blockId ?>" class="accordion mgs-accordion <?php echo $class ?>">
+                <?php $i=0; foreach ($labels as $key => $label): $i++ ?>
+                    <h4 class="accordion-title<?php if ($this->getCollapseAll()): ?> accordion-title-all<?php endif ?><?php if ($i==1 && $this->getCollapseAll()): ?> ui-accordion-header-active<?php endif ?>"><?php echo $builderHelper->decodeHtmlTag($label) ?></h4>
+                    <div class="accordion-content<?php if ($i==1 && $this->getCollapseAll()): ?> ui-accordion-content-active<?php endif ?>" <?php if (($i!=1 && $this->getCollapseAll()) || !$this->getCollapseAll()): ?>style="display:none"<?php endif ?>>
+                        <?php if (isset($content[$key])): ?><?php echo nl2br($builderHelper->decodeHtmlTag($content[$key])) ?><?php endif ?>
+                    </div>
+                <?php endforeach ?>
+            </div>
+            <?php if ($this->getCollapseAll()): ?>
+                <script>
+                    require([
+                        'jquery',
+                        'jquery/ui'
+                    ], function(jQuery){
+                        (function($) {
+                            $('#fbuilder-accordion-<?php echo $blockId ?> .accordion-title-all').click(function(){
+                                $(this).next().stop().animate({height: 'toggle'}, 200).toggleClass('ui-accordion-content-active');
+                                $(this).stop().toggleClass('ui-accordion-header-active');
+                            });
+                        })(jQuery);
+                    });
+                </script>
+            <?php else: ?>
+                <script>
+                    require([
+                        'jquery',
+                        'jquery/ui'
+                    ], function(jQuery){
+                        (function($) {
+                            $("#fbuilder-accordion-<?php echo $blockId ?>").accordion({
+                                heightStyle: "content"
+                            });
+                        })(jQuery);
+                    });
+                </script>
+            <?php endif ?>
+        <?php else: ?>
+            <div class="message info empty"><div><?php echo __('Have no accodion content to show.') ?></div></div>
+        <?php endif ?>
+    </div>

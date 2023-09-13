@@ -1,0 +1,196 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+
+<?php if ($_product->isSaleable()): ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()): ?>
+            <div class="field qty">
+                <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+                <div class="control">
+                    <span class="edit-qty minus" onclick="minusQty('qty')">-</span>
+                    <input type="number"
+                        name="qty"
+                        id="qty"
+                        min="0"
+                        value="<?= $block->getProductDefaultQty() * 1 ?>"
+                        title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                        class="input-text qty"
+                        data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                        />
+                    <span class="edit-qty plus" onclick="plusQty('qty')">+</span>
+                </div>
+            </div>
+            <?php endif; ?>
+            <div class="actions">
+                <button type="button"
+                        title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button" disabled>
+                    <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                </button>
+            </div>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+
+<?php if ($block->shouldRenderQuantity()): ?>
+    <script>
+        function plusQty(qtyInput) {
+            require(['jquery'], function(jQuery){
+                (function($) {
+                    if($('#'+qtyInput).attr('disabled')!='disabled'){
+                        qty = $('#'+qtyInput).attr('value');
+                        qty = parseInt(qty);
+                        qty++;
+                        $('#'+qtyInput).val(qty);
+                    }
+                })(jQuery);
+            });
+        }
+
+        function minusQty(qtyInput){
+            require(['jquery'], function(jQuery){
+                (function($) {
+                    if($('#'+qtyInput).attr('disabled')!='disabled'){
+                        qty = $('#'+qtyInput).attr('value');
+                        qty = parseInt(qty);
+
+                        if(qty>1){
+                            qty--;
+                            $('#'+qtyInput).val(qty);
+                        }
+                    }
+                })(jQuery);
+            });
+        }
+
+        require(['jquery', 'Magento_Ui/js/modal/modal'], function($, modal) {
+            jQuery('#product-addtocart-button').on( 'click', function() {
+                var form = jQuery('#product_addtocart_form');
+                var isValid = form.valid();
+
+                if(isValid){
+                    jQuery(this).addClass('disabled tocart-loading');
+                    var data = form.serializeArray();
+
+                    data.push({
+                        name: 'ajax',
+                        value: 1
+                    });
+
+                    jQuery.ajax({
+                        url: form.attr('action'),
+                        data: jQuery.param(data),
+                        type: 'post',
+                        dataType: 'json',
+                        beforeSend: function(xhr, options) {
+                            jQuery('#mgs-ajax-loading').show();
+                        },
+                        success: function(response, status) {
+                            if (status == 'success') {
+                                if (response.ui) {
+                                    jQuery('#mgs-ajax-loading').hide();
+
+                                    if (response.animationType == 'popup') {
+                                        if($(document).find('.ajaxCartForm').length) {
+                                            $(document).find('.ajaxCartForm .modal-header .action-close').trigger( 'click' );
+                                        }
+
+                                        $('.page.messages').hide();
+                                        $('body').append('<div id="popup_ajaxcart_success" class="popup__main popup--result"></div>');
+
+                                        var options = {
+                                            type: 'popup',
+                                            modalClass: "success-ajax--popup viewBox",
+                                            responsive: true,
+                                            innerScroll: true,
+                                            title: false,
+                                            buttons: false
+                                        };
+
+                                        var popup = modal(options, $('#popup_ajaxcart_success'));
+
+                                        if(response.related != "") {
+                                            $('.success-ajax--popup .modal-inner-wrap').addClass('popup-related');
+                                        }
+
+                                        $('#popup_ajaxcart_success').html(response.ui + response.related);
+                                        $('#popup_ajaxcart_success').trigger('contentUpdated');
+
+                                        $('#popup_ajaxcart_success').modal('openModal').on('modalclosed', function() {
+                                            $('#popup_ajaxcart_success').parents('.success-ajax--popup').remove();
+                                        });
+
+                                        setTimeout(function () {
+                                            $('.page.messages .message').hide();
+                                            $('.page.messages').show();
+                                        }, 2000);
+
+                                    } else if(response.animationType == 'flycart') {
+                                        var $animatedObject = jQuery('<div class="flycart-animated-add" style="position: absolute;z-index: 99999;">'+response.image+'</div>');
+
+                                        var left = $_this.offset().left;
+                                        var top = $_this.offset().top;
+
+                                        $animatedObject.css({top: top-1, left: left-1});
+                                        jQuery('html').append($animatedObject);
+
+                                        jQuery('#footer-cart-trigger').addClass('active');
+                                        jQuery('#footer-mini-cart').slideDown(300);
+
+                                        var gotoX = jQuery("#fixed-cart-footer").offset().left + 20;
+                                        var gotoY = jQuery("#fixed-cart-footer").offset().top;
+
+                                        if ($(document).find('.ajaxCartForm').length) {
+                                            $(document).find('.ajaxCartForm .modal-header .action-close').trigger('click');
+                                        }
+
+                                        $animatedObject.animate({
+                                            opacity: 0.6,
+                                            left: gotoX,
+                                            top: gotoY
+                                        }, 2000, function () {
+                                            $animatedObject.fadeOut('fast', function () {
+                                                $animatedObject.remove();
+                                                jQuery('html').removeClass('add-item-success');
+                                            });
+                                        });
+                                    } else {
+                                        $('.product_quickview_content').modal('closeModal');
+                                        $("header.page-header").addClass("show-sticky-menu");
+                                        $('[data-block="minicart"]').find('[data-role="dropdownDialog"]').dropdownDialog("open");
+                                        setTimeout(function(){
+                                            $("header.page-header").removeClass("show-sticky-menu");
+                                            $('[data-block="minicart"]').find('[data-role="dropdownDialog"]').dropdownDialog("close");
+                                        }, 5000);
+                                        $("#product-addtocart-button > span").text('Add to cart');
+                                    }
+
+                                }
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,66 @@
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \MGS\ThemeSettings\Block\Category\Landing
+ */
+?>
+<?php $category = $this->getCurrentCategory() ?>
+<?php $themeSettingConfig = $this->getThemeSettingConfig() ?>
+<?php $_categories = $category->getChildrenCategories(); ?>
+<?php if(count($_categories)>0): ?>
+<div class="landing-categories-grid line">
+	<?php $i =0; foreach ($_categories as $_category):?>
+		<?php if ($_category->getIsActive()): ?>
+            <?php $i++; ?>
+            <?php $image = $_category->getFbuilderThumbnail();?>
+            <div class="landing-masonry-item col">
+                <div class="landing-categories-item">
+                    <div class="landing-categories-thumb">
+                        <a href="<?= $_category->getUrl()?>" title="<?php echo $block->escapeHtml($_category->getName()) ?>">
+                            <img src="<?php echo $block->getImageUrl($image); ?>" alt="<?php echo $block->escapeHtml($_category->getName()) ?>" class="img-responsive" />
+                        </a>
+                        <div class="landing-categories-count">
+                            <?php echo __('%1 product(s)', $_category->getProductCount());  ?>
+                        </div>
+                    </div>
+                    <div class="landing-categories-detail">
+                        <h2><a href="<?= $_category->getUrl()?>" title="<?php echo $block->escapeHtml($_category->getName()) ?>"><?php echo $block->escapeHtml($_category->getName()) ?></a></h2>
+                        <?php if(!$category->getHideDescription()): ?>
+                            <?php $_description = $this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($_category, $_category->getDescription(), 'description') ?>
+                            <?php if ($_description): ?>
+                                <div class="landing-categories-shortdes">
+                                    <div class="category-description">
+                                        <?php echo $themeSettingConfig->truncateString($_description, $category->getTruncateDescription()) ?>
+                                    </div>
+                                </div>
+                            <?php endif ?>
+                        <?php endif ?>
+                        <a class="btn btn-primary margin-top10" href="<?= $_category->getUrl()?>"><?php echo __('Shop Now'); ?></a>
+                    </div>
+                </div>
+            </div>
+		<?php endif ?>
+	<?php endforeach ?>
+</div>
+<?php endif ?>
+<script type="text/javascript">
+    requirejs([
+        'require',
+        'jquery',
+        'mgs/isotope'
+    ], function( require, $, Isotope ) {
+        require( [ 'bridget' ], function( jQueryBridget ) {
+            jQueryBridget( 'isotope', Isotope, $ );
+            $(window).on('load', function() {
+                var container = $('.landing-categories-grid').isotope({
+                    itemSelector: '.landing-masonry-item',
+                    percentPosition: true,
+                    masonry: {
+                        columnWidth: '.landing-masonry-item'
+                    }
+                });
+            });
+        });
+    });
+</script>

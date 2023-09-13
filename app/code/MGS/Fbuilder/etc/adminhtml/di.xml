@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--preference for="Magento\Catalog\Controller\Adminhtml\Category\Save" type="MGS\Fbuilder\Controller\Adminhtml\Category\Save"/>
+
+    <preference for="Magento\Catalog\Model\Category\DataProvider" type="MGS\Fbuilder\Model\Category\DataProvider"/>
+
+    <type name="MGS\Fbuilder\Controller\Adminhtml\Category\Thumbnail\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magento\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+	
+	<type name="MGS\Fbuilder\Controller\Adminhtml\Category\Thumbnail\Uploadicon">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magento\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type-->
+	
+	<preference for="Magento\Backend\Block\Widget\Button" type="MGS\Fbuilder\Block\Backend\Widget\Button"/>
+	
+	<type name="Magento\Backend\Block\Widget\Button">
+        <plugin name="changes_button_template_file_for_widget" sortOrder="1"
+                type="MGS\Fbuilder\Plugin\WidgetButtonPlugin" />
+    </type>
+
+</config>

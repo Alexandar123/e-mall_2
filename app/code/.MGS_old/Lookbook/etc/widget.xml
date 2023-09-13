@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="mgs_lookbook" class="MGS\Lookbook\Block\Widget\Lookbook">
+        <label translate="true">MGS Lookbook</label>
+        <description translate="true"></description>
+        <parameters>
+            <parameter name="lookbook_id" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Lookbook</label>
+                <block class="MGS\Lookbook\Block\Adminhtml\Widget\Lookbook">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Lookbook...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            
+			<parameter name="template" xsi:type="select" visible="true" required="true" sort_order="10">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="MGS_Lookbook::widget/lookbook.phtml" selected="true">
+                        <label translate="true">Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+	
+	<widget id="mgs_lookbook_slider" class="MGS\Lookbook\Block\Widget\Slider">
+        <label translate="true">MGS Lookbook Slider</label>
+        <description translate="true"></description>
+        <parameters>
+            <parameter name="slider_id" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Slider</label>
+                <block class="MGS\Lookbook\Block\Adminhtml\Widget\Slider">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Slider...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+			<parameter name="template" xsi:type="select" visible="true" required="true" sort_order="10">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="MGS_Lookbook::widget/slider.phtml" selected="true">
+                        <label translate="true">Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

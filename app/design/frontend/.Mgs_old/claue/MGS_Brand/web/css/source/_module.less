@@ -1,0 +1,149 @@
+& when (@media-common = true) {
+    .shop-by-brand {
+        .content-heading {
+            margin-bottom: 35px;
+            .title {
+                margin: 0 0 5px;
+                font-weight: 600;
+                font-size: 24px;
+                line-height:24px;
+                color: #222222;
+                text-align: center;
+                position: relative;
+                display: inline-block;
+                text-transform: uppercase;
+                @media screen and (min-width:768px) {
+                    &:before,
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        width: 60px;
+                        height: 2px;
+                        background: #000;
+                        top: 48%;
+                    }
+                    &:before {
+                        left: -75px;
+                    }
+                    &:after {
+                        right: -75px;
+                    }
+                }
+            }
+        }
+        .featured-brands {
+            .block-content {
+                .owl-item {
+                    .item {
+                        margin: 0;
+                        display: flex;
+                        flex-wrap: wrap;
+                        flex-direction: column;
+                        .image {
+                            min-height: 160px;
+                            flex-shrink: 0;
+                        }
+                        .brand-name {
+                            flex: 1;
+                            margin-top: auto;
+                        }
+                    }
+                }
+            }
+        }
+        .message.warning {
+            margin-top: 40px;
+        }
+        .message>* {
+            font-size: 14px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -o-border-radius: 5px;
+            background: #fdf0d5;
+            color: #6f4400;
+            padding-left: 5px;
+        }
+        .characters-filter {
+            li.active {
+                > a {
+                    background-color: #56cfe1;
+                    border-color: #56cfe1;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .brand-index-index{
+        footer.page-footer {
+            margin-top: 70px;
+        }
+    }
+    .brand-brand-view {
+        .page-footer {
+            margin-top: 70px;
+        }
+        .sidebar {
+            .brand-list {
+                li {
+                    padding-left: 15px;
+                    position: relative;
+                    line-height: 25px;
+                    list-style: outside none none;
+                    margin-bottom: 5px;
+                    a {
+                        color: #222;
+                        &:hover {
+                            color: #56cfe1;
+                        }
+                    }
+                    &:before {
+                        color:  #222;
+                        content: "+";
+                        left: 0;
+                        position: absolute;
+                    }
+                    .badge {
+                        &:before {
+                            content: "(";
+                        }
+                        &:after {
+                            content: ")";
+                        }
+                    }
+                }
+                li.active {
+                    color: #56cfe1;
+                }
+            }
+        }
+        .brand-info {
+            >.brand-description {
+                border: 1px solid #f0f0f0;
+                padding: 15px;
+                .lib-border-radius(0 0 5px 5px);
+                font-size: 14px;
+            }
+            .brand-image {
+                img {
+                    display: block;
+                }
+            }
+        }
+        .category-product-actions {
+            .filter-toggle {
+                display: none;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+
+}

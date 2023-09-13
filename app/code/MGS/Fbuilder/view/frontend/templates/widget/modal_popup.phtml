@@ -1,0 +1,32 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<?php $blockId = $this->getData('generate_block_id'); ?>
+<div class="content-block mgs-button-block button-<?php echo $this->getButtonAlign() ?><?php if ($this->getFullWidth()): ?> button-fullwidth<?php endif ?><?php if ($this->getBoxShadow()): ?> button-shadow<?php endif ?>">
+    <button data-button-id="<?php echo $blockId ?>" class="mgs-modal-popup-button">
+        <?php if ($this->getUseIcon() && ($this->getFbuilderIcon()!='') && ($this->getIconAlign()=='left')): ?>
+            <span class="button-icon icon-left<?php if ($this->getUseDivider()): ?> has-divider<?php endif ?>"><i class="<?php echo $builderHelper->decodeHtmlTag($this->getFbuilderIcon()) ?>"></i></span>
+        <?php endif ?>
+        <span><?php echo $builderHelper->decodeHtmlTag($this->getFbuilderButtonText()) ?></span>
+        
+        <?php if ($this->getUseIcon() && ($this->getFbuilderIcon()!='') && ($this->getIconAlign()=='right')): ?>
+            <span class="button-icon icon-right<?php if ($this->getUseDivider()): ?> has-divider<?php endif ?>"><i class="<?php echo $builderHelper->decodeHtmlTag($this->getFbuilderIcon()) ?>"></i></span>
+        <?php endif ?>
+    </button>
+</div>
+
+<div style="display:none" id="mgs_modal_container_<?php echo $blockId ?>">
+    <div class="mgs-modal-popup" id="modal_popup_<?php echo $blockId ?>">
+        
+        <div class="block-popup-subscribe">
+            <div class="block-popup-top">
+                <div class="pop-sletter-title">
+                    <h3><?php echo $builderHelper->decodeHtmlTag($this->getFbuilderSubtitle()) ?></h3>
+                </div>
+
+                <div class="popup-content">
+                    <?php echo $builderHelper->getContentByShortcode($builderHelper->decodeHtmlTag($this->getFbuilderTextContent())) ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

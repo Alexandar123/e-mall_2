@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="dynamic" translate="label" sortOrder="10">
+            <label>FTP Configuration</label>
+        </tab>
+        <section id="regularProducts" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Regular Products Sync</label>
+            <tab>dynamic</tab>
+            <resource>Dynamic_FTPImportExport::dynamic_ftpimportexport</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration - Regular Products Import</label>
+                <field id="display_hostRP" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Host</label>
+                </field>
+                <field id="display_usernameRP" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Username</label>
+                    <comment>FTP Username</comment>
+                </field>
+                <field id="display_passwordRP" translate="label" type="password" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Password</label>
+                    <comment>FTP Password</comment>
+                </field>
+                <field id="display_portRP" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Port</label>
+                    <comment>FTP Port</comment>
+                </field>
+                <field id="display_reportreceiverRP" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log receiver</label>
+                    <comment>Log receiver</comment>
+                </field>
+                <field id="product_directoryRP" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Directory path</label>
+                    <comment>FTP Directory path</comment>
+                </field>
+                <field id="product_txtfileRP" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>File Name to Import</label>
+                    <comment>File Name (Import / Destocking)</comment>
+                </field>
+                <field id="import_file_from_adminRP" translate="button_label" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Import Products</button_label>
+                    <frontend_model>Dynamic\FTPImportExport\Block\Adminhtml\System\Config\Regularproducts</frontend_model>
+                </field>
+            </group>
+        </section>
+
+        <section id="regularCategory" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Regular Category Sync</label>
+            <tab>dynamic</tab>
+            <resource>Dynamic_FTPImportExport::dynamic_ftpimportexport</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration - Regular Category Import</label>
+                <field id="display_hostRC" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Host</label>
+                </field>
+                <field id="display_usernameRC" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Username</label>
+                    <comment>FTP Username</comment>
+                </field>
+                <field id="display_passwordRC" translate="label" type="password" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Password</label>
+                    <comment>FTP Password</comment>
+                </field>
+                <field id="display_portRC" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Port</label>
+                    <comment>FTP Port</comment>
+                </field>
+                <field id="display_reportreceiverRC" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log receiver</label>
+                    <comment>Log receiver</comment>
+                </field>
+                <field id="category_directoryRC" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Directory path</label>
+                    <comment>FTP Directory path</comment>
+                </field>
+                <field id="category_txtfileRC" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>File Name to Import</label>
+                    <comment>File Name (Import / Destocking)</comment>
+                </field>
+                <field id="import_file_from_adminRC" translate="button_label" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Import Category</button_label>
+                    <frontend_model>Dynamic\FTPImportExport\Block\Adminhtml\System\Config\Regularcategory</frontend_model>
+                </field>
+            </group>
+        </section>
+
+        <section id="regularStock" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Regular Stock Sync</label>
+            <tab>dynamic</tab>
+            <resource>Dynamic_FTPImportExport::dynamic_ftpimportexport</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration - Regular Stock Import</label>
+                <field id="display_hostStock" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Host</label>
+                </field>
+                <field id="display_usernameStock" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Username</label>
+                    <comment>FTP Username</comment>
+                </field>
+                <field id="display_passwordStock" translate="label" type="password" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Password</label>
+                    <comment>FTP Password</comment>
+                </field>
+                <field id="display_portStock" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Port</label>
+                    <comment>FTP Port</comment>
+                </field>
+                <field id="display_reportreceiverStock" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log receiver</label>
+                    <comment>Log receiver</comment>
+                </field>
+                <field id="stock_directoryStock" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Directory path</label>
+                    <comment>FTP Directory path</comment>
+                </field>
+                <field id="stock_txtfileStock" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>File Name to Import</label>
+                    <comment>File Name (Import / Destocking)</comment>
+                </field>
+                <field id="import_file_from_adminStock" translate="button_label" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Import Stock</button_label>
+                    <frontend_model>Dynamic\FTPImportExport\Block\Adminhtml\System\Config\RegularStock</frontend_model>
+                </field>
+            </group>
+        </section>
+
+        <section id="exportOrder" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Export Orders</label>
+            <tab>dynamic</tab>
+            <resource>Dynamic_FTPImportExport::dynamic_ftpimportexport</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration - Export Order</label>
+                <field id="display_hostEO" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Host</label>
+                </field>
+                <field id="display_usernameEO" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Username</label>
+                    <comment>FTP Username</comment>
+                </field>
+                <field id="display_passwordEO" translate="label" type="password" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Password</label>
+                    <comment>FTP Password</comment>
+                </field>
+                <field id="display_portEO" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Port</label>
+                    <comment>FTP Port</comment>
+                </field>
+                <field id="product_directoryEO" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>FTP Directory path</label>
+                    <comment>FTP Directory path</comment>
+                </field>
+                <field id="product_ordernumberEO" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Order Number to Export</label>
+                    <comment>Order Number to Export</comment>
+                </field>
+                <field id="product_exportorderEO" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Order to Export</label>
+                    <comment>Order to Export</comment>
+                </field>
+                <field id="import_file_from_adminEO" translate="button_label" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <button_label>Export Orders</button_label>
+                    <frontend_model>Dynamic\FTPImportExport\Block\Adminhtml\System\Config\Exportorder</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

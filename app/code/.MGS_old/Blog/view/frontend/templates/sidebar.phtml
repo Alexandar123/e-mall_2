@@ -1,0 +1,132 @@
+<?php $helper = $this->helper('MGS\Blog\Helper\Data'); ?>
+<?php if ($block->getConfig('general_settings/enabled')): ?>
+    <?php if ($block->getConfig('sidebar_settings/enabled')): ?>
+        <?php if ($block->getConfig('sidebar_settings/show_categories')): ?>
+            <?php
+            $categories = $block->getCategories();
+            ?>
+            <?php if (isset($categories) && $categories->getSize()): ?>
+                <div class="block block-blog-categories">
+                    <div class="block-title">
+                        <strong class="title"><?php echo __('Categories') ?></strong>
+                    </div>
+                    <div class="block-content">
+                        <ul class="list-group">
+                            <?php foreach ($categories as $category): ?>
+                                <li class="list-group-item">
+                                    <a title="<?php echo $category->getTitle(); ?>"
+                                       href="<?php echo $category->getCategoryUrl(); ?>">
+                                        <?php echo $category->getTitle(); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
+        <?php if ($block->getConfig('sidebar_settings/show_recent_posts')): ?>
+            <?php
+            $collection = $block->getCollection();
+            $showThumbnail = $this->getConfig('sidebar_settings/show_thumbnail');
+            ?>
+            <?php if (isset($collection) && $collection->getSize()) : ?>
+                <div class="block block-blog-posts lastest-posts-list">
+                    <div class="block-title">
+                        <strong class="title"><?php echo __('Recent Posts') ?></strong>
+                    </div>
+                    <div class="block-content">
+                        <ul class="post-list">
+                            <?php foreach ($collection as $post): ?>
+                                <li class="item">
+                                    <div class="blog-content list-content <?php if ($showThumbnail): ?>has-image<?php endif ?>">
+                                        <?php if ($showThumbnail): ?>
+                                            <?php if($post->getThumbType() == "video"): ?>
+                                                <?php if($helper->getThumbnailImgVideoPost($post) != ""): ?>
+                                                    <div class="video image" data-toggle="modal" data-target="#postModal-sidebar--<?php echo $post->getId() ?>">
+                                                        <img class="img-responsive" src="<?php echo $helper->getThumbnailImgVideoPost($post); ?>" />
+                                                    </div>
+                                                <?php endif ?>
+                                            <?php else: ?>
+                                                <div class="image"><?php echo $helper->getThumbnailPost($post); ?></div>
+                                            <?php endif ?>
+                                        <?php endif ?>
+                                        <div class="short-detail">
+                                            <div class="title"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
+        
+        <?php if ($block->getConfig('sidebar_settings/show_tags')): ?>
+            <?php $tags = $block->getTags(); ?>
+            <?php if (count($tags)): ?>
+                <div class="block block-blog-tags">
+                    <div class="block-title">
+                        <strong class="title"><?php echo __('Tags') ?></strong>
+                    </div>
+                    <div class="block-content">
+                        <?php
+                        $total = 0;
+                        $step = 0;
+                        $countConfig = $block->getConfig('sidebar_settings/number_of_tags');
+                        foreach ($tags as $tag => $count) {
+                            $total += $count;
+                        }
+                        ?>
+                        <?php
+                        foreach ($tags as $tag => $count):
+                            $step ++;
+                            $class = 'btn-xs';
+                            ?>
+                            <a class="btn btn-default margin-right10 margin-bottom10 <?php echo $class; ?>" title="<?php echo $tag; ?>" href="<?php echo $helper->getTagUrl($tag); ?>"><?php echo $tag; ?></a>
+                            <?php if($step == $countConfig) {
+                                break;
+                            } ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
+        
+        
+        <?php if ($block->getConfig('sidebar_settings/show_recent_posts')): ?>
+            <?php foreach ($collection as $post): ?>
+                <?php if ($showThumbnail): ?>
+                    <?php if($post->getThumbType() == "video"): ?>
+                        <?php if($helper->getThumbnailImgVideoPost($post) != ""): ?>
+                            <div id="postModal-sidebar--<?php echo $post->getId() ?>" class="modal fade" role="dialog">
+                                <div class="modal-video-dialog modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php echo $helper->getThumbnailPost($post); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                require([
+                                    'jquery'
+                                ], function ($) {
+                                    $('#postModal-sidebar--<?php echo $post->getId() ?>').on('hidden.bs.modal', function () {
+                                        var $iframe = $('iframe', $(this)),
+                                        src = $iframe.prop('src');
+                                        $iframe.prop('src', '').prop('src', src.replace('&autoplay=1', ''));
+                                    });
+                                }); 
+                            </script>
+                        <?php endif ?>
+                    <?php endif; ?>
+                <?php endif ?>
+            <?php endforeach ?>
+        <?php endif ?>
+    <?php endif; ?>
+<?php endif; ?>

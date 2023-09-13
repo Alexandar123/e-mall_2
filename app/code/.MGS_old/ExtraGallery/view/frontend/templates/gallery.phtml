@@ -1,0 +1,174 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
+<?php $_product = $block->getProduct(); ?>
+<?php $galleryImages = $block->getGalleryImages(); ?>
+
+<?php // Get Config Gallery Template ?>
+<?php $glrTemplate = $themeSettingConfig->getStoreConfig('extragallery/general/glr_type'); ?>
+
+<?php
+if($_product->getData('extragallery_glr_type')){
+	$glrTemplate = $_product->getData('extragallery_glr_type');
+}
+?>
+
+<?php $glr_effect = $themeSettingConfig->getStoreConfig('extragallery/general/glr_effect'); ?>
+<?php $zoom_image = $glr_effect == 1 ? 1 : 0; ?>
+<?php $lbox_image = $glr_effect == 2 ? 1 : 0; ?>
+<?php $zoom_mobile = $themeSettingConfig->getStoreConfig('extragallery/general/zoom_mobile'); ?>
+<?php $rtl = $themeSettingConfig->getStoreConfig('themesettings/general/rtl_theme') ? 'true' : 'false'; ?>
+
+<?php // Image 360 ?>
+<?php $rotateImage = $_product->getData('mgs_j360') ?>
+<?php $rotateImages = [] ?>
+<?php if($rotateImage): ?>
+	<?php $rotateImages = $themeSettingConfig->getRotateImages($_product->getId()) ?>
+<?php endif ?>
+
+<?php if($block->getViewType() == 'quickview'): ?>
+    <?php
+        $glrTemplate = 6;
+    ?>
+<?php endif ?>
+
+<?php if(count($galleryImages) >= 1): ?>
+	<?php echo $this->getLayout()
+					->createBlock('Magento\Framework\View\Element\Template')
+					->setProduct($_product)
+					->setThemeSettingConfig($themeSettingConfig)
+					->setProduct($_product)
+					->setGalleryImages($galleryImages)
+					->setEnableZoom($zoom_image)
+					->setLbox($lbox_image)
+					->setZoomMobile($zoom_mobile)
+					->setRotateImage($rotateImage)
+					->setRotateImages($rotateImages)
+					->setRightToLeft($rtl)
+					->setViewType($block->getViewType())
+					->setTemplate('MGS_ExtraGallery::gallery/gallery_'.$glrTemplate.'.phtml')
+					->toHtml(); ?>
+<?php else: ?>
+	<?php // Product no image ?>
+	<?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+	<?php $noImage = $_imagehelper->init($_product, 'product_page_image_large')->getUrl() ?>
+	<div class="product item-image base-image">
+		<img class="img-fluid" src="<?php echo $noImage; ?>" alt=""/>
+	</div>
+<?php endif ?>
+
+<?php // Image 360 ?>
+<?php if($rotateImage && (count($rotateImages)>0)): ?>
+    <?php if($glrTemplate != 2 && $glrTemplate != 6): ?>
+		<a class="rotate-image" href="#" onclick="rotate360(); return false"></a>
+	<?php endif ?>
+    <script type="text/javascript">
+        function rotate360(){
+            require([
+                'jquery',
+                "mage/translate",
+                'mrotateImage'
+            ], function ($) {
+                $.ajax({
+                    url: '<?php echo $this->getUrl('mgsthemesetting/index/rotate') ?>',
+                    data: ('&product=<?php echo $_product->getId() ?>'),
+                    type: 'get',
+                    dataType: 'json',
+                    cache: true,
+                    showLoader: true
+                }).done(function (response) {
+                    $('.loading-mask').append(response.html);
+                    $('.loading-mask').addClass('j360-container');
+                    setTimeout(initImageRotate, 1);
+
+                }).fail(function (error) {
+                    alert($.mage.__('Sorry, something went wrong. Please try again later.'));
+                });
+            });
+        }
+
+        function initImageRotate(){
+            require([
+                'jquery',
+                "mage/translate",
+                'mrotateImage'
+            ], function ($) {
+                $('.loading-mask').show();
+                $('#mgs_j360').j360();
+            });
+        }
+
+        function closeRotateContainer(){
+            require([
+                'jquery',
+                "mage/translate",
+                'mrotateImage'
+            ], function ($) {
+                $('.rotate-image-container').remove();
+                $('.loading-mask').removeClass('j360-container');
+                $('.loading-mask').hide();
+                $('.preload_img').parent().remove();
+            });
+        }
+    </script>
+<?php endif ?>
+
+<script type="text/javascript">
+    <?php if($lbox_image): ?>
+        require([
+            'jquery',
+            'magnificPopup'
+        ], function(jQuery){
+            (function($) {
+                $(document).ready(function() {
+
+                });
+            })(jQuery);
+        });
+    <?php endif ?>
+    <?php if($zoom_image): ?>
+        function zoomElement(el){
+            require([ 'jquery', 'zoom-images' ],function($) {
+                var dataZ = $(el).attr('data-zoom');
+                <?php if($zoom_mobile): ?>
+                    if($(window).width() > 767){
+                        $(el).zoom({
+                            magnify: 1,
+                            url: dataZ
+                        });
+                    }else {
+                        $(el).trigger('zoom.destroy');
+                    }
+                <?php else: ?>
+                    $(el).zoom({
+                        magnify: 1,
+                        url: dataZ
+                    });
+                <?php endif ?>
+            });
+        }
+        <?php if($zoom_mobile): ?>
+            require([ 'jquery', 'zoom-images' ],function($) {
+                $(window).resize(function(){
+                    if($(window).width() < 766){
+                        $('.imgzoom').trigger('zoom.destroy');
+                    }
+                });
+            });
+        <?php endif ?>
+    <?php endif ?>
+</script>
+

@@ -1,0 +1,5 @@
+<?php if ($brand = $block->getBrand()): ?>
+	<div class="product-brand">
+		<div class="brand-name"><span class="title"><?= __('Brand') ?></span><a title="<?= $brand->getName(); ?>" href="<?= $brand->getUrl(); ?>"><?= $block->getBrand()->getName(); ?></a></div>
+	</div>
+<?php endif; ?>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?><!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Smtp
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mageplaza_Smtp::smtp" title="SMTP" module="Mageplaza_Smtp" sortOrder="45" resource="Mageplaza_Smtp::smtp" parent="Magento_Backend::stores"/>
+        <add id="Mageplaza_Smtp::log" title="Email Logs" module="Mageplaza_Smtp" sortOrder="10" parent="Mageplaza_Smtp::smtp" action="adminhtml/smtp/log" resource="Mageplaza_Smtp::log"/>
+        <add id="Mageplaza_Smtp::configuration" title="Configuration" module="Mageplaza_Smtp" sortOrder="100" action="adminhtml/system_config/edit/section/smtp" resource="Mageplaza_Smtp::configuration" parent="Mageplaza_Smtp::smtp"/>
+        <add id="Mageplaza_Smtp::abandoned_cart" title="Abandoned Carts" module="Mageplaza_Smtp" sortOrder="80" parent="Mageplaza_Smtp::smtp" action="adminhtml/smtp/abandonedcart" resource="Mageplaza_Smtp::abandoned_cart"/>
+
+        <add id="Avada_Smtp::email_marketing" title="Marketing Automation" module="Mageplaza_Smtp" sortOrder="50" parent="Magento_Backend::marketing" resource="Mageplaza_Smtp::email_marketing_menu"/>
+        <add id="Avada_Smtp::email_marketing_automation" title="Automation" module="Mageplaza_Smtp" sortOrder="10" action="adminhtml/smtp/marketing/type/automation" resource="Mageplaza_Smtp::email_marketing_menu" parent="Avada_Smtp::email_marketing" />
+        <add id="Avada_Smtp::email_marketing_newsletters" title="Campaign" module="Mageplaza_Smtp" sortOrder="20" action="adminhtml/smtp/marketing/type/newsletters" resource="Mageplaza_Smtp::email_marketing_menu" parent="Avada_Smtp::email_marketing" />
+        <add id="Avada_Smtp::email_marketing_sms" title="SMS" module="Mageplaza_Smtp" sortOrder="30" action="adminhtml/smtp/marketing/type/sms" resource="Mageplaza_Smtp::email_marketing_menu" parent="Avada_Smtp::email_marketing" />
+        <add id="Avada_Smtp::email_marketing_forms" title="Popup Forms" module="Mageplaza_Smtp" sortOrder="40" action="adminhtml/smtp/marketing/type/forms" resource="Mageplaza_Smtp::email_marketing_menu" parent="Avada_Smtp::email_marketing" />
+    </menu>
+</config>

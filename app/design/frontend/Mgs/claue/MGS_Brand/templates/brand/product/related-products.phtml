@@ -1,0 +1,221 @@
+<?php
+
+/* @var $block \MGS\Brand\Block\Product\ProductList\Related */
+use Magento\Framework\App\ActionInterface;
+
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$rtl = $themeSettingConfig->getStoreConfig('themesettings/general/rtl_theme') ? 'true' : 'false';
+$builderHelper = $this->helper('MGS\Fbuilder\Helper\Data');
+$_imagehelper = $this->helper('MGS\ThemeSettings\Helper\Image');
+$lazyLoad = $themeSettingConfig->getStoreConfig('themesettings/general/lazy_load');
+$useSlider = $this->getBlockData('use_slider');
+$htmlStructure = $builderHelper->getStoreConfig('fbuilder/html_structure/product_grid');
+$baseImage = $baseImageHover = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
+$baseImageHover = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
+?>
+<?php if ($block->getConfig('general_settings/enabled')): ?>
+	<?php if ($block->getConfig('product_page_settings/show_related_products_by_brand')): ?>
+		<?php if ($brand = $block->getBrand()): ?>
+			<?php
+				$type = 'product_brand';
+				$class = $type;
+
+				$useSlider = $block->getConfig('product_page_settings/brand_products_slider');
+				if($useSlider){
+					$autoPlay = $block->getConfig('product_page_settings/brand_products_autoplay');
+					$stopAutoPlayHover = $block->getConfig('product_page_settings/brand_products_stop_auto');
+					$loop = $block->getConfig('product_page_settings/brand_products_loop');
+					$nav = $block->getConfig('product_page_settings/brand_products_navigation');
+					$dots = $block->getConfig('product_page_settings/brand_products_pagination');
+					$slideBy = $block->getConfig('product_page_settings/brand_products_slide_by');
+				}
+				$perRowDefault = $block->getConfig('product_page_settings/perrow_brand_products');
+				$perRowTablet = $block->getConfig('product_page_settings/brand_per_row_tablet');
+				$perRowMobile = $block->getConfig('product_page_settings/brand_per_row_mobile');
+				$classCol = ' row-' . $perRowDefault . ' row-tablet-' . $perRowTablet . ' row-mobile-' . $perRowMobile;
+
+				$titleConfig = $block->getConfig('product_page_settings/title_related_products');
+				$title = $titleConfig ? __($titleConfig) : __('Related Products By Brand');
+				$_productCollection = $block->getProductCollection();
+				$_helper = $this->helper('Magento\Catalog\Helper\Output');
+				$themeHelper = $this->helper('MGS\Fbuilder\Helper\Data');
+				$image = 'category_page_grid';
+				$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+                $showAddTo = true;
+			?>
+			<?php if (count($_productCollection)): ?>
+				<div class="block-releated brand-related-products margin-top40">
+                    <div class="block-heading">
+                        <h3 class="title text-uppercase">
+                            <span id="block-<?php /* @escapeNotVerified */ echo $class?>-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo $title; ?></span>
+                        </h3>
+                    </div>
+					 <div class="block-content content <?php if(!$useSlider): ?><?= $classCol ?><?php endif ?>" aria-labelledby="block-<?php /* @escapeNotVerified */ echo $class?>-heading">
+						<div class="products wrapper grid mgs-products products-grid<?php if($useSlider): ?> active-slider carousel-related<?php endif ?> products-<?php /* @escapeNotVerified */ echo $type; ?>">
+							<div id="product-slider-<?= $type ?>" class="products list items product-items<?php if($useSlider): ?> owl-carousel mgs-owl-carousel<?php endif ?> line">
+								<?php $iterator = 1; ?>
+                                <?php foreach ($_productCollection as $_product): ?>
+								<div class="col item product product-item">
+									<div class="product-item-info" data-container="product-grid">
+										<div class="product-top">
+                                            <?php // Product Image ?>
+                                            <?php
+                                            $size = $themeSettingConfig->getImageSize();
+                                            $padding = $themeSettingConfig->getImagePadding();
+                                            ?>
+
+                                            <?php
+                                            $productImage = $_imagehelper->init($_product, $image)->setImageFile($_product->getData('small_image'))->resize($size['width'], $size['height'])->getUrl();
+                                            $productImageHover = $_imagehelper->init($_product, $image)->setImageFile($_product->getData('thumbnail'))->resize($size['width'], $size['height'])->getUrl();
+                                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                                            ?>
+                                            <?php if($lazyLoad != 1): ?>
+                                                <?php $baseImage = $productImage ?>
+                                                <?php $baseImageHover = $productImageHover ?>
+                                            <?php endif ?>
+
+                                            <!-- Product Image-->
+                                            <a href="<?php echo $_product->getProductUrl() ?>"
+                                               class="product photo product-item-photo <?php if ((basename($_product->getData('thumbnail') ?? '') != 'no_selection') && (basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? ''))): ?> has-hover-image<?php endif ?>"
+                                               style="padding-bottom: <?php echo $padding ?>;" tabindex="-1">
+                                                <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>"
+                                                     class="img-responsive product-image-photo img-thumbnail <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>"
+                                                     loading="lazy"
+                                                     data-src="<?php echo $productImage ?>"/>
+
+                                                <?php if (basename($_product->getData('thumbnail') ?? '') != 'no_selection'): ?>
+                                                    <?php if (basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? '')): ?>
+                                                        <img src="<?php echo $baseImageHover; ?>" alt="<?php echo $_productNameStripped ?>"
+                                                             class="img-responsive img-hover-show <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>"
+                                                             loading="lazy"
+                                                             data-src="<?php echo $productImageHover; ?>"/>
+                                                    <?php endif ?>
+                                                <?php endif ?>
+                                            </a>
+
+                                            <!-- Product label-->
+                                            <?php echo $themeSettingConfig->getProductLabel($_product); ?>
+
+                                            <!-- Product actions-->
+                                            <ul class="actions-link actions-secondary">
+                                                <?php if ($showAddTo): ?>
+                                                    <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare'); ?>
+                                                    <li>
+                                                        <button class="action tocompare"
+                                                                title="<?php echo $block->escapeHtml(__('Add to Compare')); ?>"
+                                                                data-title="<?php echo __('Add to Compare') ?>"
+                                                                aria-label="<?php echo $block->escapeHtml(__('Add to Compare')); ?>"
+                                                                data-post='<?php /* @escapeNotVerified */
+                                                                echo $compareHelper->getPostDataParams($_product); ?>'
+                                                                role="button">
+                                                            <i class="pe-7s-graph3"></i>
+                                                        </button>
+                                                    </li>
+
+                                                    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                                                        <li>
+                                                            <button class="action towishlist"
+                                                                    title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                                                    data-title="<?php echo __('Add to Wish List') ?>"
+                                                                    aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                                                    data-post='<?php /* @escapeNotVerified */
+                                                                    echo $block->getAddToWishlistParams($_product); ?>'
+                                                                    data-action="add-to-wishlist"
+                                                                    role="button">
+                                                                <i class="pe-7s-like"></i>
+                                                            </button>
+                                                        </li>
+                                                    <?php endif ?>
+
+                                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                                        <?php echo $addToBlock->setProduct($_product)->getChildHtml(); ?>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </ul>
+                                            <div class="action-mobile">
+                                                <?php if ($_product->isSaleable()): ?>
+                                                    <?php if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
+                                                     <button class="action tocart btn-cart primary" data-mage-init='{"redirectUrl": {"url": "<?php /* @escapeNotVerified */ echo $block->getProductUrl($_product); ?>"}}' type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+                                                         <span class="icon pe-7s-shopbag"></span>
+                                                         <span class="text"><?= /* @escapeNotVerified */
+                                                             __('Add to Cart') ?></span>
+                                                     </button>
+                                                    <?php else: ?>
+                                                        <form data-role="tocart-form"
+                                                              data-product-sku="<?= $block->escapeHtmlAttr($_product->getSku()) ?>"
+                                                              action="<?= $block->escapeUrl($block->getAddToCartUrl($_product)) ?>"
+                                                              method="post">
+                                                            <input type="hidden" name="product"
+                                                                   value="<?= /* @noEscape */ (int)$_product->getEntityId() ?>">
+                                                            <input type="hidden"
+                                                                   name="<?= /* @noEscape */ ActionInterface::PARAM_NAME_URL_ENCODED?>"
+                                                                   value="<?= ActionInterface::PARAM_NAME_URL_ENCODED ?>">
+                                                            <?= $block->getBlockHtml('formkey') ?>
+                                                            <button type="submit"
+                                                                    title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                                    class="action tocart btn-cart primary">
+                                                                <span class="icon pe-7s-shopbag"></span>
+                                                                <span class="text"><?= /* @escapeNotVerified */
+                                                                    __('Add to Cart') ?></span>
+                                                            </button>
+                                                        </form>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+										</div>
+										<div class="product details product-item-details">
+											<h5 class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtml($_product->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_product) ?>">
+												<?= $block->escapeHtml($_product->getName()) ?></a>
+											</h5>
+											<?= $block->getReviewsSummaryHtml($_product, $templateType,true); ?>
+
+											<?php /* @escapeNotVerified */ echo $block->getProductPrice($_product); ?>
+										</div>
+									</div>
+								</div>
+								<?php endforeach ?>
+							</div>
+							<?php if($useSlider): ?>
+								<script type="text/javascript">
+									require([
+										'jquery',
+										'mgsowlcarousel'
+									], function ($) {
+										$('#product-slider-<?= $type ?>').owlCarousel({
+											items: <?= $perRowDefault; ?>,
+											autoplay: <?= $autoPlay ? 'true' : 'false' ?>,
+											autoplayHoverPause: <?= $stopAutoPlayHover ? 'true' : 'false' ?>,
+											nav: <?= $nav ? 'true' : 'false' ?>,
+											dots: <?= $dots ? 'true' : 'false' ?>,
+											loop: <?= $loop ? 'true' : 'false' ?>,
+                                            navText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+											<?php if($slideBy): ?>
+											slideBy: <?= $slideBy ?>,
+											<?php endif ?>
+											lazyLoad: true,
+											rtl: <?= $rtl ?>,
+											responsive:{
+												0:{
+													items: <?= $perRowMobile; ?>
+												},
+												768:{
+													items: <?= $perRowTablet; ?>
+												},
+												1200:{
+													items: <?= $perRowDefault; ?>,
+                                                    nav: <?= $nav ? 'true' : 'false' ?>,
+                                                    dots: <?= $dots ? 'true' : 'false' ?>
+												}
+											}
+										});
+									});
+								</script>
+							<?php endif ?>
+						</div>
+					 </div>
+				</div>
+			<?php endif; ?>
+
+		<?php endif; ?>
+	<?php endif; ?>
+<?php endif; ?>

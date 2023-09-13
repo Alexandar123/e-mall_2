@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var \Magento\Framework\View\Element\Template $block */ ?>
+<?php $_shipment = $block->getShipment() ?>
+<?php
+/* @var \Magento\Sales\Model\Order $_order */
+$_order = $block->getOrder() ?>
+<?php if ($_shipment && $_order) : ?>
+    <?php $trackCollection = $_shipment->getTracksCollection() ?>
+    <?php if ($trackCollection) : ?>
+        <br />
+        <?php foreach ($trackCollection as $_item) : ?>
+            <p><span><?= __('The tracking code for your shipment is '); ?> <?= __($_item->getNumber()) ?> <?= __('and you can follow the status on the courier service portal - link.') ?> <span><a href="<?= $block->escapeUrl($block->getTrackingUrl()->getUrl($_item)) ?>" target="_blank">
+                            <?= $block->escapeHtml($_item->getNumber()) ?>
+                        </a></span> </p>
+        <?php endforeach ?>
+    <?php endif; ?>
+<?php endif; ?>

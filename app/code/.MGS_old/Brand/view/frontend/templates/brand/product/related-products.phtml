@@ -1,0 +1,149 @@
+<?php
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$rtl = $themeSettingConfig->getStoreConfig('themesettings/general/rtl_theme') ? 'true' : 'false';
+?>
+<?php if ($block->getConfig('general_settings/enabled')): ?>
+	<?php if ($block->getConfig('product_page_settings/show_related_products_by_brand')): ?>
+		<?php if ($brand = $block->getBrand()): ?>
+			<?php
+				$type = 'product_brand';
+				$class = $type;
+
+				$useSlider = $block->getConfig('product_page_settings/brand_products_slider');
+				if($useSlider){
+					$autoPlay = $block->getConfig('product_page_settings/brand_products_autoplay');
+					$stopAutoPlayHover = $block->getConfig('product_page_settings/brand_products_stop_auto');
+					$loop = $block->getConfig('product_page_settings/brand_products_loop');
+					$nav = $block->getConfig('product_page_settings/brand_products_navigation');
+					$dots = $block->getConfig('product_page_settings/brand_products_pagination');
+					$slideBy = $block->getConfig('product_page_settings/brand_products_slide_by');
+				}
+				$perRowDefault = $block->getConfig('product_page_settings/perrow_brand_products');
+				$perRowTablet = $block->getConfig('product_page_settings/brand_per_row_tablet');
+				$perRowMobile = $block->getConfig('product_page_settings/brand_per_row_mobile');
+				$classCol = ' row-' . $perRowDefault . ' row-tablet-' . $perRowTablet . ' row-mobile-' . $perRowMobile;
+
+				$titleConfig = $block->getConfig('product_page_settings/title_related_products');
+				$title = $titleConfig ? __($titleConfig) : __('Related Products By Brand');
+				$_productCollection = $block->getProductCollection();
+				$_helper = $this->helper('Magento\Catalog\Helper\Output');
+				?>
+				<?php
+				$themeHelper = $this->helper('MGS\Fbuilder\Helper\Data');
+				$image = 'category_page_grid';
+				$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+			?>
+			<?php if (count($_productCollection)): ?>
+				<div class="block brand-related-products">
+					<div class="block-title title">
+						 <strong id="block-<?php /* @escapeNotVerified */ echo $class?>-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo $title; ?></strong>
+
+					</div>
+					 <div class="block-content content <?php if(!$useSlider): ?><?= $classCol ?><?php endif ?>" aria-labelledby="block-<?php /* @escapeNotVerified */ echo $class?>-heading">
+						<div class="products wrapper grid products-grid<?php if($useSlider): ?> active-slider carousel-related<?php endif ?> products-<?php /* @escapeNotVerified */ echo $type; ?>">
+							<ol id="product-slider-<?= $type ?>" class="products list items product-items<?php if($useSlider): ?> owl-carousel<?php endif ?>">
+								<?php $iterator = 1; ?>
+                                <?php foreach ($_productCollection as $_product): ?>
+								<li class="item product product-item">
+									<div class="product-item-info" data-container="product-grid">
+										<div class="product-top">
+											<?php // Product Image ?>
+											<?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
+											<a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_product) ?>" class="product photo product-item-photo">
+												<?= $block->getImage($_product, $image)->toHtml(); ?>
+											</a>
+											<div class="product-item-inner">
+												<div class="product actions product-item-actions">
+													<div class="actions-primary">
+														<?php if ($_product->isSaleable()): ?>
+															<?php if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
+																<button class="action tocart primary" data-mage-init='{"redirectUrl": {"url": "<?php /* @escapeNotVerified */ echo $block->getAddToCartUrl($_product) ?>"}}' type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+																	<span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+																</button>
+															<?php else: ?>
+																<?php $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+																$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_product), ['product' => $_product->getEntityId()])
+																?>
+																<button class="action tocart primary"
+																		data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'
+																		type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+																	<span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+																</button>
+															<?php endif; ?>
+														<?php else: ?>
+															<?php if ($_product->isAvailable()): ?>
+																<div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+															<?php else: ?>
+																<div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+															<?php endif; ?>
+														<?php endif; ?>
+													</div>
+													<div data-role="add-to-links" class="actions-secondary">
+														<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+															<a href="#" class="action towishlist" title="<?= __('Add to Wish List') ?>" aria-label="<?= __('Save') ?>" data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($block->getProduct()) ?>' data-action="add-to-wishlist" role="button">
+																<span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+															</a>
+														<?php endif; ?>
+														<?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare'); ?>
+														<a href="#" class="action tocompare" title="<?= $block->escapeHtml(__('Add to Compare')) ?>" aria-label="<?= $block->escapeHtml(__('Compare')) ?>" data-post='<?= /* @escapeNotVerified */ $compareHelper->getPostDataParams($_product) ?>' role="button">
+															<span><?= /* @escapeNotVerified */ __('Add to Compare') ?></span>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="product details product-item-details">
+											<strong class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtml($_product->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_product) ?>">
+												<?= $block->escapeHtml($_product->getName()) ?></a>
+											</strong>
+											<?= $block->getReviewsSummaryHtml($_product, $templateType,true); ?>
+
+											<?php /* @escapeNotVerified */ echo $block->getProductPrice($_product); ?>
+										</div>
+									</div>
+								</li>
+								<?php endforeach ?>
+							</ol>
+							<?php if($useSlider): ?>
+								<script type="text/javascript">
+									require([
+										'jquery',
+										'mgsowlcarousel'
+									], function ($) {
+										$('#product-slider-<?= $type ?>').owlCarousel({
+											items: <?= $perRowDefault; ?>,
+											autoplay: <?= $autoPlay ? 'true' : 'false' ?>,
+											autoplayHoverPause: <?= $stopAutoPlayHover ? 'true' : 'false' ?>,
+											margin:30,
+											nav: <?= $nav ? 'true' : 'false' ?>,
+											dots: <?= $dots ? 'true' : 'false' ?>,
+											loop: <?= $loop ? 'true' : 'false' ?>,
+											navText: ["<span></span>","<span></span>"],
+											<?php if($slideBy): ?>
+											slideBy: <?= $slideBy ?>,
+											<?php endif ?>
+											lazyLoad: true,
+											rtl: <?= $rtl ?>,
+											responsive:{
+												0:{
+													items: <?= $perRowMobile; ?>
+												},
+												768:{
+													items: <?= $perRowTablet; ?>
+												},
+												992:{
+													items: <?= $perRowDefault; ?>
+												}
+											}
+										});
+									});
+								</script>
+							<?php endif ?>
+						</div>
+					 </div>
+				</div>
+			<?php endif; ?>
+
+		<?php endif; ?>
+	<?php endif; ?>
+<?php endif; ?>

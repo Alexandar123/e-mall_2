@@ -1,0 +1,15 @@
+<?php 	
+	$_product = $block->getProduct(); 
+	$customHelper = $this->helper("\Dynamic\Customization\Helper\Data"); 
+?>
+<?php if($_product->getProductLabel()){
+    $isEnable_class = "";
+    $isEnable = $_product->getProductLabel();
+    if ($isEnable) {
+        $isEnable_class = 'dynamic_enable';
+    }
+    $productLabels = $customHelper->getProductLabel($_product->getProductLabel()); ?>
+    <div class="product-label-image <?php echo $isEnable_class; ?>">
+        <img src="<?= __($productLabels) ?>">
+    </div>
+<?php } ?>

@@ -1,0 +1,37 @@
+@media screen and (max-width: 767px) {
+  .pages .action.previous > span {
+    margin: -14px;
+  }
+  .bottom-pagination .pages .pagination .item {
+    padding: 0 17px;
+  }
+  .onestepcheckout-index-index .page-title-wrapper {
+    max-width: 100%;
+  }
+  .bottom-footer .frame .line{
+    margin-bottom: 9%;
+ }
+ .page-footer .bottom-footer ul li {
+    float: left;
+    padding-top: 6px;
+ }
+ .page-header .search-form .block-search .block-content .form.minisearch .input-text {
+    color: #000;
+    background: #fff;
+    width: 93%;
+    left: 4%;
+ }
+ .owl-carousel.owl-loaded {
+     display: block;
+ }
+}
+
+
+.checkout-container * {
+  box-sizing: border-box;
+  margin-bottom: 4%;
+}
+.block-authentication .actions-toolbar {
+  margin-bottom: 5px;
+  margin-top: 35px;
+}

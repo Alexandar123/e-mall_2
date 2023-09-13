@@ -1,0 +1,12 @@
+<div class="delivery-time">
+    <div class="title">
+        <span data-bind="i18n: 'Delivery Date'"></span>
+    </div>
+    <div class="control">
+        <input type="text" readonly="readonly" data-bind="datepicker: true, value: deliveryTimeValue"
+               id="onestepcheckout-delivery-time"/>
+        <div class="remove-delivery-time"
+             data-bind="click:removeDeliveryTime.bind($data),visible: isVisible(), text: 'Remove Date'"></div>
+    </div>
+</div>
+

@@ -1,0 +1,103 @@
+<script type="text/javascript">
+	require([
+		'jquery',
+	], function(jQuery){
+		(function($) {
+			$(document).ready(function(){
+				/* Get Image */
+				var dataGallery = $('#base_image').val();
+				if(dataGallery != ""){
+					var dataGalleryArray = dataGallery.split(",");
+					for(i=0; i < dataGalleryArray.length; i++){
+						var html = "<div class='image item'><div class='product-image-wrapper'><img class='product-image' src='<?php echo $this->getBaseImage()?>"+dataGalleryArray[i]+"' alt='Image'><div class='actions'><button data-imagedelete='"+dataGalleryArray[i]+"' type='button' class='action-remove action-remove-gallery' title='Delete image'><span>Delete image</span></button></div></div></div>";
+						$("#portfolio-gallery .content").append(html);
+					}
+				}
+				/* Ajax Upload Image Gallery */
+				$('#multiple_image').change( function(event) {
+					$('.loading-gallery').show();
+					var filename = $("#multiple_image").val();
+					var extension = filename.replace(/^.*\./, '');
+					if (extension == filename) {
+						extension = '';
+					} else {
+						extension = extension.toLowerCase();
+					}
+					 switch (extension) {
+						case 'jpg':
+						case 'jpeg':
+						case 'png':
+						case 'gif':
+							var dataGallery = $('#base_image').val();
+							var formData = new FormData();
+							formData.append('file', $('#multiple_image')[0].files[0]);
+							formData.append('form_key', FORM_KEY);
+							$.ajax({
+								url: "<?php echo $this->getUrl('admin/portfolio/upload'); ?>",
+								type: "POST",
+								data: formData,
+								contentType: false,
+								cache: false,
+								processData:false,
+								success: function(data){
+									var result = jQuery.parseJSON(data);
+									if(result.result=='success'){
+										var html = "<div class='image item'><div class='product-image-wrapper'><img class='product-image' src='"+ URL.createObjectURL(event.target.files[0]) +"' alt='Image'><div class='actions'><button type='button' class='action-remove action-remove-gallery' data-imagedelete='"+result.data+"' title='Delete image'><span>Delete image</span></button></div></div></div>";
+										$("#portfolio-gallery .content").append(html);
+										if(dataGallery != ""){
+											dataGallery = dataGallery + "," + result.data;
+										}else {
+											dataGallery = result.data;
+										}
+										$('#base_image').val(dataGallery);
+										$('.loading-gallery').hide();
+									}else{
+										alert(result.data);
+									}
+								}
+							});
+							break;
+						default:
+							alert("We don't recognize or support this file extension type.");
+					}
+				});
+				/* Delete Image */
+				$(document).on("click",".action-remove-gallery",function(e){
+					$('.loading-gallery').show();
+					var newString = "";
+					var deleteElement = $(this).data("imagedelete");
+					var dataGallery = $('#base_image').val();
+					var dataGalleryArray = dataGallery.split(",");
+					for(i=0; i < dataGalleryArray.length; i++){
+						if(deleteElement != dataGalleryArray[i]){
+							if(newString == ""){
+								newString = dataGalleryArray[i];
+							}else {
+								newString = newString + "," + dataGalleryArray[i];
+							}
+						}
+					}
+					$('#base_image').val(newString);
+					$(this).parent().parent().parent().remove();
+					var formData = new FormData();
+					formData.append('filedelete', deleteElement);
+					formData.append('form_key', FORM_KEY);
+					$.ajax({
+						url: "<?php echo $this->getUrl('admin/portfolio/deletefile'); ?>",
+						type: "POST",
+						data: formData,
+						contentType: false,
+						cache: false,
+						processData:false,
+						success: function(data){
+							var result = jQuery.parseJSON(data);
+							if(result.result=='success'){
+								$('.loading-gallery').hide();
+							}
+						}
+					});
+				});
+			});
+		})(jQuery);
+	});
+</script>

@@ -1,0 +1,117 @@
+<?php $collection = $block->getBrandCollection(); ?>
+<?php 
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); 
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$rtl = $themeSettingConfig->getStoreConfig('themesettings/general/rtl_theme') ? 'true' : 'false';
+?>
+<div class="content-block brand-block brand-grid-block">
+	<?php if($this->hasData('mgs_panel_title') || $this->hasData('mgs_panel_note')): ?>
+		<div class="content-heading">
+			<?php if($this->hasData('mgs_panel_title')): ?>
+				<h2 class="title"><?= $themeHelper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></h2>
+			<?php endif ?>
+			<?php if($this->hasData('mgs_panel_note')): ?>
+				<div class="block-note"><?= $themeHelper->decodeHtmlTag($this->getData('mgs_panel_note')) ?></div>
+			<?php endif ?>
+		</div>
+	<?php endif ?>
+	
+	<?php if (count($collection)>0): ?>
+		<?php
+			$blockId = rand() . time();
+			$showShortContent = $this->getConfig('show_short_content');
+			$viewAs = $this->getConfig('view_as');
+			$showThumbnail = $this->getConfig('show_thumbnail');
+			$perRow = $this->getPerrow();
+			$col = $themeHelper->convertPerRowtoCol($perRow);
+		?>
+		
+		<?php if($this->getUseSlider()): ?>
+		<?php 
+			if($this->hasData('number_row') && $this->getNumberRow()>1){
+				$columnCount = $perRow * $this->getNumberRow();
+			}
+		?>
+			<div class="block widget mgs-brand">
+				<div class="block-content row">
+					<div class="owl-carousel mgs-carousel-<?= $blockId; ?>">
+						<?php $i=0; $j=0; foreach ($collection as $brand): $i++ ?>
+							<?php if($this->hasData('number_row') && $this->getNumberRow()>1): ?>
+								<?php if ($j++ % $columnCount == 0): ?>
+									<div class="item">
+								<?php endif ?>
+							<?php endif ?>
+								<div<?php if($this->getNumberRow()>1): ?> class="<?= $themeHelper->getClearClass($perRow, $i) ?> <?= $themeHelper->convertColClass($col, 'col') ?>"<?php endif ?>>
+									<div class="image"><a href="<?= $brand->getUrl(); ?>" title="<?= $brand->getName(); ?>"><img class="img-responsive" src="<?= $brand->getSmallImageUrl(); ?>" alt="<?= $brand->getName(); ?>"/></a></div>
+								</div>
+
+							<?php if($this->hasData('number_row') && $this->getNumberRow()>1): ?>
+								<?php if ($j % $columnCount == 0 || $j == count($collection)): ?>
+									</div>
+								<?php endif ?>
+							<?php endif ?>
+						<?php endforeach ?>
+					</div>
+				</div>
+			</div>
+			
+			<?php if($this->hasData('number_row') && $this->getNumberRow()>1):?>
+				<?php $perRow = 1; ?>
+			<?php endif ?>
+			
+			<script type="text/javascript">
+				require([
+					'jquery',
+					'mgs/owlcarousel'
+				], function ($) {
+					var owl<?= $blockId ?> = $('.mgs-carousel-<?= $blockId ?>').owlCarousel({
+						items: <?= $perRow; ?>,
+						autoplay: <?= $this->getAutoplay() ? 'true' : 'false' ?>,
+						autoplayHoverPause: <?= $this->getStopAuto() ? 'true' : 'false' ?>,
+						nav: <?= $this->getNavigation() ? 'true' : 'false' ?>,
+						dots: <?= $this->getPagination() ? 'true' : 'false' ?>,
+                        rtl: <?= $rtl ?>,
+						navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
+						<?php if(!$this->hasData('number_row') || $this->getNumberRow()==1):?>
+							responsive:{
+								0:{
+									items:2
+								},
+								480:{
+									items:2
+								},
+								768:{
+									items:<?= $perRow; ?>
+								}
+							}
+						<?php endif ?>
+					});
+					<?php if($this->getPagination()): ?>
+						owl<?= $blockId ?>.on('changed.owl.carousel', function (event) {
+							if (event.item.count - event.page.size == event.item.index)
+								$(event.target).find('.owl-dots div:last')
+								  .addClass('active').siblings().removeClass('active');
+						});
+					<?php endif ?>
+				});
+				
+			</script>
+		<?php else: ?>
+			<?php $helper = $this->helper('MGS\Brand\Helper\Data'); ?>
+			<div class="block widget mgs-brand">
+				<div class="block-content">
+					<?php $col = $helper->convertPerRowtoCol($perRow); ?>
+					<ul class="row <?= $helper->convertColClass($col, 'row') ?>">
+						<?php $i=0; foreach ($collection as $brand): $i++; ?>
+							<li class="item <?= $helper->convertColClass($col, 'col') ?> col-sm-4 col-6 <?= $helper->convertClearClass($perRow, $i) ?>">
+								<div class="image"><a href="<?= $brand->getUrl(); ?>" title="<?= $brand->getName(); ?>"><img class="img-responsive" src="<?= $brand->getSmallImageUrl(); ?>" alt="<?= $brand->getName(); ?>"/></a></div>
+							</li>
+						<?php endforeach ?>
+					</ul>
+				</div>
+			</div>
+		<?php endif ?>
+	<?php else: ?>
+		<div role="alert" class="alert alert-warning"> <?= __('There are no brands matching the selection.') ?> </div>
+	<?php endif ?>
+</div>

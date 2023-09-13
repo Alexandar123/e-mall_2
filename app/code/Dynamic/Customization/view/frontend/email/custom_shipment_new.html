@@ -1,0 +1,12 @@
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+         <td>
+            <p class="greeting">{{trans "%name, " name=$order_data.customer_name}}</p>
+<p>{{trans "SHIPPING}}</p>            
+</td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

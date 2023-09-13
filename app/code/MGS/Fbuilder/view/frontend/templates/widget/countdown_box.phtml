@@ -1,0 +1,46 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Data'); ?>
+<?php $fbuilderCoundownDate = $this->getFbuilderCoundownDate() ?>
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $objDate = $objectManager->create('Magento\Framework\Stdlib\DateTime\Timezone');
+?>
+<?php $now = date('m/d/y h:i:s A', strtotime($builderHelper->getCurrentDateTime())) ?>
+<?php $then = date('m/d/y h:i:s A', strtotime($fbuilderCoundownDate)) ?>
+<?php if ($then > $now): ?>
+    <?php $blockId = rand() . time(); ?>
+    <?php $days = $this->getFbuilderDays() ?>
+    <?php $hours = $this->getFbuilderHours() ?>
+    <?php $mins = $this->getFbuilderMinutes() ?>
+    <?php $secs = $this->getFbuilderSeconds() ?>
+    <?php $position = $this->getPosition() ?>
+    <?php $fontWeight = '' ?>
+    <?php if ($this->getTextFontweight()): ?>
+        <?php $fontWeight = 'font-bold' ?>
+    <?php endif ?>
+    
+    <?php $text = ''; ?>
+    <?php if (($days!='') && ($hours!='') && ($secs!='') && ($mins!='')): ?>
+        <?php $text = '<div class="time-text '.$fontWeight.'"><span class="days">'.$builderHelper->decodeHtmlTag($days).'</span>
+					   <span class="hours">'.$builderHelper->decodeHtmlTag($hours).'</span>
+					   <span class="mins">'.$builderHelper->decodeHtmlTag($mins).'</span>
+					   <span class="secs">'.$builderHelper->decodeHtmlTag($secs).'</span></div>';?>
+    <?php endif ?>
+    <div class="content-block mgs-countdown-block">
+        <div class="countdown-timer">
+            <?php if ($position=='top'): ?><?php echo $text ?><?php endif ?>
+            <div id="countdown-timer-<?php echo $blockId; ?>" class="countdown"></div>
+            <?php if ($position=='bottom'): ?><?php echo $text ?><?php endif ?>
+        </div>
+        <script type="text/javascript">
+            var dthen<?php echo $blockId; ?> = new Date("<?php echo $then ?>");
+            start<?php echo $blockId; ?> = "<?php echo $now; ?>";
+            start_date<?php echo $blockId; ?> = Date.parse(start<?php echo $blockId; ?>);
+            var dnow<?php echo $blockId; ?> = new Date(start_date<?php echo $blockId; ?>);
+            ddiff = new Date((dthen<?php echo $blockId; ?>)-(dnow<?php echo $blockId; ?>));
+            gsecs<?php echo $blockId; ?> = Math.floor(ddiff.valueOf()/1000);
+
+            var iid<?php echo $blockId; ?> = "countdown-timer-<?php echo $blockId; ?>";
+            CountBack(gsecs<?php echo $blockId; ?>,"countdown-timer-<?php echo $blockId; ?>", <?php echo $blockId; ?>);
+        </script>
+    </div>
+<?php endif ?>

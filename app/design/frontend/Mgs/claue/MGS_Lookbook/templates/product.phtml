@@ -1,0 +1,14 @@
+<?php $lookbook = $block->getLookbook() ?>
+<?php if($lookbook): ?>
+	<div class="lookbook-container margin-top40">
+		<div class="content-heading">
+			<h3 class="title"><?= __('SHOP THE LOOK'); ?></h3>
+		</div>
+		<div class="mgs-lookbook-container">
+			<div class="pin__image">
+				<img src="<?php echo $this->getImageUrl($lookbook) ?>" alt="<?php $lookbook->getName() ?>" class="lookbook-image"/>
+			</div>
+			<?php echo $this->getPinHtml($lookbook) ?>
+		</div>
+	</div>
+<?php endif ?>

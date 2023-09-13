@@ -1,0 +1,22 @@
+<div class="order-summary hoverable">
+    <div class="step-title" data-role="title">
+        <!-- <span class="number">4</span> -->
+        <!--		<i class="fa fa-check-square"></i>-->
+        <!-- ko if: window.checkoutConfig.mageConfig.isUsedMaterialDesign -->
+        <i class="fa fa-check-circle"></i>
+        <!-- /ko -->
+        <span data-bind="i18n: 'Order Summary'"></span>
+    </div>
+    <div class="opc-block-summary step-content" data-bind="blockLoader: isLoading">
+        <!-- ko foreach: elems() -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+
+        <p class="col-wide forgot-item" data-bind="style:{textAlign: 'right'}, visible: false">
+			<span>
+				<!-- ko i18n: 'Forgot an item?'--><!-- /ko -->
+				<a data-bind="attr: {href: window.checkout.shoppingCartUrl}, i18n: 'Edit your cart'"></a>
+			</span>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<?php $_product = $this->getProduct() ?>
+<?php $blockData = $this->getBlockData() ?>
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Data'); ?>
+<?php if ($_product->getSpecialPrice() && $_product->getSpecialToDate() && $_product->getSpecialFromDate()): ?>
+
+    <?php $specialFromDate = date('m/d/y h:i:s A', strtotime($_product->getSpecialFromDate())); ?>
+    <?php $now = date('m/d/y h:i:s A', strtotime($builderHelper->getCurrentDateTime())) ?>
+    <?php $endTime = str_replace(' 00:00:00', '', $_product->getSpecialToDate()) ?>
+    
+    <?php if ($specialFromDate <= $now && $endTime > $now): ?>
+        <div class="deal-timer">
+            <div id="deal-timer-<?php echo $_product->getId(); ?>" class="countdown"></div>
+            <?php if (($blockData['fbuilder_days']!='') && ($blockData['fbuilder_hours']!='') && ($blockData['fbuilder_minutes']!='') && ($blockData['fbuilder_seconds']!='')): ?>
+                <div class="time-note">
+                    <span class="days"><?php echo $builderHelper->decodeHtmlTag($blockData['fbuilder_days']) ?></span>
+                    <span class="hours"><?php echo $builderHelper->decodeHtmlTag($blockData['fbuilder_hours']) ?></span>
+                    <span class="mins"><?php echo $builderHelper->decodeHtmlTag($blockData['fbuilder_minutes']) ?></span>
+                    <span class='secs'><?php echo $builderHelper->decodeHtmlTag($blockData['fbuilder_seconds']) ?></span>
+                </div>
+            <?php endif ?>
+        </div>
+        <script type="text/javascript">
+            var dthen<?php echo $_product->getId(); ?> = new Date("<?php echo Date("m/d/y", strtotime($endTime)).' 11:59:59 PM'; ?>");
+            start<?php echo $_product->getId(); ?> = "<?php echo $now; ?>";
+            start_date<?php echo $_product->getId(); ?> = Date.parse(start<?php echo $_product->getId(); ?>);
+            var dnow<?php echo $_product->getId(); ?> = new Date(start_date<?php echo $_product->getId(); ?>);
+            ddiff = new Date((dthen<?php echo $_product->getId(); ?>)-(dnow<?php echo $_product->getId(); ?>));
+            gsecs<?php echo $_product->getId(); ?> = Math.floor(ddiff.valueOf()/1000);
+
+            var iid<?php echo $_product->getId(); ?> = "deal-timer-<?php echo $_product->getId(); ?>";
+            CountBack(gsecs<?php echo $_product->getId(); ?>,"deal-timer-<?php echo $_product->getId(); ?>", <?php echo $_product->getId(); ?>);
+        </script>
+    <?php endif ?>
+<?php endif ?>

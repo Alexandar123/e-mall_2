@@ -1,0 +1,705 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<?php $settings = null ?>
+<div class="edit-static-form">
+    
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Deals Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="deals">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setDisableContent(1)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-additional-title" data-role="collapsible" id="tab-label-additional">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#additional" id="tab-label-additional-title">
+                    <?php echo __('Product Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="additional" data-role="content" style="display:none">
+                <div class="form-group line">
+                    <label for="number_of_posts" class="col-des-4 control-label"><?php echo __('Number of product to display') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="limit" class="input-text required-entry validate-number" name="setting[limit]"<?php if ($exist): ?> value="<?php echo $settings['limit'] ?>"<?php endif ?> />
+                    </div>
+                </div>
+                
+                <div class="form-group line grid-perrow">
+                    <label for="perrow" class="col-des-4 control-label"><?php echo __('Items per row (default)') ?></label>
+                    <div class="col-des-8">
+                        <select id="perrow" class="input-text" name="setting[perrow]">
+                            <option value="1"<?php if ($exist && ($settings['perrow']==1)): ?> selected="selected"<?php endif ?>>1</option>
+                            <option value="2"<?php if ($exist && ($settings['perrow']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['perrow']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['perrow']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                            <option value="5"<?php if ($exist && ($settings['perrow']==5)): ?> selected="selected"<?php endif ?>>5</option>
+                            <option value="6"<?php if ($exist && ($settings['perrow']==6)): ?> selected="selected"<?php endif ?>>6</option>
+                            <option value="7"<?php if ($exist && ($settings['perrow']==7)): ?> selected="selected"<?php endif ?>>7</option>
+                            <option value="8"<?php if ($exist && ($settings['perrow']==8)): ?> selected="selected"<?php endif ?>>8</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line grid-perrow">
+                    <label for="perrow_tablet" class="col-des-4 control-label"><?php echo __('Items per row (tablet)') ?></label>
+                    <div class="col-des-8">
+                        <select id="perrow_tablet" class="input-text" name="setting[perrow_tablet]">
+                            <option value="1"<?php if ($exist && ($settings['perrow_tablet']==1)): ?> selected="selected"<?php endif ?>>1</option>
+                            <option value="2"<?php if ($exist && ($settings['perrow_tablet']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['perrow_tablet']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['perrow_tablet']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                            <option value="5"<?php if ($exist && ($settings['perrow_tablet']==5)): ?> selected="selected"<?php endif ?>>5</option>
+                            <option value="6"<?php if ($exist && ($settings['perrow_tablet']==6)): ?> selected="selected"<?php endif ?>>6</option>
+                            <option value="7"<?php if ($exist && ($settings['perrow_tablet']==7)): ?> selected="selected"<?php endif ?>>7</option>
+                            <option value="8"<?php if ($exist && ($settings['perrow_tablet']==8)): ?> selected="selected"<?php endif ?>>8</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line grid-perrow">
+                    <label for="perrow_mobile" class="col-des-4 control-label"><?php echo __('Items per row (mobile)') ?></label>
+                    <div class="col-des-8">
+                        <select id="perrow_mobile" class="input-text" name="setting[perrow_mobile]">
+                            <option value="1"<?php if ($exist && ($settings['perrow_mobile']==1)): ?> selected="selected"<?php endif ?>>1</option>
+                            <option value="2"<?php if ($exist && ($settings['perrow_mobile']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['perrow_mobile']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['perrow_mobile']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                            <option value="5"<?php if ($exist && ($settings['perrow_mobile']==5)): ?> selected="selected"<?php endif ?>>5</option>
+                            <option value="6"<?php if ($exist && ($settings['perrow_mobile']==6)): ?> selected="selected"<?php endif ?>>6</option>
+                            <option value="7"<?php if ($exist && ($settings['perrow_mobile']==7)): ?> selected="selected"<?php endif ?>>7</option>
+                            <option value="8"<?php if ($exist && ($settings['perrow_mobile']==8)): ?> selected="selected"<?php endif ?>>8</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line" id="list_number_col">
+                    <label for="numbercol" class="col-des-4 control-label"><?php echo __('Number col') ?></label>
+                    <div class="col-des-8">
+                        <select id="numbercol" class="input-text" name="setting[numbercol]">
+                            <option value="1"<?php if ($exist && ($settings['numbercol']==1)): ?> selected="selected"<?php endif ?>>1</option>
+                            <option value="2"<?php if ($exist && ($settings['numbercol']==2)): ?> selected="selected"<?php endif ?>>2</option>
+                            <option value="3"<?php if ($exist && ($settings['numbercol']==3)): ?> selected="selected"<?php endif ?>>3</option>
+                            <option value="4"<?php if ($exist && ($settings['numbercol']==4)): ?> selected="selected"<?php endif ?>>4</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line" id="item_per_col">
+                    <label for="percol" class="col-des-4 control-label"><?php echo __('Item per col') ?></label>
+                    <div class="col-des-8">
+                        <input type="text" id="percol" class="input-text required-entry validate-number" name="setting[percol]"<?php if ($exist): ?> value="<?php echo $settings['percol'] ?>"<?php endif ?> />
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="template" class="col-des-4 control-label"><?php echo __('View mode') ?></label>
+                    <div class="col-des-8">
+                        <select id="template" class="input-text" name="setting[template]" onchange="setTemplate()">
+                            <option value="grid.phtml"<?php if ($exist && ($settings['template']=='grid.phtml')): ?> selected="selected"<?php endif ?>><?php echo __('Grid') ?></option>
+                            <option value="list.phtml"<?php if ($exist && ($settings['template']=='list.phtml')): ?> selected="selected"<?php endif ?>><?php echo __('List') ?></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_name" class="col-des-4 control-label"><?php echo __('Hide Product Name') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_name']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_name]" id="hide_name" class="admin__actions-switch-checkbox">
+                            <label for="hide_name" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_review" class="col-des-4 control-label"><?php echo __('Hide Review') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_review']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_review]" id="hide_review" class="admin__actions-switch-checkbox">
+                            <label for="hide_review" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_addcart" class="col-des-4 control-label"><?php echo __('Hide Add to Cart') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_addcart']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_addcart]" id="hide_addcart" class="admin__actions-switch-checkbox">
+                            <label for="hide_addcart" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_addwishlist" class="col-des-4 control-label"><?php echo __('Hide Add to Wishlist') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_addwishlist']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_addwishlist]" id="hide_addwishlist" class="admin__actions-switch-checkbox">
+                            <label for="hide_addwishlist" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line">
+                    <label for="hide_addcompare" class="col-des-4 control-label"><?php echo __('Hide Add to Compare') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_addcompare']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_addcompare]" id="hide_addcompare" class="admin__actions-switch-checkbox">
+                            <label for="hide_addcompare" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line" id="use-slider">
+                    <label for="use_slider" class="col-des-4 control-label"><?php echo __('Use slider') ?></label>
+                    <div class="col-des-8">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['use_slider']): ?> checked="checked"<?php endif ?> value="1" name="setting[use_slider]" id="use_slider" class="admin__actions-switch-checkbox" onclick="useSlider()">
+                            <label for="use_slider" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setSettings($settings)
+                        ->setDisableSliderMargin(1)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/slider_setting.phtml')->toHtml() ;
+                ?>
+            </div>
+            
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/category_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-deal-title" data-role="collapsible" id="tab-label-deal">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#deal" id="tab-label-deal-title">
+                    <?php echo __('Deal Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="deal" data-role="content" style="display:none">
+                <div class="form-group line">
+                    <label for="hide_time" class="col-des-3 control-label"><?php echo __('Hide Countdown Time') ?></label>
+                    <div class="col-des-2">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_time']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_time]" id="hide_time" class="admin__actions-switch-checkbox" onclick="hideTime()">
+                            <label for="hide_time" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-des-7 time-info">
+                        <div id="timer-container" style="margin-left:15px">
+                            <div class="deal-timer">
+                                <div class="countdown"><span class="days"><b>06</b></span><span class="hours"><b>12</b></span><span class="mins"><b>34</b></span><span class="secs"><b>56</b></span></div>
+
+                                    <div class="time-note">
+                                        <span class="days" id="temp-days">Days</span>
+                                        <span class="hours" id="temp-hours">Hours</span>
+                                        <span class="mins" id="temp-mins">Mins</span>
+                                        <span class="secs" id="temp-secs">Secs</span>
+                                    </div>
+
+                            </div>
+                        </div>
+                        
+                        <style type="text/css" id="time-custom-css"></style>
+                    </div>
+                </div>
+                
+                <div class="form-group line time-info" id="time-text">
+                    <label class="col-des-3 control-label"><?php echo __('Time Text') ?></label>
+                    <div class="col-des-9">
+                        <div class="line">
+                            <div class="col-des-3">
+                                <input type="text" id="days" class="input-text" name="setting[days]"<?php if ($exist): ?> value="<?php echo $settings['days'] ?>"<?php else: ?>  value="Days"<?php endif ?> onchange="changeDay()" />
+                            </div>
+                            
+                            <div class="col-des-3">
+                                <input type="text" id="hours" class="input-text" name="setting[hours]"<?php if ($exist): ?> value="<?php echo $settings['hours'] ?>"<?php else: ?>  value="Hours"<?php endif ?> onchange="changeDay()" />
+                            </div>
+                            
+                            <div class="col-des-3">
+                                <input type="text" id="minutes" class="input-text" name="setting[minutes]"<?php if ($exist): ?> value="<?php echo $settings['minutes'] ?>"<?php else: ?>  value="Mins"<?php endif ?> onchange="changeDay()" />
+                            </div>
+                            
+                            <div class="col-des-3">
+                                <input type="text" id="seconds" class="input-text" name="setting[seconds]"<?php if ($exist): ?> value="<?php echo $settings['seconds'] ?>"<?php else: ?>  value="Secs"<?php endif ?> onchange="changeDay()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line time-info fields">
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="time_width"><?php echo __('Width') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="time_width" placeholder="px" class="input-text validate-number" name="setting[time_width]"<?php if ($exist): ?> value="<?php echo $settings['time_width'] ?>"<?php endif ?> onchange="changeTimeStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="time_background"><?php echo __('Background color') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="time_background" class="input-text color-input" name="setting[time_background]"<?php if ($exist): ?> value="<?php echo $settings['time_background'] ?>"<?php endif ?> onchange="changeTimeStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line time-info">
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="number_font_size"><?php echo __('Number font size') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="number_font_size" placeholder="px" class="input-text validate-number" name="setting[number_font_size]"<?php if ($exist): ?> value="<?php echo $settings['number_font_size'] ?>"<?php endif ?> onchange="changeTimeStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="text_font_size"><?php echo __('Text font size') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="text_font_size" placeholder="px" class="input-text validate-number" name="setting[text_font_size]"<?php if ($exist): ?> value="<?php echo $settings['text_font_size'] ?>"<?php endif ?> onchange="changeTimeStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line time-info fields">
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="number_color"><?php echo __('Number color') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="number_color" class="input-text color-input" name="setting[number_color]"<?php if ($exist): ?> value="<?php echo $settings['number_color'] ?>"<?php endif ?> onchange="changeTimeStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="text_color"><?php echo __('Text color') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="text_color" class="input-text color-input" name="setting[text_color]"<?php if ($exist): ?> value="<?php echo $settings['text_color'] ?>"<?php endif ?> onchange="changeTimeStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                
+                <div class="form-group line" style="height:60px">
+                    <label for="hide_discount" class="col-des-3 control-label"><?php echo __('Hide Discount Percent') ?></label>
+                    <div class="col-des-3">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_discount']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_discount]" id="hide_discount" class="admin__actions-switch-checkbox" onclick="hideDiscount()">
+                            <label for="hide_discount" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-6 discount-info mgs-products" id="discount-temp">
+                        <span class="product-ribbon sale-ribbon" style="right:80%"><span>-45%</span></span>
+                    </div>
+                    
+                    <style type="text/css" id="discount-custom-css"></style>
+                </div>
+                
+                <div class="form-group line discount-info fields">
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="discount_width"><?php echo __('Width') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="discount_width" class="input-text validate-number" placeholder="px" name="setting[discount_width]"<?php if ($exist): ?> value="<?php echo $settings['discount_width'] ?>"<?php endif ?> onchange="changeDiscountStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="discount_font_size"><?php echo __('Font size') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="discount_font_size" class="input-text validate-number" placeholder="px" name="setting[discount_font_size]"<?php if ($exist): ?> value="<?php echo $settings['discount_font_size'] ?>"<?php endif ?> onchange="changeDiscountStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line discount-info fields">
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="discount_color"><?php echo __('Text color') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="discount_color" class="input-text color-input" name="setting[discount_color]"<?php if ($exist): ?> value="<?php echo $settings['discount_color'] ?>"<?php endif ?> onchange="changeDiscountStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="discount_background"><?php echo __('Background color') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="discount_background" class="input-text color-input" name="setting[discount_background]"<?php if ($exist): ?> value="<?php echo $settings['discount_background'] ?>"<?php endif ?> onchange="changeDiscountStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="form-group line">
+                    <label for="hide_saved_price" class="col-des-3 control-label"><?php echo __('Hide Saved Price') ?></label>
+                    <div class="col-des-3">
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['hide_saved_price']): ?> checked="checked"<?php endif ?> value="1" name="setting[hide_saved_price]" id="hide_saved_price" class="admin__actions-switch-checkbox" onclick="hideSavedPrice()">
+                            <label for="hide_saved_price" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-des-6 saved-info">
+                        <div class="mgs-products" id="temp-saved-price-container">
+                            <span class="saved-price"><span id="temp-saved">You saved</span> <span class="price">$99.00</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group line saved-info">
+                    <label for="saved_text" class="col-des-3 control-label"><?php echo __('Text') ?></label>
+                    <div class="col-des-9">
+                        <input type="text" id="saved_text" class="input-text" name="setting[saved_text]"<?php if ($exist): ?> value="<?php echo $settings['saved_text'] ?>"<?php else: ?>  value="You saved"<?php endif ?> onchange="changeSavedText()"/>
+                    </div>
+                </div>
+                
+                <div class="form-group line saved-info fields">
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="saved_font_size"><?php echo __('Text font size') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="saved_font_size" class="input-text" placeholder="px" name="setting[saved_font_size]"<?php if ($exist): ?> value="<?php echo $settings['saved_font_size'] ?>"<?php endif ?> onchange="changeSavedStyle()"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="saved_price_font_size"><?php echo __('Price font size') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="saved_price_font_size" class="input-text" placeholder="px" name="setting[saved_price_font_size]"<?php if ($exist): ?> value="<?php echo $settings['saved_price_font_size'] ?>"<?php endif ?> onchange="changeSavedStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group line saved-info fields">
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="saved_color"><?php echo __('Text color') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="saved_color" class="input-text color-input" name="setting[saved_color]"<?php if ($exist): ?> value="<?php echo $settings['saved_color'] ?>"<?php endif ?> onchange="changeSavedStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-des-6">
+                        <div class="line form-group">
+                            <label class="col-des-6 control-label" for="saved_price_color"><?php echo __('Price color') ?></label>
+                            
+                            <div class="col-des-6">
+                                <input type="text" id="saved_price_color" class="input-text color-input" name="setting[saved_price_color]"<?php if ($exist): ?> value="<?php echo $settings['saved_price_color'] ?>"<?php endif ?> onchange="changeSavedStyle()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <style type="text/css" id="saved-custom-css"></style>
+            </div>
+            
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                hideTime();
+                hideDiscount();
+                hideSavedPrice();
+                changeDay();
+                changeTimeStyle();
+                changeDiscountStyle();
+                changeSavedText();
+                changeSavedStyle();
+            });
+        })(jQuery);
+    });
+    
+    function hideTime(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#hide_time').prop("checked") == true){
+                    $('.time-info').hide();
+                }else{
+                    $('.time-info').show();
+                }
+            })(jQuery);
+        });
+    }
+    
+    function hideDiscount(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#hide_discount').prop("checked") == true){
+                    $('.discount-info').hide();
+                }else{
+                    $('.discount-info').show();
+                }
+            })(jQuery);
+        });
+    }
+    
+    function hideSavedPrice(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                if($('#hide_saved_price').prop("checked") == true){
+                    $('.saved-info').hide();
+                }else{
+                    $('.saved-info').show();
+                }
+            })(jQuery);
+        });
+    }
+    
+    function changeDay(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $('#temp-days').html($('#days').val());
+                $('#temp-hours').html($('#hours').val());
+                $('#temp-mins').html($('#minutes').val());
+                $('#temp-secs').html($('#seconds').val());
+            })(jQuery);
+        });
+    }
+    
+    function changeSavedText(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                $('#temp-saved').html($('#saved_text').val());
+            })(jQuery);
+        });
+    }
+    
+    function changeTimeStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                timeWidth = $('#time_width').val();
+                timeBackground = $('#time_background').val();
+                numberSize = $('#number_font_size').val();
+                textSize = $('#text_font_size').val();
+                numberColor = $('#number_color').val();
+                textColor = $('#text_color').val();
+                
+                
+                customStyle = '*{}';
+
+                if(timeWidth!=''){
+                    customStyle += '#timer-container .deal-timer .countdown,#timer-container .deal-timer .time-note{width:'+timeWidth+'px}';
+                }
+                
+                if(timeBackground!=''){
+                    customStyle += '#timer-container .deal-timer .countdown span, .deal-timer .countdown > span > b {background:'+timeBackground+'; padding:10px 0; margin-bottom:3px}';
+                }
+                
+                if(numberSize!=''){
+                    customStyle += '#timer-container .deal-timer .countdown span, .deal-timer .countdown > span > b {font-size:'+numberSize+'px}';
+                }
+                
+                if(numberColor!=''){
+                    customStyle += '#timer-container .deal-timer .countdown span, .deal-timer .countdown > span > b{color:'+numberColor+'}';
+                }
+                
+                if(textSize!=''){
+                    customStyle += '#timer-container .deal-timer .time-note span{font-size:'+textSize+'px}';
+                }
+                
+                if(textColor!=''){
+                    customStyle += '#timer-container .deal-timer .time-note span{color:'+textColor+'}';
+                }
+                
+                $('#time-custom-css').html(customStyle);
+                
+                
+            })(jQuery);
+        });
+    }
+    
+    function changeDiscountStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                discountWidth = $('#discount_width').val();
+                discountBackground = $('#discount_background').val();
+                discountFontSize = $('#discount_font_size').val();
+                discountColor = $('#discount_color').val();
+                
+                
+                customStyle = '*{}';
+
+                if(discountWidth!=''){
+                    customStyle += '#discount-temp .sale-ribbon{width:'+discountWidth+'px; height:'+discountWidth+'px; line-height:'+discountWidth+'px}';
+                }
+                
+                if(discountFontSize!=''){
+                    customStyle += '#discount-temp .sale-ribbon span{font-size:'+discountFontSize+'px}';
+                }
+                
+                if(discountColor!=''){
+                    customStyle += '#discount-temp .sale-ribbon span{color:'+discountColor+'}';
+                }
+                
+                if(discountBackground!=''){
+                    customStyle += '#discount-temp .sale-ribbon{background:'+discountBackground+'}';
+                }
+                
+                $('#discount-custom-css').html(customStyle);
+                
+                
+            })(jQuery);
+        });
+    }
+    
+    function changeSavedStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                textFontSize = $('#saved_font_size').val();
+                priceFontSize = $('#saved_price_font_size').val();
+                textFontColor = $('#saved_color').val();
+                pricePriceColor = $('#saved_price_color').val();
+                
+                
+                customStyle = '*{}';
+
+                if(textFontSize!=''){
+                    customStyle += '#temp-saved-price-container .saved-price{font-size:'+textFontSize+'px}';
+                }
+                
+                if(priceFontSize!=''){
+                    customStyle += '#temp-saved-price-container .saved-price .price{font-size:'+priceFontSize+'px !important}';
+                }
+                
+                if(textFontColor!=''){
+                    customStyle += '#temp-saved-price-container .saved-price{color:'+textFontColor+'}';
+                }
+                if(pricePriceColor!=''){
+                    customStyle += '#temp-saved-price-container .saved-price .price{color:'+pricePriceColor+' !important}';
+                }
+                
+                $('#saved-custom-css').html(customStyle);
+                
+                
+            })(jQuery);
+        });
+    }
+</script>

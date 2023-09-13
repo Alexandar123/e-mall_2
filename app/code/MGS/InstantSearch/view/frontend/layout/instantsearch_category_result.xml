@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="2columns-left"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<attribute name="class" value="mgs-instant-search-type-page"/>
+        <referenceContainer name="content">
+            <block class="MGS\InstantSearch\Block\Category\ListCategory" name="mgs.instant.search.list.category" template="MGS_InstantSearch::category/list.phtml">
+                <block class="MGS\InstantSearch\Block\SearchList\Toolbar" name="category_list_toolbar" template="MGS_InstantSearch::search/list/toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="instance_search_list_toolbar"/>
+                </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">category_list_toolbar</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

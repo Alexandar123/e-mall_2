@@ -1,0 +1,34 @@
+<?php
+    $bannerImageUrl = $this->getImageUrl();
+    $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+    $lazyLoad = $themeSettingConfig->getStoreConfig('themesettings/general/lazy_load');
+    $baseImage = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
+?>
+<?php if ($bannerImageUrl!=''): ?>
+    <?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+    <div class="content-block promobanner-block">
+        <div class="mgs-promobanner promobanner <?php echo $this->getEffect() ?>" <?php if ($this->getUrl()!=''): ?>onclick="location.href='<?php echo $this->getBannerUrl() ?>'"<?php endif ?>>
+            <?php if(!$lazyLoad): ?>
+                <?php $baseImage = $bannerImageUrl ?>
+            <?php endif ?>
+            <a href="<?php echo $this->getBannerUrl() ?>">
+                <img  src="<?php echo $baseImage; ?>" data-src="<?php echo $bannerImageUrl; ?>" class="banner-image img-responsive<?php if($lazyLoad): ?> arrow-lazy<?php endif ?>" width="200" height="200" alt="..."/>
+            </a>
+
+            <?php if (($this->getFbuilderTextContent() != '') || ($this->getFbuilderButtonText() != '')): ?>
+                <div class="text<?php if ($this->getTextAlign()!=''): ?> <?php echo $this->getTextAlign() ?><?php endif ?>">
+                    <?php if ($this->getFbuilderTextContent() != ''): ?>
+                        <div class="banner-text"><?php echo $builderHelper->decodeHtmlTag($this->getFbuilderTextContent()) ?></div>
+                    <?php endif ?>
+                    <?php if ($this->getFbuilderButtonText() != ''): ?>
+                        <span class="banner-button">
+                            <button <?php if ($this->getUrl()!=''): ?>onclick="location.href='<?php echo $this->getBannerUrl() ?>'"<?php endif ?> class="btn btn-default btn-promo-banner"><span><?php echo $builderHelper->decodeHtmlTag($this->getFbuilderButtonText()) ?></span></button>
+                        </span>
+                    <?php endif ?>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+<?php else: ?>
+    <div class="message info empty"><div><?php echo __('Have no banner to show.') ?></div></div>
+<?php endif ?>

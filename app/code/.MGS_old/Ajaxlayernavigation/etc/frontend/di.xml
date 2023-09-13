@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Controller\Category\View">
+        <plugin name="ajax_category_list_navigation"
+                type="MGS\Ajaxlayernavigation\Plugin\AjaxView"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\CatalogSearch\Controller\Result\Index">
+        <plugin name="ajax_search_navigation"
+                type="MGS\Ajaxlayernavigation\Plugin\AjaxSearch"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+</config>

@@ -1,0 +1,165 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-wrapper__margin: @indent__base;
+@checkout-wrapper__columns: 8;
+
+@checkout-step-title__border: @border-width__base solid @color-gray80;
+@checkout-step-title__font-size: 26px;
+@checkout-step-title__font-weight: @font-weight__light;
+@checkout-step-title__padding: @indent__s;
+
+@checkout-step-title-mobile__font-size: 18px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .checkout-index-index {
+        .page-title-wrapper {
+            &:extend(.abs-visually-hidden all);
+        }
+    }
+
+    .checkout-container {
+        &:extend(.abs-add-clearfix all);
+        .lib-css(margin, 0 0 @checkout-wrapper__margin);
+    }
+
+    .opc-wrapper {
+        .lib-css(margin, 0 0 @checkout-wrapper__margin);
+
+        .opc {
+            &:extend(.abs-reset-list all);
+        }
+
+        .step-title {
+            border-bottom: 1px solid #f0f0f0;
+            color: #1a1a1a;
+            font-size: 22px;
+            font-weight: 400;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+        }
+
+        .step-content {
+            margin: 0 0 @indent__xl;
+        }
+    }
+
+    .checkout-index-index {
+        .nav-sections,
+        .nav-toggle {
+            display: none;
+        }
+
+        .logo {
+            margin-left: 0;
+        }
+    }
+
+    .checkout-onepage-success,
+    .multishipping-checkout-success{
+        &:extend(.abs-add-clearfix all);
+
+        .print {
+            display: none;
+        }
+        footer.page-footer {
+            margin-top: 70px;
+        }
+    }
+    .multicheckout.success,
+    .checkout-success {
+        border: 1px solid #f0f0f0;
+        border-radius: 5px;
+        padding: 30px 15px;
+        text-align: center;
+        a {
+            color: #56cfe1;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        .actions-toolbar {
+            margin-top: 15px;
+            .primary {
+                float: none;
+                a.action.primary.continue {
+                    height: 40px;
+                    line-height: 40px;
+                    font-weight: 600;
+                    padding: 0 35px;
+                    color: #fff;
+                    display: block;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    }
+
+    .multicheckout.success {
+        .actions-toolbar-form {
+            margin-top: 30px;
+        }
+    }
+    .checkout-success+#registration {
+        a.action.primary {
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            padding: 0 35px;
+            color: #fff;
+            display: inline-block;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .opc-wrapper {
+        width: 100%;
+    }
+
+    .checkout-onepage-success {
+        .print {
+            display: none;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__ml) {
+    .opc-wrapper {
+        &:extend(.abs-add-box-sizing-desktop-m all);
+        .lib-layout-column(2, 1, @checkout-wrapper__columns);
+        padding-right: @indent__l;
+    }
+}

@@ -1,0 +1,81 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$post = $block->getCurrentPost();
+$showImage = $this->getConfig('general_settings/show_image');
+$showAction = $this->getConfig('general_settings/show_action');
+?>
+<div class="blog-post post-item-info">
+        <?php if ($showImage): ?>
+            <div class="post-image">
+                <?php echo $helper->getImagePost($post); ?>
+            </div>
+        <?php endif; ?>
+
+        <h1 class="post-title">
+            <a class="post-title-link" title="<?php echo $post->getTitle(); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo $post->getTitle(); ?></a>
+        </h1>
+
+        <?php echo $block->getChildHtml('blog.detail.sharethis'); ?>
+        
+        <div class="post-info">
+            <div class="post-create-time">
+                <i class="fa fa-calendar"></i>
+                <?php echo __('%1', $block->formatDate($post->getPublishedAt(), \IntlDateFormatter::MEDIUM, false)); ?>
+            </div>
+            <div class="published-by">
+                <i class="fa fa-user"></i>
+                <?php echo __('By ')?>
+                <span class="text-capitalize">
+                    <?php if ($post->getUpdatedByUser()): ?>
+                        <?php echo __('%1', $post->getUpdatedByUser()); ?>
+                    <?php else: ?>
+                        <?php echo __('%1', $post->getUser()); ?>
+                    <?php endif; ?>
+                </span>
+            </div>
+            
+            <?php if ($post->getTags()): ?>
+                <?php $tags = explode(',', $post->getTags()); ?>
+                <div class="post-tags">
+                   <i class="fa fa-tags"></i>
+                   <?php foreach ($tags as $tag): ?>
+                      <a title="<?php echo trim($tag); ?>" href="<?php echo $helper->getTagUrl(trim($tag)); ?>"><?php echo trim($tag); ?></a>
+                   <?php endforeach; ?>
+               </div>
+           <?php endif; ?>
+            
+            <?php if ($this->getConfig('comment_settings/enabled')): ?>
+                <div class="comment-link">  
+                    <i class="fa fa-comment"></i>
+                    <span>
+                        <?php echo __('%1 comment(s)', $post->getCommentCount()) ?>
+                    </span>
+                </div>
+            <?php endif; ?>
+            
+        </div>
+        
+    <?php if ($post->getContent()): ?>
+        <div class="post-content">
+            <div class="post-short-description">
+                <?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); ?>
+                <?php echo $objectManager->get('\Magento\Cms\Model\Template\FilterProvider')->getBlockFilter()->filter($post->getContent()); ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    
+    <?php if($showAction): ?>
+        <div class="post-actions">
+            <?php $prevPost = $this->getPrevPost($post->getId()); ?>
+            <?php if($post->getId() != $prevPost['id']): ?>
+                <div class="prev-action action"><a href="<?php echo $prevPost['url']; ?>"><?php echo __('Previous'); ?></a></div>
+            <?php endif ?>
+            <?php $nextPost = $this->getNextPost($post->getId()); ?>
+                <?php if($post->getId() != $nextPost['id']): ?>
+                <div class="next-action action"><a href="<?php echo $nextPost['url']; ?>"><?php echo __('Next'); ?></a></h4></div>
+            <?php endif ?>
+        </div>
+    <?php endif ?>
+    
+    <?php echo $block->getChildHtml('post_view_comment'); ?>
+</div>

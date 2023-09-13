@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <blog>
+            <general_settings>
+                <enabled>1</enabled>
+                <route>blog</route>
+                <title>Blog by MGS</title>
+                <template>2columns-left</template>
+                <posts_per_page>6</posts_per_page>
+                <show_thumbnail>0</show_thumbnail>
+                <show_image>1</show_image>
+                <meta_keywords>Blog by MGS</meta_keywords>
+                <meta_description>Blog by MGS</meta_description>
+                <default_sort>DESC</default_sort>
+                <use_sharethis>0</use_sharethis>
+            </general_settings>
+            <sidebar_settings>
+                <enabled>1</enabled>
+                <show_categories>1</show_categories>
+                <show_recent_posts>1</show_recent_posts>
+                <number_of_recent_posts>6</number_of_recent_posts>
+                <show_thumbnail>0</show_thumbnail>
+                <show_tags>1</show_tags>
+                <number_of_tags>10</number_of_tags>
+            </sidebar_settings>
+            <comment_settings>
+                <enabled>1</enabled>
+                <recipient_email><![CDATA[hello@example.com]]></recipient_email>
+                <sender_email_identity>general</sender_email_identity>
+                <email_template>blog_comment_settings_email_template</email_template>
+                <comments_per_page>6</comments_per_page>
+            </comment_settings>
+            <recaptcha_settings>
+                <enabled>0</enabled>
+            </recaptcha_settings>
+        </blog>
+    </default>
+</config>

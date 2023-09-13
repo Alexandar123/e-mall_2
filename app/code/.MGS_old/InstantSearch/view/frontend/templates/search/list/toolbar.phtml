@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Search list toolbar
+ *
+ * @var $block \MGS\InstantSearch\Block\SearchList\Toolbar
+ */
+use MGS\InstantSearch\Block\SearchList\Toolbar;
+?>
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="toolbar toolbar-searchs" data-mage-init='<?php /* @escapeNotVerified */ echo $block->getWidgetOptionsJson(); ?>'>
+    	<?php include ($block->getTemplateFile('MGS_InstantSearch::search/list/toolbar/amount.phtml')) ?>
+        <?php echo $block->getPagerHtml() ?>
+        <?php include ($block->getTemplateFile('MGS_InstantSearch::search/list/toolbar/limiter.phtml')) ?>
+    </div>
+<?php endif ?>

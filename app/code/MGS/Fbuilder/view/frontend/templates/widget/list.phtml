@@ -1,0 +1,28 @@
+<?php
+    $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder');
+    $content =  explode(',', $this->getAccordionContent());
+    $listType =  $this->getListType();
+    $listStyleType = $this->getListStyleType();
+    
+    $textClass='text';
+if ($this->getFontweight()) {
+    $textClass .= ' font-bold';
+}
+if ($this->getFontitalic()) {
+    $textClass .= ' font-italic';
+}
+?>
+
+<?php if (count($content)>0): ?>
+    <div class="content-block list-block">
+        <div class="mgs-list-block list-style-<?php echo $listStyleType ?>">
+            <<?php echo $listType ?><?php if ($listStyleType=='default'): ?> class="list-<?php echo $this->getListStyle() ?>"<?php endif ?>>
+                <?php foreach ($content as $_item): ?>
+                    <li><?php if ($listStyleType=='icon'): ?><span class="list-icon <?php echo $builderHelper->decodeHtmlTag($this->getFbuilderIcon()) ?>"></span><?php endif ?><span class="<?php echo $textClass ?>"><?php echo $builderHelper->decodeHtmlTag($_item) ?></span></li>
+                <?php endforeach ?>
+            </<?php echo $listType ?>>
+        </div>
+    </div>
+<?php else: ?>
+    <div role="alert" class="alert alert-warning"><?php echo __('There are no content matching the selection.') ?></div>
+<?php endif ?>

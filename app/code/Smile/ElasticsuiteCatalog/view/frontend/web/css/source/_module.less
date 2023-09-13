@@ -1,0 +1,185 @@
+// /**
+//  * DISCLAIMER
+//  *
+//  * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+//  * versions in the future.
+//  *
+//  *
+//  * @category  Smile
+//  * @package   Smile\ElasticsuiteCatalog
+//  * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+//  * @copyright 2020 Smile
+//  * @license   Open Software License ("OSL") v. 3.0
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .smile-es-range-slider {
+        [data-role=from-label] {
+            display: block;
+            float: left;
+            padding: 0 0 @indent__xs;
+        }
+
+        [data-role=to-label] {
+            display: block;
+            float: right;
+            padding: 0 0 @indent__xs;
+        }
+
+        [data-role=message-box] {
+            font-size: @font-size__s;
+            flex: 1;
+            padding: 6px 0 0;
+
+            &.empty {
+                .lib-form-validation-note();
+                padding: 0;
+            }
+        }
+
+        .actions-toolbar {
+            display: flex;
+            margin: 15px 0;
+        }
+
+        .ui-slider {
+            margin: @indent__xs;
+            clear: both;
+        }
+
+        .ui-slider-handle {
+            .lib-css(background, @active__color);
+            padding: 0;
+            margin: -3px 0 0 -7px;
+            border-radius: 15px;
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    .filter {
+        .filter-content .item {
+            margin: @indent__s 0 0 @indent__s;
+        }
+
+        .block-subtitle {
+            border-bottom: none;
+            font-weight: @font-weight__bold;
+        }
+
+        .field.search {
+            input[type="text"] {
+                font-size: @font-size__s;
+            }
+        }
+
+        .actions {
+            text-align: right;
+            margin: @indent__s 0 0;
+
+            div.secondary {
+                display: inline-block;
+
+                a {
+                    .lib-css(color, @link__color);
+                    text-decoration: underline;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: transparent;
+                    }
+
+                    &.show-more {
+                        span:after {
+                            content: " +";
+                        }
+                    }
+
+                    &.show-less {
+                        span:after {
+                            content: "-";
+                        }
+                    }
+                }
+            }
+        }
+
+        .filter-options {
+            dt.filter-options-title[aria-expanded="true"]:after {
+                .lib-css(content, @icon-up);
+            }
+        }
+
+        .no-results-message p {
+            margin: 9px @indent__s 0;
+            background-color: #FFEEEE;
+            padding: @indent__xs;
+            color: #AA0000;
+        }
+    }
+
+    .smile-elasticsuite-autocomplete-result {
+        .product-image-box {
+            float: left;
+            padding: 0 @indent__xs;
+            width: 55px;
+        }
+
+        .product-shop {
+            float: left;
+            margin: 0 @indent__s 0 0;
+            padding: 0;
+            white-space: normal;
+            width: 60%;
+        }
+
+        .product-item {
+            .price-box {
+                margin: @indent__xs 0;
+            }
+        }
+
+        .category-mini-crumb {
+            font-style: italic;
+            display: block;
+            margin-bottom: 2px;
+            font-size: @font-size__s;
+            color: #929292;
+        }
+
+        .product-attribute-label {
+            text-transform: uppercase;
+            vertical-align: super;
+            font-size: @font-size__xs;
+            color: #777;
+        }
+
+        .price-box {
+            span.old-price {
+                display:block;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .page-layout-1column {
+        .filter-options {
+            .filter {
+                &-options {
+                    &-content {
+                        padding: @indent__s;
+                    }
+                }
+            }
+        }
+    }
+}

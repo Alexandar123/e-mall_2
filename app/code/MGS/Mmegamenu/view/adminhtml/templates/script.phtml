@@ -1,0 +1,37 @@
+<script type="text/javascript">
+	require([
+		'jquery',
+	], function(jQuery){
+		(function($) {
+			$(document).ready(function () {
+				setTimeout(setMainGereral, 1000);
+				$("#mmegamenu_menu_type").change(function(){
+					setMainGereral();
+				});
+			});
+		})(jQuery);
+	});
+	
+	function setMainGereral(){
+		require([
+			'jquery',
+		], function(jQuery){
+			(function($) {
+				var menuType = $("#mmegamenu_menu_type").val();
+				if(menuType==2){
+					$('#mmegamenu_tabs_category').hide();
+					$('#mmegamenu_tabs_topbottom').hide();
+
+					$('#mmegamenu_tabs_static').show();
+					$('#url-note').hide();
+				}
+				else{
+					$('#mmegamenu_tabs_category').show();
+					$('#mmegamenu_tabs_topbottom').show();
+					$('#mmegamenu_tabs_static').hide();
+					$('#url-note').show();
+				}
+			})(jQuery);
+		});
+	}
+</script>

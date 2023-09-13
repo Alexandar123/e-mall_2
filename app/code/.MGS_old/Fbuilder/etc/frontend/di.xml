@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="customer-builder-app-action-dispatchController-context-plugin" type="MGS\Fbuilder\Model\App\Action\ContextPlugin" sortOrder="20"/>
+    </type>
+	
+	<type name="Magento\Catalog\Block\Product\View\Description">
+        <plugin name="MGS_Change_Product_Description" type="MGS\Fbuilder\Block\Catalog\Product\View\Description" sortOrder="1"/>
+    </type>
+	
+	<preference for="Magento\Catalog\Model\Category" type="MGS\Fbuilder\Model\Category" />
+</config>

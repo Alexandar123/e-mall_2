@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+
+    </head>
+    <body>
+        <referenceBlock name="header.links">
+            <block class="MGS\StoreLocator\Block\Toplink" name="storelocator">
+                <arguments>
+                    <argument name="label" xsi:type="string">Store Locator</argument>
+                    <argument name="path" xsi:type="string">storelocator</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

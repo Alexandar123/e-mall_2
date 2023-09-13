@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="MGS_Brand::brand" title="Shop By Brand" module="MGS_Brand" sortOrder="80" parent="Magento_Backend::mgs" resource="MGS_Brand::brand"/>
+        <add id="MGS_Brand::manage_brand" title="Manage Brands" module="MGS_Brand" sortOrder="10" parent="MGS_Brand::brand" action="brand/brand/" resource="MGS_Brand::manage_brand"/>
+        <add id="MGS_Brand::configuration" title="Configuration" module="MGS_Brand" sortOrder="20" parent="MGS_Brand::brand" action="adminhtml/system_config/edit/section/brand" resource="MGS_Brand::configuration"/>
+    </menu>
+</config>

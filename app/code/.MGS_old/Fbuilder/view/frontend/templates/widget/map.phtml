@@ -1,0 +1,141 @@
+<?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder'); ?>
+<?php $blockId = rand() . time(); ?>
+<?php $height = '450px'; ?>
+<?php $apiKey = $builderHelper->getStoreConfig('fbuilder/social/google_api_key') ?>
+<?php if ($this->getMapHeight()!=''): ?>
+    <?php $height = $this->getMapHeight().'px'; ?>
+<?php endif ?>
+
+<?php $scrollwheel = $this->getWheel() ? 'true' : 'false'; ?>
+<?php $navigationControl = $this->getNavigation() ? 'true' : 'false'; ?>
+<?php $mapTypeControl = $this->getTypeControl() ? 'true' : 'false'; ?>
+<?php $scaleControl = $this->getScale() ? 'true' : 'false'; ?>
+<?php $draggable = $this->getDraggable() ? 'true' : 'false'; ?>
+
+
+<div class="content-block map-block">
+    <div class="mgs-map">
+        <div class="map-container">
+            <div id="map<?php echo $blockId ?>" style="height:<?php echo $height?>; overflow:hidden"></div>
+            <?php if ($this->getAddressBox()): ?>
+                <div class="map-info">
+                    <?php if ($this->getData('fbuilder_address_title')): ?>
+                    <h3 class="no-margin-top"><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_address_title')) ?></h3>
+                    <?php endif ?>
+                    <div class="map-detail-info">
+                        <ul>
+                            <?php if ($this->getData('fbuilder_line_one')): ?>
+                                <li><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_line_one')) ?></li>
+                            <?php endif ?>
+                            <?php if ($this->getData('fbuilder_line_two')): ?>
+                                <li><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_line_two')) ?></li>
+                            <?php endif ?>
+                            <?php if ($this->getData('fbuilder_line_three')): ?>
+                                <li><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_line_three')) ?></li>
+                            <?php endif ?>
+                            <?php if ($this->getData('fbuilder_line_four')): ?>
+                                <li><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_line_four')) ?></li>
+                            <?php endif ?>
+                            <?php if ($this->getData('fbuilder_line_five')): ?>
+                                <li><?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_line_five')) ?></li>
+                            <?php endif ?>
+                        </ul>
+                    </div>
+                </div>
+            <?php endif ?>
+        </div>
+        
+    </div>
+</div>
+<?php if (($this->getLocation() && ($this->getLat()!='') && ($this->getLong() != '')) || ($this->getLocationAddress() && ($this->getData('fbuilder_address') !=''))): ?>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $apiKey ?>&libraries=places&sensor=false"></script>
+    <script>
+
+        function initGoogleMap(locations){
+            var style = '';
+            <?php if ($this->getGrayscale()): ?>
+                style = [ { "stylers": [ { "hue": "#000" },  {saturation: -100},
+                {gamma: 0.90} ] } ];
+            <?php endif ?>
+            
+            var map = new google.maps.Map(document.getElementById('map<?php echo $blockId ?>'), {
+                zoom: <?php echo $this->getMapZoom() ?>,
+                scrollwheel: <?php echo $scrollwheel ?>,
+                navigationControl: <?php echo $navigationControl ?>,
+                mapTypeControl: <?php echo $mapTypeControl ?>,
+                scaleControl: <?php echo $scaleControl ?>,
+                draggable: <?php echo $draggable ?>,
+                styles: style,
+                center: new google.maps.LatLng(latitude, longitude),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+        
+            var marker, i;
+        
+            for (i = 0; i < locations.length; i++) {  
+          
+                marker = new google.maps.Marker({ 
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
+                    map: map ,
+                    icon: '<?php echo $this->getPinImageUrl() ?>'
+                });
+            }
+        }
+        
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                $(document).ready(function(){
+                    var html = '';
+                    
+                    <?php if (($this->getLat()!='') && ($this->getLong()!='')): ?>
+                        latitude = <?php echo $this->getLat() ?>;
+                        longitude = <?php echo $this->getLong() ?>;
+                        
+                        var locations = [
+                            [html, latitude, longitude, 2]
+                        ];
+                        
+                        initGoogleMap(locations);
+                    <?php else: ?>
+                        $.ajax({
+                            type: "GET",
+                            dataType: "json",
+                            url: "https://maps.googleapis.com/maps/api/geocode/json?key=<?php echo $apiKey ?>",
+                            data: {'address': '<?php echo $builderHelper->decodeHtmlTag($this->getData('fbuilder_address')) ?>','sensor':false},
+                            success: function(data){
+                                if(data.results.length){
+                                    latitude = data.results[0].geometry.location.lat;
+                                    longitude = data.results[0].geometry.location.lng;
+                                    
+                                    var locations = [
+                                        [html, latitude, longitude, 2]
+                                    ];
+                                    
+                                    initGoogleMap(locations);
+                                }
+                            }
+                        });
+                    <?php endif ?>
+                    
+                    
+                });
+            })(jQuery);
+        });
+    </script>
+<?php else: ?>
+    <script>
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                $(document).ready(function(){
+                    $('#map<?php echo $blockId ?>').html('<div class="message info empty"><div><?php echo __('Have no map to show.') ?></div></div>');
+                });
+            })(jQuery);
+        });
+    </script>
+<?php endif ?>

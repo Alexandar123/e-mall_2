@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true" />
+
+        <referenceContainer name="columns.top">
+            <block class="MGS\ThemeSettings\Block\Catalog\Product\Breadcrumbs" name="product.breadcrumbs" as="product.breadcrumbs" template="Magento_Catalog::product/breadcrumbs.phtml" />
+        </referenceContainer>
+        <referenceContainer name="columns">
+            <container name="product.detail.information" htmlTag="div" htmlClass="product-detail-information" before="-" />
+        </referenceContainer>
+        <move element="product.breadcrumbs" destination="page.top" after="page.main.title"/>
+        <referenceContainer name="content.aside">
+            <block class="Magento\Cms\Block\Block" name="custom.product.detail.bottom.static.block" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">mgs_product_detail_bottom_block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.name" template="product/view/name.phtml" before="-" />
+            <block class="Magento\Catalog\Block\Product\View" name="custom.product.detail.static.block" template="product/view/product-static-block.phtml" after="product.info.extrahint" />
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.overview.copy" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="-">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                    <argument name="at_code" xsi:type="string">short_description</argument>
+                    <argument name="css_class" xsi:type="string">overview</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Overview</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.clearfix" template="product/view/clearfix.phtml" after="product.info.media" />
+        </referenceContainer>
+        <move element="product.info.stock.sku" destination="product.info.main" after="custom.product.detail.static.block"/>
+        <move element="product.info.overview" destination="product.info.price" after="product.price.final"/>
+        <move element="bundle.options.container" destination="product.info.main" before="custom.product.detail.static.block"/>
+        <move element="product.info.social" destination="product.info.addtocart" after="-"/>
+        <move element="breadcrumbs" destination="page.main.title" before="-"/>
+        <referenceBlock name="product.info.addtocart.additional">
+            <container name="product.info.social.additional" label="Product social links container" htmlTag="div" htmlClass="product-social-links">
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.addto.additional"  template="Magento_Catalog::product/view/addto.phtml">
+                    <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.addto.wishlist.additional"
+                           template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+                    <block class="Magento\Catalog\Block\Product\View\AddTo\Compare" name="view.addto.compare.additional" after="view.addto.wishlist"
+                           template="Magento_Catalog::product/view/addto/compare.phtml" >
+                        <arguments>
+                            <argument name="addToCompareViewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Checker\AddToCompareAvailability</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </container>
+        </referenceBlock>
+        <referenceContainer name="product.info.media">
+			<block class="Magento\Catalog\Block\Product\View" name="product.label" template="Magento_Catalog::product/view/label.phtml" before="product.info.media.image" />
+		</referenceContainer>
+    </body>
+</page>

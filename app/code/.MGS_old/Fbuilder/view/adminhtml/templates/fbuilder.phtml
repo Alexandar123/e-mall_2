@@ -1,0 +1,37 @@
+<script>
+    function loadAvailableStore(){
+        require([
+            'jquery'
+        ], function(jQuery){
+            (function($) {
+                var productId = $('.mgs-file-form .product_id').val();
+                if(isNaN(productId) || productId=='' || productId==0 || productId=='0'){
+                    $('.mgs-file-form .product_id').addClass("invalid");
+                }else{
+                    $('.mgs-file-form .product_id').removeClass("invalid");
+                    $('.mgs-file-form .action-check span').html("Checking...");
+                    $('.mgs-file-form .action-check').attr("disabled", "disabled");
+                    $.ajax({
+                        url:'<?php echo $this->getUrl("adminhtml/fbuilder/checkstore") ?>' + '?product_id='+productId+'&type=product&form_key='+FORM_KEY,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        success: function(data){
+                            $('.mgs-file-form .action-check').removeAttr("disabled");
+                            $('.mgs-file-form .action-check span').html("Check");
+                            var result = jQuery.parseJSON(data);
+                            if(result.result=='success'){
+                                $(result.data).insertAfter('.mgs-file-form .product_id');
+                                $('.mgs-file-form .action-check').hide();
+                                $('.mgs-file-form .action-save').show();
+                                $('.mgs-file-form .product_id').attr('readonly','readonly');
+                            }else{
+                                $('.mgs-file-form .product_id').addClass("invalid");
+                            }
+                        }
+                    });
+                }
+            })(jQuery);
+        });
+    }
+</script>

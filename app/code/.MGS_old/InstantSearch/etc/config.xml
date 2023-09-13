@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <instantsearch>
+            <general>
+                <enabled>1</enabled>
+                <number_results>5</number_results>
+                <view_more_label>View more</view_more_label>
+            </general>
+            <additional_product>
+                <actived>1</actived>
+                <per_page>12</per_page>
+                <sort_order></sort_order>
+				<show_short_description>1</show_short_description>
+				<show_review>1</show_review>
+            </additional_product>
+            <additional_category>
+                <actived>1</actived>
+                <sort_order></sort_order>
+                <per_page_values>12,24,36</per_page_values>
+                <per_page>12</per_page>
+                <list_allow_all>0</list_allow_all>
+            </additional_category>
+            <additional_cms_page>
+                <actived>1</actived>
+                <sort_order></sort_order>
+                <per_page_values>12,24,36</per_page_values>
+                <per_page>12</per_page>
+                <list_allow_all>0</list_allow_all>
+            </additional_cms_page>
+            <additional_blog>
+                <actived>1</actived>
+                <sort_order></sort_order>
+                <per_page_values>12,24,36</per_page_values>
+                <per_page>12</per_page>
+                <list_allow_all>0</list_allow_all>
+            </additional_blog>
+        </instantsearch>
+    </default>
+</config>

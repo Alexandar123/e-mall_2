@@ -1,0 +1,68 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $_reviewsColFactory = $objectManager->get("\Magento\Review\Model\ResourceModel\Review\CollectionFactory");
+    $_reviewsFactory = $objectManager->create("\Magento\Review\Model\Review");
+    $_storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+    $storeId = $_storeManager->getStore()->getStoreId();
+    $reviewsCollection = $_reviewsColFactory->create()
+                                            ->addStoreFilter($_storeManager->getStore()->getStoreId())
+                                            ->addStatusFilter(\Magento\Review\Model\Review::STATUS_APPROVED)
+                                           ->setDateOrder();?>
+    <h3>Iskustva korisnika</h3><div class="review_section slider_nav">
+    <?php
+    foreach($reviewsCollection as $review):?>
+    <?php 
+    $review = $_reviewsFactory->load($review['review_id']); 
+    $productId = $review->getEntityPkValue();
+    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+    $_reviewsFactory->getEntitySummary($product, $storeId);
+    $ratingSummary = $product->getRatingSummary()->getRatingSummary();
+    $reviewCount = $product->getRatingSummary()->getReviewsCount();
+    ?>
+        <div class='review-single'>
+        <?php if($ratingSummary){ ?>
+            <div class="testimonial_image">
+                <img src="https://web2.dddemo.net/magento74/e-mall/project/pub/media/catalog/product/1/3/13_4_1_qfplmy7gk3qtsygu.jpg" alt="testimonial-img" class="testimonial-image">
+            </div>
+            <div class="testimonial-reviews product-reviews-summary short">
+                <div class="testimonial-rating rating-summary">
+                    <div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+                        <span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+                    </div>
+                </div>
+                <div class="reviews-actions">
+                    <?php echo __('('.$reviewCount.') Reviews'); ?>
+                </div>
+            </div>
+            <?php } ?>
+            <div class="testimonial__content">
+                <div class="title-review" id="title-review">
+                    <?php echo $review['title'];  ?>
+                </div>
+                <div class="nick-review" id="nick-review">
+                    <?php echo $review['nickname'];  ?>
+                </div>
+                <div class="testimonial_date">16 jun 2023</div>
+                <div class="detail-review" id="detail-review">
+                   <span>" <?php echo $review['detail'];  ?>"</span>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+        </div>
+<style>
+ 
+</style>
+<script type="text/javascript">
+    require(["jquery","slick"], function($) {
+        $(document).ready(function(){
+            $('.slider_nav').slick({
+            slidesToShow: 2,
+            dots: true,
+            focusOnSelect: true,
+            arrows: false
+            });
+
+        });
+    });
+</script>

@@ -1,0 +1,87 @@
+<?php 
+/* 	
+* 	Block Guide
+*	Mobile Tab: $block->getChildHtml('navigation.sections');
+*	Language: $block->getChildHtml('store_language');
+*	Currency: $block->getChildHtml('currency');
+*	Top Links: $block->getChildHtml('top.links');
+*	Skip Content Block: $block->getChildHtml('skip_to_content');
+*	Logo: $block->getChildHtml('logo');
+*	Mini Cart: $block->getChildHtml('minicart');
+*	Search: $block->getChildHtml('topSearch');
+*	Static block: $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('your_block_identifier')->toHtml();
+*/
+?>
+
+<?php
+	$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+	
+	$blockEnable = explode(",",$themeSettingConfig->getStoreConfig('themesettings/header/elements'));
+	$cartType = $themeSettingConfig->getStoreConfig('themesettings/header/mini_cart_type');
+	$searchType = $themeSettingConfig->getStoreConfig('themesettings/header/search_type');
+	$stickyMenu = $themeSettingConfig->getStoreConfig('themesettings/header/sticky_menu');
+	$stickyMenuMobile = $themeSettingConfig->getStoreConfig('themesettings/header/sticky_menu_mobile');
+	$_headerVer = $themeSettingConfig->getStoreConfig('themesettings/header/header_version');
+	if($_headerVer == ''){ $_headerVer = 'header1'; }
+	
+	$addtionClass = "search-" . $searchType;
+	if($cartType == 'slide'){
+		$addtionClass .= " minicart-slide";
+	}
+	if($stickyMenu){
+		$addtionClass .= " active-sticky";
+		if($stickyMenuMobile){
+			$addtionClass .= " active-sticky-mb";
+		}
+	}
+?>
+<div class="header-area <?php echo $_headerVer ?> <?php echo $addtionClass ?>">
+	<?php if($_headerVer == 'header1'): ?>
+		<?php if($themeSettingConfig->getStoreConfig('themesettings/header/display_top_header')): ?>
+		<div class="top-header">
+			<?php if(in_array('account', $blockEnable)): ?>
+				<?php echo $block->getChildHtml('top.links') ?>
+			<?php endif ?>
+			<?php if(in_array('store', $blockEnable)): ?>
+				<?php echo $block->getChildHtml('store_language'); ?>
+			<?php endif ?>
+			<?php if(in_array('curency', $blockEnable)): ?>
+				<?php echo $block->getChildHtml('currency'); ?>
+			<?php endif ?>
+			<?php if(in_array('static1', $blockEnable)): ?>
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('supro_header_custom_static_block_1')->toHtml(); ?>
+			<?php endif ?>
+			<?php if(in_array('static2', $blockEnable)): ?>
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('supro_header_custom_static_block_2')->toHtml(); ?>
+			<?php endif ?>
+			<?php if(in_array('static3', $blockEnable)): ?>
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header_custom_static_block_3')->toHtml(); ?>
+			<?php endif ?>
+		</div>
+		<?php endif ?>
+		<div class="middle-header">
+			<div class="frame">
+				<div class="line">
+					<div class="col-des-6">
+						<?php echo $block->getChildHtml('logo') ?>
+					</div>
+					<div class="col-des-6">
+						<?php if(in_array('minicart', $blockEnable)): ?>
+							<?php echo $block->getChildHtml('minicart') ?>
+						<?php endif ?>
+						<?php if(in_array('search', $blockEnable)): ?>
+							<?php echo $block->getChildHtml('topSearch') ?>
+						<?php endif ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-header">
+			<?php echo $block->getChildHtml('navigation.sections') ?>
+		</div>
+	<?php elseif($_headerVer == 'header2'): ?>
+		Header 2
+	<?php else: ?>
+		Header 3
+	<?php endif ?>
+</div>

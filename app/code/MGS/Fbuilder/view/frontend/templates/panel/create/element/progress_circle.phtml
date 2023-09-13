@@ -1,0 +1,453 @@
+<?php $helper = $this->getHelper() ?>
+<?php $params = $this->getParams() ?>
+<?php $exist = false ?>
+<?php $child = null ?>
+<div class="edit-static-form">
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Progress Circle Block') ?></h2>
+        </div>
+    </div>
+    <form id="section-form" enctype="multipart/form-data" method="POST" action="<?php echo $this->getUrl('fbuilder/element/save') ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <?php if ($pageId = $this->getRequest()->getParam('page_id')): ?>
+            <input type="hidden" name="page_id" value="<?php echo $pageId ?>">
+        <?php else: ?>
+            <input type="hidden" name="product_id" value="<?php echo $this->getRequest()->getParam('product_id') ?>">
+            <input type="hidden" name="overriden" value="<?php echo $this->getRequest()->getParam('overriden') ?>">
+        <?php endif ?>
+        <input type="hidden" name="page_type" value="<?php echo $this->getRequest()->getParam('page_type') ?>">
+        <input id="block_type" type="hidden" name="type" value="progress_circle">
+        <input id="block_block_name" type="hidden" name="block_name" value="<?php echo $params['block'] ?>">
+        <?php if (isset($params['id'])): ?>
+            <?php
+                $child =  $this->getModel('MGS\Fbuilder\Model\Child')->load($params['id']);
+                $exist = true;
+                $settings = json_decode($child->getSetting(), true);
+            ?>
+            <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
+        <?php endif ?>
+        
+        <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php
+                echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                    ->setExist($exist)
+                    ->setDisableContent(1)
+                    ->setBuilderChild($child)
+                    ->setBuilderHelper($helper)
+                    ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
+            ?>
+            
+            <div class="data item title" aria-labeledby="tab-label-content-title" data-role="collapsible" id="tab-label-content">
+                <a class="data switch" tabindex="-1" data-toggle="switch" href="#content" id="tab-label-content-title">
+                    <?php echo __('Content Config') ?>
+                </a>
+            </div>
+            
+            <div class="data item content" id="content" data-role="content" style="display:none">
+                
+                <div class="line form-group">
+                    <div class="col-des-12"><h4 class="no-margin"><?php echo __('Title') ?></h4></div>
+                    <div class="col">
+                        <label class="control-label" for="subtitle">&nbsp;</label><br/>
+                        <input type="text" class="input-text" id="subtitle" name="setting[subtitle]"<?php if ($exist && $settings['subtitle']): ?> value="<?php echo $settings['subtitle'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="title_font_size"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="title_font_size" name="setting[title_font_size]"<?php if ($exist && $settings['title_font_size']): ?> value="<?php echo $settings['title_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="title_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="title_color" name="setting[title_color]"<?php if ($exist && $settings['title_color']): ?> value="<?php echo $settings['title_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="title_fontweight" class="control-label"><?php echo __('Font weight') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['title_fontweight']): ?> checked="checked"<?php endif ?> value="1" name="setting[title_fontweight]" id="title_fontweight" class="admin__actions-switch-checkbox" onclick="changeContentStyle()">
+                            <label for="title_fontweight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr/>
+                
+                <div class="line form-group">
+                    <div class="col-des-12"><h4 class="no-margin"><?php echo __('Percent') ?></h4></div>
+                    <div class="col">
+                        <label class="control-label" for="percent"><?php echo __('Percent value') ?></label><br/>
+                        <input type="text" class="input-text validate-number required-entry" id="percent" name="setting[percent]"<?php if ($exist && $settings['percent']): ?> value="<?php echo $settings['percent'] ?>"<?php endif ?> onchange="setPreview()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="percent_font_size"><?php echo __('Font size') ?></label><br/>
+                        <input type="text" class="input-text validate-number" id="percent_font_size" name="setting[percent_font_size]"<?php if ($exist && $settings['percent_font_size']): ?> value="<?php echo $settings['percent_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label class="control-label" for="percent_color"><?php echo __('Color') ?></label><br/>
+                        <input type="text" class="input-text color-input" id="percent_color" name="setting[percent_color]"<?php if ($exist && $settings['percent_color']): ?> value="<?php echo $settings['percent_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="percent_fontweight" class="control-label"><?php echo __('Font bold') ?></label><br/>
+                        <div class="admin__actions-switch" data-role="switcher">
+                            <input type="checkbox"<?php if ($exist && $settings['percent_fontweight']): ?> checked="checked"<?php endif ?> value="1" name="setting[percent_fontweight]" id="percent_fontweight" class="admin__actions-switch-checkbox" onclick="changeContentStyle()">
+                            <label for="percent_fontweight" class="admin__actions-switch-label">
+                                <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                
+                
+                
+                <div class="line form-group">
+                    <div class="col-des-6" style="border-right: 1px solid #ccc;">
+
+                        
+                        <div class="line form-group fields">
+                            <h4 class="no-margin-top col-des-12"><?php echo __('Progress') ?></h4>
+                            
+                            <div class="col">
+                                <label for="circle_type" class="control-label"><?php echo __('Type') ?></label><br/>
+                                <select name="setting[circle_type]" id="circle_type" onchange="changeProgressType()">
+                                    <option value="circle"<?php if ($exist && ($settings['circle_type']=='circle')): ?> selected="selected"<?php endif ?>><?php echo __('Circle'); ?></option>
+                                    <option value="pie"<?php if ($exist && ($settings['circle_type']=='pie')): ?> selected="selected"<?php endif ?>><?php echo __('Pie'); ?></option>
+                                </select>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="circle_width" class="control-label"><?php echo __('Width') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="circle_width" name="setting[circle_width]"<?php if ($exist && $settings['circle_width']): ?> value="<?php echo $settings['circle_width'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                            </div>
+                            
+                            <div class="col type-circle">
+                                <label for="show_icon" class="control-label"><?php echo __('Show Icon') ?></label><br/>
+                                <div class="admin__actions-switch" data-role="switcher">
+                                    <input type="checkbox"<?php if ($exist && $settings['show_icon']): ?> checked="checked"<?php endif ?> value="1" name="setting[show_icon]" id="show_icon" class="admin__actions-switch-checkbox" onclick="setIconFields()">
+                                    <label for="show_icon" class="admin__actions-switch-label">
+                                        <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="line form-group icon-fields">
+                            <div class="col">
+                                <label class="control-label"><?php echo __('Icon font class') ?></label><br/>
+                                <input type="text" class="input-text input-icon-choose required-entry" id="icon" name="setting[icon]"<?php if ($exist && $settings['icon']): ?> value="<?php echo $settings['icon'] ?>"<?php endif ?> onchange="setPreview()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label class="control-label" for="icon_color"><?php echo __('Icon Color') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="icon_color" name="setting[icon_color]"<?php if ($exist && $settings['icon_color']): ?> value="<?php echo $settings['icon_color'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label class="control-label" for="icon_font_size"><?php echo __('Icon font size') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="icon_font_size" name="setting[icon_font_size]"<?php if ($exist && $settings['icon_font_size']): ?> value="<?php echo $settings['icon_font_size'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group type-circle">
+                            <div class="col">
+                                <label for="progress_width" class="control-label"><?php echo __('Progress width') ?></label><br/>
+                                <input type="text" class="input-text validate-number" id="progress_width" name="setting[progress_width]"<?php if ($exist && $settings['progress_width']): ?> value="<?php echo $settings['progress_width'] ?>"<?php endif ?> onchange="changeContentStyle()" placeholder="px"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="middle_background" class="control-label"><?php echo __('Middle background') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="middle_background" name="setting[middle_background]"<?php if ($exist && $settings['middle_background']): ?> value="<?php echo $settings['middle_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="line form-group fields">
+                            <div class="col">
+                                <label for="bar_background" class="control-label"><?php echo __('Default background') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="bar_background" name="setting[bar_background]"<?php if ($exist && $settings['bar_background']): ?> value="<?php echo $settings['bar_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="progress_background" class="control-label"><?php echo __('Progress background') ?></label><br/>
+                                <input type="text" class="input-text color-input" id="progress_background" name="setting[progress_background]"<?php if ($exist && $settings['progress_background']): ?> value="<?php echo $settings['progress_background'] ?>"<?php endif ?> onchange="changeContentStyle()"/>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="col-des-6">
+                        <div class="mgs-circle-pie-progress" id="circle_progress_sample" style="display:none">
+                            <div class="mgs-progress-circle" data-progress="0">
+                                <div class="mgs-circle">
+                                    <div class="full mgs-progress-circle__slice">
+                                        <div class="mgs-progress-circle__fill"></div>
+                                    </div>
+                                    <div class="mgs-progress-circle__slice">
+                                        <div class="mgs-progress-circle__fill"></div>
+                                        <div class="mgs-progress-circle__fill mgs-progress-circle__bar"></div>
+                                    </div>
+                                </div>
+                                <div class="mgs-progress-circle__overlay">
+                                    <span class="fa fa-heart"></span>
+                                </div>
+                            </div>
+                            <div class="progress-info"><h4>Curabitur ipsum</h4></div>
+                        </div>
+                        
+                        <style type="text/css" id="progress-custom-css"></style>
+                    </div>
+                </div>
+                
+            </div>
+        
+            <?php if ($exist): ?>
+                <?php
+                    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+                        ->setExist($exist)
+                        ->setBuilderChild($child)
+                        ->setBuilderHelper($helper)
+                        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
+                ?>
+                
+            <?php endif ?>
+        </div>
+        
+        <div class="line">
+            <div class="form-group">
+                <div class="col-des-12 builder-action">
+                    <div class="buttons">
+                        <?php if (!$exist): ?>
+                            <button type="button" class="action" onclick="history.go(-1)"><span><?php echo __('Back') ?></span></button>
+                        <?php endif ?>
+                        <button type="submit" class="action primary"><span><?php echo __('Submit') ?></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>    
+</div>
+
+<?php
+    echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
+        ->setExist($exist)
+        ->setBuilderChild($child)
+        ->setBuilderHelper($helper)
+        ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/font_list.phtml')->toHtml() ;
+?>
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+                setPreview();
+                changeProgressType();
+            });
+            
+            $("#subtitle, #percent").keypress(function( event ){
+                setPreview();
+            });
+        })(jQuery);
+    });
+    
+    function changeProgressType(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                type = $('#circle_type').val();
+                if(type=='pie'){
+                    $('.type-circle').hide();
+                }
+                else{
+                    $('.type-circle').show();
+                }
+                setIconFields();
+            })(jQuery);
+        });
+        setPreview();
+    }
+    
+    function setIconFields(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                type = $('#circle_type').val();
+                if(($('#show_icon').prop("checked") == true) && (type=='circle')){
+                    $('.icon-fields').show();
+                }else{
+                    $('.icon-fields').hide();
+                }
+            })(jQuery);
+        });
+        setPreview();
+    }
+    
+    function setPreview(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                percent = parseFloat($('#percent').val());
+                subtitle = $('#subtitle').val();
+                circle_type = $('#circle_type').val();
+                icon = $('#icon').val();
+                $('#circle_progress_sample h4').html(subtitle);
+                
+                if(percent!='' && percent>0){
+                    $('#circle_progress_sample').show();
+                    
+                    $('.mgs-progress-circle').attr('data-progress', percent);
+                }else{
+                    $('#circle_progress_sample').hide();
+                }
+                
+                if(circle_type=='pie'){
+                    $('.mgs-progress-circle__overlay').html('<span>'+percent+'%</span>');
+                }else{
+                    if($('#show_icon').prop("checked") == true){
+                        if(icon!=''){
+                            $('.mgs-progress-circle__overlay').html('<span class="font-container"><span class="'+icon+'"></span></span>');
+                        }else{
+                            $('.mgs-progress-circle__overlay').html('');
+                        }
+                    }else{
+                        $('.mgs-progress-circle__overlay').html('<span>'+percent+'%</span>');
+                    }
+                }
+                
+            })(jQuery);
+        });
+        
+        changeContentStyle();
+    }
+    
+    function changeContentStyle(){
+        require([
+            'jquery',
+        ], function(jQuery){
+            (function($) {
+                percent_font_size = $('#percent_font_size').val();
+                percent_color = $('#percent_color').val();
+                
+                title_font_size = $('#title_font_size').val();
+                title_color = $('#title_color').val();
+                
+                icon_color = $('#icon_color').val();
+                icon_font_size = $('#icon_font_size').val();
+                
+                bar_background = $('#bar_background').val();
+                progress_background = $('#progress_background').val();
+                circle_type = $('#circle_type').val();
+                circle_width = parseFloat($('#circle_width').val());
+                progress_width = parseFloat($('#progress_width').val());
+                middle_background = $('#middle_background').val();
+                icon = $('#icon').val();
+                
+                if(circle_width!='' && !isNaN(circle_width) && circle_width>300){
+                    circle_width = 300;
+                }
+                
+                $overlayWidth = 0;
+                if(circle_width!='' && circle_width>0){
+                    $halfWidth = circle_width/2;
+                    $clip = 'clip: rect(0px, '+circle_width+'px, '+circle_width+'px, '+$halfWidth+'px)';
+                    $clip2 = 'clip: rect(0px, '+$halfWidth+'px, '+circle_width+'px, 0px)';
+                    if(progress_width!='' && progress_width>0){
+                        $overlayWidth = parseFloat(circle_width) - progress_width - progress_width;
+                    }else{
+                        $overlayWidth = parseFloat(circle_width) - 20;
+                    }
+                }else{
+                    if(progress_width!='' && progress_width>0){
+                        $overlayWidth = 120 - progress_width - progress_width;
+                    }
+                }
+                
+                customStyle = '*{}';
+                
+                if(percent_font_size!='' && !isNaN(percent_font_size) && $('#show_icon').prop("checked") == false){
+                    customStyle += '.mgs-progress-circle__overlay span{font-size:'+percent_font_size+'px}';
+                }
+                
+                if(percent_color!=''){
+                    if(circle_type=='pie' || $('#show_icon').prop("checked") == false){
+                        customStyle += '.mgs-progress-circle__overlay span{color:'+percent_color+'}';
+                    }
+                }
+                
+                if(icon_font_size!='' && !isNaN(icon_font_size) && $('#show_icon').prop("checked") == true){
+                    customStyle += '.mgs-progress-circle__overlay span.fa{font-size:'+icon_font_size+'px}';
+                }
+                
+                if(icon_color!='' && $('#show_icon').prop("checked") == true){
+                    customStyle += '.mgs-progress-circle__overlay span.fa{color:'+icon_color+'}';
+                }
+                
+                if($('#percent_fontweight').prop("checked") == true && $('#show_icon').prop("checked") == false){
+                    customStyle += '.mgs-progress-circle__overlay span{font-weight:bold}';
+                }
+                
+                if(title_font_size!='' && !isNaN(title_font_size)){
+                    customStyle += '#circle_progress_sample.mgs-circle-pie-progress .progress-info h4{font-size:'+title_font_size+'px}';
+                }
+                if(title_color!=''){
+                    customStyle += '.progress-info h4{color:'+title_color+'}';
+                }
+                if($('#title_fontweight').prop("checked") == true){
+                    customStyle += '#circle_progress_sample.mgs-circle-pie-progress .progress-info h4{font-weight:bold}';
+                }
+                
+                if(middle_background!='' && circle_type=='circle'){
+                    if(middle_background=='transparent'){
+                        middle_background = '#ffffff';
+                    }
+                    customStyle += '#circle_progress_sample.mgs-circle-pie-progress .mgs-progress-circle .mgs-progress-circle__overlay{background-color:'+middle_background+'}';
+                }
+                
+                if(bar_background!=''){
+                    customStyle += '#circle_progress_sample.mgs-circle-pie-progress .mgs-progress-circle{background-color:'+bar_background+'}';
+                }
+                
+                if(progress_background!=''){
+                    customStyle += '#circle_progress_sample.mgs-circle-pie-progress .mgs-progress-circle__fill{background-color:'+progress_background+'}';
+                }
+                
+                if(($('#circle_width').val() != '') && !isNaN($('#circle_width').val()) && ($('#circle_width').val()>0)){
+                    customStyle += '#circle_progress_sample .mgs-progress-circle,#circle_progress_sample .mgs-progress-circle .mgs-progress-circle__slice, .mgs-progress-circle .mgs-progress-circle__slice .mgs-progress-circle__fill{width:'+circle_width+'px; height:'+circle_width+'px}';
+                    customStyle += '.mgs-progress-circle .mgs-progress-circle__slice{'+$clip+'}';
+                    customStyle += '.mgs-progress-circle .mgs-progress-circle__slice .mgs-progress-circle__fill{'+$clip2+'}';
+                }
+                
+                if($overlayWidth>0){
+                    customStyle += '.mgs-progress-circle .mgs-progress-circle__overlay{width:'+$overlayWidth+'px; height:'+$overlayWidth+'px; line-height:'+$overlayWidth+'px}';
+                    
+                    if($('#show_icon').prop("checked") == false){
+                        customStyle += '.mgs-progress-circle .mgs-progress-circle__overlay{line-height:'+$overlayWidth+'px}';
+                    }
+                    if(progress_width!='' && !isNaN(progress_width) && progress_width>0){
+                        customStyle += '.mgs-progress-circle .mgs-progress-circle__overlay{margin-left:'+progress_width+'px; margin-top:'+progress_width+'px}';
+                    }
+                }
+                
+                if($('#show_icon').prop("checked") == true && icon!=''){
+                    iconFontSize = parseFloat($('#icon_font_size').val());
+                    iconMargin = 15;
+                    if(iconFontSize!='' && !isNaN(iconFontSize) && iconFontSize>0){
+                        iconMargin = iconFontSize/2;
+                        customStyle += '.mgs-progress-circle__overlay span.fa{margin-top:-'+iconMargin+'px}';
+                    }
+                }
+                
+                $('#progress-custom-css').html(customStyle);
+            })(jQuery);
+        });
+    }
+</script>

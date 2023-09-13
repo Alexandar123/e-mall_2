@@ -1,0 +1,23 @@
+<?php $megaMenu = $this->getMegamenuItems(); ?>
+<?php $themeHelper = $this->helper('MGS\Mmegamenu\Helper\Data'); ?>
+<div class="widget megamenu-widget horizontal-menu-widget">
+	<?php if($this->hasData('mgs_panel_title')): ?>
+		<div class="content-heading menu-heading">
+			<h2 class="title"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></h2>
+		</div>
+	<?php endif ?>
+	<?php if(count($megaMenu)>0):?>
+		<?php if($this->hasData('mgs_panel_note')): ?>
+			<div class="block-note"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_note')) ?></div>
+		<?php endif ?>
+		<ul id="horizontal-menu-<?php echo $this->getMenuId()?>" class="horizontal-menu nav nav-pills nav-main">
+			<?php $i=0; foreach($megaMenu as $item): $i++ ?>
+				<li class="<?php echo $this->getClass($item) ?>">
+					<?php echo $this->getMenuHtml($item) ?>
+				</li>
+			<?php endforeach ?>
+		</ul>
+	<?php else: ?>
+		<div role="alert" class="alert alert-warning"><?php echo __('There are no menus matching the selection.') ?></div>
+	<?php endif ?>
+</div>

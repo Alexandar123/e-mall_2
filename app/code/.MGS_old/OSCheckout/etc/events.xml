@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * event
+ *
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_paypal_express_placeOrder">
+        <observer name="onestepcheckout_predispatch_paypal_express_placeOrder" instance="MGS\OSCheckout\Observer\PaypalExpressPlaceOrder"/>
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="sales_pro_observer_checkout_submit_all_after" instance="MGS\OSCheckout\Observer\CheckoutSubmitAllAfter" />
+    </event>
+    <event name="sales_model_service_quote_submit_success">
+        <observer name="convertDataToOrder" instance="MGS\OSCheckout\Observer\RegisterSubmitSuccess"/>
+    </event>
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="convertOscDataToOrder" instance="MGS\OSCheckout\Observer\QuoteSubmitBefore"/>
+    </event>
+
+</config>

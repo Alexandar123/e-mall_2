@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!--referenceContainer name="page.bottom">
+            <block class="MGS\AjaxCart\Block\Product\Actions" name="mgs.ajaxcart.product.actions" template="MGS_AjaxCart::product/actions.phtml" />
+        </referenceContainer-->
+		
+		<referenceBlock name="mgs.ajaxcart.actions" remove="true"/>
+		<referenceBlock name="mgs.ajaxcart.config" remove="true"/>
+		
+		<referenceContainer name="category.product.list.additional">
+            <block class="MGS\AjaxCart\Block\Source\Actions" name="mgs.ajaxcart.catalog.actions" template="MGS_AjaxCart::actions.phtml" />
+            <block class="MGS\AjaxCart\Block\Source\Config" name="mgs.ajaxcart.catalog.config" template="MGS_AjaxCart::config.phtml" />
+        </referenceContainer>
+    </body>
+</page>

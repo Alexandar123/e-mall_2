@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Sales\Block\Order\Info */ ?>
+<?php $_order = $block->getOrder() ?>
+<div class="block block-order-details-view">
+    <div class="block-title-account"><h3><?= $block->escapeHtml(__('Order Information')) ?></h3></div>
+    <div class="block-content">
+        <?php if (!$_order->getIsVirtual()) : ?>
+            <div class="box box-order-shipping-address">
+                <h4 class="box-title-subaccount"><span><?= $block->escapeHtml(__('Shipping Address')) ?></span></h4>
+                <div class="box-content">
+                    <address><?= /* @noEscape */ $block->getFormattedAddress($_order->getShippingAddress()) ?></address>
+                </div>
+            </div>
+
+            <div class="box box-order-shipping-method">
+                <h4 class="box-title-subaccount">
+                    <span><?= $block->escapeHtml(__('Shipping Method')) ?></span>
+                </h4>
+                <div class="box-content">
+                <?php if ($_order->getShippingDescription()) : ?>
+                    <?= $block->escapeHtml($_order->getShippingDescription()) ?>
+                <?php else : ?>
+                    <?= $block->escapeHtml(__('No shipping information available')) ?>
+                <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="box box-order-billing-address">
+            <h4 class="box-title-subaccount">
+                <span><?= $block->escapeHtml(__('Billing Address')) ?></span>
+            </h4>
+            <div class="box-content">
+                <address><?= /* @noEscape */ $block->getFormattedAddress($_order->getBillingAddress()) ?></address>
+            </div>
+        </div>
+        <div class="box box-order-billing-method">
+            <h4 class="box-title-subaccount">
+                <span><?= $block->escapeHtml(__('Payment Method')) ?></span>
+            </h4>
+            <div class="box-content">
+                <?= $block->getPaymentInfoHtml() ?>
+            </div>
+        </div>
+    </div>
+</div>

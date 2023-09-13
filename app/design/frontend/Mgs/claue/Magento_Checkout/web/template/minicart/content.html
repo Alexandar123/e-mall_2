@@ -1,0 +1,71 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div class="block-content">
+    <if args="getCartParam('summary_count')">
+        <div data-action="scroll" class="minicart-items-wrapper">
+            <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartItems(), as: 'item' }">
+                <each args="$parent.getRegion($parent.getItemRenderer(item.product_type))"
+                      render="{name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}}"
+                ></each>
+            </ol>
+        </div>
+    </if>
+
+    <if args="getCartParam('summary_count')">
+        <each args="getRegion('subtotalContainer')" render=""></each>
+        <each args="getRegion('extraInfo')" render=""></each>
+    </if>
+
+    <ifnot args="getCartParam('summary_count')">
+        <strong class="subtitle empty"
+                translate="'You have no items in your shopping cart.'"
+        ></strong>
+        <if args="getCartParam('cart_empty_message')">
+            <p class="minicart empty text" text="getCartParam('cart_empty_message')"></p>
+            <div class="actions">
+                <div class="secondary">
+                    <a class="action btn btn-default btn-full margin-bottom15 viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                        <span translate="'Go to Cart'"></span>
+                    </a>
+                </div>
+            </div>
+        </if>
+    </ifnot>
+
+    <div class="actions" if="getCartParam('summary_count')">
+        <div class="secondary">
+            <a class="action btn btn-default btn-full margin-bottom15 viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                <span translate="'Go to Cart'"></span>
+            </a>
+        </div>
+    </div>
+
+    <if args="getCartParam('summary_count')">
+        <div class="actions" if="getCartParam('possible_onepage_checkout')">
+            <div class="primary">
+                <button
+                        id="top-cart-btn-checkout"
+                        type="button"
+                        class="action primary btn btn-primary btn-full checkout"
+                        data-action="close"
+                        data-bind="
+                            attr: {
+                                title: $t('Proceed to Checkout')
+                            }
+                        "
+                        translate="'Proceed to Checkout'"
+                ></button>
+                <div data-bind="html: getCartParamUnsanitizedHtml('extra_actions')"></div>
+            </div>
+        </div>
+    </if>
+    <div id="minicart-widgets" class="minicart-widgets" if="regionHasElements('promotion')">
+        <each args="getRegion('promotion')" render=""></each>
+    </div>
+</div>
+<each args="getRegion('sign-in-popup')" render=""></each>

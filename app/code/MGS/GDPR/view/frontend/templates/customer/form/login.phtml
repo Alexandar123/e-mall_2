@@ -1,0 +1,9 @@
+<?php $helper = $this->helper('MGS\GDPR\Helper\Data') ?>
+<?php $active = $helper->getStoreConfig('gdpr/login/active') ?>
+<?php if($active): ?>
+<?php $label = $helper->getStoreConfig('gdpr/login/label') ?>
+	<div class="field choice mgs-gdpr-checkbox">
+		<input name="login[accept_gdpr]" value="1" id="accept_gdpr" class="checkbox" type="checkbox" data-validate="{required:true}"/>
+		<label for="accept_gdpr" class="label"><span><?php echo $label ?></span></label>
+	</div>
+<?php endif ?>

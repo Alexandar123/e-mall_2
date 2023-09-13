@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+        <event name="layout_render_before_catalogsearch_result_index">
+        <observer name="ajaxlayered_search_ajax_event" instance="MGS\Ajaxlayernavigation\Observer\GetAjaxCatalogSearchResult" />
+    </event>
+</config>

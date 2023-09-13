@@ -1,0 +1,167 @@
+<?php
+/**
+ * Copyright � 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/* @var $block Magento\Catalog\Block\Product\View\Details */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+$helper = $this->helper('MGS\Protabs\Helper\Data');
+$tabCollection = $helper->getTabsCollection();
+$showAccordion = $helper->getStoreConfig('protabs/general/type');
+$showAfterProductInformation = $helper->getStoreConfig('protabs/general/position');
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$glrTemplate = $themeSettingConfig->getStoreConfig('extragallery/general/glr_type');
+$_product = $helper->getCurrentProduct();
+$productReviewUrl = $block->getUrl(
+    'review/product/listAjax',
+    [
+        '_secure' => $helper->getRequest(),
+        'id' => $_product->getId(),
+    ]);
+?>
+<?php
+if($_product->getData('extragallery_glr_type')){
+    $glrTemplate = $_product->getData('extragallery_glr_type');
+}
+?>
+<?php if(!$showAfterProductInformation): ?>
+    <?php if ( $showAccordion ): ?>
+        <?php
+        // Include the accordion template.
+        echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('MGS_Protabs::product/view/accordion.phtml')->toHtml();
+        ?>
+    <?php else: ?>
+        <?php if($tabCollection->getSize()): ?>
+            <div class="product-tab-wrapper">
+                <div class="product-tab-content">
+                    <div class="product info detailed">
+                        <?php $layout = $block->getLayout(); ?>
+                        <?php if($glrTemplate == 3) : ?>
+                            <div class="product data items-show-all product-tab">
+                        <?php else : ?>
+                            <div class="product data items product-tab" data-mage-init='{"tabs":{"openedState":"active", "collapsible":"true", "animate":{"easing": "easeOutExpo", "duration":"350"}}}'>
+                        <?php endif; ?>
+                            <?php foreach($tabCollection as $_tab): ?>
+                                <?php if(($_tab->getTabType() == 'attribute') || ($_tab->getTabType() == 'static')): ?>
+                                    <?php if(trim($_tab->getValue()) !=''): ?>
+                                        <?php if($_tab->getTabType() == 'attribute'): ?>
+                                            <?php
+                                            $html = $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Description')
+                                                ->setAtCall($helper->convertAttributeToCallName($_tab->getValue()))
+                                                ->setAtCode($_tab->getValue())
+                                                ->setCssClass('description')
+                                                ->setAtLabel('none')
+                                                ->setAtType($helper->getAttributeType($_tab->getValue()))
+                                                ->setTitle($_tab->getTitle())
+                                                ->setTemplate('MGS_Protabs::product/view/attribute.phtml')
+                                                ->toHtml()
+                                            ?>
+                                        <?php else: ?>
+                                            <?php $html = $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($_tab->getValue())->toHtml() ?>
+                                        <?php endif ?>
+
+                                        <?php
+                                        if (!trim($html)) {
+                                            continue;
+                                        }
+                                        $alias = $_tab->getTabType().$_tab->getValue();
+                                        $label = $_tab->getTitle();
+                                        ?>
+                                        <?php if($glrTemplate == 3) : ?>
+                                            <div class="content-heading">
+                                                <h3 class="title text-uppercase">
+                                                    <?php echo $label; ?>
+                                                </h3>
+                                            </div>
+                                        <?php else : ?>
+                                            <div class="data item title"
+                                                aria-labelledby="tab-label-<?php echo $alias;?>-title"
+                                                data-role="collapsible" id="tab-label-<?php echo $alias;?>">
+                                                <a class="data switch"
+                                                tabindex="-1"
+                                                data-toggle="switch"
+                                                href="#<?php echo $alias; ?>"
+                                                id="tab-label-<?php echo $alias;?>-title">
+                                                    <?php echo $label; ?>
+                                                </a>
+                                            </div>
+                                        <?php endif ?>
+                                        <div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+                                            <?php /* @escapeNotVerified */ echo $html; ?>
+                                        </div>
+
+                                    <?php endif ?>
+                                <?php else: ?>
+                                    <?php
+                                    $html = $layout->renderElement($_tab->getTabType());
+                                    if (!trim($html)) {
+                                        continue;
+                                    }
+                                    $alias = $layout->getElementAlias($_tab->getTabType());
+
+                                    $label = $_tab->getTitle();
+
+
+                                    if($alias == 'reviews'){
+                                        $oldLabel = $block->getChildData($alias, 'title');
+                                        if(is_object($oldLabel)){
+                                            $labelObject = (array)$oldLabel;
+                                            $countArray = end($labelObject);
+                                            if(isset($countArray[0])){
+                                                $label = $label.' '.$countArray[0].'';
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    <?php if($glrTemplate == 3) : ?>
+                                    <div class="content-heading">
+                                        <h3 class="title text-uppercase">
+                                            <?php echo $label; ?>
+                                        </h3>
+                                    </div>
+                                    <?php else : ?>
+                                        <div class="data item title"
+                                            aria-labelledby="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title"
+                                            data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>">
+                                            <a class="data switch"
+                                            tabindex="-1"
+                                            data-toggle="switch"
+                                            href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
+                                            id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
+                                                <?php /* @escapeNotVerified */ echo $label; ?>
+                                            </a>
+                                        </div>
+                                    <?php endif ?>
+                                    <div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+                                        <?php /* @escapeNotVerified */ echo $html; ?>
+                                    </div>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>
+<?php if($glrTemplate == 3) : ?>
+    <script>
+        require(['jquery', 'domReady!'], function ($) {
+            setTimeout(function(){
+                $.ajax({
+                    url: "<?= $productReviewUrl;  ?>",
+                    cache: true,
+                    dataType: 'html',
+                    showLoader: false,
+                    loaderContext: $('.product.data.items')
+                }).done(function (data) {
+                    $('#product-review-container').html(data).trigger('contentUpdated');
+                });
+            }, 800);
+        });
+    </script>
+<?php endif; ?>

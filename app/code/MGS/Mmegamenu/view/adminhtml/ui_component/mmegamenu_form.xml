@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mmegamenu_form.mmegamenu_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item> 
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="MGS\Mmegamenu\Block\Adminhtml\Button\SaveButton"/>
+            <button name="back" class="MGS\Mmegamenu\Block\Adminhtml\Button\BackButton"/>
+            <button name="delete" class="MGS\Mmegamenu\Block\Adminhtml\Button\DeleteButton"/>
+            <button name="reset" class="MGS\Mmegamenu\Block\Adminhtml\Button\ResetButton"/>
+
+
+
+        </buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <namespace>mmegamenu_formm</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mmegamenu_form.mmegamenu_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="mmegamenu_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+         <settings>
+            <submitUrl path="admin/mmegamenu/save"/>
+        </settings>
+        <dataProvider class="MGS\Mmegamenu\Model\DataProvider" name="mmegamenu_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>megamenu_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+   <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="parent_id" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Mmegamenu\Model\Options\MenuParent</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Menu</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">parent_id</item>
+                    <item name="default" xsi:type="string">0</item>
+                     <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="store_id" sortOrder="65" formElement="hidden">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">company</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>hidden</dataType>
+                    <dataScope>store_id</dataScope>
+                </settings>
+        </field>
+        <field name="title" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="menu_type" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Mmegamenu\Model\Options\MenuType</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">MGS_Mmegamenu/js/menutype</item>
+                    <item name="elementTmpl" xsi:type="string">MGS_Mmegamenu/menutype</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Menu Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">menu_type</item>
+                    <item name="default" xsi:type="string">0</item>
+                     <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="url" sortOrder="50" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                    <item name="notice" xsi:type="string" translate="true">Blank to use category link.</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Link</label>
+                <dataScope>url</dataScope>
+            </settings>
+        </field>
+        <field name="position" sortOrder="60" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Position</label>
+                <dataScope>position</dataScope>
+            </settings>
+        </field>
+        <field name="columns" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Mmegamenu\Model\Options\Columns</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Columns</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">columns</item>
+                    <item name="default" xsi:type="string">0</item>
+                     <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="special_class" sortOrder="80" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Custom Class</label>
+                <dataScope>special_class</dataScope>
+            </settings>
+        </field>
+         <field name="html_label" sortOrder="90" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">index</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Special Html</label>
+                <dataScope>html_label</dataScope>
+            </settings>
+        </field>
+        <field name="status" sortOrder="100">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Mmegamenu\Model\Options\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="default" xsi:type="string">0</item>
+                     <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+         <field name="stores" formElement="multiselect" class="Magento\Store\Ui\Component\Form\Field\StoreView">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <tooltip>
+                    <link>https://docs.magento.com/m2/ce/user_guide/configuration/scope.html</link>
+                    <description>What is this?</description>
+                </tooltip>
+                <label translate="true">Store View</label>
+                <dataScope>stores</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="MGS\Mmegamenu\Model\Options\StoreView"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+
+   <fieldset name="category">
+        <settings>
+            <label translate="true">Category</label>
+        </settings>
+           <field name="category_id">
+        <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">MGS\Mmegamenu\Model\Options\Cate</item>
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Category</item>
+                <item name="componentType" xsi:type="string">field</item>
+                <item name="formElement" xsi:type="string">select</item>
+                <item name="component" xsi:type="string">Magento_Catalog/js/components/new-category</item>
+                <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                <item name="dataScope" xsi:type="string">category_id</item>
+                <item name="filterOptions" xsi:type="boolean">false</item>
+                <item name="showCheckbox" xsi:type="boolean">true</item>
+                <item name="disableLabel" xsi:type="boolean">true</item>
+                <item name="multiple" xsi:type="boolean">false</item>
+                <item name="levelsVisibility" xsi:type="number">3</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+                <item name="required" xsi:type="boolean">true</item>
+                <item name="validation" xsi:type="array">
+                    <item name="required-entry" xsi:type="boolean">false</item>
+                </item>
+                <item name="listens" xsi:type="array">
+                    <item name="${ $.namespace }.${ $.namespace }:responseData" xsi:type="string">setParsed</item>
+                </item>
+            </item>
+        </argument>
+    </field>
+    </fieldset>
+    <fieldset name="static_contents">
+        <settings>
+            <label translate="true">Static Contents</label>
+        </settings>
+        <field name="top_content" sortOrder='10'>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">sample_shop</item>
+                    <item name="label" xsi:type="string">Top Content</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">top_content</item>
+                    <item name="rows" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </field>
+        <field name="bottom_content" sortOrder='20'>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">sample_shop</item>
+                    <item name="label" xsi:type="string">Bottom Content</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">bottom_content</item>
+                    <item name="rows" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </field>
+        <field name="left_content" sortOrder='30'>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">sample_shop</item>
+                    <item name="label" xsi:type="string">Left Content</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">left_content</item>
+                    <item name="rows" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </field>
+        <field name="left_col" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Mmegamenu\Model\Options\LeftCol</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Left Columns</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">left_col</item>
+                    <item name="default" xsi:type="string">0</item>
+                     <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="right_content" sortOrder='50'>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">sample_shop</item>
+                    <item name="label" xsi:type="string">Right Content</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">right_content</item>
+                    <item name="rows" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </field>
+        <field name="right_col" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">MGS\Mmegamenu\Model\Options\RightCol</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Right Columns</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">modulename</item>
+                    <item name="dataScope" xsi:type="string">right_col</item>
+                    <item name="default" xsi:type="string">0</item>
+                     <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="static_contentt">
+        <settings>
+            <label translate="true">Static Content</label>
+        </settings>
+         <field name="static_content" sortOrder='50'>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">sample_shop</item>
+                    <item name="label" xsi:type="string">Static Content</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">static_content</item>
+                    <item name="rows" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+  
+</form>

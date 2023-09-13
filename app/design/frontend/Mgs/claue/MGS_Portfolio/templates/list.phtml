@@ -1,0 +1,114 @@
+<?php  $menu = $this->getMenu(); ?>
+<?php if($this->getRequest()->getParam('id')){
+	$checkParam = true;
+	$id_param = $this->getRequest()->getParam('id');
+}else{
+	$checkParam = false;
+}
+?>
+
+<?php $helper = $this->helper('MGS\Portfolio\Helper\Data') ?>
+<div class="menu-portfolio text-center">
+	<ul class="tab-menu tabs_categories_porfolio">
+		<li <?php if(!$checkParam): ?>class="active"<?php endif ?>><a class="button btn btn-sm <?php if(!$checkParam): ?>is-checked<?php endif ?>" data-filter=".item_all"><?php echo __('All Works'); ?></a></li>
+		<?php if(count($menu)): ?>
+			<?php foreach($menu as $_menu ): ?>
+				<li <?php if($checkParam && $id_param == $_menu->getId()): ?>class="active"<?php endif ?>><a class="button btn btn-sm <?php if($checkParam && $id_param == $_menu->getId()): ?>is-checked<?php endif ?>" data-filter=".item_<?php echo $_menu->getId(); ?>"><?php echo $_menu->getCategoryName(); ?></a></li>
+			<?php endforeach ?>
+		<?php endif ?>
+	</ul>
+</div>
+<div class="portfolio-grid tabs_categories_porfolio_content isotope row">
+	<?php $portfolios = $this->getPortfolios(); ?>
+	<?php if(count($portfolios)): ?>
+		<?php foreach($portfolios as $portfolio): ?>
+			<div class="item item_all <?php echo $this->getFilterClass($portfolio) ?>">
+			    <div class="item_inner">
+					<div class="portfolio-top-content">
+						<div class="image">
+							<?php $thumbnailUrl = $this->getThumbnailSrc($portfolio) ?>
+							<?php $portfolioUrl = $this->getPortfolioAddress($portfolio) ?>
+							<?php if($thumbnailUrl): ?>
+								<div class="image-item"><img src="<?php echo $thumbnailUrl ?>" alt="<?php echo $portfolio->getName() ?>" class="img-responsive"/></div>
+							<?php endif ?>
+						</div>
+						<div class="portfolio-bottom-content">
+							<a class="title" href="<?php echo $portfolioUrl; ?>"><?php echo $portfolio->getName() ?></a>
+							<div class="category-link"><?php echo $this->getCategoriesLink($portfolio) ?></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php endforeach ?>
+	<?php else: ?>
+		<div class="item item_all">
+		    <div class="item_inner">
+			<div class="alert alert-danger"><?php echo __('There are no portfolios matching the selection.') ?></div>
+			</div>
+		</div>
+	<?php endif ?>
+	<?php if(count($menu)): ?>
+		<?php foreach($menu as $_menu ): ?>
+			<?php $portfoliosCate = $this->getPortfolios($_menu->getId()); ?>
+			<?php if(!count($portfoliosCate)): ?>
+				<div class="item item_<?php echo $_menu->getId(); ?>">
+					<div class="item_inner">
+					<div class="message warning"><span><?php echo __('There are no portfolios matching the selection.') ?></span></div>
+					</div>
+				</div>
+			<?php endif ?>
+		<?php endforeach ?>
+	<?php endif ?>
+</div>
+<script type="text/javascript">
+    requirejs([
+		'require',
+		'jquery',
+		'mgs/isotope'
+	], function( require, $, Isotope ) {
+    require( [ 'bridget' ], function( jQueryBridget ) {
+		jQueryBridget( 'isotope', Isotope, $ );
+	    $(window).on('load', function() {
+			var container = $('.isotope').isotope({
+				itemSelector: '.item',
+				percentPosition: true,
+				masonry: {
+					columnWidth: '.item'
+				},
+				getSortData: {
+					name: '.item'
+				}
+			});
+			$('.tabs_categories_porfolio').each( function( i, buttonGroup ) {
+				var filterLoadValue = $(this).find('.is-checked').attr('data-filter');
+				container.isotope({ filter: filterLoadValue });
+			});
+		});
+         $(window).ready(function(){
+			var container = $('.isotope').isotope({
+				itemSelector: '.item',
+				 percentPosition: true,
+				masonry: {
+					columnWidth: '.item'
+				},
+
+				getSortData: {
+					name: '.item'
+				}
+			});
+			$('.tabs_categories_porfolio').on( 'click', '.button', function() {
+				var filterValue = $(this).attr('data-filter');
+
+				container.isotope({ filter: filterValue });
+				});
+			$('.tabs_categories_porfolio').each( function( i, buttonGroup ) {
+				var buttonGroup = $(buttonGroup);
+				buttonGroup.on( 'click', '.button', function() {
+					buttonGroup.find('.is-checked').removeClass('is-checked');
+					$(this).addClass('is-checked');
+				});
+			});
+		});
+    });
+});
+</script>

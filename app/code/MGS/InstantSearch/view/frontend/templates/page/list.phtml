@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \MGS\InstantSearch\Block\SearchResult\ListPage
+ */
+?>
+<?php
+$_pageCollection = $block->getLoadedPageCollection();
+$_helper = $this->helper('MGS\InstantSearch\Helper\Data');
+?>
+<?php if (!$_pageCollection->count()): ?>
+	<div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find cms pages matching the selection.') ?></div></div>
+<?php else: ?>
+	<?php echo $block->getToolbarHtml() ?>
+	<?php
+        $viewMode = 'grid';
+    ?>
+	<div class="pages wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> pages-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+		<?php $iterator = 1; ?>
+		<ol class="pages list items page-items">
+			<?php /** @var $_page \Magento\Cms\Model\Page */ ?>
+			<?php foreach ($_pageCollection as $_page): ?>
+				<?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item page page-item">' : '</li><li class="item page page-item">' ?>
+					<div class="page-item-info" data-container="page-grid">
+						<div class="page details page-item-details">
+							<strong class="page title page-item-title">
+	                            <a class="page-item-link"
+	                               href="<?php /* @escapeNotVerified */ echo $_helper->getUrl($_page->getIdentifier()) ?>">
+	                                <?php /* @escapeNotVerified */ echo $_page->getTitle(); ?>
+	                            </a>
+	                        </strong>
+						</div>
+					</div>
+				<?php echo($iterator == count($_pageCollection)+1) ? '</li>' : '' ?>
+			<?php endforeach; ?>
+		</ol>
+	</div>
+	<?php echo $block->getToolbarHtml() ?>
+<?php endif; ?>

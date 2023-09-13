@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Smile_ElasticsuiteCatalog dependency injection configuration.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteSwatches
+ * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="add_product_object_to_image_data_array" type="Smile\ElasticsuiteSwatches\Model\Plugin\ProductImage" />
+    </type>
+
+    <type name="Magento\CatalogSearch\Block\SearchResult\ListProduct">
+        <plugin name="add_product_object_to_image_data_array" type="Smile\ElasticsuiteSwatches\Model\Plugin\ProductImage" />
+    </type>
+
+    <type name="Smile\ElasticsuiteSwatches\Model\Plugin\ProductImage">
+        <arguments>
+            <argument name="swatchesHelperData" xsi:type="object">Smile\ElasticsuiteSwatches\Helper\Swatches</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Swatches\Block\Product\Renderer\Configurable">
+        <arguments>
+            <argument name="swatchHelper" xsi:type="object">Smile\ElasticsuiteSwatches\Helper\Swatches</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Swatches\Controller\Ajax\Media">
+        <arguments>
+            <argument name="swatchHelper" xsi:type="object">Smile\ElasticsuiteSwatches\Helper\Swatches</argument>
+        </arguments>
+    </type>
+
+    <!-- Since Magento 2.1.6 -->
+    <type name="Magento\Swatches\Model\ProductSubstitute">
+        <arguments>
+            <argument name="swatchesHelperData" xsi:type="object">Smile\ElasticsuiteSwatches\Helper\Swatches</argument>
+        </arguments>
+        <plugin name="fix_load_variations" type="Smile\ElasticsuiteSwatches\Model\Plugin\ProductSubstitute" />
+    </type>
+
+</config>

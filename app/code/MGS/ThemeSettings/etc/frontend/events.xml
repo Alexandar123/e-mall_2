@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Sam Granger. All rights reserved.
+ *
+ * @author Sam Granger <sam.granger@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="layout_load_before">
+        <observer name="themesetting_process_config" instance="MGS\ThemeSettings\Observer\ProcessThemeSettingConfig" />
+    </event>
+	<event name="layout_generate_blocks_after">
+        <observer name="themesetting_remove_blocks" instance="MGS\ThemeSettings\Observer\RemoveBlocks" />
+    </event>
+	<event name="catalog_category_flat_loadnodes_before">
+        <observer name="add_attributes_to_collection" instance="MGS\ThemeSettings\Observer\AddAttributeToSelect" />
+    </event>
+</config>

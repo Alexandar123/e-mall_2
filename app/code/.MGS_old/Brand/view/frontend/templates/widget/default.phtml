@@ -1,0 +1,95 @@
+<?php
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$collection = $block->getBrandCollection();
+$themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config');
+$rtl = $themeSettingConfig->getStoreConfig('themesettings/general/rtl_theme') ? 'true' : 'false';
+?>
+<?php if (count($collection)): ?>
+    <?php
+    $title = $this->getConfig('title');
+    $blockId = rand() . time();
+    $viewAs = $this->getConfig('view_as');
+    $customClass = $this->getConfig('custom_class');
+    $showBrandName = $this->getConfig('show_brand_name');
+    $width = $this->getConfig('image_width', 240);
+    $height = $this->getConfig('image_height', 180);
+    ?>
+    <?php if ($viewAs == 'default'): ?>
+        <div class="block widget mgs-brand-widget <?php if ($customClass) {
+            echo $customClass;
+        } ?>">
+            <?php if ($title) { ?>
+                <div class="block-title">
+                    <strong><?= $title ?></strong>
+                </div>
+            <?php } ?>
+            <div class="block-content">
+                <ul class="default mgs-brand-widget-list-<?= $blockId; ?>">
+                    <?php foreach ($collection as $brand) { ?>
+                        <li class="item">
+                            <div class="image"><a href="<?= $brand->getUrl(); ?>" title="<?= $brand->getName(); ?>"><img style="height: <?= $height; ?>px;" src="<?= $brand->getSmallImageUrl(); ?>" alt="<?= $brand->getName(); ?>"/></a></div>
+                            <?php if ($showBrandName) { ?>
+                                <div class="name"><a href="<?= $brand->getUrl(); ?>" title="<?= $brand->getName(); ?>"><?= $brand->getName() ?></a></div>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if ($viewAs == 'owl_carousel'): ?>
+        <div class="block widget mgs-brand-widget <?php if ($customClass) {
+            echo $customClass;
+        } ?>">
+            <?php if ($title) { ?>
+                <div class="block-title">
+                    <strong><?= $title ?></strong>
+                </div>
+            <?php } ?>
+            <div class="block-content">
+                <div class="owl-carousel mgs-carousel-<?= $blockId; ?>">
+                    <?php foreach ($collection as $brand) { ?>
+                        <div class="item">
+                            <div class="image"><a href="<?= $brand->getUrl(); ?>" title="<?= $brand->getName(); ?>"><img style="height: <?= $height; ?>px;" src="<?= $brand->getSmallImageUrl(); ?>" alt="<?= $brand->getName(); ?>"/></a></div>
+                            <?php if ($showBrandName) { ?>
+                                <div class="name"><a href="<?= $brand->getUrl(); ?>" title="<?= $brand->getName(); ?>"><?= $brand->getName() ?></a></div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <?php
+        if ($this->getConfig('autoplay')) {
+            $autoplay = 'true';
+        } else {
+            $autoplay = 'false';
+        }
+        if ($this->getConfig('stop_on_hover')) {
+            $stopOnHover = 'true';
+        } else {
+            $stopOnHover = 'false';
+        }
+        if ($this->getConfig('navigation')) {
+            $navigation = 'true';
+        } else {
+            $navigation = 'false';
+        }
+        ?>
+        <script type="text/javascript">
+            require([
+				'jquery',
+				'mgs/owlcarousel'
+			], function ($) {
+                var owl = $('.mgs-carousel-<?= $blockId ?>');
+                owl.owlCarousel({
+                    items: <?= $this->getConfig('items', 5); ?>,
+                    autoPlay: <?= $autoplay; ?>,
+                    stopOnHover: <?= $stopOnHover; ?>,
+                    rtl: <?= $rtl ?>,
+                    navigation: <?= $navigation; ?>
+                });
+            });
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

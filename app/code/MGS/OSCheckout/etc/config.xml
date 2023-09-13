@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * config
+ *
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <MGS_OSCheckout>
+            <general>
+                <enabled>1</enabled>
+                <title>One Step Checkout</title>
+                <description> </description>
+                <allow_guest_checkout>1</allow_guest_checkout>
+                <show_billing_address>1</show_billing_address>
+                <auto_detect_address> </auto_detect_address>
+                <google_api_key>AIzaSyDorkShHO1xhw2zbjz-OZdSKP-xQ65AS0</google_api_key>
+            </general>
+            <display_configuration>
+                <show_item_list_toggle>1</show_item_list_toggle>
+                <enabled_header>1</enabled_header>
+                <enabled_breadcrumbs>1</enabled_breadcrumbs>
+                <show_coupon>1</show_coupon>
+                <checked_newsletter>1</checked_newsletter>
+                <enabled_date>1</enabled_date>
+                <enabled_comments>1</enabled_comments>
+                <enabled_order_comments>1</enabled_order_comments>
+                <enabled_gift_message_items>0</enabled_gift_message_items>
+            </display_configuration>
+            <field>
+                <position>[{"code":"firstname","colspan":6},{"code":"lastname","colspan":6},{"code":"street","colspan":12},{"code":"country_id","colspan":6},{"code":"city","colspan":6},{"code":"postcode","colspan":6},{"code":"region_id","colspan":6},{"code":"company","colspan":6},{"code":"telephone","colspan":6}]</position>
+            </field>
+        </MGS_OSCheckout>
+    </default>
+</config>

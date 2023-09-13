@@ -1,0 +1,3041 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mgs" translate="label" sortOrder="888">
+            <label>Mage Solution</label>
+        </tab>
+        <section id="themesettings" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>MGS Theme Settings</label>
+            <tab>mgs</tab>
+            <resource>MGS_ThemeSettings::themesettings</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+
+				<field id="width" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Width</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Width</source_model>
+				</field>
+
+				<field id="custom_width" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom width</label>
+					<depends>
+                        <field id="width">custom</field>
+                    </depends>
+					<validate>validate-number</validate>
+				</field>
+
+				<field id="layout" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Layout</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Htmllayout</source_model>
+				</field>
+
+				<field id="dark_theme" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Dark Style</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="rtl_theme" translate="label comment" type="select" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Right To Left</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="back_to_top" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display back to top icon</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="lazy_load" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Lazy Load</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="lazy_img" translate="label comment" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Lazy Load Image</label>
+					<depends>
+                        <field id="lazy_load">1</field>
+                    </depends>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/setting</base_url>
+				</field>
+
+				<field id="main_color" translate="label comment" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Main color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+				</field>
+
+				<field id="background_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_background" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70">
+                    <label><![CDATA[<span style="display:block; text-align:center">Background</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_background" translate="label comment" type="select" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="background_color" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_image" translate="label" type="image" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/background</base_url>
+					<depends>
+                        <field id="custom_background">1</field>
+                    </depends>
+                </field>
+				<field id="background_cover" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background cover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="custom_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_repeat" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Repeat</source_model>
+					<depends>
+                        <field id="custom_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_position_x" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (x)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positionx</source_model>
+					<depends>
+                        <field id="custom_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_position_y" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (y)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positiony</source_model>
+					<depends>
+                        <field id="custom_background">1</field>
+                    </depends>
+				</field>
+            </group>
+
+			<group id="header" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Header</label>
+
+				<field id="header_version" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Header version</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Header</source_model>
+				</field>
+
+				<field id="header_absolute" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Header absolute</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="mobile_logo" translate="label comment" type="image" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Logo on Mobile</label>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/setting</base_url>
+				</field>
+
+
+				<field id="elements" translate="label" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Elements</label>
+                    <source_model>MGS\ThemeSettings\Model\Config\Source\Elements</source_model>
+					<comment><![CDATA[Elements to display on header]]></comment>
+                </field>
+
+				<field id="background_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_background" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70">
+                    <label><![CDATA[<span style="display:block; text-align:center">Header Background</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_header_background" translate="label comment" type="select" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="background_color" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_header_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_image" translate="label" type="image" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/background</base_url>
+					<depends>
+                        <field id="custom_header_background">1</field>
+                    </depends>
+                </field>
+				<field id="background_cover" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background cover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="custom_header_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_repeat" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Repeat</source_model>
+					<depends>
+                        <field id="custom_header_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_position_x" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (x)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positionx</source_model>
+					<depends>
+                        <field id="custom_header_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_position_y" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (y)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positiony</source_model>
+					<depends>
+                        <field id="custom_header_background">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="140">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_border" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="150">
+                    <label><![CDATA[<span style="display:block; text-align:center">Header Border</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_header_border" translate="label comment" type="select" sortOrder="155" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="border_top_size" translate="label comment" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border top size</label>
+					<depends>
+                        <field id="custom_header_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_top_color" translate="label comment" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border top color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_header_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_bottom_size" translate="label comment" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border bottom size</label>
+					<depends>
+                        <field id="custom_header_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_bottom_color" translate="label comment" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border bottom color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_header_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="top_header_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="200">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_top_header" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="210">
+                    <label><![CDATA[<span style="display:block; text-align:center">Top Header</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="display_top_header" translate="label comment" type="select" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display top header</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="top_header_background_color" translate="label comment" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+				<field id="top_header_background_image" translate="label" type="image" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/background</base_url>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+                </field>
+				<field id="top_header_background_cover" translate="label comment" type="select" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background cover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+				<field id="top_header_background_repeat" translate="label comment" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Repeat</source_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+				<field id="top_header_background_position_x" translate="label comment" type="select" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (x)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positionx</source_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+				<field id="top_header_background_position_y" translate="label comment" type="select" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (y)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positiony</source_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="top_header_text_color" translate="label comment" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="top_header_link_color" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="top_header_link_hover_color" translate="label comment" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="display_top_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="middle_header_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="320">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_middle_header" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="330">
+                    <label><![CDATA[<span style="display:block; text-align:center">Middle Header</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_middle_header" translate="label comment" type="select" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="middle_header_background_color" translate="label comment" type="text" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+				<field id="middle_header_background_image" translate="label" type="image" sortOrder="360" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/background</base_url>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+                </field>
+				<field id="middle_header_background_cover" translate="label comment" type="select" sortOrder="370" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background cover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+				<field id="middle_header_background_repeat" translate="label comment" type="select" sortOrder="380" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Repeat</source_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+				<field id="middle_header_background_position_x" translate="label comment" type="select" sortOrder="390" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (x)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positionx</source_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+				<field id="middle_header_background_position_y" translate="label comment" type="select" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (y)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positiony</source_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+				<field id="middle_header_text_color" translate="label comment" type="text" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="middle_header_link_color" translate="label comment" type="text" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="middle_header_link_hover_color" translate="label comment" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+				<field id="middle_header_icon_color" translate="label comment" type="text" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="middle_header_icon_hover_color" translate="label comment" type="text" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_middle_header">1</field>
+                    </depends>
+				</field>
+
+				<field id="bottom_header_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="460">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_bottom_header" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="470">
+                    <label><![CDATA[<span style="display:block; text-align:center">Bottom Header</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="bottom_header_custom" translate="label comment" type="select" sortOrder="480" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom color</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="bottom_header_background_color" translate="label comment" type="text" sortOrder="490" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="bottom_header_custom">1</field>
+                    </depends>
+				</field>
+				<field id="bottom_header_text_color" translate="label comment" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="bottom_header_custom">1</field>
+                    </depends>
+				</field>
+				<field id="bottom_header_link_color" translate="label comment" type="text" sortOrder="510" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="bottom_header_custom">1</field>
+                    </depends>
+				</field>
+				<field id="bottom_header_link_hover_color" translate="label comment" type="text" sortOrder="520" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="bottom_header_custom">1</field>
+                    </depends>
+				</field>
+				<field id="bottom_header_icon_color" translate="label comment" type="text" sortOrder="530" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="bottom_header_custom">1</field>
+                    </depends>
+				</field>
+				<field id="bottom_header_icon_hover_color" translate="label comment" type="text" sortOrder="540" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="bottom_header_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="mini_cart_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="600">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_mini_cart" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="610">
+                    <label><![CDATA[<span style="display:block; text-align:center">Mini Cart</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="mini_cart_type" translate="label comment" type="select" sortOrder="620" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Mini cart type</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\MiniCart</source_model>
+				</field>
+
+				<field id="mini_cart_custom" translate="label comment" type="select" sortOrder="630" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom color</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="cart_icon_color" translate="label comment" type="text" sortOrder="640" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="cart_icon_hover_color" translate="label comment" type="text" sortOrder="650" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+				<field id="cart_number_color" translate="label comment" type="text" sortOrder="660" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+				<field id="cart_number_background_color" translate="label comment" type="text" sortOrder="670" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+				<field id="cart_text_color" translate="label comment" type="text" sortOrder="671" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+				<field id="cart_heading_color" translate="label comment" type="text" sortOrder="672" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Heading color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+				<field id="cart_background_color" translate="label comment" type="text" sortOrder="673" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+				<field id="cart_close_icon_color" translate="label comment" type="text" sortOrder="674" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Close icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="cart_divide_border_color" translate="label comment" type="text" sortOrder="675" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Divide border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="mini_cart_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="search_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="680">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_search" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="690">
+                    <label><![CDATA[<span style="display:block; text-align:center">Header Search</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="search_type" translate="label comment" type="select" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Search type</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Search</source_model>
+				</field>
+
+				<field id="search_custom" translate="label comment" type="select" sortOrder="710" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom color</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="search_icon_color" translate="label comment" type="text" sortOrder="720" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="search_custom">1</field>
+						<field id="search_type" separator=",">icon-left,icon-bottom,icon-popup</field>
+                    </depends>
+				</field>
+
+				<field id="search_icon_hover_color" translate="label comment" type="text" sortOrder="730" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="search_custom">1</field>
+                        <field id="search_type" separator=",">icon-left,icon-bottom,icon-popup</field>
+                    </depends>
+				</field>
+
+				<field id="search_text_color" translate="label comment" type="text" sortOrder="740" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="search_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="search_background_color" translate="label comment" type="text" sortOrder="750" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="search_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="search_border_color" translate="label comment" type="text" sortOrder="760" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="search_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="770">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_menu" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="780">
+                    <label><![CDATA[<span style="display:block; text-align:center">Menu</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="sticky_menu" translate="label comment" type="select" sortOrder="781" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Sticky menu</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="sticky_logo" translate="label comment" type="image" sortOrder="782" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Sticky Logo</label>
+					<depends>
+                        <field id="sticky_menu">1</field>
+                    </depends>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/setting</base_url>
+				</field>
+
+				<field id="sticky_menu_mobile" translate="label comment" type="select" sortOrder="783" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Sticky menu on mobile</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="menu_custom" translate="label comment" type="select" sortOrder="790" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom color</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="menu_main_color" translate="label comment" type="text" sortOrder="800" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Menu level 1 color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_main_hover_color" translate="label comment" type="text" sortOrder="810" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Menu level 1 hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_dropdown_background" translate="label comment" type="text" sortOrder="820" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Dropdown background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_dropdown_opacity" translate="label comment" type="text" sortOrder="830" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Dropdown background opacity</label>
+					<comment><![CDATA[From 0 to 1. Ex: <strong>0.5</strong>]]></comment>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_dropdown_heading_color" translate="label comment" type="text" sortOrder="840" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Dropdown Heading color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_dropdown_link_color" translate="label comment" type="text" sortOrder="850" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Dropdown Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_dropdown_link_hover_color" translate="label comment" type="text" sortOrder="860" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Dropdown Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="menu_dropdown_divide_color" translate="label comment" type="text" sortOrder="870" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Dropdown border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="menu_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="myaccount_dropdown_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="880">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="my_account_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="890">
+                    <label><![CDATA[<span style="display:block; text-align:center">My Account</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="my_account_type" translate="label comment" type="select" sortOrder="900" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>My Account type</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\MiniCart</source_model>
+				</field>
+
+				<field id="my_account_form" translate="label comment" type="select" sortOrder="910" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display Login Form</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="my_account_custom" translate="label comment" type="select" sortOrder="920" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom color</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="my_account_background" translate="label comment" type="text" sortOrder="930" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_heading_color" translate="label comment" type="text" sortOrder="931" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Heading color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_text_color" translate="label comment" type="text" sortOrder="940" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_link_color" translate="label comment" type="text" sortOrder="950" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_link_hover_color" translate="label comment" type="text" sortOrder="960" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_button_background" translate="label comment" type="text" sortOrder="961" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Button background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_button_text_color" translate="label comment" type="text" sortOrder="962" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Button text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_button_border" translate="label comment" type="text" sortOrder="963" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Button border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_button_hover_background" translate="label comment" type="text" sortOrder="964" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Button hover background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_button_text_hover_color" translate="label comment" type="text" sortOrder="965" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Button text hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_button_border_hover" translate="label comment" type="text" sortOrder="966" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Button border hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_divide_color" translate="label comment" type="text" sortOrder="970" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Divide border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_input_text_color" translate="label comment" type="text" sortOrder="971" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Input text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_input_background" translate="label comment" type="text" sortOrder="972" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Input background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+				<field id="my_account_input_border" translate="label comment" type="text" sortOrder="973" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Input border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="my_account_custom">1</field>
+                        <field id="my_account_form">1</field>
+                    </depends>
+				</field>
+
+
+				<field id="dropdown_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="980">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_dropdown" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="990">
+                    <label><![CDATA[<span style="display:block; text-align:center">Dropdown (Store View Switcher, Curency Switcher)</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="dropdown_custom" translate="label comment" type="select" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom color</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="dropdown_background" translate="label comment" type="text" sortOrder="1010" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="dropdown_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="dropdown_opacity" translate="label comment" type="text" sortOrder="1020" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background opacity</label>
+					<comment><![CDATA[From 0 to 1. Ex: <strong>0.5</strong>]]></comment>
+					<depends>
+                        <field id="dropdown_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="dropdown_link_color" translate="label comment" type="text" sortOrder="1030" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="dropdown_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="dropdown_link_hover_color" translate="label comment" type="text" sortOrder="1040" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="dropdown_custom">1</field>
+                    </depends>
+				</field>
+
+				<field id="dropdown_divide_color" translate="label comment" type="text" sortOrder="1050" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Dropdown divide border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="dropdown_custom">1</field>
+                    </depends>
+				</field>
+            </group>
+
+			<group id="main" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Main Content (Text, Link, Button)</label>
+				<field id="heading_text_link" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10">
+                    <label><![CDATA[<span style="display:block; text-align:center">Text & Link</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="custom_text_link" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="text_color" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_text_link">1</field>
+                    </depends>
+				</field>
+
+				<field id="link_color" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_text_link">1</field>
+                    </depends>
+				</field>
+
+				<field id="link_hover_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_text_link">1</field>
+                    </depends>
+				</field>
+
+				<field id="price_color" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Price color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_text_link">1</field>
+                    </depends>
+				</field>
+
+				<field id="special_price_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Special price color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_text_link">1</field>
+                    </depends>
+				</field>
+
+				<field id="old_price_color" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Old price color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_text_link">1</field>
+                    </depends>
+				</field>
+
+				<field id="button_first_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_button_first" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100">
+                    <label><![CDATA[<span style="display:block; text-align:center">Primary Button</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_primary_button" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="primary_button_text_color" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_primary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="primary_button_text_hover_color" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_primary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="primary_button_background_color" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_primary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="primary_button_background_hover_color" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_primary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="primary_button_border_color" translate="label comment" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_primary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="primary_button_border_hover_color" translate="label comment" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_primary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="button_second_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="180">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_button_second" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="190">
+                    <label><![CDATA[<span style="display:block; text-align:center">Secondary Button</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_secondary_button" translate="label comment" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="secondary_button_text_color" translate="label comment" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_secondary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="secondary_button_text_hover_color" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_secondary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="secondary_button_background_color" translate="label comment" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_secondary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="secondary_button_background_hover_color" translate="label comment" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_secondary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="secondary_button_border_color" translate="label comment" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_secondary_button">1</field>
+                    </depends>
+				</field>
+
+				<field id="secondary_button_border_hover_color" translate="label comment" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_secondary_button">1</field>
+                    </depends>
+				</field>
+			</group>
+
+			<group id="footer" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Footer</label>
+
+				<field id="footer_version" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Footer version</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Footer</source_model>
+				</field>
+
+				<field id="parallax" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Parallax</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="background_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="60">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_background" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="70">
+                    <label><![CDATA[<span style="display:block; text-align:center">Footer Background</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_footer_background" translate="label comment" type="select" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="background_color" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_image" translate="label" type="image" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/background</base_url>
+					<depends>
+                        <field id="custom_footer_background">1</field>
+                    </depends>
+                </field>
+				<field id="background_cover" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background cover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="custom_footer_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_repeat" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Repeat</source_model>
+					<depends>
+                        <field id="custom_footer_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_position_x" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (x)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positionx</source_model>
+					<depends>
+                        <field id="custom_footer_background">1</field>
+                    </depends>
+				</field>
+				<field id="background_position_y" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (y)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positiony</source_model>
+					<depends>
+                        <field id="custom_footer_background">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="140">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_border" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="150">
+                    <label><![CDATA[<span style="display:block; text-align:center">Footer Border</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_footer_border" translate="label comment" type="select" sortOrder="155" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="border_top_size" translate="label comment" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border top size</label>
+					<depends>
+                        <field id="custom_footer_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_top_color" translate="label comment" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border top color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_bottom_size" translate="label comment" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border bottom size</label>
+					<depends>
+                        <field id="custom_footer_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="border_bottom_color" translate="label comment" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Border bottom color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_border">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_top_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="200">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_footer_top" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="210">
+                    <label><![CDATA[<span style="display:block; text-align:center">Top Footer</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_footer_top" translate="label comment" type="select" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="footer_top_background_color" translate="label comment" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+				<field id="footer_top_background_image" translate="label" type="image" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/background</base_url>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+                </field>
+				<field id="footer_top_background_cover" translate="label comment" type="select" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background cover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+				<field id="footer_top_background_repeat" translate="label comment" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Repeat</source_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+				<field id="footer_top_background_position_x" translate="label comment" type="select" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (x)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positionx</source_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+				<field id="footer_top_background_position_y" translate="label comment" type="select" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (y)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positiony</source_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_top_heading_color" translate="label comment" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Heading color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_top_text_color" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_top_link_color" translate="label comment" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_top_link_hover_color" translate="label comment" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_top_icon_color" translate="label comment" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_top">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_middle_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="330">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_footer_middle" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="340">
+                    <label><![CDATA[<span style="display:block; text-align:center">Middle Footer</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_footer_middle" translate="label comment" type="select" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="footer_middle_background_color" translate="label comment" type="text" sortOrder="360" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+				<field id="footer_middle_background_image" translate="label" type="image" sortOrder="370" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Entity\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/background</base_url>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+                </field>
+				<field id="footer_middle_background_cover" translate="label comment" type="select" sortOrder="380" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background cover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+				<field id="footer_middle_background_repeat" translate="label comment" type="select" sortOrder="390" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Repeat</source_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+				<field id="footer_middle_background_position_x" translate="label comment" type="select" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (x)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positionx</source_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+				<field id="footer_middle_background_position_y" translate="label comment" type="select" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Position (y)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Positiony</source_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_middle_heading_color" translate="label comment" type="text" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Heading color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_middle_text_color" translate="label comment" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_middle_link_color" translate="label comment" type="text" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_middle_link_hover_color" translate="label comment" type="text" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_middle_icon_color" translate="label comment" type="text" sortOrder="460" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_middle">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_bottom_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="470">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:65%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_footer_bottom" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="480">
+                    <label><![CDATA[<span style="display:block; text-align:center">Bottom Footer</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="footer_bottom_custom_copyright" translate="label comment" type="select" sortOrder="481" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Custom Copyright</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="footer_bottom_copyright" translate="label comment" type="textarea" sortOrder="482" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Copyright</label>
+					<depends>
+                        <field id="footer_bottom_custom_copyright">1</field>
+                    </depends>
+				</field>
+
+				<field id="custom_footer_bottom" translate="label comment" type="select" sortOrder="490" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Custom</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="footer_bottom_background_color" translate="label comment" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_bottom">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_bottom_text_color" translate="label comment" type="text" sortOrder="510" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_bottom">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_bottom_link_color" translate="label comment" type="text" sortOrder="520" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_bottom">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_bottom_link_hover_color" translate="label comment" type="text" sortOrder="530" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Link hover color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_bottom">1</field>
+                    </depends>
+				</field>
+
+				<field id="footer_bottom_icon_color" translate="label comment" type="text" sortOrder="540" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Icon color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="custom_footer_bottom">1</field>
+                    </depends>
+				</field>
+            </group>
+
+			<group id="catalog" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Catalog (General Setting of Category Page and Catalog Search Page)</label>
+
+				<field id="new_label" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>New label</label>
+				</field>
+
+				<field id="sale_label" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Sale label</label>
+				</field>
+
+				<field id="sale_label_discount" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display "Sale" label with Discount percent</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="review" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Hide Review</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="add_to_cart" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Hide Add to Cart button</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="wishlist_button" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Hide Add to Wishlist button</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="compare_button" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Hide Add to Compare button</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="hover_change" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Hover Change Image</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+            </group>
+
+			<group id="category" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Page</label>
+
+				<field id="layout" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Default Page Layout</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\PageLayout</source_model>
+				</field>
+
+				<field id="product_per_row" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Desktop)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+
+				<field id="product_per_row_tablet" translate="label comment" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Tablet)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+
+				<field id="product_per_row_mobile" translate="label comment" type="select" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Mobile)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+
+				<field id="image" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Category Image position</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Position</source_model>
+				</field>
+
+				<field id="description" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Category Description position</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Position</source_model>
+				</field>
+
+				<field id="cms" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>CMS Block position</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Position</source_model>
+				</field>
+
+                <field id="sub_categories" translate="label comment" type="select" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Sub Categories (After megamenu)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+			<group id="category_landing" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Landing Page</label>
+
+				<field id="product_per_row" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Items per row (Desktop)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+
+				<field id="product_per_row_tablet" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Items per row (Tablet)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+
+				<field id="product_per_row_mobile" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Items per row (Mobile)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+            </group>
+
+			<group id="catalog_search" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Catalog Search Page</label>
+
+				<field id="layout" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Default Page Layout</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\PageLayout</source_model>
+				</field>
+
+				<field id="product_per_row" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Desktop)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+
+				<field id="product_per_row_tablet" translate="label comment" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Tablet)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+
+				<field id="product_per_row_mobile" translate="label comment" type="select" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Mobile)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+				</field>
+            </group>
+
+			<group id="product_details" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Details Page</label>
+
+				<field id="product_info_heading" translate="label" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>PRODUCT INFORMATION</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="layout" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Default Page Layout</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\PageLayout</source_model>
+				</field>
+
+				<field id="default_template" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Default Template</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Template</source_model>
+				</field>
+
+				<field id="sku" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show SKU</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="stock_status" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Stock Status</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="reviews_summary" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Reviews Summary</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="short_description" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Short Description</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="wishlist" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Add to Wishlist link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="compare" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Add to Compare link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="email_to_friend" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Email to Friend</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="related_line_above" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="72">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none;"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="related_info_heading" translate="label" sortOrder="75" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>RELATED PRODUCTS</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="related_products" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Related Products</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="related_title" translate="label comment" type="text" sortOrder="85" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Title</label>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_position" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Position</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\RelatedPosition</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_per_row" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Desktop)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_per_row_tablet" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Tablet)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_per_row_mobile" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Mobile)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="125">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:50%; margin:auto"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+                </field>
+
+				<field id="related_slider" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Slider</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_autoplay" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Auto play</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                        <field id="related_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_stop_auto" translate="label comment" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Stop autoplay on mouse hover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                        <field id="related_slider">1</field>
+                    </depends>
+				</field>
+				<field id="related_loop" translate="label comment" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Loop</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                        <field id="related_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_navigation" translate="label comment" type="select" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display navigation</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                        <field id="related_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_pagination" translate="label comment" type="select" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display pagination</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="related_products">1</field>
+                        <field id="related_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="related_slide_by" translate="label comment" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Navigation slide by</label>
+					<validate>required-entry validate-number</validate>
+					<depends>
+                        <field id="related_products">1</field>
+                        <field id="related_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_line_above" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="195">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none;"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="upsell_info_heading" translate="label" sortOrder="200" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>UP-SELL PRODUCTS</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="upsell_products" translate="label comment" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Up-Sell Products</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="upsell_title" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Title</label>
+					<depends>
+                        <field id="upsell_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_position" translate="label comment" type="select" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Position</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\RelatedPosition</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_per_row" translate="label comment" type="select" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Desktop)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_per_row_tablet" translate="label comment" type="select" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Tablet)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_per_row_mobile" translate="label comment" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Mobile)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="265">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:50%; margin:auto"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                    </depends>
+                </field>
+
+				<field id="upsell_slider" translate="label comment" type="select" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Slider</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_autoplay" translate="label comment" type="select" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Auto play</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                        <field id="upsell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_stop_auto" translate="label comment" type="select" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Stop autoplay on mouse hover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                        <field id="upsell_slider">1</field>
+                    </depends>
+				</field>
+				<field id="upsell_loop" translate="label comment" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Loop</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                        <field id="upsell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_navigation" translate="label comment" type="select" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display navigation</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                        <field id="upsell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_pagination" translate="label comment" type="select" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display pagination</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="upsell_products">1</field>
+                        <field id="upsell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="upsell_slide_by" translate="label comment" type="text" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Navigation slide by</label>
+					<validate>required-entry validate-number</validate>
+					<depends>
+                        <field id="upsell_products">1</field>
+                        <field id="upsell_slider">1</field>
+                    </depends>
+				</field>
+
+            </group>
+
+			<group id="product_image_dimention" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Image Dimention</label>
+				<field id="detail_big" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Product detail (big images)</label>
+					<comment><![CDATA[WidthxHeight. Ex: 560x700]]></comment>
+				</field>
+
+				<field id="detail_small" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Product detail (small images)</label>
+					<comment><![CDATA[WidthxHeight. Ex: 88x110]]></comment>
+				</field>
+                <field id="default_tabs" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product tabs</label>
+                    <comment><![CDATA[WidthxHeight. Ex: 270x270]]></comment>
+                </field>
+
+				<field id="default_grid" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Grid mode</label>
+					<comment><![CDATA[WidthxHeight. Ex: 240x300]]></comment>
+				</field>
+
+				<field id="default_list" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Default list mode</label>
+					<comment><![CDATA[WidthxHeight. Ex: 240x300]]></comment>
+				</field>
+
+				<field id="small_list" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Small list mode</label>
+					<comment><![CDATA[WidthxHeight. Ex: 240x300]]></comment>
+				</field>
+
+				<field id="mini_cart" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Mini Cart</label>
+					<comment><![CDATA[WidthxHeight. Ex: 75x75]]></comment>
+				</field>
+
+				<field id="shopping_cart" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Shopping Cart</label>
+					<comment><![CDATA[WidthxHeight. Ex: 165x165]]></comment>
+				</field>
+
+                <field id="ar_width" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width of 3D View</label>
+                    <comment><![CDATA[Width. Ex: 450px]]></comment>
+                </field>
+            </group>
+
+			<group id="shopping_cart" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shopping Cart Page</label>
+				<field id="show_coupon" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Coupon Code form</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="crosssell_heading" translate="label" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>CROSS-SELL PRODUCTS</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="show_crosssell" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Cross-Sell Products</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="crosssell_title" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Title</label>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                    </depends>
+				</field>
+
+				<field id="number_product" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Productss to show</label>
+					<validate>required-entry validate-number</validate>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_per_row" translate="label comment" type="select" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Desktop)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_per_row_tablet" translate="label comment" type="select" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Tablet)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_per_row_mobile" translate="label comment" type="select" sortOrder="53" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Number of Products per row (Mobile)</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Perrow</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:50%; margin:auto"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                    </depends>
+                </field>
+
+				<field id="crosssell_slider" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Slider</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_autoplay" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Auto play</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                        <field id="crosssell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_stop_auto" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Stop autoplay on mouse hover</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                        <field id="crosssell_slider">1</field>
+                    </depends>
+				</field>
+				<field id="crosssell_loop" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Loop</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                        <field id="crosssell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_navigation" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display navigation</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                        <field id="crosssell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_pagination" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display pagination</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                        <field id="crosssell_slider">1</field>
+                    </depends>
+				</field>
+
+				<field id="crosssell_slide_by" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Navigation slide by</label>
+					<validate>required-entry validate-number</validate>
+					<depends>
+                        <field id="show_crosssell">1</field>
+                        <field id="crosssell_slider">1</field>
+                    </depends>
+				</field>
+            </group>
+
+			<group id="customer" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Customer Navigation Links</label>
+				<field id="account_dashboard" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled Account Dashboard Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="orders" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled My Orders Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="downloadable" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled My Downloadable Products Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="wishlist" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled My Wish List Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="address_book" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled Address Book Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="account_information" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled Account Information Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="creditcart" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled Stored Payment Method Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="billing_agreements" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled Billing Agreements Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="reviews" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled My Product Reviews Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="newsletter" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Disabled Newsletter Subscriptions Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+
+			<group id="newsletter_popup" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Newsletter Popup</label>
+				<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Newsletter Popup</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Title</label>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+				</field>
+				<field id="background" translate="label comment" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background</label>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/setting</base_url>
+				</field>
+				<field id="html" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Text</label>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+				</field>
+                <field id="bottom_html" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bottom Text</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+				<field id="form_subscribe" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Subscribe Form</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+				</field>
+
+				<field id="popup_width" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Width</label>
+					<comment><![CDATA[Default value: 530(px)]]></comment>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+				</field>
+				<field id="popup_delay" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Delay Time to Show Popup</label>
+					<comment><![CDATA[ms]]></comment>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+				</field>
+
+				<field id="show_on_mobile" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display on Mobile</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+				</field>
+			</group>
+
+			<group id="contact" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Contact Us Page</label>
+
+				<field id="layout" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Page Layout</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\PageLayout</source_model>
+				</field>
+
+				<field id="display_google_map" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Display Google Map</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="map_type" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Map Type</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\MapType</source_model>
+					<depends>
+                        <field id="display_google_map">1</field>
+                    </depends>
+				</field>
+
+				<field id="embeded_code" translate="label comment" type="textarea" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Embed Code</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">embed</field>
+                    </depends>
+					<comment><![CDATA[Go to <a href="https://www.google.com/maps" target="_blank">https://www.google.com/maps</a> to get embed code]]></comment>
+				</field>
+
+				<field id="address_google_map" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Address</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+				</field>
+				<field id="html_google_map" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Html</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+				</field>
+				<field id="pin_google_map" translate="label comment" type="image" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Pin image</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">mgs/setting</base_url>
+				</field>
+				<field id="map_width" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Width</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<validate>validate-number</validate>
+					<comment>px. Blank for full width</comment>
+				</field>
+				<field id="map_height" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Height</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<validate>required-entry validate-number</validate>
+					<comment>px</comment>
+				</field>
+				<field id="map_zoom" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Zoom Level</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<validate>required-entry validate-number</validate>
+				</field>
+				<field id="scroll_wheel" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Scroll wheel</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="navigation" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Navigation</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="control" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Type control</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="scale" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Scale control</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="draggable" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Draggable</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<field id="grayscale" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Grayscale color</label>
+					<depends>
+                        <field id="display_google_map">1</field>
+						<field id="map_type">api</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+
+			<group id="sharethis" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Share This</label>
+				<field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Is Enabled</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="script_share" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Script</label>
+					<validate>required-entry</validate>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+					<comment><![CDATA[Get Script: <a href="http://www.sharethis.com/" target="_blank">http://www.sharethis.com/</a>]]></comment>
+				</field>
+				<field id="html_share" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Html</label>
+					<validate>required-entry</validate>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+				</field>
+				<field id="share_product_detail" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show on Product Details page</label>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="share_category" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show on Catagory page</label>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="share_search" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show on Catalog Search page</label>
+					<depends>
+                        <field id="enabled">1</field>
+                    </depends>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+
+			<group id="page_title" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Page Title and Breadcrumb</label>
+				<field id="design" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Page Title and Breadcrumb Layout</label>
+                    <source_model>MGS\ThemeSettings\Model\Config\Source\BgTitleLayout</source_model>
+				</field>
+				<field id="background" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Type</label>
+                    <source_model>MGS\ThemeSettings\Model\Config\Source\BgTitleType</source_model>
+				</field>
+				<field id="background_color" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background color</label>
+					<frontend_model>MGS\Fbuilder\Block\Adminhtml\Fields\Color</frontend_model>
+					<depends>
+                        <field id="background">3</field>
+                    </depends>
+				</field>
+				<field id="background_image" translate="label comment" type="file" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Image</label>
+					<depends>
+                        <field id="background">2</field>
+                    </depends>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\BgTitleImage</backend_model>
+                    <base_url type="media" scope_info="1">bg_pagetitle</base_url>
+				</field>
+				<field id="bg_repeat" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Background Repeat</label>
+					<depends>
+                        <field id="background">2</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="category_image" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Category Image (Only current category)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+            </group>
+
+			<group id="optimize_site" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Optimize Website</label>
+				<field id="optimize_enabed" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Optimize</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="js_enabed" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Defer parsing of JavaScript</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="optimize_enabed">1</field>
+                    </depends>
+				</field>
+				<field id="js_minify" translate="label comment" type="select" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Merge JavaScript code inline</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="optimize_enabed">1</field>
+                    </depends>
+				</field>
+				<field id="css_enabed" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Defer parsing of CSS</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="optimize_enabed">1</field>
+                    </depends>
+				</field>
+				<field id="html_enabed" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Merge HTML code inline</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="optimize_enabed">1</field>
+                    </depends>
+				</field>
+			</group>
+        </section>
+
+		<section id="themestyle" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Font Settings</label>
+            <tab>mgs</tab>
+            <resource>MGS_ThemeSettings::themestyle</resource>
+
+			<group id="custom_font" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+				<label>Custom Font Family</label>
+				<field id="custom_font_first" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="1">
+                    <label><![CDATA[<span style="display:block; text-align:center">Custom Font 1</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="font_name_first" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Font Name</label>
+				</field>
+				<field id="ttf_file_first" translate="label" type="file" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>TTF File</label>
+                    <comment>Allowed file type: ttf</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Ttf</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="eot_file_first" translate="label" type="file" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>EOT File</label>
+                    <comment>Allowed file type: eot</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Eot</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_file_first" translate="label" type="file" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Woff</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_two_file_first" translate="label" type="file" sortOrder="45" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF2 File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\WoffTwo</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="svg_file_first" translate="label" type="file" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>SVG File</label>
+                    <comment>Allowed file type: svg</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Svg</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+
+				<field id="custom_font_first_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="60">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_font_second" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="70">
+                    <label><![CDATA[<span style="display:block; text-align:center">Custom Font 2</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="font_name_second" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Font Name</label>
+				</field>
+				<field id="ttf_file_second" translate="label" type="file" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>TTF File</label>
+                    <comment>Allowed file type: ttf</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Ttf</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="eot_file_second" translate="label" type="file" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>EOT File</label>
+                    <comment>Allowed file type: eot</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Eot</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_file_second" translate="label" type="file" sortOrder="110" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Woff</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_two_file_second" translate="label" type="file" sortOrder="115" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF2 File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\WoffTwo</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="svg_file_second" translate="label" type="file" sortOrder="120" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>SVG File</label>
+                    <comment>Allowed file type: svg</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Svg</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+
+				<field id="custom_font_second_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="130">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_font_third" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="140">
+                    <label><![CDATA[<span style="display:block; text-align:center">Custom Font 3</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="font_name_third" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Font Name</label>
+				</field>
+				<field id="ttf_file_third" translate="label" type="file" sortOrder="160" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>TTF File</label>
+                    <comment>Allowed file type: ttf</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Ttf</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="eot_file_third" translate="label" type="file" sortOrder="170" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>EOT File</label>
+                    <comment>Allowed file type: eot</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Eot</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_file_third" translate="label" type="file" sortOrder="180" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Woff</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_two_file_third" translate="label" type="file" sortOrder="185" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF2 File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\WoffTwo</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="svg_file_third" translate="label" type="file" sortOrder="190" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>SVG File</label>
+                    <comment>Allowed file type: svg</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Svg</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+
+				<field id="custom_font_third_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="200">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_font_fourth" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="210">
+                    <label><![CDATA[<span style="display:block; text-align:center">Custom Font 4</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="font_name_fourth" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Font Name</label>
+				</field>
+				<field id="ttf_file_fourth" translate="label" type="file" sortOrder="230" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>TTF File</label>
+                    <comment>Allowed file type: ttf</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Ttf</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="eot_file_fourth" translate="label" type="file" sortOrder="240" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>EOT File</label>
+                    <comment>Allowed file type: eot</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Eot</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_file_fourth" translate="label" type="file" sortOrder="250" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Woff</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_two_file_fourth" translate="label" type="file" sortOrder="255" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF2 File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\WoffTwo</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="svg_file_fourth" translate="label" type="file" sortOrder="260" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>SVG File</label>
+                    <comment>Allowed file type: svg</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Svg</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+
+				<field id="custom_font_fourth_line" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="270">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_font_fifth" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="280">
+                    <label><![CDATA[<span style="display:block; text-align:center">Custom Font 5</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="font_name_fifth" translate="label comment" type="text" sortOrder="290" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Font Name</label>
+				</field>
+				<field id="ttf_file_fifth" translate="label" type="file" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>TTF File</label>
+                    <comment>Allowed file type: ttf</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Ttf</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="eot_file_fifth" translate="label" type="file" sortOrder="310" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>EOT File</label>
+                    <comment>Allowed file type: eot</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Eot</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_file_fifth" translate="label" type="file" sortOrder="320" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Woff</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="woff_two_file_fifth" translate="label" type="file" sortOrder="325" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WOFF2 File</label>
+                    <comment>Allowed file type: woff</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\WoffTwo</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+				<field id="svg_file_fifth" translate="label" type="file" sortOrder="330" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>SVG File</label>
+                    <comment>Allowed file type: svg</comment>
+                    <backend_model>MGS\ThemeSettings\Model\Config\Backend\Svg</backend_model>
+                    <base_url type="media" scope_info="1">fonts</base_url>
+                </field>
+
+			</group>
+
+			<group id="font" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Font</label>
+				<field id="default_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1">
+                    <label><![CDATA[<span style="display:block; text-align:center">Default Font</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="default_font" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="default_font_weight_import" translate="label comment" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font weight to import</label>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeightImport</source_model>
+				</field>
+
+				<field id="default_font_weight" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font weight to use</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="default_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="default_font_size" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<validate>validate-number</validate>
+					<comment><![CDATA[Be a number with unit is px.]]></comment>
+				</field>
+
+				<field id="default_font_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_one_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50">
+                    <label><![CDATA[<span style="display:block; text-align:center">Heading 1</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="heading_one_font" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="heading_one_font_weight" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="heading_one_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="heading_one_font_size" translate="label comment" type="text" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="heading_one_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_two_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90">
+                    <label><![CDATA[<span style="display:block; text-align:center">Heading 2</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="heading_two_font" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="heading_two_font_weight" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="heading_two_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="heading_two_font_size" translate="label comment" type="text" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="heading_two_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="120">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_three_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="130">
+                    <label><![CDATA[<span style="display:block; text-align:center">Heading 3</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="heading_three_font" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="heading_three_font_weight" translate="label comment" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="heading_three_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="heading_three_font_size" translate="label comment" type="text" sortOrder="155" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="heading_three_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="160">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_four_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="170">
+                    <label><![CDATA[<span style="display:block; text-align:center">Heading 4</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="heading_four_font" translate="label comment" type="select" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="heading_four_font_weight" translate="label comment" type="select" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="heading_four_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="heading_four_font_size" translate="label comment" type="text" sortOrder="195" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="heading_four_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="200">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_five_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="210">
+                    <label><![CDATA[<span style="display:block; text-align:center">Heading 5</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="heading_five_font" translate="label comment" type="select" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="heading_five_font_weight" translate="label comment" type="select" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="heading_five_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="heading_five_font_size" translate="label comment" type="text" sortOrder="235" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="heading_five_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="240">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="heading_six_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="250">
+                    <label><![CDATA[<span style="display:block; text-align:center">Heading 6</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="heading_six_font" translate="label comment" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="heading_six_font_weight" translate="label comment" type="select" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="heading_six_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="heading_six_font_size" translate="label comment" type="text" sortOrder="275" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="heading_six_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="280">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="price_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="290">
+                    <label><![CDATA[<span style="display:block; text-align:center">Price</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="price_font" translate="label comment" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="price_font_weight" translate="label comment" type="select" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="price_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="price_font_size" translate="label comment" type="text" sortOrder="315" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="price_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="320">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="menu_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="330">
+                    <label><![CDATA[<span style="display:block; text-align:center">Menu</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="menu_font" translate="label comment" type="select" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="menu_font_weight" translate="label comment" type="select" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="menu_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="menu_font_size" translate="label comment" type="text" sortOrder="355" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="menu_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="360">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="button_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="370">
+                    <label><![CDATA[<span style="display:block; text-align:center">Button</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+				<field id="button_font" translate="label comment" type="select" sortOrder="380" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="button_font_weight" translate="label comment" type="select" sortOrder="390" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="button_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="button_font_size" translate="label comment" type="text" sortOrder="395" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+
+				<field id="button_line" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="400">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:55%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="custom_font_heading" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="410">
+                    <label><![CDATA[<span style="display:block; text-align:center">Custom Elements</span>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="elements" translate="label comment" type="textarea" sortOrder="415" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Element classes</label>
+					<comment><![CDATA[Ex: .class-element-1, .class-element-2, #id-element]]></comment>
+				</field>
+
+				<field id="custom_font" translate="label comment" type="select" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Family</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\Fonts</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\Fonts</source_model>
+				</field>
+
+				<field id="custom_font_weight" translate="label comment" type="select" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Weight</label>
+					<frontend_model>MGS\ThemeSettings\Block\Adminhtml\Fields\FontWeight</frontend_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\FontWeight</source_model>
+					<comment><![CDATA[<span id="custom_font_note"><span></span> font may not have the font weight that is chosen.</span>]]></comment>
+				</field>
+
+				<field id="custom_font_size" translate="label comment" type="text" sortOrder="435" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Font Size</label>
+					<comment><![CDATA[Please enter both value and unit (px or rem). Ex: <strong>12px</strong> or <strong>12rem</strong>]]></comment>
+				</field>
+			</group>
+		</section>
+
+		<section id="fbuilder">
+			<group id="export">
+				<field id="static_line_above" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50">
+                    <label><![CDATA[<hr style="border:1px solid #ddd; border-bottom:none; width:70%"/>]]></label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+
+				<field id="import_static" translate="label" type="MGS\ThemeSettings\Block\Adminhtml\System\ImportStatic" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Import Static Blocks</label>
+                </field>
+			</group>
+		</section>
+	</system>
+</config>

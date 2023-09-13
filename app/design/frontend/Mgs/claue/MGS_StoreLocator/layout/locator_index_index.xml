@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+		<referenceContainer name="head.additional">
+			<block class="Magento\Framework\View\Element\Template" name="store.map.script" template="MGS_StoreLocator::google_map_script.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

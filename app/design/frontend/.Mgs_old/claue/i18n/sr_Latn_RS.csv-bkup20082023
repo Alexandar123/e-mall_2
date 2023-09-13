@@ -1,0 +1,202 @@
+"Search for...",Pretraga
+Setting,Podešavanja
+"You have no items in your shopping cart.","Nemate artikala u korpi za kupovinu."
+Quickview,"Brzi pogled"
+"About US","O nama"
+"Contact Us","Kontaktirajte nas"
+"Terms & Conditions","Uslovi korišćenja"
+"Returns & Exchanges","Povrati i zamene"
+"Shipping & Delivery","Slanje i isporuka"
+"Privacy Policy","Politika privatnosti"
+"Sort by","Sortiraj po"
+"You have no items in your wish list.","Nemate nijednu stavku na listi želja"
+"Privacy and Cookie Policy","Politika privatnosti i kolačića"
+"View All","Vidi sve"
+"Sale Products","Prodaja proizvoda"
+"My Wish List","Moja lista želja"
+"Go to Wish List","Idite na Listu želja"
+"CMS PAGES","CMS STRANICE"
+"Cms Pages","Cms Stranici"
+"Your search returned no results.","Vaša pretraga nije dala rezultate."
+"We can't find categories matching the selection.","Ne možemo da pronađemo kategorije koje odgovaraju izboru."
+"Search results for:","Rezultati pretrage za:"
+"See All","Vidi sve"
+Review,Pregled
+"Add Your Review","Dodajte svoj komentar"
+"Size Guide","Vodič kroz veličine"
+"Delivery & Return","Isporuka i povrat"
+SKU,"SKU broj - Šifra proizvoda"
+Details,Detalji
+"More Information","Više informacija"
+Reviews,Komentari
+"DELIVERY & RETURNS","ISPORUKA I POVRAT"
+"Customer Reviews","Komentari kupaca"
+"Write Your Own Review","Napišite svoj komentar"
+"You're reviewing:","Vi gledate:"
+Nickname,Nadimak
+Comment,Komentar
+Summary,Rezime
+"Submit Review","Pošalji komentar"
+"Go to Cart","Idite na Korpu"
+"Edit item","Uredite stavku"
+"Update Cart","AŽURIRAJTE SADRŽAJ KORPE"
+"Continue Shopping","Nastavite sa kupovinom"
+"Estimate Shipping and Tax","Vrednost artikala i troškovi isporuke"
+"Enter your destination to get a shipping estimate.","Unesite svoje odredište da biste dobili procenu iznosa isporuke."
+"Apply Discount Code","Primenite kod za popust"
+"Order Total","Ukupno narudžbina"
+"Check Out with Multiple Addresses","Odjavite se sa više adresa"
+"Table Rate","Cena dostave"
+Region,Regija
+"Enter discount code","Unesite kod za popust"
+"Apply Discount","Primenite popust"
+"SHIPPING ADDRESS","ADRESA ZA DOSTAVU"
+"Shipping Methods","NAČINI DOSTAVE"
+"Delivery Comment","Komentar vezan za dostavu"
+"Payment Methods","NAČINI PLAĆANJA"
+"Payment Method","Način Plaćanja"
+"Zip/Postal Code","Poštanski broj"
+"Order comment","Komentar vezan za narudžbinu"
+"Order Comment","Komentar vezan za narudžbinu"
+"Sign Up for Our Newsletter","Prijavite se za bilten"
+"One Step Checkout","Proverite narudžbinu"
+"We'll email you an order confirmation with details and tracking info.","Poslaćemo vam e-mailom potvrdu porudžbine sa detaljima i informacijama o praćenju."
+"Your order number is:","Broj Vaše narudžbine je:"
+"Thank you for your purchase!","Hvala Vam na kupovini!"
+"Customer Login","Prijava korisnika"
+"Email Address","Email adresa"
+"By using this form you agree with the storage and handling of your data by this website.","Korišćenjem ovog obrasca saglasni ste sa čuvanjem i rukovanjem vašim podacima na ovoj web stranici."
+"By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.","Kreiranjem naloga u našoj prodavnici, moći ćete brže da se krećete kroz proces plaćanja, da čuvate više adresa za isporuku, da vidite i pratite svoje narudžbine na svom nalogu i još mnogo toga."
+"Please type the letters and numbers below","Unesite slova i brojeve ispod"
+"Enter your email.","Unesite vašu e-mail adresu."
+"Enter your email...","Unesite vašu e-mail adresu."
+"Enter your email address","Unesite vašu e-mail adresu."
+"You are signed out","Odjavljeni ste"
+"Personal Information","LIČNE INFORMACIJE"
+"Create New Customer Account","Kreirajte novi korisnički nalog"
+"Very Strong","Veoma jaka"
+Strong,Jaka
+Medium,Srednja
+Weak,Slaba
+"Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.","Minimalna dužina ovog polja mora biti jednaka ili veća od 8 simbola. Vodeći i zadnji razmaci će biti zanemareni."
+"Minimum length of this field must be equal or greater than %1 symbols. Leading and trailing spaces will be ignored.","Minimalna dužina ovog polja mora biti jednaka ili veća od %1 simbola. Vodeći i zadnji razmaci će biti zanemareni."
+"Please enter a valid email address (Ex: johndoe@domain.com).","Unesite važeću email adresu (Pr: johndoe@domain.com)."
+"Subscribe to our newsletters and don't miss new arrivals, the latest fashion updates and our promotions.","Pretplatite se na naše biltene i ne propustite novosti, najnovije modne novosti i naše promocije."
+"Don't show this popup again","Ne prikazuj ponovo ovaj iskačući prozor"
+"SIGN UP NEWSLETTER","PRIJAVITE SE ZA BILTEN"
+"Sign Up Newsletter","PRIJAVITE SE ZA BILTEN"
+Subscribe,"Pretplatite se"
+"My Account","Moj nalog"
+"Contact Information","KONTAKT INFORMACIJE"
+Newsletters,BILTENI
+newsletters,Bilteni
+"You are subscribed to ""General Subscription"".","Pretplaćeni ste na ""Opštu pretplatu""."
+"Change Password","Promenite lozinku"
+"Default Billing Address","Podrazumevana adresa za plaćanje"
+"Default Shipping Address","Podrazumevana adresa za dostavu"
+"Account Navigation","Navigacija kroz nalog"
+"My Orders","Moje narudžbine"
+"My Downloadable Products","Moji proizvodi za preuzimanje"
+"Stored Payment Methods","Sačuvani načini plaćanja"
+"My Product Reviews","Moje recenzije proizvoda"
+"Newsletter Subscriptions","Pretplate na bilten"
+GDPR,"Zaštita podataka o ličnosti"
+Date,DATUM
+date,datum
+"Ship To",ISPORUČITI
+Status,STATUS
+Reorder,"Promenite redosled"
+Pending,"Na čekanju"
+Processing,"Obrađuje se"
+Complete,Završeno
+complete,završeno
+"You have placed no orders.","Još uvek niste naručili. "
+"per page","po stranici"
+"Order #","BROJ NARUDŽBINE"
+"Items Ordered","NARUČENI ARTIKLI"
+"Back to My Orders","Nazad u Moje narudžbine"
+"Order Information","INFORMACIJE O NARUDŽBINI"
+"Shipping Address","Adresa za dostavu"
+"Billing Address","Adresa za plaćanje"
+"Order Shipments","POŠILJKA NARUDŽBINE"
+"Print All Shipments","Odštampajte sve pošiljke"
+"Print Shipment","Odštampajte pošiljku"
+"Track this shipment","Pratite ovu pošiljku"
+Invoices,FAKTURE
+Invoice,Faktura
+invoice,faktura
+"Print Invoice","Odštampajte fakturu"
+Refunds,"Povrat novca"
+Closed,Zatvoreno
+closed,zatvoreno
+"Print All Refunds","Odštampajte sve povrate novca"
+"Print Refund","Odštampajte povrat novca"
+Refund,"Povrat novca"
+"Shipping & Handling","Pošiljka i rukovanje"
+"You have not purchased any downloadable products yet.","Još niste kupili nijedan proizvod koji se može preuzeti."
+"Update Wish List","Ažurirajte listu želja"
+"Remove Item","Ukloni proizvod"
+"Share Wish List","Podelite listu želja"
+"Add All to Cart","Dodaj sve u korpu"
+ADDRESS,ADRESA
+Address,Adresa
+address,adresa
+State/Province,Država/Pokrajina
+"You have no default billing address in your address book","Nemate podrazumevanu adresu za plaćanje u svom adresaru"
+"Edit Account Information","Uredite informacije o nalogu"
+"You have no stored payment methods.","Nemate sačuvanih načina plaćanja."
+"You have submitted no reviews.","Niste poslali nijednu recenziju"
+"DATA ACCESS","PRISTUP PODACIMA"
+"Data Access","Pristup Podacima"
+"Erase Account","Obriši nalog"
+Submit,Prihvati
+SUBMIT,PRIHVATI
+"Search results for: '%1'","Rezultati pretrage za: '%1'"
+"Your order number is: %1.","Broj Vaše narudžbine je: %1."
+"Your order # is: <span>%1</span>.","Broj Vaše narudžbine je: <span>%1</span>."
+"Print All Invoices","Odštampajte sve fakture"
+"Invoice #","Fakture #"
+"Order # ","BROJ NARUDŽBINE # "
+"Order # %1","BROJ NARUDŽBINE # %1"
+"Order # %1 %2 | %3","BROJ NARUDŽBINE # %1 %2 | %3"
+"Refund #","Povrat novca #"
+"You have no default billing address in your address book.","Nemate podrazumevanu adresu za plaćanje u svom adresaru."
+"Recently Ordered","Nedavno naručeno"
+"Recent Orders","Nedavne narudžbe"
+"Print Order","Štampanje narudžbine"
+"Update Shopping Cart","Ažuriranje korpe sa artiklima"
+"Proceed to Checkout","Nastavi ka plaćanju"
+"Please select a shipping address for applicable items.","Odaberite adresu za dostavu odgovarajućih artikala."
+"Update Qty &amp; Addresses","Ažurirajte količinu i adrese"
+"Enter a New Address","Unesite novu adresu"
+"Go to Shipping Information","Idite na Informacije o otpremi"
+"Shipping To","Dostava do"
+"Change Address","Promijeniti adresu"
+"Edit Items","Uredi stavke"
+"Back to Select Addresses","Natrag na odabir adresa"
+"Continue to Billing Information","Nastavite do Podaci o naplati"
+"Go to Review Your Order","Idite na Pregledajte svoju narudžbu"
+"Back to Shipping Information","Natrag na informacije o otpremi"
+"To sign in to our site, use these credentials during checkout or on the <a href=""%customer_url"">My Account</a> page:","Da biste se prijavili na naš sajt, koristite ove podatke tokom direktne prijave ili prijave na stranici <a href=""%customer_url"">Moj nalog:</a>:",module,Magento_Customer
+"To sign in to our site, use these credentials during checkout or on the <a href=""%customer_url"">My Account</a> page:","Da biste se prijavili na naš sajt, koristite ove podatke tokom direktne prijave ili prijave na stranici <a href=""%customer_url"">Moj nalog:</a>:",module,Magento_Theme
+"Store alternative addresses (for shipping to multiple family members and friends)","Alternativne adrese (za slanje članovima porodice ili prijateljima)",module,Magento_Customer
+"View past orders","Vidite sve dosadašnje porudžbine",module,Magento_Theme
+"View past orders","Vidite sve dosadašnje porudžbine",theme,frontend/Magento/luma
+"View past orders","Vidite sve dosadašnje porudžbine",module,Magento_Customer
+"Thank you for your trust,","Hvala Vam na poverenju,"
+"Your %store_name team.","Vaš %store_name tim."
+"Cart Subtotal","Vrednost Vaše korpe",module,MGS_AjaxCart
+"Please specify a payment method.","Molimo izaberite željeni metod plaćanja"
+"Ship Here","Pošaljite ovde",module,Magento_Checkout
+"You added product %1 to the <a href=""%2"">comparison list</a>.","Dodali ste artikal %1 u listu <a href=""%2"">za upoređivanje</a>.",module,Magento_Catalog
+"Place Order","Potvrdite porudžbinu",module,Magento_Checkout
+"Dear Sir or Madam, Your order number %increment_id has been confirmed. You can expect the goods at the address in the next 3 working days!","Poštovani, Vaša porudžbina broj %increment_id je potvrđena. Robu možete očekivati na adresi u narednih 3 radna dana!",module,Magento_Sales
+"Thank you for shopping at Emall shop!","Hvala što kupujete u Emall shopu!",module,Magento_Checkout
+"Dear Sir or Madam, order number %erp_reference_number has been sent to you, you can expect delivery within 3 working days.","Poštovani, porudžbina broj %erp_reference_number je poslata ka vama, Isporuku možete očekivati u roku od 3 radna dana.",module,Magento_Sales
+"You can download the fiscal invoice at the following link %pfrcarcode_link.","Fiskalni račun možete preuzeti na sledećem linku %pfrcarcode_link.",module,Magento_Checkout
+"The tracking code for your shipment is ","Kod za praćenje vaše pošiljke je ",module,Magento_Checkout
+"and you can follow the status on the courier service portal - link.","a status možete pratiti na portalu kurirske službe -  link.",module,Magento_Checkout
+"Hello, Your order number %creditmemo_id has been cancelled. For more information, you can contact us via email or call center.","Pozdrav, Vaša porudžbina broj %creditmemo_id je otkazana. Za više informacija možete nas kontaktirati putem mejla ili call centra.",module,Magento_Checkout
+"The tracking code for your shipment is xxx and you can follow the status on the courier service portal","Kod za praćenje vaše pošiljke je kkk i status možete pratiti na portalu kurirske službe", module, Magento_Sales
+"Billing Info", "Podaci o naplati"
+"Shipping Info", "Podaci o isporuci"

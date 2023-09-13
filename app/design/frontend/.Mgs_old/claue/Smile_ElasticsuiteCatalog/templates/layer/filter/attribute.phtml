@@ -1,0 +1,25 @@
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <?php
+            $checked = ''; 
+			$url = $filterItem->getUrl();
+            if($filterItem->getIsSelected()) {
+                $checked = 'checked';
+            }
+             
+        ?>
+        <li class="item">
+            <div class="mgs-filter-item-checkbox">
+                <input type="checkbox" class="mgs-layered-checkbox" <?php echo $checked ?>>
+                <div class="mgs-content"></div>
+            </div>
+            <a class="mgs-ajax-layer-item" href="<?php echo $block->escapeUrl($url) ?>">
+                <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                <?php if (!$filterItem->getIsSelected() && $filterItem->getCount() > 0): ?>
+                    <span class="count mgs-option-count">
+                    <?php /* @escapeNotVerified */ echo  $filterItem->getCount() ?></span>
+                <?php endif; ?>
+            </a>
+        </li>
+    <?php endforeach ?>
+</ol>

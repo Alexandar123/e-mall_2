@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+	<preference for="Magento\Contact\Controller\Index\Post" type="Dynamic\Newsletter\Controller\Rewrite\Index\Post"/>
+	<type name="Magento\Newsletter\Model\Subscriber">
+	    <plugin name="dynamic_newsletter_model_subscriber" type="Dynamic\Newsletter\Plugin\Newsletter\Subscriber"/>
+	</type>
+</config>

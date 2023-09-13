@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="megamenu" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Megamenu</label>
+			<tab>mgs</tab>
+			<resource>MGS_Mmegamenu::config_megamenu</resource>
+			<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Setting</label>
+				<field id="home" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Add Homepage Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="hometext" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Homepage Label</label>
+				</field>
+				<field id="homelogo" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Use Logo For Home Page Link</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><label><![CDATA[Replace the "Homepage label" with logo]]></label></comment>
+				</field>
+				<field id="homeposition" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Homepage Link Position</label>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

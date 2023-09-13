@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="admin_system_config_changed_section_themesettings">
+        <observer name="mgs_fbuilder_generatecss" instance="MGS\Fbuilder\Observer\GenerateCss" />
+    </event>
+	<event name="admin_system_config_changed_section_themestyle">
+        <observer name="mgs_fbuilder_generatecss" instance="MGS\Fbuilder\Observer\GenerateCss" />
+    </event>
+		<event name="admin_system_config_changed_section_fcolor">
+        <observer name="mgs_fbuilder_generatecss" instance="MGS\Fbuilder\Observer\GenerateCss" />
+    </event>
+	<event name="mgs_fbuilder_export_before_end">
+        <observer name="themesetting_export_setting" instance="MGS\ThemeSettings\Observer\ExportSetting" />
+    </event>
+	<event name="mgs_fbuilder_import_before_end">
+        <observer name="themesetting_import_setting" instance="MGS\ThemeSettings\Observer\ImportSetting" />
+    </event>
+</config>

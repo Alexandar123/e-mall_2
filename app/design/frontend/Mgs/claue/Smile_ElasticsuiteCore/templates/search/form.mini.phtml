@@ -1,0 +1,125 @@
+<?php
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCore
+ * @author    Romain Ruaud <romain.ruaud@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
+/**
+ * Template for quick search mini form.
+ * Overriden to manage template injection for the rendering of autocomplete results.
+ *
+ * @var $block \Smile\ElasticsuiteCore\Block\Search\Form\Autocomplete
+ */
+?>
+
+<?php
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper('Magento\Search\Helper\Data');
+$helperInstantSearch= $this->helper('MGS\InstantSearch\Helper\Data');
+$getUrlForm = $helper->getResultUrl();
+
+if ($helperInstantSearch->getSearchResultsPage() == 0) {
+    $getUrlForm = $block->getUrl("instantsearch/result");
+}
+?>
+<div class="search-form">
+    <div class="block block-search">
+        <button class="search-close" onclick="showHideFormSearch()"><i class="pe-7s-close"></i></button>
+        <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form" action="<?= $getUrlForm; ?>" method="get">
+            <div class="field search">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span><?= __('Search'); ?></span>
+                </label>
+                <div class="control">
+                    <input id="search"
+                           type="text"
+                           name="<?= $helper->getQueryParamName() ?>"
+                           value="<?= $helper->getEscapedQueryText() ?>"
+                           placeholder="<?= __('Search entire store here...') ?>"
+                           class="input-text"
+                           maxlength="<?= $helper->getMaxQueryLength() ?>"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           aria-expanded="false"
+                           autocomplete="off"
+                           data-block="autocomplete-form"/>
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <?= $block->getChildHtml() ?>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit"
+                        title="<?= $block->escapeHtml(__('Search')) ?>"
+                        class="action search">
+                    <span><?= __('Search'); ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="actions-search">
+        <button class="action-search" onclick="showHideFormSearch()"><i class="pe-7s-search"></i></button>
+    </div>
+</div>
+<script type="text/x-magento-init">
+{
+    "#search" :
+    {
+        "quickSearch" :
+        {
+            "formSelector":"#search_mini_form",
+            "url":"<?php /* @escapeNotVerified */ echo $block->getUrl('search/ajax/suggest'); ?>",
+            "destinationSelector":"#search_autocomplete",
+            "templates": <?php /* @noEscape */ echo $block->getJsonSuggestRenderers();?>,
+            "priceFormat" : <?php /* @noEscape */ echo $block->getJsonPriceFormat();?>,
+            "minSearchLength" : <?php /* @escapeNotVerified */ echo $helper->getMinQueryLength();?>
+        }
+    }
+}
+</script>
+
+<script>
+    function showHideFormSearch() {
+        var searchFormNotFull = document.querySelector('.search-form.not-full');
+        var blockSearch = document.querySelector('.page-wrapper .block-search');
+        var searchInput = document.querySelector('#search_mini_form input#search');
+
+        if(searchFormNotFull){
+            document.documentElement.classList.toggle('search-not-full');
+        }
+        // Add class search-open to html
+        document.documentElement.classList.toggle('search-open');
+
+        if(blockSearch){
+            blockSearch.classList.toggle('active');
+        }
+
+        // When click Esc key to close search form
+        if(document.documentElement.classList.contains('search-open')){
+            document.addEventListener('keydown', function(event) {
+                if (event.keyCode === 27) {
+                    document.documentElement.classList.remove('search-open');
+                    if(blockSearch){
+                        blockSearch.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        if(searchInput){
+            setTimeout(function(){
+                searchInput.focus();
+            }, 500);
+        }
+    }
+</script>

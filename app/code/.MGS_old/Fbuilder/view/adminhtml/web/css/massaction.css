@@ -1,0 +1,47 @@
+/*mgs product attachment css styles*/
+.mgs-file-form{
+    padding: 8px;
+}
+
+.mgs-file-form table{
+    width: 100%;
+}
+
+.mgs-file-form label{
+    display: inline-block;
+    margin-right: 8px;
+    max-width: 84px;
+    vertical-align: middle;
+}
+
+.mgs-file-form input{
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.mgs-file-form button{
+    vertical-align: middle;
+}
+
+.mgs-file-form td:nth-child(3) {
+    text-align: right;
+}
+
+.mgs-file-form td:nth-child(2) {
+    text-align: center;
+}
+
+.mgs-file-form .admin__control-text.product_id{width:100px}
+.mgs-file-form .admin__control-text.product_id.invalid{border:1px solid #ff0000}
+.mgs-file-form .action-save{display:none}
+
+.action-select-wrap ul.action-menu{
+    max-height: none;
+}
+.action-submenu._active{left:190px; min-width: 260px !important;}
+
+@-moz-document url-prefix() {
+    .action-select-wrap ul.action-menu{
+        max-height: 45rem;
+    }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+		
+			<resource id="Magento_Backend::admin">
+				<resource id="Magento_Backend::mgs">
+					<resource id="MGS_Blog::blog" title="Blog" sortOrder="20">
+						<resource id="MGS_Blog::manage_post" title="Manage Posts" sortOrder="40">
+							<resource id="MGS_Blog::edit_post" title="Edit Post" sortOrder="10"/>
+							<resource id="MGS_Blog::save_post" title="Save Post" sortOrder="20"/>
+							<resource id="MGS_Blog::delete_post" title="Delete Post" sortOrder="30"/>
+						</resource>
+						<resource id="MGS_Blog::manage_comment" title="Manage Comments" sortOrder="50">
+							<resource id="MGS_Blog::save_comment" title="Save Comment" sortOrder="10"/>
+							<resource id="MGS_Blog::delete_comment" title="Delete Comment" sortOrder="20"/>
+						</resource>
+						<resource id="MGS_Blog::manage_category" title="Manage Categories" sortOrder="60">
+							<resource id="MGS_Blog::edit_category" title="Edit Category" sortOrder="10"/>
+							<resource id="MGS_Blog::save_category" title="Save Category" sortOrder="20"/>
+							<resource id="MGS_Blog::delete_category" title="Delete Category" sortOrder="30"/>
+						</resource>
+					</resource>
+				</resource>
+				
+				 <resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+							<resource id="MGS_Mpanel::mpanel">
+								<resource id="MGS_Blog::config_blog" title="Blog" sortOrder="10"/>
+							</resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

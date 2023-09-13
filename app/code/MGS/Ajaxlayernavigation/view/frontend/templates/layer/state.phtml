@@ -1,0 +1,45 @@
+<?php $configHelper = $this->helper('MGS\Ajaxlayernavigation\Helper\Config'); ?>
+
+<?php /* $_filters = $block->getAppliedFilters(); Magento < 2.4.1 */?>
+<?php $_filters = $block->getActiveFilters() // Magento 2.4.1+ ?>
+<div id="filter-container" <?php if($configHelper->removeShoppingBy()): ?> style="display:none !important"<?php endif ?>>
+	<?php if (!empty($_filters)): ?>
+	<?php
+		$_state = [];
+		foreach ($_filters as $_filter) {
+			$filterName = $_filter->getName();
+			if (is_object($filterName)) {
+				$filterName = $filterName->getText();
+			}
+			$_state[$filterName][] = [
+				"label" => $_filter->getLabel(),
+				"url" => $_filter->getRemoveUrl()
+			];
+		}
+	?>
+	<div class="filter-active mgs-filter-active">
+		<strong class="block-subtitle filter-current-subtitle"><?php echo __('Now Shopping by') ?></strong>
+		<?php foreach ($_state as $_filterName => $_items): ?>
+			<span class="shoppingby-item">
+				<?php foreach ($_items as $_filter): ?>
+					<?php
+						$label = $block->stripTags($_filter['label']);
+						$removeUrl = $_filter['url'];
+					 ?>
+					<div class="state-item">
+						<span class="state-item-name" title="<?php echo $label ?>"><span><?php echo $block->escapeHtml(__($_filterName)); ?>:</span> <?php echo $label ?></span>
+						<span class="state-item-remove"><span class="state-item-icon-cancel"></span></span>
+						<a class="state-item-remove-url" href="<?php echo $removeUrl ?>"></a>
+					</div>
+				<?php endforeach; ?>
+			</span>
+		<?php endforeach; ?>
+		
+		<span class="shoppingby-item"><div class="state-item"><a
+			class="filter-active-item-clear-all"
+			title="<?php /* @escapeNotVerified */ echo __('Clear All') ?>"
+			href="<?php /* @escapeNotVerified */ echo $configHelper->getClearAllUrl() ?>">
+		<span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span></a></div></span>
+	</div>
+	<?php endif; ?>
+</div>

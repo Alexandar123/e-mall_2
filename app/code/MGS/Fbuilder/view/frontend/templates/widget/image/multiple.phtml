@@ -1,0 +1,48 @@
+<?php $image = $this->getImage() ?>
+<?php $afterImage = $this->getAfterImage() ?>
+<div class="content-block mgs-image-block multiple-image">
+    <?php if ($image!='' && $afterImage!=''): ?>
+        <?php $builderHelper = $this->helper('MGS\Fbuilder\Helper\Data'); ?>
+        <?php if ($builderHelper->isFileExist('images', $image) && $builderHelper->isFileExist('images', $afterImage)): ?>
+            <?php $blockId = rand() . time(); ?>
+            <div class="image-content <?php echo $this->getMultipleEffect() ?>">
+                <span class="span-container<?php if ($this->getBoxShadown()): ?> mgs-box-shadow<?php endif ?>" id="before-after<?php echo $blockId ?>">
+                    <?php if ($this->getMultipleEffect()=='fade' && ($builderHelper->getRealUrl($this->getData('url')) !='#')): ?>
+                        <a href="<?php echo $builderHelper->getRealUrl($this->getData('url'))?>">
+                    <?php endif ?>
+                    <img src="<?php echo $builderHelper->getImageUrl('images', $image) ?>" alt="<?php echo $this->getData('alt') ?>" class="before-image"/>
+                    <img src="<?php echo $builderHelper->getImageUrl('images', $afterImage) ?>" alt="<?php echo $this->getData('alt_after') ?>" class="after-image"/>
+                    <?php if ($this->getMultipleEffect()=='fade' && ($builderHelper->getRealUrl($this->getData('url')) !='#')): ?>
+                        </a>
+                    <?php endif ?>
+                </span>
+            </div>
+            
+            <?php if ($this->getMultipleEffect()=='slide'): ?>
+                <script type="text/javascript">
+                    require([
+                        'jquery',
+                        'beforeafter'
+                    ], function(jQuery){
+                        (function($) {
+                            $("#before-after<?php echo $blockId ?>").twentytwenty({
+                                orientation: '<?php echo $this->getSlideType()?>',
+                                no_overlay: true,
+                                move_slider_on_hover: false,
+                                move_with_handle_only: true,
+                                click_to_move: true
+                            });
+                        })(jQuery);
+                    });
+                </script>
+            <?php endif ?>
+        <?php else: ?>
+            <div class="message info empty"><div><?php echo __('File is not exist on server.') ?></div></div>
+        <?php endif ?>
+    <?php else: ?>
+        <div class="message info empty"><div><?php echo __('Have no image to display.') ?></div></div>
+    <?php endif ?>
+</div>
+
+
+

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * system
+ *
+ * @copyright Copyright © 2020 magesolution. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 magesolution (<https://www.magesolution.com>)
+ * @license <https://www.magesolution.com/license-agreement.html>
+ * @Author: ndthien0912<ndthien0912@gmail.com>
+ * @github: <https://github.com/magesolution>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- <tab id="magesolution" translate="label" sortOrder="10">
+            <label>MGS</label>
+        </tab> -->
+        <section id="MGS_OSCheckout" translate="label" type="text" sortOrder="8888" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>One Step Checkout</label>
+            <tab>mgs</tab>
+            <resource>MGS_OSCheckout::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+
+                <field id="enabled" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable One Step Checkout</label>
+                    <comment><![CDATA[Select <strong>Yes</strong> to enable the module.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>One Step Checkout Page Title</label>
+                    <comment>Title of the checkout page.</comment>
+                </field>
+                <field id="description" translate="label comment" sortOrder="40" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>One Step Checkout Description Page</label>
+                    <comment>Description for the page.</comment>
+                </field>
+                <field id="default_shipping_method" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Shipping</label>
+                    <source_model>MGS\OSCheckout\Model\System\Config\Source\ShippingMethods</source_model>
+                    <comment>Set default shipping method in the checkout page.</comment>
+                </field>
+                <field id="default_payment_method" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Payment</label>
+                    <source_model>MGS\OSCheckout\Model\System\Config\Source\PaymentMethods</source_model>
+                    <comment>Set default payment method in the checkout page.</comment>
+                </field>
+
+                <field id="allow_guest_checkout" translate="label comment" sortOrder="90" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Guest Checkout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Guests can create an account in the Checkout Page.</comment>
+                </field>
+                <field id="show_billing_address" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Billing Address</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select Yes to allow the <strong>Billing Address</strong> block to appear in the Checkout Page.]]></comment>
+                </field>
+                <field id="auto_detect_address" sortOrder="101" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Use Auto Suggestion Technology</label>
+                    <source_model>MGS\OSCheckout\Model\System\Config\Source\AddressSuggest</source_model>
+                    <comment><![CDATA[Select <strong>Google</strong>  to use it for automatic address suggestion, or <strong>No</strong> to disable this feature.]]></comment>
+                </field>
+                <field id="google_api_key" sortOrder="102" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Google Api Key</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="auto_detect_address">google</field>
+                    </depends>
+                </field>
+
+            </group>
+            <group id="display_configuration" translate="label comment" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Display Configuration</label>
+                <field id="delivery_time_format" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Date Format</label>
+                    <source_model>MGS\OSCheckout\Model\System\Config\Source\DeliveryTime</source_model>
+                    <depends>
+                        <field id="enabled_date">1</field>
+                    </depends>
+                    <comment>Select the date format used for delivery time.</comment>
+                </field>
+
+                <field id="delivery_time_off" translate="label" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Delivery Date Day Off</label>
+                    <source_model>Magento\Config\Model\Config\Source\Locale\Weekdays</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="enabled_date">1</field>
+                    </depends>
+                </field>
+                <field id="enabled_header" translate="label comment" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <strong>Yes</strong> to allow show header checkout page.]]></comment>
+                </field>
+                <field id="enabled_breadcrumbs" translate="label comment" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Breadcrumbs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <strong>Yes</strong> to allow show breadcrumbs checkout page.]]></comment>
+                </field>
+                <field id="enabled_delivery_date" translate="label comment" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Delivery Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <strong>Yes</strong> to allow customers to date on the delivery.]]></comment>
+                </field>
+                <field id="enabled_comments" translate="label comment" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Delivery Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <strong>Yes</strong> to allow customers to comment on the delivery.]]></comment>
+                </field>
+                <field id="enabled_order_comments" translate="label comment" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Order Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <strong>Yes</strong> to allow customers to comment on the order.]]></comment>
+                </field>
+                <field id="checked_newsletter" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Checked Newsletter</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[Select <strong>Yes</strong> to have the Newsletter checkbox ticked by default.]]></comment>
+                </field>
+                <field id="show_item_list_toggle" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Product List Toggle</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <strong>Yes</strong> to show product list toggle.]]></comment>
+                    <config_path>MGS_OSCheckout/display_configuration/show_item_list_toggle</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

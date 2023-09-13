@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <!-- <item name="post_listing_data_source" xsi:type="string">MGS\Blog\Model\Resource\Post\Grid\Collection</item> -->
+                <item name="category_listing_data_source" xsi:type="string">MGS\Blog\Model\Resource\Category\Grid\Collection</item>
+                <item name="comment_listing_data_source" xsi:type="string">MGS\Blog\Model\Resource\Comment\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- <type name="MGS\Blog\Model\Resource\Post\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mgs_blog_post</argument>
+            <argument name="eventPrefix" xsi:type="string">mgs_blog_post_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">post_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MGS\Blog\Model\Resource\Post</argument>
+        </arguments>
+    </type> -->
+    <type name="MGS\Blog\Model\Resource\Category\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mgs_blog_category</argument>
+            <argument name="eventPrefix" xsi:type="string">mgs_blog_category_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">category_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MGS\Blog\Model\Resource\Category</argument>
+        </arguments>
+    </type>
+    <type name="MGS\Blog\Model\Resource\Comment\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mgs_blog_comment</argument>
+            <argument name="eventPrefix" xsi:type="string">mgs_blog_comment_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">comment_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MGS\Blog\Model\Resource\Comment</argument>
+        </arguments>
+    </type>
+    <virtualType name="PostGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CategoryGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CommentGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PostGridDataProvider" type="MGS\Blog\Ui\DataProvider\Post\PostDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">MGS\Blog\Model\Resource\Post\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">PostGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CategoryGridDataProvider" type="MGS\Blog\Ui\DataProvider\Category\CategoryDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">MGS\Blog\Model\Resource\Category\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CategoryGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CommentGridDataProvider" type="MGS\Blog\Ui\DataProvider\Comment\CommentDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">MGS\Blog\Model\Resource\Comment\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CommentGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <preference for="Magento\Sitemap\Model\Sitemap" type="MGS\Blog\Model\Sitemap" />
+</config>
